@@ -1,0 +1,67 @@
+{
+  "network": "Omra network published by Wiki Tours International",
+  "base_lang": "fr",
+  "posts_per_page": 12,
+  "sites": [
+    {
+      "domain": "guideomra.ma", "name": "Guide Omra", "ref": "GO",
+      "role": "Sourced Omra & Hajj reference: rituals, documents, health, permits, official calendars",
+      "cf_project": "guideomra", "languages": ["fr", "ar"], "theme": "guideomra.ma",
+      "flows": ["omra-ramadan.ma", "agenceomra.ma", "voyageomra.ma", "prixomra.ma"],
+      "money_share_cap": 0.30
+    },
+    {
+      "domain": "omra-ramadan.ma", "name": "Omra Ramadan", "ref": "OR",
+      "role": "Ramadan planning and deadlines",
+      "cf_project": "omra-ramadan", "languages": ["fr", "ar"], "theme": "omra-ramadan.ma",
+      "flows": ["guideomra.ma", "prixomra.ma", "voyageomra.ma"],
+      "money_share_cap": 0.60
+    },
+    {
+      "domain": "agenceomra.ma", "name": "Agence Omra", "ref": "AG",
+      "role": "Verify and choose a licensed agency, no rankings",
+      "cf_project": "agenceomra", "languages": ["fr", "ar"], "theme": "agenceomra.ma",
+      "flows": ["guideomra.ma", "prixomra.ma", "offresomra.ma"],
+      "money_share_cap": 0.30
+    },
+    {
+      "domain": "prixomra.ma", "name": "Prix Omra", "ref": "PX",
+      "role": "Price observatory: official Hajj cost history, published averages, method",
+      "cf_project": "prixomra", "languages": ["fr", "ar"], "theme": "prixomra.ma",
+      "flows": ["agenceomra.ma", "omra-ramadan.ma", "offresomra.ma"],
+      "money_share_cap": 0.20, "dataset": true
+    },
+    {
+      "domain": "voyageomra.ma", "name": "Voyage Omra", "ref": "VO",
+      "role": "Trip logistics: flights, luggage, heat, health on the road; national airports overview",
+      "cf_project": "voyageomra", "languages": ["fr", "ar"], "theme": "voyageomra.ma",
+      "flows": ["guideomra.ma", "omra-ramadan.ma", "omracasablanca.ma", "omrarabat.ma"],
+      "money_share_cap": 0.30
+    },
+    {
+      "domain": "omracasablanca.ma", "name": "Omra Casablanca", "ref": "CA",
+      "role": "Partir de Casablanca: CMN departure guide and Casablanca-Settat logistics (never 'agence omra casablanca')",
+      "cf_project": "omracasablanca", "languages": ["fr"], "theme": "omracasablanca.ma",
+      "flows": ["voyageomra.ma", "guideomra.ma"],
+      "money_share_cap": 0.20
+    },
+    {
+      "domain": "omrarabat.ma", "name": "Omra Rabat", "ref": "RB",
+      "role": "Partir de Rabat-Salé-Kénitra: RBA departures and regional logistics (Wiki Tours is based in Casablanca)",
+      "cf_project": "omrarabat", "languages": ["fr"], "theme": "omrarabat.ma",
+      "flows": ["voyageomra.ma", "guideomra.ma"],
+      "money_share_cap": 0.20
+    },
+    {
+      "domain": "offresomra.ma", "name": "Offres Omra", "ref": "OF",
+      "role": "Lire et comparer une offre Omra: anatomy, red flags, client-side comparison tool, offer calendar",
+      "cf_project": "offresomra", "languages": ["fr"], "theme": "offresomra.ma",
+      "flows": ["prixomra.ma", "agenceomra.ma"],
+      "money_share_cap": 0.20
+    }
+  ],
+  "robots": {
+    "search_bots": ["Googlebot", "Bingbot", "OAI-SearchBot", "ChatGPT-User", "PerplexityBot", "Perplexity-User", "Claude-SearchBot", "Claude-User"],
+    "training_bots": { "GPTBot": "allow", "ClaudeBot": "allow", "Google-Extended": "allow", "Applebot-Extended": "allow" }
+  }
+}

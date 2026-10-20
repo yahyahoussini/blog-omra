@@ -1,0 +1,25 @@
+{
+  "_doc": "STRATEGY 2.1 A6: the only wikitours.ma URLs we may link to. Only /en/ URLs are known (FR/AR versions UNVERIFIED). We never edit wikitours.ma.",
+  "targets": [
+    { "id": "home", "url": "https://wikitours.ma/en", "lang": "en", "label": "Wiki Tours International" },
+    { "id": "bab-makka", "url": "https://wikitours.ma/en/bab-makka", "lang": "en", "label": "Bab Makka" },
+    { "id": "gammes-omra", "url": "https://wikitours.ma/en/blog/gammes-omra-economique-vip", "lang": "en", "label": "les gammes Omra de Wiki Tours (économique à VIP)" },
+    { "id": "hajj-inscription", "url": "https://wikitours.ma/en/blog/hajj-maroc-inscription-quota", "lang": "en", "label": "l'inscription au Hajj via une agence, expliquée par Wiki Tours" },
+    { "id": "ziyara-medine", "url": "https://wikitours.ma/en/blog/que-visiter-medine-ziyara", "lang": "en", "label": "la ziyara de Médine selon Wiki Tours" }
+  ],
+  "reserved_concepts": [
+    { "concept_id": "brand_wikitours", "why": "Brand / navigational intent (STRATEGY 4.2)" },
+    { "concept_id": "brand_bab_makka", "why": "Brand / navigational intent" },
+    { "concept_id": "gammes_omra", "why": "Omra tiers économique → VIP: wikitours.ma post" },
+    { "concept_id": "hajj_inscription_agence", "why": "Hajj registration via an agency and agency quota: wikitours.ma post" },
+    { "concept_id": "ziyara_medine", "why": "Madinah ziyara: wikitours.ma post" },
+    { "concept_id": "agence_omra_casablanca", "why": "Local transactional: wikitours.ma + the client's own GBP" },
+    { "concept_id": "groupes_voyages", "why": "Group trips (Istanbul, Thailand, Bali): out of scope" }
+  ],
+  "reserved_keyword_patterns": [
+    "wiki ?tours", "bab makka", "gammes? omra",
+    "hajj.*(inscription|agence|quota)|(inscription|agence|quota).*hajj",
+    "casablanca.*agence|agence.*casablanca",
+    "ziyara|ziara"
+  ]
+}

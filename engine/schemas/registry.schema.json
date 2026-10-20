@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://omra-network.local/schemas/registry-entry.schema.json",
+  "title": "Facts registry entry (STRATEGY 10.3)",
+  "type": "object", "additionalProperties": false,
+  "required": ["id", "topic", "claim_fr", "values", "source_urls", "source_tier", "confidence", "status", "review_by", "time_critical"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^fact_[a-z0-9_]+$" },
+    "topic": { "enum": ["ramadan_dates", "umrah_season", "visa", "health", "hajj_process", "hajj_cost", "prices", "flights", "agency_rules", "fraud_cases", "school_calendar", "wikitours", "offers", "local_casablanca", "other"] },
+    "claim_fr": { "type": "string" }, "claim_ar": { "type": "string" },
+    "values": { "type": "array", "items": { "type": "string" } },
+    "unit": { "type": ["string", "null"] },
+    "source_urls": { "type": "array", "minItems": 1, "items": { "type": "string", "format": "uri" } },
+    "source_tier": { "enum": ["official", "media", "airline", "company_stated", "own_data", "academic"] },
+    "confidence": { "enum": ["verified", "likely", "estimate"] },
+    "required_wording": { "type": ["string", "null"] },
+    "conflicts": { "type": "array", "items": { "type": "object", "required": ["value", "source_url"],
+                   "properties": { "value": { "type": "string" }, "source_url": { "type": "string", "format": "uri" } } } },
+    "status": { "enum": ["proposed", "approved", "expired", "disputed", "retired"] },
+    "verified_by": { "type": "string" },
+    "verified_at": { "type": "string", "format": "date" },
+    "review_by": { "type": "string", "format": "date" },
+    "valid_until": { "type": ["string", "null"], "format": "date" },
+    "time_critical": { "type": "boolean" },
+    "supersedes": { "type": ["string", "null"] }
+  },
+  "allOf": [
+    { "if": { "properties": { "confidence": { "enum": ["likely", "estimate"] } } }, "then": { "required": ["required_wording"], "properties": { "required_wording": { "type": "string", "minLength": 3 } } } },
+    { "if": { "properties": { "status": { "const": "approved" } } }, "then": { "required": ["verified_by", "verified_at"] } }
+  ]
+}

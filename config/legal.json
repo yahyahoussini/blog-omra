@@ -1,0 +1,1 @@
+{ "legal_ok": null, "_doc": "Set legal_ok to the lawyer sign-off date (YYYY-MM-DD) to allow pages with requires_legal: true (STRATEGY 5.4, gate 19)." }

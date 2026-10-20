@@ -1,0 +1,27 @@
+{
+  "name": "omra-network",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Static engine for the 8-site Omra/Hajj content network published by Wiki Tours International.",
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "build": "node scripts/build.js",
+    "check": "node scripts/check.js",
+    "test": "node --test tests/",
+    "generate": "node scripts/todo.js generate",
+    "plan": "node scripts/todo.js plan",
+    "publish": "node scripts/todo.js publish",
+    "monitor": "node scripts/todo.js monitor",
+    "report": "node scripts/todo.js report"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.135.0",
+    "ajv": "^8.20.0",
+    "ajv-formats": "^3.0.1",
+    "csv-parse": "^7.0.3",
+    "gray-matter": "^4.0.3",
+    "markdown-it": "^15.0.3",
+    "markdown-it-container": "^4.0.0"
+  }
+}

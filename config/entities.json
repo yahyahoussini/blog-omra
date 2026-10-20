@@ -1,0 +1,9 @@
+{
+  "_doc": "Allowed entity names (STRATEGY 7.4 gate 5, warning only). A name that looks like an agency or airline and is not listed here is reported in the gate report.",
+  "allowed": [
+    "Wiki Tours International", "Wiki Tours", "Bab Makka",
+    "Royal Air Maroc", "RAM", "flynas", "Saudia", "ONDA",
+    "Nusuk", "Nusuk Umrah", "Ministère du Tourisme", "Ministère des Habous", "Fondation Mohammed VI",
+    "Observatoire marocain de protection du consommateur", "Office des changes", "DGI"
+  ]
+}

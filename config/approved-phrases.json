@@ -1,0 +1,6 @@
+{
+  "_doc": "Fixed expressions removed before the facts gate looks for digits (STRATEGY 10.4). Add only ritual counts and fixed expressions from the approved knowledge base, never prices or dates.",
+  "fr": ["les 10 dernières nuits", "10 dernières nuits"],
+  "ar": ["العشر الأواخر"],
+  "banned_claim_exceptions": ["garanties financières", "garantie financière", "garanties professionnelles"]
+}
