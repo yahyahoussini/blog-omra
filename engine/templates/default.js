@@ -129,7 +129,7 @@ export function cta(ctx, { wa, wt }) {
   const wtHtml = wt ? `<p class="cta__wt">${esc(L.wtLead)} <a href="${esc(wt.href)}" rel="${esc(wt.rel)}" class="wt-link">${esc(wt.anchor)}</a>${wt.note ? `<span class="lang-note">${esc(wt.note)}</span>` : ''}</p>` : '';
   return `<aside class="cta" aria-label="${esc(L.ctaTitle)}">
 <p class="cta__title">${esc(L.ctaTitle)}</p>
-<p class="cta__text">${esc(L.ctaText)}</p>
+<p class="cta__text">${esc(wa.external ? L.ctaText : L.ctaFallbackText)}</p>
 <a class="cta__button" href="${esc(wa.href)}"${rel}>${esc(L.ctaButton)}</a>
 <p class="cta__ref">${esc(L.ctaRef)} : <span>${esc(wa.ref)}</span></p>
 ${wtHtml}</aside>`;

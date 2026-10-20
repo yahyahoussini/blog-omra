@@ -1,0 +1,11 @@
+{
+  "name": "Alpha Test",
+  "tagline": "Site de test A",
+  "ref": "AL",
+  "nav": [{ "label": "Guide", "slug": "guide-test" }, { "label": "Articles", "slug": "blog" }, { "label": "Contact", "slug": "contact" }],
+  "footer_nav": [{ "label": "Éditeur", "slug": "editeur" }, { "label": "Contact", "slug": "contact" }],
+  "whatsapp": { "number": "+212 600 000 000", "default_topic": "Question test" },
+  "blog": { "description": "Tous les articles du site de test Alpha, utilisés par la suite de tests du moteur pour vérifier la pagination." },
+  "redirects": [{ "from": "/ancien-guide/", "to": "/guide-test/", "status": 301 }],
+  "indexnow_key": "alpha-test-key-123"
+}

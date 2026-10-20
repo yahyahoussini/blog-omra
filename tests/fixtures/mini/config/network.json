@@ -1,0 +1,12 @@
+{
+  "base_lang": "fr",
+  "posts_per_page": 2,
+  "sites": [
+    { "domain": "alpha.test", "name": "Alpha Test", "ref": "AL", "role": "fixture site A", "cf_project": "alpha-test", "languages": ["fr"], "theme": "alpha.test", "flows": ["beta.test"], "money_share_cap": 0.6 },
+    { "domain": "beta.test", "name": "Beta Test", "ref": "BE", "role": "fixture site B", "cf_project": "beta-test", "languages": ["fr"], "theme": "beta.test", "flows": ["alpha.test"], "money_share_cap": 0.3, "dataset": true }
+  ],
+  "robots": {
+    "search_bots": ["Googlebot", "Bingbot", "OAI-SearchBot", "ChatGPT-User", "PerplexityBot", "Perplexity-User", "Claude-SearchBot", "Claude-User"],
+    "training_bots": { "GPTBot": "allow", "ClaudeBot": "block", "Google-Extended": "allow", "Applebot-Extended": "allow" }
+  }
+}

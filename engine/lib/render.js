@@ -167,9 +167,10 @@ export function renderContentPage(ctx, page) {
   }
 
   // hreflang only between translations of the same page on the same site.
+  // DECISIONS D-H: home pages are always linked; other pages only through a shared translation_key.
   let alternates = [];
-  if (fm.translation_key) {
-    const versions = ctx.pages.filter(p => p.site === page.site && p.fm.translation_key === fm.translation_key);
+  if (fm.translation_key || fm.type === 'home') {
+    const versions = ctx.pages.filter(p => p.site === page.site && (fm.type === 'home' ? p.fm.type === 'home' : p.fm.translation_key === fm.translation_key));
     if (versions.length > 1) {
       const base = versions.find(v => v.lang === (project.network.base_lang || 'fr')) || versions[0];
       alternates = [...versions.map(v => ({ hreflang: `${v.lang}-MA`, href: v.absUrl })), { hreflang: 'x-default', href: base.absUrl }];

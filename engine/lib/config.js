@@ -24,7 +24,7 @@ export async function loadProject(root) {
     sites: new Map(),
   };
   project.registry = Object.fromEntries(project.registryList.map(f => [f.id, f]));
-  project.approvedPhrases = [...(project.phrases.fr || []), ...(project.phrases.ar || [])];
+  project.approvedPhrases = [...(project.phrases.fr || []), ...(project.phrases.ar || []), ...(project.phrases.en || [])];
   project.wtTargets = Object.fromEntries(project.targets.targets.map(t => [t.id, t]));
 
   for (const meta of network.sites) {

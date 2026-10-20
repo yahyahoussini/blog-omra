@@ -16,5 +16,5 @@ const res = await buildNetwork({
 });
 printFindings(res.findings, { verbose: args.includes('--verbose') });
 for (const w of res.written) console.log(`built ${w.domain}: ${w.files} files`);
-console.log(`\n${res.pages.length} pages, ${res.errors.length} errors, ${res.warnings.length} warnings. Report: dist/_reports/gates.json`);
+console.log(`\n${res.pages.length} pages, ${res.errors.length} errors, ${res.warnings.length} warnings. Report: ${path.relative(process.cwd(), path.join(opt('--out') ? path.resolve(opt('--out')) : path.join(root, 'dist'), '_reports', 'gates.json'))}`);
 if (res.errors.length) { console.error(res.written.length ? 'Gate errors (written anyway: --no-strict).' : 'Build blocked by gate errors.'); process.exit(1); }

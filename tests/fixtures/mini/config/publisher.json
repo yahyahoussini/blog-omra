@@ -1,0 +1,15 @@
+{
+  "_doc": "Shared Organization used as JSON-LD publisher on every page (STRATEGY 4.3). Fields stay null until the client provides them (A1, A2, A9). Never invent.",
+  "@id": "https://wikitours.ma/#org",
+  "name": "Wiki Tours International",
+  "url": "https://wikitours.ma/",
+  "description": "Agence de voyages, Casablanca",
+  "address": { "streetAddress": null, "addressLocality": "Casablanca", "addressCountry": "MA" },
+  "telephone": null,
+  "email": null,
+  "logo": null,
+  "sameAs": [],
+  "licence": { "number": null, "official_list_url": null, "fact_id": "fact_wikitours_licence" },
+  "since_fact_id": "fact_wikitours_since_2016",
+  "brands": [{ "@id": "https://wikitours.ma/#bab-makka", "name": "Bab Makka" }]
+}

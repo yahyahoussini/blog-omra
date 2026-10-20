@@ -3,7 +3,7 @@
 import Ajv2020 from 'ajv/dist/2020.js';
 import addFormats from 'ajv-formats';
 import { readJSON, stripMarkers } from './util.js';
-import { factsGate, requiredWordingGate } from './facts-gate.js';
+import { factsGate, requiredWordingGate, splitSentences } from './facts-gate.js';
 import { matchKey } from './normalize.js';
 import { shingles, jaccard, simhash, hamming, similarPairs, words } from './similarity.js';
 import { MENTION } from './markdown.js';
@@ -33,8 +33,15 @@ const BANNED = [
   [/(wiki\s?tours|bab\s?makka)[^.!?]{0,60}(meilleur|n°\s?1|numéro 1|leader|le plus fiable|la plus fiable|incontournable)/iu, 'superlative about Wiki Tours'],
   [/(meilleur|n°\s?1|numéro 1|leader)[^.!?]{0,40}(wiki\s?tours|bab\s?makka)/iu, 'superlative about Wiki Tours'],
 ];
+const BANNED_EN = [
+  [/(?<!\p{L})guarantee(d|s)?(?!\p{L})/iu, '« guaranteed »'],
+  [/0\s?%\s*interest|interest[- ]free/iu, '« 0% interest »'],
+  [/(last|only \S+)\s+(seats|places|spots)|limited (seats|places|spots)|hurry|book now before/iu, 'fake urgency'],
+];
+// English stems the French/Arabic CLAIM_WORDS of the ported gate do not cover.
+const EN_RULE_WORDS = /(?<!\p{L})(mandator|requir|forbid|prohibit|free of charge|guarante|refund|deadline)\p{L}*/iu;
 const FORBIDDEN_LD = new Set(['LocalBusiness', 'TravelAgency', 'Event', 'HowTo', 'Review', 'AggregateRating']);
-const LICENCE_PATTERNS = [/ODV[-\s]?\d+/i, /licence\s+(n°|no\.?|numéro)/i, /agr[ée]ment\s+(n°|no\.?|numéro)/i];
+const LICENCE_PATTERNS = [/ODV[-\s]?\d+/i, /licen[cs]e\s+(n°|no\.?|number|numéro)/i, /agr[ée]ment\s+(n°|no\.?|numéro)/i];
 const SINCE_PATTERN = /depuis\s+2016|since\s+2016|منذ\s+2016/i;
 
 // ---------- registry ----------
@@ -67,8 +74,8 @@ export function frontmatterGate(project, all, add, today) {
     if (fm.cta?.type === 'wikitours' && !project.wtTargets[fm.cta.wt_target]) add(level, 'frontmatter', p, `cta.wt_target "${fm.cta.wt_target}" is not in config/wikitours-targets.json`);
     if (fm.updated && fm.updated < fm.date) add(level, 'frontmatter', p, 'updated is before date');
     if (fm.status !== 'published') continue;
-    if (fm.lang === 'ar' && !(fm.reviewed_by && fm.full_read)) add('error', 'arabic-review', p, 'Arabic pages publish only after the Arabic reviewer\'s full read (gate 21)');
-    if (fm.tier === 'A' && (fm.author || 'org') === 'org') add('warning', 'byline', p, 'tier A expects a named author and reviewer (STRATEGY 4.5); published with the organisation byline');
+    // DECISIONS D-H overrides gate 21 (auto mode): a native Arabic reviewer is recommended, not required.
+    if (fm.lang === 'ar' && !(fm.reviewed_by && fm.full_read)) add('warning', 'arabic-review', p, 'Arabic page without a native reviewer\'s full read (recommended, DECISIONS D-H)');
     const key = `${p.site}|${p.lang}|${fm.slug}`;
     if (slugs.has(key)) add('error', 'frontmatter', p, `slug "${fm.slug}" already used by ${slugs.get(key)}`);
     slugs.set(key, p.file);
@@ -85,12 +92,15 @@ export function frontmatterGate(project, all, add, today) {
 
 // ---------- 2. facts ----------
 function factsGateForPage(project, p, add, today) {
-  for (const { field, text } of p.gateTexts) {
+  for (const { field, text: raw } of p.gateTexts) {
+    const text = String(raw ?? '').replace(/\u00A0/g, ' '); // French no-break spaces read as plain spaces
     const { errors } = factsGate(text, project.registry, { today, approvedPhrases: project.approvedPhrases });
     for (const e of errors) {
       const stale = e.rule === 'fact-past-review' || e.rule === 'fact-expired';
       add(stale ? 'warning' : 'error', 'facts', p, `${field}: ${e.rule}${e.id ? ' ' + e.id : ''}${e.value ? ' value ' + e.value : ''}${e.status ? ' (status ' + e.status + ')' : ''}${e.sentence ? ' — « ' + e.sentence.slice(0, 140) + ' »' : ''}${stale ? ' (page shows « information en cours de mise à jour »)' : ''}`);
     }
+    if (p.lang === 'en') for (const s of splitSentences(text)) if (!/\[\[fact:/.test(s) && EN_RULE_WORDS.test(s))
+      add('error', 'facts', p, `${field}: rule-word-without-fact — « ${s.slice(0, 140)} »`);
     for (const e of requiredWordingGate(text, project.registry)) add('error', 'facts', p, `${field}: ${e.id} must be written with its required wording « ${e.wording} » in the same sentence`);
   }
   if (p.dropFromSitemap) add('warning', 'facts', p, 'a cited fact is more than 14 days past review_by: page is noindex and out of the sitemap until fixed');
@@ -120,10 +130,11 @@ function cannibalGate(project, pages, add) {
     if (reservedKw.some(r => r.test(stripMarkers(fm.primary_keyword)))) add('error', 'cannibalisation', p, `primary keyword "${fm.primary_keyword}" matches a wikitours.ma-reserved topic`);
     const k = `${p.lang}|${matchKey(fm.primary_keyword)}`;
     if (byKey.has(k)) add('error', 'cannibalisation', p, `same primary keyword as ${byKey.get(k).absUrl}`); else byKey.set(k, p);
-    const prev = byConcept.get(fm.concept_id);
-    if (prev && !(prev.site === p.site && prev.lang !== p.lang && prev.fm.translation_key && prev.fm.translation_key === fm.translation_key))
-      add('error', 'cannibalisation', p, `concept "${fm.concept_id}" already served by ${prev.absUrl} (update that page instead)`);
-    else if (!prev) byConcept.set(fm.concept_id, p);
+    // DECISIONS D-H: a concept stays on one site in every language, and once per language.
+    const prev = byConcept.get(fm.concept_id) || [];
+    const clash = prev.find(o => o.site !== p.site || o.lang === p.lang);
+    if (clash) add('error', 'cannibalisation', p, `concept "${fm.concept_id}" already served by ${clash.absUrl} (${clash.site !== p.site ? 'owned by another site' : 'same language: update that page instead'})`);
+    byConcept.set(fm.concept_id, [...prev, p]);
     const owner = clusterOwner.get(fm.cluster);
     if (owner && owner !== p.site) add('error', 'cannibalisation', p, `cluster "${fm.cluster}" belongs to ${owner}`); else clusterOwner.set(fm.cluster, p.site);
   }
@@ -153,6 +164,15 @@ export function duplicateGate(pages, add) {
 // ---------- 9. links ----------
 const hrefs = html => [...html.matchAll(/<a\s[^>]*href="([^"]+)"[^>]*>/g)].map(m => ({ href: m[1].replace(/&amp;/g, '&'), tag: m[0] }));
 const isoWeek = ymd => { const d = new Date(ymd + 'T00:00:00Z'); const day = (d.getUTCDay() + 6) % 7; d.setUTCDate(d.getUTCDate() - day + 3); const y = d.getUTCFullYear(); const w = 1 + Math.round(((d - Date.UTC(y, 0, 4)) / 864e5 - 3 + ((new Date(Date.UTC(y, 0, 4)).getUTCDay() + 6) % 7)) / 7); return `${y}-W${String(w).padStart(2, '0')}`; };
+
+// True when the first wikitours.ma link sits in the first sentence of the body (template parts ignored).
+export function wtInFirstSentence(bodyHtml) {
+  const html = bodyHtml.replace(/<!--nogate-->[\s\S]*?<!--\/nogate-->/g, '');
+  const at = html.indexOf('class="wt-link"');
+  if (at < 0) return false;
+  const before = html.slice(0, at).replace(/<\/(p|li|h[1-6]|td|tr|div|aside|section|blockquote)>/g, '. ').replace(/<[^>]+>/g, ' ');
+  return !/[.!?؟](\s|$)/.test(before.replace(/^[\s.]+/, ''));
+}
 
 function linksGate(project, pages, add) {
   const policy = project.linkPolicy;
@@ -193,8 +213,10 @@ function linksGate(project, pages, add) {
     for (const l of wt) {
       if (banned.some(r => r.test(l.anchor))) add('error', 'links', p, `exact-match commercial anchor to wikitours.ma: « ${l.anchor} »`);
     }
-    if (policy.money_link_not_in_first_paragraph && /<p>[\s\S]*?<\/p>/.exec(p.bodyHtml)?.[0].includes('class="wt-link"'))
-      add('error', 'links', p, 'wikitours.ma link in the first paragraph (STRATEGY 3.5: never in the first sentence)');
+    if ([...p.bodyHtml.matchAll(/<table[\s\S]*?<\/table>/g)].some(m => m[0].includes('class="wt-link"')))
+      add('error', 'links', p, 'wikitours.ma link inside a table (STRATEGY 3.5: never inside tables)');
+    if (policy.money_link_not_in_first_paragraph && wtInFirstSentence(p.bodyHtml))
+      add('error', 'links', p, 'wikitours.ma link in the first sentence of the body (STRATEGY 3.5)');
     const s = perSite.get(p.site) || { posts: 0, withWt: 0, wt: 0, brand: 0 };
     if (p.kind === 'posts') { s.posts++; if (wt.length) s.withWt++; }
     s.wt += wt.length; s.brand += wt.filter(l => brand.some(r => r.test(l.anchor))).length;
@@ -242,6 +264,7 @@ function resolutionGate(project, outputs, pages, add) {
 function pageGates(project, p, add, today, seasonYear) {
   const fm = p.fm;
   const title = stripMarkers(fm.title), desc = stripMarkers(fm.description);
+  if (fm.tier === 'A' && (fm.author || 'org') === 'org') add('warning', 'byline', p, 'tier A expects a named author and reviewer (STRATEGY 4.5); published with the organisation byline');
   // 8. citations
   const min = p.kind === 'posts' ? Math.max(1, MIN_SOURCES[fm.type] ?? 1) : (MIN_SOURCES[fm.type] ?? 1);
   if (p.sources.length < min) add('error', 'citations', p, `${p.sources.length} sources, ${fm.type} needs ≥ ${min}`);
@@ -258,7 +281,7 @@ function pageGates(project, p, add, today, seasonYear) {
   const exceptions = project.phrases.banned_claim_exceptions || [];
   let text = [title, desc, p.plain, ...(fm.faq || []).flatMap(f => [stripMarkers(f.q), stripMarkers(f.a)])].join('\n');
   for (const e of exceptions) text = text.split(e).join(' ');
-  for (const [re, label] of BANNED) if (re.test(text)) add('error', 'banned-claim', p, `banned claim ${label}: « ${(text.match(re) || [''])[0]} »`);
+  for (const [re, label] of p.lang === 'en' ? [...BANNED, ...BANNED_EN] : BANNED) if (re.test(text)) add('error', 'banned-claim', p, `banned claim ${label}: « ${(text.match(re) || [''])[0]} »`);
   // 16. unknowns section
   if (UNKNOWN_REQUIRED.has(fm.type) && !p.hasUnknown) add('error', 'unknowns', p, `${fm.type} pages need a :::unknown section`);
   // editorial word floors (STRATEGY 7.3; not a ranking rule) and images
@@ -275,7 +298,7 @@ function htmlGates(project, outputs, add) {
     const where = { site: domain, url: '/' + file.replace(/index\.html$/, '') };
     const h1 = (html.match(/<h1[\s>]/g) || []).length;
     if (h1 !== 1) add('error', 'meta', where, `${h1} <h1> elements (exactly 1 expected)`);
-    if (!/<html lang="(fr|ar)-MA" dir="(ltr|rtl)">/.test(html)) add('error', 'meta', where, 'missing lang/dir on <html>');
+    if (!/<html lang="(fr|ar|en)-MA" dir="(ltr|rtl)">/.test(html)) add('error', 'meta', where, 'missing lang/dir on <html>');
     if (file !== '404.html' && !html.includes(`<link rel="canonical" href="https://${domain}${where.url}">`)) add('error', 'meta', where, 'missing self-canonical');
     for (const m of html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) {
       let data; try { data = JSON.parse(m[1]); } catch (e) { add('error', 'schema', where, `JSON-LD does not parse: ${e.message}`); continue; }

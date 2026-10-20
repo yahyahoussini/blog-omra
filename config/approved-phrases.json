@@ -1,6 +1,23 @@
 {
-  "_doc": "Fixed expressions removed before the facts gate looks for digits (STRATEGY 10.4). Add only ritual counts and fixed expressions from the approved knowledge base, never prices or dates.",
-  "fr": ["les 10 dernières nuits", "10 dernières nuits"],
-  "ar": ["العشر الأواخر"],
-  "banned_claim_exceptions": ["garanties financières", "garantie financière", "garanties professionnelles"]
+  "_doc": "Fixed expressions removed before the facts gate looks for digits (STRATEGY 10.4): ritual counts and fixed expressions from the approved knowledge base, and source names that contain digits (Medias24, Le360). Never prices or dates.",
+  "fr": [
+    "les 10 dernières nuits",
+    "10 dernières nuits",
+    "Medias24",
+    "Le360",
+    "H24info"
+  ],
+  "ar": [
+    "العشر الأواخر"
+  ],
+  "en": [
+    "the last 10 nights",
+    "last 10 nights"
+  ],
+  "banned_claim_exceptions": [
+    "garanties financières",
+    "garantie financière",
+    "garanties professionnelles",
+    "financial guarantees"
+  ]
 }

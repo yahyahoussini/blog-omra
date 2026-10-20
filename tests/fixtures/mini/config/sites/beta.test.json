@@ -1,0 +1,9 @@
+{
+  "name": "Beta Test",
+  "tagline": "Site de test B",
+  "ref": "BE",
+  "nav": [{ "label": "Articles", "slug": "blog" }],
+  "footer_nav": [{ "label": "Éditeur", "slug": "editeur" }, { "label": "Contact", "slug": "contact" }],
+  "whatsapp": { "number": null, "default_topic": "Question beta" },
+  "blog": { "description": "Les articles du site de test Beta, qui sert de site frère dans les tests de liens du moteur statique." }
+}

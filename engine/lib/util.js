@@ -14,7 +14,7 @@ export const stripMarkers = s => String(s ?? '').replace(/\s*\[\[fact:[a-z0-9_]+
 
 export const todayISO = () => new Date().toISOString().slice(0, 10);
 
-const LOCALES = { fr: 'fr-FR', ar: 'ar-MA' };
+const LOCALES = { fr: 'fr-FR', ar: 'ar-MA', en: 'en-GB' };
 export function formatDate(ymd, lang = 'fr') {
   if (!ymd) return '';
   const d = new Date(ymd + 'T12:00:00Z');

@@ -11,7 +11,7 @@
     "slug": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$", "maxLength": 75 },
     "type": { "enum": ["home", "pillar", "guide", "explainer", "checklist", "hub", "local", "data", "news", "trust", "tool"] },
     "tier": { "enum": ["A", "B", "C"] },
-    "lang": { "enum": ["fr", "ar"] },
+    "lang": { "enum": ["fr", "ar", "en"] },
     "date": { "type": "string", "format": "date" },
     "updated": { "type": "string", "format": "date" },
     "status": { "enum": ["published", "draft", "retired"] },

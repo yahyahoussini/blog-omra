@@ -4,6 +4,7 @@ import { fnv32 } from './util.js';
 
 const MSG = {
   fr: (ref, site, topic, who) => `[${ref}] Bonjour Wiki Tours, je viens de ${site}. ${topic}${who ? ' – ' + who : ''}. Nombre de personnes : __`,
+  en: (ref, site, topic, who) => `[${ref}] Hello Wiki Tours, I am coming from ${site}. ${topic}${who ? ' – ' + who : ''}. Number of people: __`,
   ar: (ref, site, topic, who) => `[${ref}] السلام عليكم Wiki Tours، جئت من ${site}. ${topic}${who ? ' – ' + who : ''}. عدد الأشخاص: __`,
 };
 

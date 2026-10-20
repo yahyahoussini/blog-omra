@@ -1,0 +1,17 @@
+[
+  { "id": "fact_test_last_visa", "topic": "umrah_season", "claim_fr": "SYNTHETIC: dernier visa le 9 mars 2027.", "values": ["9", "2027", "1448"], "unit": null,
+    "source_urls": ["https://example.org/official/calendar"], "source_tier": "official", "confidence": "verified", "required_wording": null, "conflicts": [],
+    "status": "approved", "verified_by": "fixture", "verified_at": "2026-10-20", "review_by": "2026-11-19", "valid_until": "2027-04-07", "time_critical": true, "supersedes": null },
+  { "id": "fact_test_window", "topic": "visa", "claim_fr": "SYNTHETIC: fenêtre de 30 jours.", "values": ["30"], "unit": null,
+    "source_urls": ["https://example.org/news/window"], "source_tier": "media", "confidence": "likely", "required_wording": "selon le journal test", "conflicts": [],
+    "status": "approved", "verified_by": "fixture", "verified_at": "2026-10-19", "review_by": "2026-11-19", "valid_until": null, "time_critical": true, "supersedes": null },
+  { "id": "fact_test_price", "topic": "prices", "claim_fr": "SYNTHETIC: moyenne de 25 000 dirhams en 2023.", "values": ["25000", "2023"], "unit": "MAD",
+    "source_urls": ["https://example.org/press/prices"], "source_tier": "media", "confidence": "likely", "required_wording": "selon la fédération test", "conflicts": [],
+    "status": "approved", "verified_by": "fixture", "verified_at": "2026-10-20", "review_by": "2026-11-19", "valid_until": null, "time_critical": false, "supersedes": null },
+  { "id": "fact_test_old", "topic": "other", "claim_fr": "SYNTHETIC: fait périmé.", "values": ["12"], "unit": null,
+    "source_urls": ["https://example.org/old"], "source_tier": "media", "confidence": "verified", "required_wording": null, "conflicts": [],
+    "status": "approved", "verified_by": "fixture", "verified_at": "2026-01-01", "review_by": "2026-02-01", "valid_until": null, "time_critical": false, "supersedes": null },
+  { "id": "fact_wikitours_licence", "topic": "wikitours", "claim_fr": "SYNTHETIC licence.", "values": ["25012"], "unit": null,
+    "source_urls": ["https://example.org/wt"], "source_tier": "company_stated", "confidence": "likely", "required_wording": "selon le site de l'agence", "conflicts": [],
+    "status": "proposed", "review_by": "2027-04-18", "valid_until": null, "time_critical": false, "supersedes": null }
+]
