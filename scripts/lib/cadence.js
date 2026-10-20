@@ -100,4 +100,4 @@ export function spendStatus(spend, cadence, today) {
   return { month: monthOf(today), usd, cap, share, alert: !!cap && share >= (cadence.spend_alert_share ?? 0.8), stop: !!cap && usd >= cap };
 }
 
-const round = x => Math.round(x * 10000) / 10000;
+const round = x => Math.round(x * 1e6) / 1e6;

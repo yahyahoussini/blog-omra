@@ -149,12 +149,15 @@ async function draftTopic({ root, today, site, topic, brief, file, system, draft
     addSpend(spend, res.usage, { today, cadence, purpose: 'generate', site });
     checkStop(res);
     for (const m of missingRequests(res.text)) missing.add(m);
+    // Gate the draft as a published page (review-mode drafts would otherwise be excluded from the build),
+    // then write it with the real status.
     const norm = normalizeDraft(res.text, brief.front_matter_fixed);
+    const asPublished = normalizeDraft(res.text, { ...brief.front_matter_fixed, status: 'published' });
     errors = [...norm.problems];
     let nearestDup = null;
     if (norm.text) {
       errors.push(...briefChecks(norm, brief));
-      const g = await gateDraft({ root, today, file, text: norm.text, baseline });
+      const g = await gateDraft({ root, today, file, text: asPublished.text, baseline });
       errors.push(...g.errors);
       nearestDup = g.nearestDup;
       title = norm.fm.title;
