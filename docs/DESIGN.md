@@ -79,7 +79,7 @@ The shared base stylesheet implements every component from these tokens; a site 
 
 ## 6. Fonts and performance
 
-Google Fonts with `display=swap`, only the weights used: DM Serif Display 400; DM Sans 400/600/700; DM Mono 400; IBM Plex Sans Arabic 400/600 and Noto Kufi Arabic 700 **only on /ar/ pages**. `preconnect` to fonts.gstatic.com. System fallbacks keep layout stable. Target LCP ≤ 2.5 s, CLS ≤ 0.1.
+**Self-hosted** (no third-party requests, STRATEGY §10.7/§10.10): WOFF2 files from the `@fontsource/*` npm packages, copied at build into each site's `/assets/fonts/`, with `font-display: swap`. Only the weights and subsets used: DM Serif Display 400; DM Sans 400/600/700; DM Mono 400 (latin + latin-ext); IBM Plex Sans Arabic 400/600 and Noto Kufi Arabic 700 (arabic subset) — Arabic families are applied only on `/ar/` pages, so French and English pages never download them. Preload one file (the body face of the page's language). System fallbacks keep layout stable. Target LCP ≤ 2.5 s, CLS ≤ 0.1.
 
 ## 7. RTL
 
