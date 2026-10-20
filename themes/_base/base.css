@@ -1,0 +1,260 @@
+/* BrandHUB Omra — shared base stylesheet for the 8 sites (docs/DESIGN.md, adapted from the BrandHUB Product Design System).
+   Every component below is built only from the custom properties of §4. A site theme changes tokens, pattern, labels and
+   layout variant (themes/<domain>/theme.js), plus small rules in themes/<domain>/style.css.
+   Rules: radius 2px, no shadows, no gradients, 2px seams between cards, accent border on the START side (logical
+   properties, so /ar/ pages flip by themselves), body 18px (Arabic 19px / 1.9). */
+
+/* ---------- 1. Self-hosted fonts (§6): files copied by the engine to /assets/fonts/. Arabic faces are used only on
+   Arabic pages (html[lang^=ar]), so French and English pages never download them. ---------- */
+@font-face{font-family:'DM Serif Display';font-style:normal;font-weight:400;font-display:swap;src:url(/assets/fonts/dm-serif-display-latin-400-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'DM Serif Display';font-style:normal;font-weight:400;font-display:swap;src:url(/assets/fonts/dm-serif-display-latin-ext-400-normal.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'DM Sans';font-style:normal;font-weight:400;font-display:swap;src:url(/assets/fonts/dm-sans-latin-400-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'DM Sans';font-style:normal;font-weight:400;font-display:swap;src:url(/assets/fonts/dm-sans-latin-ext-400-normal.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'DM Sans';font-style:normal;font-weight:600;font-display:swap;src:url(/assets/fonts/dm-sans-latin-600-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'DM Sans';font-style:normal;font-weight:600;font-display:swap;src:url(/assets/fonts/dm-sans-latin-ext-600-normal.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'DM Sans';font-style:normal;font-weight:700;font-display:swap;src:url(/assets/fonts/dm-sans-latin-700-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'DM Sans';font-style:normal;font-weight:700;font-display:swap;src:url(/assets/fonts/dm-sans-latin-ext-700-normal.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'DM Mono';font-style:normal;font-weight:400;font-display:swap;src:url(/assets/fonts/dm-mono-latin-400-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'DM Mono';font-style:normal;font-weight:400;font-display:swap;src:url(/assets/fonts/dm-mono-latin-ext-400-normal.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'IBM Plex Sans Arabic';font-style:normal;font-weight:400;font-display:swap;src:url(/assets/fonts/ibm-plex-sans-arabic-arabic-400-normal.woff2) format('woff2');unicode-range:U+0600-06FF,U+0750-077F,U+0870-088E,U+0890-0891,U+0897-08E1,U+08E3-08FF,U+200C-200E,U+2010-2011,U+204F,U+2E41,U+FB50-FDFF,U+FE70-FE74,U+FE76-FEFC,U+102E0-102FB,U+10E60-10E7E,U+10EC2-10EC4,U+10EFC-10EFF,U+1EE00-1EE03,U+1EE05-1EE1F,U+1EE21-1EE22,U+1EE24,U+1EE27,U+1EE29-1EE32,U+1EE34-1EE37,U+1EE39,U+1EE3B,U+1EE42,U+1EE47,U+1EE49,U+1EE4B,U+1EE4D-1EE4F,U+1EE51-1EE52,U+1EE54,U+1EE57,U+1EE59,U+1EE5B,U+1EE5D,U+1EE5F,U+1EE61-1EE62,U+1EE64,U+1EE67-1EE6A,U+1EE6C-1EE72,U+1EE74-1EE77,U+1EE79-1EE7C,U+1EE7E,U+1EE80-1EE89,U+1EE8B-1EE9B,U+1EEA1-1EEA3,U+1EEA5-1EEA9,U+1EEAB-1EEBB,U+1EEF0-1EEF1}
+@font-face{font-family:'IBM Plex Sans Arabic';font-style:normal;font-weight:600;font-display:swap;src:url(/assets/fonts/ibm-plex-sans-arabic-arabic-600-normal.woff2) format('woff2');unicode-range:U+0600-06FF,U+0750-077F,U+0870-088E,U+0890-0891,U+0897-08E1,U+08E3-08FF,U+200C-200E,U+2010-2011,U+204F,U+2E41,U+FB50-FDFF,U+FE70-FE74,U+FE76-FEFC,U+102E0-102FB,U+10E60-10E7E,U+10EC2-10EC4,U+10EFC-10EFF,U+1EE00-1EE03,U+1EE05-1EE1F,U+1EE21-1EE22,U+1EE24,U+1EE27,U+1EE29-1EE32,U+1EE34-1EE37,U+1EE39,U+1EE3B,U+1EE42,U+1EE47,U+1EE49,U+1EE4B,U+1EE4D-1EE4F,U+1EE51-1EE52,U+1EE54,U+1EE57,U+1EE59,U+1EE5B,U+1EE5D,U+1EE5F,U+1EE61-1EE62,U+1EE64,U+1EE67-1EE6A,U+1EE6C-1EE72,U+1EE74-1EE77,U+1EE79-1EE7C,U+1EE7E,U+1EE80-1EE89,U+1EE8B-1EE9B,U+1EEA1-1EEA3,U+1EEA5-1EEA9,U+1EEAB-1EEBB,U+1EEF0-1EEF1}
+@font-face{font-family:'Noto Kufi Arabic';font-style:normal;font-weight:700;font-display:swap;src:url(/assets/fonts/noto-kufi-arabic-arabic-700-normal.woff2) format('woff2');unicode-range:U+0600-06FF,U+0750-077F,U+0870-088E,U+0890-0891,U+0897-08E1,U+08E3-08FF,U+200C-200E,U+2010-2011,U+204F,U+2E41,U+FB50-FDFF,U+FE70-FE74,U+FE76-FEFC,U+102E0-102FB,U+10E60-10E7E,U+10EC2-10EC4,U+10EFC-10EFF,U+1EE00-1EE03,U+1EE05-1EE1F,U+1EE21-1EE22,U+1EE24,U+1EE27,U+1EE29-1EE32,U+1EE34-1EE37,U+1EE39,U+1EE3B,U+1EE42,U+1EE47,U+1EE49,U+1EE4B,U+1EE4D-1EE4F,U+1EE51-1EE52,U+1EE54,U+1EE57,U+1EE59,U+1EE5B,U+1EE5D,U+1EE5F,U+1EE61-1EE62,U+1EE64,U+1EE67-1EE6A,U+1EE6C-1EE72,U+1EE74-1EE77,U+1EE79-1EE7C,U+1EE7E,U+1EE80-1EE89,U+1EE8B-1EE9B,U+1EEA1-1EEA3,U+1EEA5-1EEA9,U+1EEAB-1EEBB,U+1EEF0-1EEF1}
+
+/* ---------- 2. Tokens (§4). Light on :root, dark on [data-theme=dark]. Themes override them. ---------- */
+:root{
+  --accent:#146C3C;--accent-ink:#0E4F2C;--accent-soft:#E3F1E8;--accent-on-dark:#4CC47F;--on-accent:#FFFFFF;
+  --black:#0A0A0A;--bg:#FFFFFF;--surface:#FFFFFF;--surface-2:#F4F4F4;--line:#E6E6E6;
+  --ink:#1A1A1A;--ink-2:#444444;--ink-3:#767676;
+  --ok:#1F8A4C;--ok-soft:#E4F3EA;--warn:#B86E00;--warn-soft:#FBEFD9;--danger:#C8102E;--danger-soft:#FBE3E6;
+  --cover-ink:#FFFFFF;--cover-lead:#C4C4C4;--cover-line:#2A2A2A;
+  --serif:'DM Serif Display',Georgia,'Times New Roman',serif;--sans:'DM Sans',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
+  --mono:'DM Mono',ui-monospace,Menlo,Consolas,monospace;
+  --sans-ar:'IBM Plex Sans Arabic','DM Sans',system-ui,Tahoma,sans-serif;--display-ar:'Noto Kufi Arabic','IBM Plex Sans Arabic',Tahoma,sans-serif;
+  --body:var(--sans);--display:var(--serif);
+  --radius:2px;--seam:2px;--pattern:none;
+  --gutter:16px;--measure:760px;--wide:1180px;
+  --label-size:.6875rem;--label-track:.2em;
+  color-scheme:light;
+}
+:root[data-theme=dark]{
+  --bg:#0A0A0A;--surface:#141414;--surface-2:#1E1E1E;--line:#2A2A2A;
+  --ink:#F2F2F2;--ink-2:#C4C4C4;--ink-3:#8A8A8A;
+  --accent:var(--accent-on-dark);--accent-ink:var(--accent-on-dark);--accent-soft:#1E1E1E;--on-accent:#0A0A0A;
+  --ok-soft:#12291C;--warn-soft:#2E2209;--danger-soft:#33121A;
+  color-scheme:dark;
+}
+html[lang^=ar]{--body:var(--sans-ar);--display:var(--display-ar);--label-track:0}
+@media (min-width:640px){:root{--gutter:24px}}
+@media (min-width:1024px){:root{--gutter:40px}}
+
+/* ---------- 3. Base ---------- */
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1.125rem/1.65 var(--body);text-align:start}
+html[lang^=ar] body{font-size:1.1875rem;line-height:1.9}
+img,svg,video{max-width:100%;height:auto}
+a{color:var(--accent-ink);text-underline-offset:.18em;text-decoration-thickness:1px}
+a:hover{text-decoration-thickness:2px}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:var(--radius)}
+h1,h2,h3,h4{font-family:var(--display);font-weight:400;line-height:1.2;color:var(--ink);margin:1.6em 0 .5em}
+html[lang^=ar] :is(h1,h2,h3,h4){font-weight:700;line-height:1.5}
+h1{font-size:clamp(2rem,6vw,3rem);margin-top:0}
+h2{font-size:1.625rem}h3{font-size:1.25rem}h4{font-size:1.0625rem}
+p,ul,ol,dl,table,blockquote,figure{margin:0 0 1em}
+ul,ol{padding-inline-start:1.4em}
+li+li{margin-top:.3em}
+strong{font-weight:700}
+small{font-size:.875rem}
+code,kbd,samp,time.mono,.mono{font-family:var(--mono);font-size:.9em}
+blockquote{margin-inline:0;padding-inline-start:16px;border-inline-start:4px solid var(--line);color:var(--ink-2)}
+hr{border:0;height:12px;margin:2.5em 0;background:var(--black) var(--pattern) center/auto 12px repeat-x;border-radius:0}
+::selection{background:var(--accent);color:var(--on-accent)}
+.skip-link{position:absolute;inset-inline-start:-999px;top:0;z-index:20;background:var(--black);color:var(--cover-ink);padding:12px 16px}
+.skip-link:focus{inset-inline-start:0}
+.label,.box__label,.card__meta,.cta__ref,.site-brand__by,.cover .byline,.breadcrumbs,.lang-switch__link,th{
+  font-family:var(--body);font-size:var(--label-size);font-weight:600;letter-spacing:var(--label-track);text-transform:uppercase;line-height:1.5}
+html[lang^=ar] :is(.label,.box__label,.card__meta,.cta__ref,.site-brand__by,.breadcrumbs,th){font-weight:700;text-transform:none;font-size:.8125rem}
+.cover .byline{text-transform:none;letter-spacing:0;font-size:.9375rem;font-weight:400}
+
+/* ---------- 4. Page frame ---------- */
+.site-header__inner,.site-footer__inner,.site-main{max-width:var(--wide);margin-inline:auto;padding-inline:var(--gutter)}
+.site-main{padding-block:24px 48px}
+.article,.listing,.home-intro,.not-found{max-width:var(--measure)}
+.home{max-width:var(--wide)}
+
+/* Header (§5): surface bar, serif wordmark + « par Wiki Tours » label, nav, FR · العربية · EN, 2px bottom line. */
+.site-header{background:var(--surface);border-bottom:2px solid var(--ink)}
+.site-header__inner{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 32px;padding-block:16px}
+.site-header--centered .site-header__inner{flex-direction:column;text-align:center}
+.site-header--centered .site-brand{align-items:center}
+.site-header--stacked .site-header__inner{flex-direction:column;align-items:flex-start}
+.site-brand{display:flex;flex-direction:column;gap:2px;text-decoration:none;color:var(--ink)}
+.site-brand__name{font-family:var(--serif);font-size:1.625rem;line-height:1.1}
+.site-brand__by{color:var(--ink-3)}
+.site-brand__tagline{font-size:.9375rem;color:var(--ink-2);max-width:40ch}
+.site-header__tools{display:flex;flex-wrap:wrap;align-items:center;gap:8px 24px}
+.site-nav__list,.lang-switch__list{display:flex;flex-wrap:wrap;gap:4px 20px;list-style:none;margin:0;padding:0}
+.site-nav__item,.lang-switch__item{margin:0}
+.site-nav__link{display:inline-flex;align-items:center;min-height:44px;font-weight:600;font-size:1rem;color:var(--ink);text-decoration:none;border-bottom:2px solid transparent}
+.site-nav__link:hover{border-bottom-color:var(--line)}
+.site-nav__link[aria-current=page]{border-bottom-color:var(--accent);color:var(--accent-ink)}
+.lang-switch__list{gap:0}
+.lang-switch__item+.lang-switch__item::before{content:"·";color:var(--ink-3);padding-inline:8px}
+.lang-switch__link{display:inline-flex;align-items:center;min-height:44px;color:var(--ink-2);text-decoration:none}
+.lang-switch__link[lang^=ar]{font-family:var(--body);letter-spacing:0;text-transform:none;font-size:.875rem}
+.lang-switch__link[aria-current=true]{color:var(--ink);font-weight:700;border-bottom:2px solid var(--accent)}
+.theme-toggle{min-height:44px;padding:0 12px;border:2px solid var(--line);border-radius:var(--radius);background:var(--surface);color:var(--ink);font:600 .875rem var(--body);cursor:pointer}
+.theme-toggle[aria-pressed=true]{border-color:var(--accent)}
+.theme-toggle[hidden]{display:none}
+
+/* Breadcrumbs */
+.breadcrumbs{margin:0 0 16px;color:var(--ink-3)}
+.breadcrumbs__list{display:flex;flex-wrap:wrap;gap:4px 8px;list-style:none;margin:0;padding:0}
+.breadcrumbs__item{margin:0}
+.breadcrumbs__item+.breadcrumbs__item::before{content:"/";margin-inline-end:8px;color:var(--line)}
+.breadcrumbs a{color:var(--ink-2);text-decoration:none}
+.breadcrumbs a:hover{color:var(--accent-ink);text-decoration:underline}
+
+/* ---------- 5. Cover band (§1): black, white serif title, grey lead, 4px accent bottom border, pattern ≤ 8%. ---------- */
+.cover{position:relative;isolation:isolate;overflow:hidden;background:var(--black);color:var(--cover-lead);padding:32px 24px;margin:0 0 32px;border-bottom:4px solid var(--accent-on-dark);border-radius:0}
+.cover::before{content:"";position:absolute;inset:0;z-index:-1;background-image:var(--pattern);background-size:96px auto;opacity:.08;pointer-events:none}
+.cover h1,.cover .article__title,.cover .home-hero__title,.cover .listing__title{color:var(--cover-ink);margin:0 0 12px}
+.cover p{margin:8px 0 0}
+.cover a{color:var(--cover-ink)}
+.cover a:focus-visible{outline-color:var(--accent-on-dark)}
+.cover .byline p{margin:4px 0 0;color:var(--cover-lead)}
+.cover .byline__hijri{color:var(--cover-lead)}
+.home-hero__tagline,.listing__intro{font-size:1.25rem;color:var(--cover-lead);max-width:60ch}
+.cover__actions{margin-top:24px!important}
+.cover .stale-banner{color:var(--ink)}
+@media (min-width:640px){.cover{padding:48px 40px}}
+
+/* Section titles: serif with a 2px ink underline. */
+.home-section__title,.faq__title,.sources__title,.related__title,.cluster-list__title,.prose h2,.box--unknown .box__title{
+  font-family:var(--display);padding-bottom:8px;border-bottom:2px solid var(--ink)}
+.box--unknown .box__title{border-bottom-color:var(--warn)}
+
+/* ---------- 6. Article ---------- */
+.article__header{margin-bottom:32px}
+.byline{font-size:.9375rem;color:var(--ink-2)}
+.byline p{margin:4px 0}
+.byline a{color:inherit}
+.byline__ai,.byline__review{font-size:.875rem}
+.prose>:first-child{margin-top:0}
+.prose h2{margin-top:48px}
+.prose img{display:block;border:2px solid var(--line)}
+.stale-banner{margin:16px 0 0;padding:12px 16px;background:var(--warn-soft);border-inline-start:4px solid var(--warn);color:var(--ink);font-weight:600}
+sup.cite{font-family:var(--mono);font-size:.7em;line-height:0;vertical-align:super}
+sup.cite a{text-decoration:none;padding-inline:2px;color:var(--accent-ink)}
+.lang-note{font-size:.875rem;color:var(--ink-3)}
+
+/* Boxes (containers). */
+.box{margin:32px 0;padding:16px 24px;background:var(--surface-2);border-inline-start:4px solid var(--ink-3);border-radius:0}
+.box>:last-child{margin-bottom:0}
+.box__label{margin:0 0 8px;color:var(--ink-2)}
+.box__title,.prose .box__title{margin:0 0 16px;font-size:1.375rem}
+.box--answer{border-inline-start-color:var(--accent);font-size:1.1875rem}
+.box--answer .box__label{color:var(--accent-ink)}
+.box--retenir{background:var(--surface);border:2px solid var(--line);border-inline-start:4px solid var(--accent);padding:16px 24px}
+.box--retenir .table-wrap{border:0;margin:0}
+.box--retenir td{min-height:44px;padding-block:12px}
+.box--retenir td:last-child{font-variant-numeric:tabular-nums}
+.box--unknown{background:var(--warn-soft);border-inline-start-color:var(--warn)}
+.box--disclosure{background:var(--black);color:var(--cover-ink);border-inline-start-color:var(--accent-on-dark)}
+.box--disclosure .box__label{color:var(--cover-lead)}
+.box--disclosure a{color:var(--cover-ink)}
+.box--warning{background:var(--danger-soft);border-inline-start-color:var(--danger)}
+.box--warning .box__label{color:var(--danger)}
+.box--steps{background:transparent;padding:0;border:0}
+.box--steps ol{counter-reset:step;list-style:none;margin:0;padding:0;display:grid;gap:var(--seam);background:var(--line);border:var(--seam) solid var(--line)}
+.box--steps li{counter-increment:step;position:relative;margin:0;padding:16px 24px;padding-inline-start:72px;background:var(--surface);min-height:64px}
+.box--steps li::before{content:counter(step);position:absolute;inset-inline-start:24px;top:12px;font-family:var(--serif);font-size:1.75rem;line-height:1.2;color:var(--accent)}
+.box--steps .box__label{margin:0 0 8px}
+.network-list__items{padding-inline-start:1.2em}
+.kb__text{font-family:var(--sans-ar);font-size:1.2em}
+.kb__ref{font-family:var(--mono);font-size:.875rem;font-style:normal;color:var(--ink-3)}
+
+/* Tables: 0 radius, 11px caps header, horizontal scroll inside a bordered wrapper on phones. */
+.table-wrap{overflow-x:auto;margin:0 0 1em;border:1px solid var(--line);-webkit-overflow-scrolling:touch}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums;font-size:1rem}
+th,td{padding:12px 16px;text-align:start;vertical-align:top;border-bottom:1px solid var(--line)}
+th{background:var(--surface-2);color:var(--ink-2)}
+tr:last-child td{border-bottom:0}
+td{min-height:44px}
+
+/* Pills: 24px, caps 11px, semantic soft fills, always with their text label. */
+.pill{display:inline-flex;align-items:center;min-height:24px;padding:0 8px;border-radius:var(--radius);font:600 var(--label-size)/1 var(--body);letter-spacing:var(--label-track);text-transform:uppercase;background:var(--surface-2);color:var(--ink-2)}
+.pill--ok{background:var(--ok-soft);color:var(--ok)}
+.pill--warn{background:var(--warn-soft);color:var(--warn)}
+.pill--danger{background:var(--danger-soft);color:var(--danger)}
+
+/* ---------- 7. CTA (§2.6): WhatsApp is the primary button (accent fill, 56px on phones); never inside tables. ---------- */
+.button{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 24px;border:2px solid transparent;border-radius:var(--radius);font:700 1rem/1.2 var(--body);text-decoration:none;cursor:pointer;text-align:center}
+.button--primary,.cta__button{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+.button--primary:hover,.cta__button:hover{background:var(--accent-ink);border-color:var(--accent-ink);text-decoration:none}
+.button--secondary{background:transparent;color:var(--ink);border-color:var(--ink)}
+.cover .button--primary{background:var(--accent-on-dark);border-color:var(--accent-on-dark);color:var(--black)}
+.cta{margin:48px 0;padding:24px;background:var(--surface-2);border-inline-start:4px solid var(--accent);border-radius:0}
+.cta-inline .cta{margin:32px 0}
+.cta__title{font-family:var(--display);font-size:1.5rem;line-height:1.25;color:var(--ink);margin:0 0 8px}
+.cta__text{margin:0 0 16px;color:var(--ink-2)}
+.cta__button{display:flex;align-items:center;justify-content:center;min-height:56px;padding:12px 24px;border:2px solid var(--accent);border-radius:var(--radius);font:700 1.0625rem/1.3 var(--body);text-decoration:none;text-align:center}
+.cta__ref{margin:12px 0 0;color:var(--ink-3)}
+.cta__ref span{font-family:var(--mono);letter-spacing:0}
+.cta__wt{margin:16px 0 0;font-size:1rem}
+@media (min-width:640px){.cta__button{display:inline-flex;min-height:48px}}
+
+/* ---------- 8. Cards on 2px seams; hover = accent start border. ---------- */
+/* Each card draws a 2px outline; outlines of neighbours share the 2px gap, so seams stay 2px and empty tracks stay blank. */
+.cards{list-style:none;margin:0 0 32px;padding:var(--seam);display:grid;gap:var(--seam);grid-template-columns:repeat(auto-fill,minmax(min(100%,18rem),1fr))}
+.card{margin:0;padding:24px;background:var(--surface);outline:var(--seam) solid var(--line);border-inline-start:4px solid transparent;display:flex;flex-direction:column;gap:8px}
+.card:hover,.card:focus-within{border-inline-start-color:var(--accent)}
+.card__link{text-decoration:none;color:var(--ink)}
+.card__link::after{content:"";position:absolute;inset:0}
+.card{position:relative}
+.card__title{font-family:var(--display);font-size:1.375rem;line-height:1.25}
+.card__summary{margin:0;font-size:1rem;color:var(--ink-2)}
+.card__meta{margin:auto 0 0;color:var(--ink-3)}
+.home-section__title{margin-top:48px}
+.home-intro{margin-bottom:32px}
+.home-about p{max-width:var(--measure)}
+
+/* Sections after the body */
+.faq__item{padding:16px 0;border-bottom:1px solid var(--line)}
+.faq__q{margin:0 0 8px;font-size:1.1875rem}
+.faq__a>:last-child{margin-bottom:0}
+.sources{margin-top:48px}
+.sources__list{padding-inline-start:1.6em;font-size:.9375rem}
+.sources__item{margin-bottom:8px;word-break:break-word}
+.sources__item::marker{font-family:var(--mono);color:var(--ink-3)}
+.sources__checked{font-family:var(--mono);font-size:.8125rem;color:var(--ink-3)}
+.related,.cluster-list{margin-top:48px}
+.pager{display:flex;justify-content:space-between;gap:16px;margin-top:32px}
+.pager a{display:inline-flex;align-items:center;min-height:48px;padding:0 16px;border:2px solid var(--ink);border-radius:var(--radius);font-weight:600;text-decoration:none;color:var(--ink)}
+.not-found__title{margin-top:24px}
+
+/* Arch motif (§2.3): the only rounded shape besides the logo mark. */
+.arch{border:2px solid var(--line);border-start-start-radius:999px;border-start-end-radius:999px;overflow:hidden}
+
+/* ---------- 9. Footer (§5): black, ownership line → /editeur/, trust links, pattern divider on top. ---------- */
+.site-footer{margin-top:48px;background:var(--black);color:var(--cover-lead);font-size:.9375rem}
+.site-footer::before{content:"";display:block;height:12px;background:var(--black) var(--pattern) center/auto 12px repeat-x;opacity:.35;border-bottom:4px solid var(--accent-on-dark)}
+.site-footer__inner{padding-block:32px}
+.site-footer a{color:var(--cover-ink)}
+.site-footer__nav ul{display:flex;flex-wrap:wrap;gap:8px 24px;list-style:none;margin:0 0 16px;padding:0}
+.site-footer__nav li{margin:0}
+.site-footer__nav a{display:inline-flex;align-items:center;min-height:44px}
+.site-footer__owner{margin:0}
+
+/* ---------- 10. Tool form (offresomra comparator): inputs 44px, labels above (11px caps), results table. ---------- */
+.tool{margin:32px 0}
+.tool label,.tool .tool__label{display:block;margin:0 0 4px;font:600 var(--label-size)/1.5 var(--body);letter-spacing:var(--label-track);text-transform:uppercase;color:var(--ink-2)}
+html[lang^=ar] .tool label{font-weight:700;letter-spacing:0;font-size:.8125rem}
+.tool input:not([type=checkbox]):not([type=radio]),.tool select,.tool textarea{width:100%;min-height:44px;padding:8px 12px;border:2px solid var(--line);border-radius:var(--radius);background:var(--surface);color:var(--ink);font:400 1rem/1.4 var(--body)}
+.tool input:focus-visible,.tool select:focus-visible{border-color:var(--accent);outline:0}
+.tool input[type=checkbox],.tool input[type=radio]{width:20px;height:20px;accent-color:var(--accent)}
+.tool button{min-height:48px;padding:0 24px;border:2px solid var(--accent);border-radius:var(--radius);background:var(--accent);color:var(--on-accent);font:700 1rem var(--body);cursor:pointer}
+.tool table{margin-top:16px}
+
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+@media print{.site-header__tools,.cta,.skip-link,.site-footer::before{display:none}.cover{background:none;color:#000;border-bottom-color:#000}.cover h1,.cover a{color:#000}}

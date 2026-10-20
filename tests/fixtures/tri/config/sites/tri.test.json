@@ -1,0 +1,22 @@
+{
+  "name": "Tri Test",
+  "tagline": { "fr": "Site de test en trois langues", "ar": "موقع تجريبي بثلاث لغات", "en": "A test site in three languages" },
+  "ref": "TR",
+  "nav": {
+    "fr": [{ "label": "Calendrier", "slug": "calendrier" }, { "label": "Articles", "slug": "blog" }],
+    "ar": [{ "label": "التقويم", "slug": "taqwim" }, { "label": "مقالات", "slug": "blog" }],
+    "en": [{ "label": "Packing list", "slug": "packing-list" }, { "label": "Articles", "slug": "blog" }]
+  },
+  "footer_nav": {
+    "fr": [{ "label": "Éditeur", "slug": "editeur" }, { "label": "Contact", "slug": "contact" }],
+    "ar": [{ "label": "الناشر", "slug": "editeur" }, { "label": "اتصل بنا", "slug": "contact" }],
+    "en": [{ "label": "Publisher", "slug": "editeur" }, { "label": "Contact", "slug": "contact" }]
+  },
+  "whatsapp": { "number": "212600000000", "default_topic": { "fr": "Question test", "ar": "سؤال تجريبي", "en": "Test question" } },
+  "approved_phrases": { "en": ["2M"] },
+  "blog": {
+    "fr": { "description": "Tous les articles français du site de test trilingue, utilisés par la suite de tests du moteur." },
+    "ar": { "description": "جميع المقالات العربية في الموقع التجريبي الثلاثي اللغات، تستعملها اختبارات المحرك الآلية للتحقق من العرض." },
+    "en": { "description": "Every English article of the trilingual test site, used by the engine test suite to check the English blog." }
+  }
+}

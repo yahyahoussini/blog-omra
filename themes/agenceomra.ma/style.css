@@ -1,5 +1,2 @@
-/* agenceomra.ma — placeholder palette; the site agent replaces this file. */
-:root{--bg:#ffffff;--fg:#16213a;--muted:#4d5870;--primary:#1d2f5c;--accent:#2e7d4f;--surface:#eef2f7;--border:#cdd5e1;--link:#1d2f5c;--font-head:"Segoe UI", Roboto, Arial, sans-serif}
-.site-header{border-bottom:3px solid var(--accent)}
-.home-hero{padding:1.5rem 0}
-.home-hero__tagline{color:var(--muted);font-size:1.15rem}
+/* agenceomra.ma — site-specific rules only. Colours, type and components come from themes/_base/base.css and the
+   tokens in theme.js (docs/DESIGN.md). Keep this file small: one system, eight publications. */

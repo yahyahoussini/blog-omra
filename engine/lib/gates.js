@@ -3,7 +3,9 @@
 import Ajv2020 from 'ajv/dist/2020.js';
 import addFormats from 'ajv-formats';
 import { readJSON, stripMarkers } from './util.js';
-import { factsGate, requiredWordingGate, splitSentences } from './facts-gate.js';
+import { factsGate, requiredWordingGate } from './facts-gate.js';
+import { phrasesFor } from './config.js';
+import { graphemes, LANGS } from './i18n.js';
 import { matchKey } from './normalize.js';
 import { docFeatures, hamming, jaccard, similarPairs, similarSetPairs, simhashBuckets } from './similarity.js';
 import { MENTION, plainText } from './markdown.js';
@@ -22,25 +24,36 @@ const MIN_SOURCES = { pillar: 2, guide: 2, news: 2, data: 2, explainer: 1, check
 const WORD_FLOORS = { pillar: 1500, guide: 1500, explainer: 800, checklist: 800, local: 800, hub: 600 };
 const UNKNOWN_REQUIRED = new Set(['pillar', 'guide', 'explainer']);
 const EVERGREEN = new Set(['home', 'pillar', 'guide', 'explainer', 'checklist', 'hub', 'local', 'tool', 'trust']);
-const BANNED = [
-  [/(?<!\p{L})garanti(e|es|s)?(?!\p{L})/iu, '« garanti »'],
-  [/100\s?%/u, '« 100 % »'],
-  [/مضمون/u, '« مضمون »'],
-  [/0\s?%\s*d['’]\s?int[ée]r[êe]t/iu, '« 0 % d\'intérêt »'],
-  [/sans\s+int[ée]r[êe]ts?/iu, '« sans intérêt »'],
-  [/(derni[èe]res?|plus que \S+|seulement \S+)\s+places?/iu, 'fake urgency (places)'],
-  [/places?\s+limit[ée]es?/iu, 'fake urgency (places limitées)'],
-  [/d[ée]p[êe]chez[- ]vous|ne tardez pas|offre expire|compte à rebours|vite,? r[ée]servez/iu, 'fake urgency'],
-  [/(wiki\s?tours|bab\s?makka)[^.!?]{0,60}(meilleur|n°\s?1|numéro 1|leader|le plus fiable|la plus fiable|incontournable)/iu, 'superlative about Wiki Tours'],
-  [/(meilleur|n°\s?1|numéro 1|leader)[^.!?]{0,40}(wiki\s?tours|bab\s?makka)/iu, 'superlative about Wiki Tours'],
-];
-const BANNED_EN = [
-  [/(?<!\p{L})guarantee(d|s)?(?!\p{L})/iu, '« guaranteed »'],
-  [/0\s?%\s*interest|interest[- ]free/iu, '« 0% interest »'],
-  [/(last|only \S+)\s+(seats|places|spots)|limited (seats|places|spots)|hurry|book now before/iu, 'fake urgency'],
-];
-// English stems the French/Arabic CLAIM_WORDS of the ported gate do not cover.
-const EN_RULE_WORDS = /(?<!\p{L})(mandator|requir|forbid|prohibit|free of charge|guarante|refund|deadline)\p{L}*/iu;
+// Banned claims (gate 14) per language. Every list applies to every page (a banned claim is banned whatever the page
+// language); the split keeps each language's wording in one place. Exceptions: approved-phrases.json → banned_claim_exceptions.
+export const BANNED = {
+  any: [
+    [/(?<![\d٠-٩])(100|١٠٠)\s?[%٪]/u, '« 100 % »'],
+  ],
+  fr: [
+    [/(?<!\p{L})garanti(e|es|s)?(?!\p{L})/iu, '« garanti »'],
+    [/0\s?%\s*d['’]\s?int[ée]r[êe]t/iu, '« 0 % d\'intérêt »'],
+    [/sans\s+int[ée]r[êe]ts?/iu, '« sans intérêt »'],
+    [/(derni[èe]res?|plus que \S+|seulement \S+)\s+places?/iu, 'fake urgency (places)'],
+    [/places?\s+limit[ée]es?/iu, 'fake urgency (places limitées)'],
+    [/d[ée]p[êe]chez[- ]vous|ne tardez pas|offre expire|compte à rebours|vite,? r[ée]servez/iu, 'fake urgency'],
+    [/(wiki\s?tours|bab\s?makka)[^.!?]{0,60}(meilleur|n°\s?1|numéro 1|leader|le plus fiable|la plus fiable|incontournable)/iu, 'superlative about Wiki Tours'],
+    [/(meilleur|n°\s?1|numéro 1|leader)[^.!?]{0,40}(wiki\s?tours|bab\s?makka)/iu, 'superlative about Wiki Tours'],
+  ],
+  ar: [
+    [/مضمون/u, '« مضمون »'],
+    [/(بدون|بلا|دون)\s+فوائد|(0|٠)\s?[%٪]\s*(من\s+)?(ال)?فائدة/u, '« 0 % فائدة »'],
+    [/(آخر|اخر)\s+(المقاعد|الأماكن|الاماكن)|(مقاعد|أماكن|اماكن)\s+محدودة|سارعوا|سارع\s+بالحجز|العرض\s+ينتهي/u, 'fake urgency'],
+    [/(wiki\s?tours|bab\s?makka)[^.!?؟]{0,60}(الأفضل|الافضل|رقم\s?1|الرائد)/iu, 'superlative about Wiki Tours'],
+  ],
+  en: [
+    [/(?<!\p{L})guarantee(d|s)?(?!\p{L})/iu, '« guaranteed »'],
+    [/0\s?%\s*interest|interest[- ]free/iu, '« 0% interest »'],
+    [/(last|only \S+)\s+(seats|places|spots)|limited (seats|places|spots)|hurry|book now before|offer ends|act now/iu, 'fake urgency'],
+    [/(wiki\s?tours|bab\s?makka)[^.!?]{0,60}(best|number one|no\.?\s?1|leader|most trusted)/iu, 'superlative about Wiki Tours'],
+  ],
+};
+const BANNED_ALL = Object.values(BANNED).flat();
 const FORBIDDEN_LD = new Set(['LocalBusiness', 'TravelAgency', 'Event', 'HowTo', 'Review', 'AggregateRating']);
 const LICENCE_PATTERNS = [/ODV[-\s]?\d+/i, /licen[cs]e\s+(n°|no\.?|number|numéro)/i, /agr[ée]ment\s+(n°|no\.?|numéro)/i];
 const SINCE_PATTERN = /depuis\s+2016|since\s+2016|منذ\s+2016/i;
@@ -58,11 +71,13 @@ const hostOf = u => { try { return new URL(u).hostname.replace(/^www\./, ''); } 
 
 // ---------- registry ----------
 export function registryGate(project, add) {
-  const seen = new Set();
-  for (const f of project.registryList) {
-    if (seen.has(f.id)) add('error', 'registry', null, `duplicate fact id ${f.id}`);
-    seen.add(f.id);
-    if (!validateFact(f)) add('error', 'registry', null, `${f.id}: ${ajvMsg(validateFact.errors)}`);
+  const seen = new Map(); // id -> file (data/facts/registry.json or data/facts/extra/*.json)
+  for (const { file, facts } of project.registryFiles || [{ file: 'data/facts/registry.json', facts: project.registryList }]) {
+    for (const f of facts) {
+      if (seen.has(f.id)) add('error', 'registry', null, `duplicate fact id ${f.id} (${seen.get(f.id)} and ${file}): ids must be unique across registry files`);
+      else seen.set(f.id, file);
+      if (!validateFact(f)) add('error', 'registry', null, `${file}: ${f.id}: ${ajvMsg(validateFact.errors)}`);
+    }
   }
   // Religious KB: valid entries, approved only by a real person listed in config/authors.json.
   const people = new Set(project.authors.map(a => a.id));
@@ -75,7 +90,7 @@ export function registryGate(project, add) {
 // ---------- 1. front matter (all files, drafts included) ----------
 export function frontmatterGate(project, all, add, today) {
   const authorIds = new Set(project.authors.map(a => a.id));
-  const slugs = new Map(), homes = new Map();
+  const slugs = new Map(), homes = new Map(), tkeys = new Map();
   const langCodes = new Set([...project.sites.values()].flatMap(s => s.meta.languages));
   for (const p of all) {
     const fm = p.fm;
@@ -98,6 +113,12 @@ export function frontmatterGate(project, all, add, today) {
     const key = `${p.site}|${p.lang}|${fm.slug}`;
     if (slugs.has(key)) add('error', 'frontmatter', p, `slug "${fm.slug}" already used by ${slugs.get(key)}`);
     slugs.set(key, p.file);
+    // translation_key pairs one page per language on one site (hreflang, language switcher).
+    if (fm.translation_key) {
+      const tk = `${p.site}|${p.lang}|${fm.translation_key}`;
+      if (tkeys.has(tk)) add('error', 'frontmatter', p, `translation_key "${fm.translation_key}" already used in ${p.lang} by ${tkeys.get(tk)} (one page per language)`);
+      tkeys.set(tk, p.file);
+    }
     if (fm.type === 'home') {
       if (homes.has(`${p.site}|${p.lang}`)) add('error', 'frontmatter', p, 'two home pages for this site and language');
       homes.set(`${p.site}|${p.lang}`, p.file);
@@ -113,13 +134,11 @@ export function frontmatterGate(project, all, add, today) {
 function factsGateForPage(project, p, add, today) {
   for (const { field, text: raw } of p.gateTexts) {
     const text = String(raw ?? '').replace(/\u00A0/g, ' '); // French no-break spaces read as plain spaces
-    const { errors } = factsGate(text, project.registry, { today, approvedPhrases: project.approvedPhrases });
+    const { errors } = factsGate(text, project.registry, { today, approvedPhrases: phrasesFor(project, p.site, p.lang) });
     for (const e of errors) {
       const stale = e.rule === 'fact-past-review' || e.rule === 'fact-expired';
       add(stale ? 'warning' : 'error', 'facts', p, `${field}: ${e.rule}${e.id ? ' ' + e.id : ''}${e.value ? ' value ' + e.value : ''}${e.status ? ' (status ' + e.status + ')' : ''}${e.sentence ? ' — « ' + e.sentence.slice(0, 140) + ' »' : ''}${stale ? ' (page shows « information en cours de mise à jour »)' : ''}`);
     }
-    if (p.lang === 'en') for (const s of splitSentences(text)) if (!/\[\[fact:/.test(s) && EN_RULE_WORDS.test(s))
-      add('error', 'facts', p, `${field}: rule-word-without-fact — « ${s.slice(0, 140)} »`);
     for (const e of requiredWordingGate(text, project.registry, p.lang)) add('error', 'facts', p, e.wording
       ? `${field}: ${e.id} must be written with its required wording « ${e.wording} » in the same sentence`
       : `${field}: ${e.id} has no ${p.lang} required wording in the registry yet (required_wording_${p.lang}): it cannot be cited on ${p.lang} pages`);
@@ -342,8 +361,10 @@ function pageGates(project, p, add, today, seasonYear) {
   const mentions = MENTION.test([fm.title, fm.description, p.plain, ...(fm.faq || []).flatMap(f => [f.q, f.a])].join(' ')) || p.links.some(l => l.kind === 'wt');
   if (mentions && !(p.disclosed && p.html.includes('box--disclosure'))) add('error', 'disclosure', p, 'mentions or links Wiki Tours / Bab Makka without the disclosure box');
   // 12. meta lengths (uniqueness is network-wide below)
-  if (title.length < LIMITS.titleMin || title.length > LIMITS.titleMax) add('error', 'meta', p, `title is ${title.length} chars (${LIMITS.titleMin}-${LIMITS.titleMax})`);
-  if (desc.length < LIMITS.descMin || desc.length > LIMITS.descMax) add('error', 'meta', p, `description is ${desc.length} chars (${LIMITS.descMin}-${LIMITS.descMax})`);
+  // Same limits in every language, counted in graphemes (an Arabic letter with its vowel marks is one character).
+  const tl = graphemes(title), dl = graphemes(desc);
+  if (tl < LIMITS.titleMin || tl > LIMITS.titleMax) add('error', 'meta', p, `title is ${tl} characters (${LIMITS.titleMin}-${LIMITS.titleMax})`);
+  if (dl < LIMITS.descMin || dl > LIMITS.descMax) add('error', 'meta', p, `description is ${dl} characters (${LIMITS.descMin}-${LIMITS.descMax})`);
   // 13. stale year in title / H1. Blocking only for pages written or updated in the current season (new drafts);
   // the yearly season flip (1 June) turns older pages into a warning to fix, never a network-wide stop.
   const seasonStart = `${seasonYear - 1}-06-01`;
@@ -354,7 +375,7 @@ function pageGates(project, p, add, today, seasonYear) {
   const exceptions = project.phrases.banned_claim_exceptions || [];
   let text = [title, desc, p.plain, ...(fm.faq || []).flatMap(f => [stripMarkers(f.q), stripMarkers(f.a)])].join('\n');
   for (const e of exceptions) text = text.split(e).join(' ');
-  for (const [re, label] of p.lang === 'en' ? [...BANNED, ...BANNED_EN] : BANNED) if (re.test(text)) add('error', 'banned-claim', p, `banned claim ${label}: « ${(text.match(re) || [''])[0]} »`);
+  for (const [re, label] of BANNED_ALL) if (re.test(text)) add('error', 'banned-claim', p, `banned claim ${label}: « ${(text.match(re) || [''])[0]} »`);
   // 16. unknowns section
   if (UNKNOWN_REQUIRED.has(fm.type) && !p.hasUnknown) add('error', 'unknowns', p, `${fm.type} pages need a :::unknown section`);
   // Answer-first template (STRATEGY 7.3): a :::answer box of 40-60 words on posts.
@@ -390,7 +411,9 @@ function htmlGates(project, outputs, add) {
     const where = { site: domain, url: '/' + file.replace(/index\.html$/, '') };
     const h1 = (html.match(/<h1[\s>]/g) || []).length;
     if (h1 !== 1) add('error', 'meta', where, `${h1} <h1> elements (exactly 1 expected)`);
-    if (!/<html lang="(fr|ar|en)-MA" dir="(ltr|rtl)">/.test(html)) add('error', 'meta', where, 'missing lang/dir on <html>');
+    const lm = html.match(/<html lang="([^"]+)" dir="(ltr|rtl)"/);
+    const li = lm && Object.values(LANGS).find(l => l.html === lm[1]);
+    if (!li || li.dir !== lm[2]) add('error', 'meta', where, 'missing or wrong lang/dir on <html> (fr-MA ltr, ar-MA rtl, en ltr)');
     if (file !== '404.html' && !html.includes(`<link rel="canonical" href="https://${domain}${where.url}">`)) add('error', 'meta', where, 'missing self-canonical');
     for (const m of html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) {
       let data; try { data = JSON.parse(m[1]); } catch (e) { add('error', 'schema', where, `JSON-LD does not parse: ${e.message}`); continue; }
@@ -417,8 +440,9 @@ function metaUniqueness(pages, generated, add) {
   for (const g of generated) {
     if (g.kind === 'notfound') continue;
     check(g, 'warning', { site: g.site, url: g.url, absUrl: `https://${g.site}${g.url}` });
-    if (g.title.length > LIMITS.titleMax) add('warning', 'meta', { site: g.site, url: g.url }, `generated title is ${g.title.length} chars`);
-    if (g.description.length < LIMITS.descMin || g.description.length > LIMITS.descMax) add('warning', 'meta', { site: g.site, url: g.url }, `generated description is ${g.description.length} chars (set blog.description in config/sites)`);
+    const tl = graphemes(g.title), dl = graphemes(g.description);
+    if (tl > LIMITS.titleMax) add('warning', 'meta', { site: g.site, url: g.url }, `generated title is ${tl} characters`);
+    if (dl < LIMITS.descMin || dl > LIMITS.descMax) add('warning', 'meta', { site: g.site, url: g.url }, `generated description is ${dl} characters (set blog.description in config/sites)`);
   }
 }
 
@@ -434,7 +458,8 @@ export function runGates({ project, pages, generated, outputs, today, add, focus
     pageGates(project, p, add, today, seasonYear);
   }
   cannibalGate(project, pages, add, focus);
-  duplicateGate(pages, add, focus);
+  // Duplicate checks compare pages of the same language only (D-H: languages are written separately, never mirrored).
+  for (const lang of new Set(pages.map(p => p.lang))) duplicateGate(pages.filter(p => p.lang === lang), add, focus);
   linksGate(project, pages, add);
   resolutionGate(project, outputs, pages, add);
   metaUniqueness(pages, generated, add);

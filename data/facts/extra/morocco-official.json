@@ -1,0 +1,1010 @@
+[
+  {
+    "id": "fact_hajj_1448_lottery_levels",
+    "topic": "hajj_process",
+    "claim_fr": "Hajj 1448 : le tirage au sort a été organisé au niveau des caïdats et des arrondissements pour la liste de l'organisation officielle (ministère des Habous), et au niveau des préfectures et provinces pour la liste des agences de voyages. Une liste d'attente remplace les désistements.",
+    "claim_ar": "حج 1448هـ: أُجريت القرعة على مستوى القيادات والمقاطعات بالنسبة لحجاج التنظيم الرسمي، وعلى مستوى العمالات بالنسبة لحجاج وكالات الأسفار السياحية، مع لائحة انتظار لتعويض المعتذرين.",
+    "claim_en": "Hajj 1448: the lottery was held at caidat and district level for the ministry's official list, and at prefecture level for the travel-agency list. A waiting list replaces withdrawals.",
+    "values": [
+      "1448"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://habous.gov.ma/pelerinage/2012-04-13-16-09-54/735-%D9%82%D8%B1%D8%B9%D8%A9-%D8%A7%D9%84%D8%AD%D8%AC-%D9%84%D9%85%D9%88%D8%B3%D9%85-1448%D9%87%D9%80-2027%D9%85-%D9%85%D9%86-02-%D8%A5%D9%84%D9%89-13-%D9%85%D8%A7%D8%B1%D8%B3-2026.html"
+    ],
+    "source_tier": "official",
+    "confidence": "verified",
+    "required_wording": null,
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-04-18",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_hajj_1448_elderly_companion",
+    "topic": "hajj_process",
+    "claim_fr": "Hajj 1448 : les personnes âgées devaient s'inscrire avec un membre de leur famille âgé de 50 ans au plus, apte physiquement à les accompagner pendant tout le pèlerinage.",
+    "claim_ar": "حج 1448هـ: يتعين على كبار السن التسجيل مع أحد أفراد العائلة لا يتجاوز عمره 50 سنة ويتوفر على القدرة البدنية لمرافقتهم في جميع مراحل الحج.",
+    "claim_en": "Hajj 1448: elderly applicants had to register with a family member aged 50 or under who is physically able to accompany them throughout the Hajj.",
+    "values": [
+      "1448",
+      "50"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://habous.gov.ma/pelerinage/2012-04-13-16-09-54/733-%D9%85%D9%88%D8%B3%D9%85-%D8%AD%D8%AC-1448%D9%87%D9%80-2027%D9%85-%D9%81%D8%AA%D8%AD-%D8%A8%D8%A7%D8%A8-%D8%AA%D8%B3%D8%AC%D9%8A%D9%84-%D8%A7%D9%84%D8%AD%D8%AC%D8%A7%D8%AC-%D8%A7%D9%84%D9%83%D8%AA%D8%B1%D9%88%D9%86%D9%8A%D8%A7%D9%8B-%D9%85%D9%86-08-%D8%A5%D9%84%D9%89-19-%D8%AF%D9%8A%D8%B3%D9%85%D8%A8%D8%B1-2025.html"
+    ],
+    "source_tier": "official",
+    "confidence": "verified",
+    "required_wording": null,
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-04-18",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_hajj_1448_elderly_share",
+    "topic": "hajj_process",
+    "claim_fr": "Pour le Hajj 1448, la Commission royale du pèlerinage réserve aux personnes âgées une part du quota total plafonnée à 7 % des places (contre 10 % pour le Hajj 1447).",
+    "claim_ar": "حددت اللجنة الملكية للحج نسبة من مقاعد الحصة الإجمالية لكبار السن في حدود 7% برسم موسم 1448هـ (مقابل 10% في موسم 1447هـ).",
+    "claim_en": "For Hajj 1448, the Royal Hajj Commission caps the share of total places reserved for elderly pilgrims at 7% (10% for Hajj 1447).",
+    "values": [
+      "1448",
+      "7",
+      "1447",
+      "10"
+    ],
+    "unit": "%",
+    "source_urls": [
+      "https://habous.gov.ma/%D9%82%D8%B3%D9%85-%D8%A7%D9%84%D8%AD%D8%AC-%D9%88%D8%A7%D9%84%D8%B4%D8%A4%D9%88%D9%86-%D8%A7%D9%84%D8%A7%D8%AC%D8%AA%D9%85%D8%A7%D8%B9%D9%8A%D8%A9/694-%D8%AA%D8%A3%D8%B7%D9%8A%D8%B1-%D8%A7%D9%84%D8%AD%D8%AC%D8%A7%D8%AC-%D9%85%D8%B5%D9%84%D8%AD%D8%A9-%D8%AA%D8%A3%D8%B7%D9%8A%D8%B1-%D8%A7%D9%84%D8%AD%D8%AC%D8%A7%D8%AC-%D9%88%D9%85%D8%B1%D8%A7%D9%82%D8%A8%D8%A9-%D8%A7%D9%84%D8%A3%D9%87%D9%84%D8%A9-%D9%82%D8%B3%D9%85-%D8%A7%D9%84%D8%AD%D8%AC-%D9%88%D8%A7%D9%84%D8%B4%D8%A4%D9%88%D9%86-%D8%A7%D9%84%D8%A7%D8%AC%D8%AA%D9%85%D8%A7%D8%B9%D9%8A%D8%A9-%D9%85%D8%AF%D9%8A%D8%B1%D9%8A%D8%A9-%D8%A7%D9%84%D8%B4%D8%A4%D9%88%D9%86-%D8%A7%D9%84%D8%A5%D8%B3%D9%84%D8%A7%D9%85%D9%8A%D8%A9/22135-%D9%82%D8%B1%D8%A7%D8%B1%D8%A7%D8%AA-%D8%A7%D9%84%D9%84%D8%AC%D9%86%D8%A9-%D8%A7%D9%84%D9%85%D9%84%D9%83%D9%8A%D8%A9-%D9%84%D9%84%D8%AD%D8%AC-%D9%84%D9%85%D9%88%D8%B3%D9%85%D9%8A-%D8%AD%D8%AC-1447%D9%87%D9%80-%D9%881448%D9%87%D9%80.html",
+      "https://habous.gov.ma/pelerinage/%D9%85%D9%88%D8%B3%D9%85-1447-2026/744-%D9%82%D8%B1%D8%A7%D8%B1%D8%A7%D8%AA-%D8%A7%D9%84%D9%84%D8%AC%D9%86%D8%A9-%D8%A7%D9%84%D9%85%D9%84%D9%83%D9%8A%D8%A9-%D9%84%D9%84%D8%AD%D8%AC-%D9%84%D9%85%D9%88%D8%B3%D9%85%D9%8A-%D8%AD%D8%AC-1447%D9%87%D9%80-%D9%881448%D9%87%D9%80.html"
+    ],
+    "source_tier": "official",
+    "confidence": "likely",
+    "required_wording": "selon la Commission royale du pèlerinage (décision publiée par le ministère des Habous, à reconfirmer)",
+    "conflicts": [],
+    "status": "proposed",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2026-11-19",
+    "valid_until": null,
+    "time_critical": true,
+    "supersedes": null,
+    "required_wording_ar": "حسب اللجنة الملكية للحج (قرار منشور على موقع وزارة الأوقاف، يحتاج إلى تأكيد)",
+    "required_wording_en": "according to the Royal Hajj Commission (decision published by the Habous ministry, to be reconfirmed)"
+  },
+  {
+    "id": "fact_hajj_1448_payment_method",
+    "topic": "hajj_cost",
+    "claim_fr": "Hajj 1448 : les frais se paient en un seul versement dans les agences Al Barid Bank, pour les deux listes (ministère et agences de voyages), y compris par chèque certifié ou paiement électronique, sur présentation de la carte d'identité nationale et de l'attestation de sélection.",
+    "claim_ar": "حج 1448هـ: تُؤدى المصاريف دفعة واحدة بوكالات بريد بنك بالنسبة لتنظيم الوزارة وتنظيم وكالات الأسفار معا، مع قبول الشيك المصادق عليه والأداء الإلكتروني، بالإدلاء بالبطاقة الوطنية وشهادة الانتقاء.",
+    "claim_en": "Hajj 1448: fees are paid in a single instalment at Al Barid Bank branches for both lists (ministry and travel agencies), including by certified cheque or electronic payment, on presentation of the national ID card and the selection certificate.",
+    "values": [
+      "1448"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://habous.gov.ma/pelerinage/component/jevents/eventdetail/138/-/1448.html?Itemid=1",
+      "https://habous.gov.ma/pelerinage/%D9%85%D9%88%D8%B3%D9%85-1447-2026/744-%D9%82%D8%B1%D8%A7%D8%B1%D8%A7%D8%AA-%D8%A7%D9%84%D9%84%D8%AC%D9%86%D8%A9-%D8%A7%D9%84%D9%85%D9%84%D9%83%D9%8A%D8%A9-%D9%84%D9%84%D8%AD%D8%AC-%D9%84%D9%85%D9%88%D8%B3%D9%85%D9%8A-%D8%AD%D8%AC-1447%D9%87%D9%80-%D9%881448%D9%87%D9%80.html",
+      "https://medias24.com/2026/07/17/hajj-1448-deuxieme-phase-de-paiement-du-3-au-11-aout-1724893/"
+    ],
+    "source_tier": "official",
+    "confidence": "verified",
+    "required_wording": null,
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2026-11-19",
+    "valid_until": null,
+    "time_critical": true,
+    "supersedes": null
+  },
+  {
+    "id": "fact_hajj_1448_waitlist_payment",
+    "topic": "hajj_cost",
+    "claim_fr": "Hajj 1448 : une 2e phase de paiement, réservée aux inscrits sur les listes d'attente (dans l'ordre du tirage au sort), s'est tenue du lundi 3 au mardi 11 août 2026. Toute personne qui ne paie pas est remplacée automatiquement par la liste d'attente.",
+    "claim_ar": "حج 1448هـ: جرت المرحلة الثانية لاستخلاص المصاريف لفائدة المسجلين في لوائح الانتظار، حسب ترتيب القرعة، من الإثنين 3 إلى الثلاثاء 11 غشت 2026، ويُعوَّض كل متخلف عن الأداء تلقائيا من لائحة الانتظار.",
+    "claim_en": "Hajj 1448: a second payment phase for waiting-list applicants (in lottery order) ran from Monday 3 to Tuesday 11 August 2026. Anyone who does not pay is automatically replaced from the waiting list.",
+    "values": [
+      "1448",
+      "2",
+      "3",
+      "11",
+      "2026"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://medias24.com/2026/07/17/hajj-1448-deuxieme-phase-de-paiement-du-3-au-11-aout-1724893/",
+      "https://habous.gov.ma/pelerinage/component/jevents/eventdetail/138/-/1448.html?Itemid=1"
+    ],
+    "source_tier": "media",
+    "confidence": "verified",
+    "required_wording": null,
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2026-11-19",
+    "valid_until": null,
+    "time_critical": true,
+    "supersedes": null
+  },
+  {
+    "id": "fact_hajj_medical_fitness_certificate",
+    "topic": "hajj_process",
+    "claim_fr": "Hajj 1448 : les personnes retenues, sur la liste officielle comme sur celle des agences de voyages, doivent passer les examens médicaux, obtenir un certificat d'aptitude physique et mentale et le remettre aux services du ministère de l'Intérieur pour recevoir l'attestation de sélection.",
+    "claim_ar": "حج 1448هـ: يتعين على المنتقين ضمن لائحتي التنظيم الرسمي ووكالات الأسفار السياحية إجراء الفحوصات الطبية والحصول على شهادة القدرة البدنية والعقلية وتقديمها لمصالح وزارة الداخلية لتسلم شهادة الانتقاء.",
+    "claim_en": "Hajj 1448: selected applicants on both the official and the travel-agency lists must pass medical exams, obtain a physical and mental fitness certificate and hand it to Interior Ministry services to receive the selection certificate.",
+    "values": [
+      "1448"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://medias24.com/2026/07/17/hajj-1448-deuxieme-phase-de-paiement-du-3-au-11-aout-1724893/",
+      "https://habous.gov.ma/pelerinage/component/jevents/eventdetail/138/-/1448.html?Itemid=1"
+    ],
+    "source_tier": "media",
+    "confidence": "verified",
+    "required_wording": null,
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-04-18",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_hajj_refund_after_visa",
+    "topic": "hajj_cost",
+    "claim_fr": "Organisation officielle du Hajj : une fois l'émission des visas lancée, les frais payés ne sont plus remboursables, sauf le billet d'avion, à condition de présenter une copie du billet avant la fin de la semaine qui suit la date du vol prévu. Règle publiée pour les saisons récentes ; son texte pour 1448 n'a pas été vérifié.",
+    "claim_ar": "التنظيم الرسمي للحج: لا يحق المطالبة باسترجاع المصاريف بعد الشروع في استخراج التأشيرات، باستثناء واجب تذكرة الطائرة شريطة الإدلاء بنسخة منها قبل انصرام الأسبوع الموالي لموعد الرحلة المقررة. قاعدة منشورة للمواسم الأخيرة ولم يُتحقق من نصها لموسم 1448هـ.",
+    "claim_en": "Official Hajj organisation: once visa issuance has started, fees are no longer refundable except the air ticket, provided a copy of the ticket is submitted before the end of the week after the scheduled flight. Rule published for recent seasons; its 1448 wording was not checked.",
+    "values": [
+      "1448"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://fnh.ma/article/actualites-marocaines/hajj-frais-maroc",
+      "https://habous.gov.ma/%D9%85%D8%B5%D9%84%D8%AD%D8%A9-%D8%AA%D9%86%D8%B8%D9%8A%D9%85-%D8%A7%D9%84%D8%AD%D8%AC"
+    ],
+    "source_tier": "media",
+    "confidence": "likely",
+    "required_wording": "selon les règles publiées pour les saisons précédentes",
+    "required_wording_ar": "حسب القواعد المعلنة في المواسم السابقة",
+    "required_wording_en": "according to the rules published for previous seasons",
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2026-11-19",
+    "valid_until": null,
+    "time_critical": true,
+    "supersedes": null
+  },
+  {
+    "id": "fact_hajj_1447_payment_window",
+    "topic": "hajj_process",
+    "claim_fr": "Hajj 1447 : les frais ont été payés du 21 juillet au 8 août 2025 dans les agences Al Barid Bank.",
+    "claim_ar": "حج 1447هـ: أُديت المصاريف من 21 يوليوز إلى 8 غشت 2025 بوكالات بريد بنك.",
+    "claim_en": "Hajj 1447: fees were paid from 21 July to 8 August 2025 at Al Barid Bank branches.",
+    "values": [
+      "1447",
+      "21",
+      "8",
+      "2025"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://www.habous.gov.ma/%D9%82%D8%B3%D9%85-%D8%A7%D9%84%D8%AD%D8%AC-%D9%88%D8%A7%D9%84%D8%B4%D8%A4%D9%88%D9%86-%D8%A7%D9%84%D8%A5%D8%AC%D8%AA%D9%85%D8%A7%D8%B9%D9%8A%D8%A9/694-%D8%AA%D8%A3%D8%B7%D9%8A%D8%B1-%D8%A7%D9%84%D8%AD%D8%AC%D8%A7%D8%AC-%D9%85%D8%B5%D9%84%D8%AD%D8%A9-%D8%AA%D8%A3%D8%B7%D9%8A%D8%B1-%D8%A7%D9%84%D8%AD%D8%AC%D8%A7%D8%AC-%D9%88%D9%85%D8%B1%D8%A7%D9%82%D8%A8%D8%A9-%D8%A7%D9%84%D8%A3%D9%87%D9%84%D8%A9-%D9%82%D8%B3%D9%85-%D8%A7%D9%84%D8%AD%D8%AC-%D9%88%D8%A7%D9%84%D8%B4%D8%A4%D9%88%D9%86-%D8%A7%D9%84%D8%A7%D8%AC%D8%AA%D9%85%D8%A7%D8%B9%D9%8A%D8%A9-%D9%85%D8%AF%D9%8A%D8%B1%D9%8A%D8%A9-%D8%A7%D9%84%D8%B4%D8%A4%D9%88%D9%86-%D8%A7%D9%84%D8%A5%D8%B3%D9%84%D8%A7%D9%85%D9%8A%D8%A9/21244-%D9%85%D9%88%D8%B3%D9%85-%D8%AD%D8%AC-2026-1447-%D8%AA%D8%A3%D8%AF%D9%8A%D8%A9-%D9%85%D8%B5%D8%A7%D8%B1%D9%8A%D9%81-%D8%A7%D9%84%D8%AD%D8%AC-%D9%85%D9%86-21-%D9%8A%D9%88%D9%84%D9%8A%D9%88-%D8%A5%D9%84%D9%89-08-%D8%A3%D8%BA%D8%B3%D8%B7%D8%B3-2025.html"
+    ],
+    "source_tier": "official",
+    "confidence": "verified",
+    "required_wording": null,
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-04-18",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_hajj_official_flight_price",
+    "topic": "hajj_cost",
+    "claim_fr": "Le prix du billet d'avion des pèlerins de l'organisation officielle est fixé à 12 400 dirhams toutes taxes comprises ; la Commission royale l'a maintenu à ce niveau pour les saisons récentes (1445 à 1447). Le prix pour 1448 n'est pas confirmé.",
+    "claim_ar": "حُدد سعر تذكرة الطائرة لحجاج التنظيم الرسمي في 12.400 درهم شاملا جميع الرسوم، وأبقت عليه اللجنة الملكية في المواسم الأخيرة (1445 إلى 1447هـ). سعر موسم 1448هـ غير مؤكد.",
+    "claim_en": "The air ticket for official-organisation pilgrims is set at 12,400 dirhams including all fees; the Royal Commission kept it at that level in recent seasons (1445 to 1447). The 1448 price is not confirmed.",
+    "values": [
+      "12400",
+      "1445",
+      "1447",
+      "1448"
+    ],
+    "unit": "MAD",
+    "source_urls": [
+      "https://habous.gov.ma/%D9%82%D8%B3%D9%85-%D8%A7%D9%84%D8%AD%D8%AC-%D9%88%D8%A7%D9%84%D8%B4%D8%A4%D9%88%D9%86-%D8%A7%D9%84%D8%A7%D8%AC%D8%AA%D9%85%D8%A7%D8%B9%D9%8A%D8%A9/694-%D8%AA%D8%A3%D8%B7%D9%8A%D8%B1-%D8%A7%D9%84%D8%AD%D8%AC%D8%A7%D8%AC-%D9%85%D8%B5%D9%84%D8%AD%D8%A9-%D8%AA%D8%A3%D8%B7%D9%8A%D8%B1-%D8%A7%D9%84%D8%AD%D8%AC%D8%A7%D8%AC-%D9%88%D9%85%D8%B1%D8%A7%D9%82%D8%A8%D8%A9-%D8%A7%D9%84%D8%A3%D9%87%D9%84%D8%A9-%D9%82%D8%B3%D9%85-%D8%A7%D9%84%D8%AD%D8%AC-%D9%88%D8%A7%D9%84%D8%B4%D8%A4%D9%88%D9%86-%D8%A7%D9%84%D8%A7%D8%AC%D8%AA%D9%85%D8%A7%D8%B9%D9%8A%D8%A9-%D9%85%D8%AF%D9%8A%D8%B1%D9%8A%D8%A9-%D8%A7%D9%84%D8%B4%D8%A4%D9%88%D9%86-%D8%A7%D9%84%D8%A5%D8%B3%D9%84%D8%A7%D9%85%D9%8A%D8%A9/22126-%D8%A7%D8%AC%D8%AA%D9%85%D8%A7%D8%B9-%D8%A7%D9%84%D9%84%D8%AC%D9%86%D8%A9-%D8%A7%D9%84%D9%85%D9%84%D9%83%D9%8A%D8%A9-%D9%84%D9%84%D8%AD%D8%AC-%D8%A7%D9%84%D8%AB%D9%84%D8%A7%D8%AB%D8%A7%D8%A1-03-%D9%85%D8%A7%D8%B1%D8%B3-2026.html",
+      "https://habous.gov.ma/pelerinage/%D9%85%D9%88%D8%B3%D9%85-1447-2026/744-%D9%82%D8%B1%D8%A7%D8%B1%D8%A7%D8%AA-%D8%A7%D9%84%D9%84%D8%AC%D9%86%D8%A9-%D8%A7%D9%84%D9%85%D9%84%D9%83%D9%8A%D8%A9-%D9%84%D9%84%D8%AD%D8%AC-%D9%84%D9%85%D9%88%D8%B3%D9%85%D9%8A-%D8%AD%D8%AC-1447%D9%87%D9%80-%D9%881448%D9%87%D9%80.html"
+    ],
+    "source_tier": "official",
+    "confidence": "likely",
+    "required_wording": "selon les décisions publiées pour les saisons précédentes",
+    "required_wording_ar": "حسب قرارات المواسم السابقة",
+    "required_wording_en": "according to decisions published for previous seasons",
+    "conflicts": [],
+    "status": "proposed",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2026-11-19",
+    "valid_until": null,
+    "time_critical": true,
+    "supersedes": null
+  },
+  {
+    "id": "fact_hajj_agency_supervision_fee",
+    "topic": "hajj_cost",
+    "claim_fr": "Les pèlerins passant par une agence de voyages paient au ministère des Habous des frais d'encadrement fixés à 600 dirhams (montant publié pour la saison 1447).",
+    "claim_ar": "حُدد رسم التأطير الخاص بحجاج وكالات الأسفار السياحية في 600 درهم (المبلغ المعلن لموسم 1447هـ).",
+    "claim_en": "Pilgrims travelling with a travel agency pay the Habous ministry a supervision fee set at 600 dirhams (amount published for the 1447 season).",
+    "values": [
+      "600",
+      "1447"
+    ],
+    "unit": "MAD",
+    "source_urls": [
+      "https://habous.gov.ma/pelerinage/%D9%85%D9%88%D8%B3%D9%85-1447-2026/744-%D9%82%D8%B1%D8%A7%D8%B1%D8%A7%D8%AA-%D8%A7%D9%84%D9%84%D8%AC%D9%86%D8%A9-%D8%A7%D9%84%D9%85%D9%84%D9%83%D9%8A%D8%A9-%D9%84%D9%84%D8%AD%D8%AC-%D9%84%D9%85%D9%88%D8%B3%D9%85%D9%8A-%D8%AD%D8%AC-1447%D9%87%D9%80-%D9%881448%D9%87%D9%80.html",
+      "https://habous.gov.ma/pelerinage/component/content/?view=featured&start=2"
+    ],
+    "source_tier": "official",
+    "confidence": "likely",
+    "required_wording": "montant publié pour la saison 1447",
+    "required_wording_ar": "المبلغ المعلن لموسم 1447هـ",
+    "required_wording_en": "amount published for the 1447 season",
+    "conflicts": [],
+    "status": "proposed",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2026-11-19",
+    "valid_until": null,
+    "time_critical": true,
+    "supersedes": null
+  },
+  {
+    "id": "fact_hajj_1446_final_cost",
+    "topic": "hajj_cost",
+    "claim_fr": "Hajj 1446 : selon le ministre des Habous devant la Chambre des conseillers, le ministère avait fixé les frais des pèlerins qu'il encadre à 66 865,50 dirhams, avec en moyenne 1 encadrant pour 47 pèlerins.",
+    "claim_ar": "حج 1446هـ: حسب وزير الأوقاف أمام مجلس المستشارين، حددت الوزارة مصاريف الحجاج المؤطرين من طرفها في 66.865,50 درهما، بمعدل مؤطر واحد لكل 47 حاجا.",
+    "claim_en": "Hajj 1446: according to the Habous minister in the House of Councillors, the ministry had set the fees for the pilgrims it supervises at 66,865.50 dirhams, with on average 1 supervisor per 47 pilgrims.",
+    "values": [
+      "1446",
+      "66865.50",
+      "1",
+      "47"
+    ],
+    "unit": "MAD",
+    "source_urls": [
+      "https://www.mapexpress.ma/actualite/activites-parlementaires/chambre-conseillers-m-toufiq-presente-les-mesures-prises-ministere-lorganisation-du-hajj-1446-h2025/",
+      "https://fr.hespress.com/368841-chambre-des-conseillers-toufiq-presente-les-mesures-prises-pour-le-hajj.html"
+    ],
+    "source_tier": "media",
+    "confidence": "likely",
+    "required_wording": "selon le ministre des Habous, cité par la MAP ; montant définitif 1446 non confirmé",
+    "conflicts": [
+      {
+        "value": "63770.50",
+        "source": "aujourdhui.ma (https://aujourdhui.ma/?p=510110) : frais 1446 ramenés de 66 865 à 63 770,50 DH grâce à un taux de change préférentiel ; non vérifié"
+      }
+    ],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-04-18",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null,
+    "required_wording_ar": "حسب وزير الأوقاف، كما نقلت عنه وكالة المغرب العربي للأنباء؛ المبلغ النهائي لموسم 1446هـ غير مؤكد",
+    "required_wording_en": "according to the Habous minister, quoted by MAP; final 1446 amount not confirmed"
+  },
+  {
+    "id": "fact_hajj_1446_quota_split_map",
+    "topic": "hajj_process",
+    "claim_fr": "Hajj 1446 : le ministre des Habous a indiqué à la Chambre des conseillers 34 000 pèlerins retenus, dont 22 500 encadrés par le ministère et 11 500 par les agences de voyages.",
+    "claim_ar": "حج 1446هـ: أفاد وزير الأوقاف أمام مجلس المستشارين بأن لوائح المنتقين تضم 34.000 حاج، منهم 22.500 بتأطير من الوزارة و11.500 بتأطير من وكالات الأسفار.",
+    "claim_en": "Hajj 1446: the Habous minister told the House of Councillors that 34,000 pilgrims were selected, 22,500 supervised by the ministry and 11,500 by travel agencies.",
+    "values": [
+      "1446",
+      "34000",
+      "22500",
+      "11500"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://www.mapexpress.ma/actualite/activites-parlementaires/chambre-conseillers-m-toufiq-presente-les-mesures-prises-ministere-lorganisation-du-hajj-1446-h2025/",
+      "https://fr.hespress.com/368841-chambre-des-conseillers-toufiq-presente-les-mesures-prises-pour-le-hajj.html"
+    ],
+    "source_tier": "media",
+    "confidence": "verified",
+    "required_wording": null,
+    "conflicts": [
+      {
+        "value": "22400 / 11600",
+        "source": "fact_hajj_1446_quota_split (registry, Morocco World News)"
+      }
+    ],
+    "status": "disputed",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-04-18",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_hajj_rakb_app_2026",
+    "topic": "hajj_process",
+    "claim_fr": "Le 12 mai 2026, le ministère des Habous a lancé l'application « Rakb Al Hajj » (App Store et Google Play) : vidéos, guides audio, invocations, cours en arabe et en amazigh, et guide des lieux d'hébergement à La Mecque, Médine et sur les Lieux saints.",
+    "claim_ar": "أطلقت وزارة الأوقاف والشؤون الإسلامية يوم 12 ماي 2026 تطبيق \"ركب الحاج\" على متجري App Store وGoogle Play، ويضم فيديوهات وأدلة صوتية وأدعية ودروسا بالعربية والأمازيغية ودليلا لأماكن الإقامة بمكة والمدينة والمشاعر.",
+    "claim_en": "On 12 May 2026 the Habous ministry launched the \"Rakb Al Hajj\" app (App Store and Google Play): videos, audio guides, supplications, lessons in Arabic and Amazigh, and a guide to accommodation sites in Makkah, Madinah and the holy sites.",
+    "values": [
+      "12",
+      "2026"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://www.maroc.ma/fr/actualites/pelerinage-le-ministere-des-habous-et-des-affaires-islamiques-lance-lapplication-electronique-rakb-al"
+    ],
+    "source_tier": "official",
+    "confidence": "verified",
+    "required_wording": null,
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-04-18",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_makkah_route_morocco_since_2022",
+    "topic": "hajj_process",
+    "claim_fr": "Le Maroc a rejoint l'initiative saoudienne « Route de La Mecque » (formalités d'entrée saoudiennes effectuées à l'aéroport de départ) en 2022 (1443 H), selon l'ambassadeur saoudien à Rabat. Elle concerne les pèlerins du Hajj.",
+    "claim_ar": "انضم المغرب إلى مبادرة \"طريق مكة\" السعودية (إنهاء إجراءات الدخول في مطار المغادرة) سنة 2022 (1443هـ)، حسب السفير السعودي بالرباط، وهي خاصة بحجاج بيت الله.",
+    "claim_en": "Morocco joined the Saudi \"Makkah Route\" initiative (Saudi entry formalities completed at the departure airport) in 2022 (1443 AH), according to the Saudi ambassador in Rabat. It serves Hajj pilgrims.",
+    "values": [
+      "2022",
+      "1443"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://www.spa.gov.sa/en/N2509841"
+    ],
+    "source_tier": "official",
+    "confidence": "verified",
+    "required_wording": null,
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-04-18",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_makkah_route_1447_totals",
+    "topic": "hajj_process",
+    "claim_fr": "Saison du Hajj 1447 : selon le ministère saoudien de l'Intérieur, l'initiative « Route de La Mecque » a couvert 10 pays, dont le Maroc, et servi plus de 388 000 pèlerins.",
+    "claim_ar": "موسم حج 1447هـ: حسب وزارة الداخلية السعودية، شملت مبادرة \"طريق مكة\" 10 دول من بينها المغرب، وخدمت أكثر من 388.000 حاج.",
+    "claim_en": "Hajj 1447 season: according to the Saudi Interior Ministry, the Makkah Route initiative covered 10 countries including Morocco and served more than 388,000 pilgrims.",
+    "values": [
+      "1447",
+      "10",
+      "388000"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://www.spa.gov.sa/en/N2596205",
+      "https://www.spa.gov.sa/en/N2564110"
+    ],
+    "source_tier": "official",
+    "confidence": "verified",
+    "required_wording": null,
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-04-18",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_makkah_route_2026_morocco_beneficiaries",
+    "topic": "flights",
+    "claim_fr": "Hajj 2026 : environ 17 000 pèlerins marocains, soit près de la moitié du quota de 34 000, devaient bénéficier de la « Route de La Mecque » via les aéroports Rabat-Salé (lancement le 4 mai 2026) et Mohammed V de Casablanca.",
+    "claim_ar": "حج 2026: كان من المرتقب أن يستفيد نحو 17.000 حاج مغربي، أي قرابة نصف حصة 34.000، من مبادرة \"طريق مكة\" عبر مطاري الرباط-سلا (انطلاقا من 4 ماي 2026) ومحمد الخامس بالدار البيضاء.",
+    "claim_en": "Hajj 2026: about 17,000 Moroccan pilgrims, nearly half of the 34,000 quota, were expected to use the Makkah Route through Rabat-Sale airport (launched 4 May 2026) and Casablanca Mohammed V.",
+    "values": [
+      "2026",
+      "17000",
+      "34000",
+      "4"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://fr.le360.ma/societe/hajj-2026-le-programme-route-de-la-mecque-sinstalle-a-laeroport-de-rabat-sale-des-ce-4-mai_KNNNWELNURDSXKBWKZRSYN465Q/",
+      "https://www.spa.gov.sa/en/N2587134"
+    ],
+    "source_tier": "media",
+    "confidence": "likely",
+    "required_wording": "environ, prévision annoncée avant la saison",
+    "required_wording_ar": "تقريبا، حسب التوقعات المعلنة قبل الموسم",
+    "required_wording_en": "about, forecast announced before the season",
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-04-18",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_onda_cmn_terminal3_hajj",
+    "topic": "local_casablanca",
+    "claim_fr": "Pour le Hajj 2024, l'ONDA a dédié entièrement le terminal 3 de l'aéroport Mohammed V de Casablanca aux vols du Hajj (Royal Air Maroc, flynas, Saudia), avec la « Route de La Mecque » déployée pour la 3e année.",
+    "claim_ar": "خلال حج 2024، خصص المكتب الوطني للمطارات المحطة 3 بمطار محمد الخامس بالدار البيضاء بالكامل لرحلات الحج (الخطوط الملكية المغربية وطيران ناس والسعودية)، مع تفعيل مبادرة \"طريق مكة\" للسنة الثالثة.",
+    "claim_en": "For Hajj 2024, ONDA dedicated Terminal 3 of Casablanca Mohammed V airport entirely to Hajj flights (Royal Air Maroc, flynas, Saudia), with the Makkah Route in its 3rd year.",
+    "values": [
+      "2024",
+      "3"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://www.onda.ma/fr/Nos-A%C3%A9roports/A%C3%A9roport-Casablanca-Mohammed-V/Informations-Vols/Vols-Hajj-2024"
+    ],
+    "source_tier": "official",
+    "confidence": "verified",
+    "required_wording": null,
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-04-18",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_agency_law_11_16_dahir",
+    "topic": "agency_rules",
+    "claim_fr": "La loi n° 11-16 réglementant la profession d'agent de voyages a été promulguée par le dahir n° 1-18-107 du 9 janvier 2019 ; son décret d'application est le décret n° 2.21.80.",
+    "claim_ar": "صدر القانون رقم 11-16 المنظم لمهنة وكيل الأسفار بالظهير رقم 1-18-107 بتاريخ 9 يناير 2019، ومرسومه التطبيقي هو المرسوم رقم 2.21.80.",
+    "claim_en": "Law No. 11-16 regulating the travel-agent profession was promulgated by Dahir No. 1-18-107 of 9 January 2019; its implementing decree is Decree No. 2.21.80.",
+    "values": [
+      "11",
+      "16",
+      "1",
+      "18",
+      "107",
+      "9",
+      "2019",
+      "2.21",
+      "80"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://adala.justice.gov.ma/api/uploads/2025/10/21/Dahir%20n%C2%B01-18-107%20portant%20promulgation%20de%20la%20loi%20n%C2%B011-16%20r%C3%A9glementant%20la%20profession%20d'agent%20de%20voyages-1761040428707.pdf",
+      "https://mtaess.gov.ma/fr/tourisme/metiers-tourisme/agents-de-voyages/"
+    ],
+    "source_tier": "official",
+    "confidence": "verified",
+    "required_wording": null,
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-04-18",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_agency_licence_types_odv_dv",
+    "topic": "agency_rules",
+    "claim_fr": "Sous la loi 11-16, aucune agence de voyages ne peut ouvrir sans licence. Il existe 2 types de licence : Organisateur-Distributeur de Voyages (ODV) et Distributeur de Voyages (DV). Les demandes se font en ligne et sont traitées par les services régionaux (déconcentrés) du département du Tourisme, qui gèrent aussi le retrait.",
+    "claim_ar": "في إطار القانون 11-16، لا يمكن فتح أي وكالة أسفار دون رخصة. توجد رخصتان: منظم-موزع للأسفار (ODV) وموزع للأسفار (DV). تُقدَّم الطلبات إلكترونيا وتعالجها المصالح اللاممركزة لقطاع السياحة، التي تتولى أيضا سحب الرخصة.",
+    "claim_en": "Under Law 11-16, no travel agency may open without a licence. There are 2 licence types: Travel Organiser-Distributor (ODV) and Travel Distributor (DV). Applications are filed online and handled by the Tourism department's regional services, which also handle withdrawals.",
+    "values": [
+      "11",
+      "16",
+      "2"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://mtaess.gov.ma/fr/tourisme/metiers-tourisme/agents-de-voyages/"
+    ],
+    "source_tier": "official",
+    "confidence": "verified",
+    "required_wording": null,
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-04-18",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_agency_official_directory_url",
+    "topic": "agency_rules",
+    "claim_fr": "Le ministère du Tourisme publie l'annuaire des agences de voyages, y compris les listes des agences ODV et DV agréées selon la loi 11-16, sur mtaess.gov.ma (rubrique Annuaires > Annuaire des agences de voyages).",
+    "claim_ar": "تنشر وزارة السياحة دليل وكالات الأسفار، بما فيه لوائح الوكالات من نوع ODV وDV المرخصة وفق القانون 11-16، على موقع mtaess.gov.ma (ركن الأدلة > دليل وكالات الأسفار).",
+    "claim_en": "The Ministry of Tourism publishes the travel-agency directory, including the lists of ODV and DV agencies licensed under Law 11-16, on mtaess.gov.ma (Directories > Travel agencies directory).",
+    "values": [
+      "11",
+      "16"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://mtaess.gov.ma/fr/annuaires/annuaire-des-agences-de-voyages/",
+      "https://mtaess.gov.ma/fr/tourisme/metiers-tourisme/agents-de-voyages/"
+    ],
+    "source_tier": "official",
+    "confidence": "verified",
+    "required_wording": null,
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-04-18",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_agency_haj_label_list_2027",
+    "topic": "agency_rules",
+    "claim_fr": "Le ministère du Tourisme a publié la liste actualisée des agences de voyages labellisées et autorisées à commercialiser les produits Hajj pour 2027, arrêtée au 22 juillet 2026.",
+    "claim_ar": "نشرت وزارة السياحة اللائحة المحينة لوكالات الأسفار الحاصلة على علامة الحج والمرخص لها بتسويق منتوجاته برسم سنة 2027، محينة في 22 يوليوز 2026.",
+    "claim_en": "The Ministry of Tourism published the updated list of travel agencies labelled and authorised to sell Hajj products for 2027, as of 22 July 2026.",
+    "values": [
+      "2027",
+      "22",
+      "2026"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://mtaess.gov.ma/fr/liste-actualisee-des-agences-de-voyages-labellisees-et-autorisees-a-commercialiser-les-produits-haj-au-titre-de-lannee-2027-2/"
+    ],
+    "source_tier": "official",
+    "confidence": "likely",
+    "required_wording": "selon le site du ministère du Tourisme, à revérifier",
+    "conflicts": [],
+    "status": "proposed",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2026-11-19",
+    "valid_until": null,
+    "time_critical": true,
+    "supersedes": null,
+    "required_wording_ar": "حسب موقع وزارة السياحة، مع ضرورة إعادة التحقق",
+    "required_wording_en": "according to the Ministry of Tourism website, to be rechecked"
+  },
+  {
+    "id": "fact_agency_haj_label_ami",
+    "topic": "agency_rules",
+    "claim_fr": "Le label Hajj s'obtient par un appel à manifestation d'intérêt (AMI) du ministère du Tourisme, ouvert aux nouvelles candidatures, au renouvellement des labels expirés et à la mise à jour des dossiers ; un AMI a par exemple été publié pour l'opération Hajj 2026.",
+    "claim_ar": "تُمنح علامة الحج عبر طلب إبداء الاهتمام الذي تعلنه وزارة السياحة، والمفتوح للترشيحات الجديدة ولتجديد العلامات المنتهية ولتحيين الملفات؛ وقد نُشر مثلا طلب إبداء اهتمام خاص بعملية الحج 2026.",
+    "claim_en": "The Hajj label is granted through a call for expressions of interest (AMI) by the Ministry of Tourism, open to new applications, renewal of expired labels and file updates; for example, an AMI was published for the 2026 Hajj operation.",
+    "values": [
+      "2026"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://mtaess.gov.ma/fr/avis-de-la-labellisation-haj/",
+      "https://mtaess.gov.ma/fr/appel-a-manifestation-dinteret-ami-de-loperation-haj-2026/"
+    ],
+    "source_tier": "official",
+    "confidence": "verified",
+    "required_wording": null,
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-04-18",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_agency_haj_label_conditions",
+    "topic": "agency_rules",
+    "claim_fr": "Conditions publiées pour le label Hajj (période 2023-2025) : licence définitive d'agence de voyages depuis au moins 2 ans, extrait du registre de commerce de moins de 3 mois, attestation CNSS, assurance responsabilité civile professionnelle, adhésion IATA, expérience Hajj/Omra du personnel et cahier des charges Hajj signé.",
+    "claim_ar": "الشروط المعلنة لعلامة الحج (فترة 2023-2025): رخصة نهائية لوكالة الأسفار منذ سنتين على الأقل، ومستخرج من السجل التجاري لا يتجاوز 3 أشهر، وشهادة الضمان الاجتماعي، وتأمين المسؤولية المدنية المهنية، والانخراط في إياتا، وخبرة المستخدمين في الحج والعمرة، ودفتر تحملات الحج موقعا.",
+    "claim_en": "Published conditions for the Hajj label (2023-2025 period): definitive travel-agency licence held for at least 2 years, commercial-register extract under 3 months old, CNSS certificate, professional liability insurance, IATA membership, staff Hajj/Omra experience and a signed Hajj specifications document.",
+    "values": [
+      "2023",
+      "2025",
+      "2",
+      "3"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://mtaess.gov.ma/wp-content/uploads/2023/01/AMI-Haj-2023.pdf",
+      "https://mtaess.gov.ma/fr/demande-de-renouvellement-du-label-haj/"
+    ],
+    "source_tier": "official",
+    "confidence": "verified",
+    "required_wording": null,
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-04-18",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_agency_no_official_omra_list_found",
+    "topic": "agency_rules",
+    "claim_fr": "Au 20 octobre 2026, nous n'avons trouvé sur le site du ministère du Tourisme aucune liste officielle d'agences « labellisées Omra » : les listes publiées concernent le Hajj. Pour la Omra, la vérification de base est la licence de l'agence (annuaire officiel).",
+    "claim_ar": "إلى غاية 20 أكتوبر 2026، لم نعثر على موقع وزارة السياحة على لائحة رسمية لوكالات \"حاصلة على علامة العمرة\"؛ اللوائح المنشورة تخص الحج. بالنسبة للعمرة، يبقى التحقق الأساسي هو رخصة الوكالة في الدليل الرسمي.",
+    "claim_en": "As of 20 October 2026 we found no official list of \"Omra-labelled\" agencies on the Ministry of Tourism website: the published lists cover Hajj. For Omra, the basic check is the agency licence (official directory).",
+    "values": [
+      "20",
+      "2026"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://mtaess.gov.ma/fr/category/a-la-une/",
+      "https://mtaess.gov.ma/fr/annuaires/annuaire-des-agences-de-voyages/"
+    ],
+    "source_tier": "official",
+    "confidence": "likely",
+    "required_wording": "selon nos recherches au 20 octobre 2026",
+    "required_wording_ar": "حسب بحثنا إلى غاية 20 أكتوبر 2026",
+    "required_wording_en": "based on our research as of 20 October 2026",
+    "conflicts": [],
+    "status": "proposed",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2026-11-19",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_agency_complaints_portal_tourism",
+    "topic": "agency_rules",
+    "claim_fr": "Le ministère du Tourisme renvoie les réclamations vers le portail national des réclamations : on peut y déposer une réclamation auprès du département du Tourisme, la suivre avec son numéro et une adresse e-mail, et la rouvrir si la réponse ne convient pas.",
+    "claim_ar": "تحيل وزارة السياحة الشكايات على البوابة الوطنية للشكايات، حيث يمكن إيداع شكاية لدى قطاع السياحة وتتبعها برقمها وببريد إلكتروني، وإعادة فتحها إذا لم يكن الجواب مقنعا.",
+    "claim_en": "The Ministry of Tourism routes complaints to the national complaints portal: you can file a complaint with the Tourism department, track it with its number and an e-mail address, and reopen it if the answer is unsatisfactory.",
+    "values": [],
+    "unit": null,
+    "source_urls": [
+      "https://mtaess.gov.ma/fr/portail-des-reclamations/"
+    ],
+    "source_tier": "official",
+    "confidence": "verified",
+    "required_wording": null,
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-04-18",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_consumer_complaints_portal_mcinet",
+    "topic": "agency_rules",
+    "claim_fr": "Le portail khidmat-almostahlik.ma du ministère de l'Industrie et du Commerce permet aux consommateurs de déposer une réclamation en ligne ; les litiges entre consommateur et prestataire sont orientés vers une association de protection du consommateur.",
+    "claim_ar": "تتيح بوابة khidmat-almostahlik.ma التابعة لوزارة الصناعة والتجارة للمستهلكين إيداع شكاية إلكترونيا، وتُوجَّه النزاعات بين المستهلك ومقدم الخدمة إلى جمعية لحماية المستهلك.",
+    "claim_en": "The khidmat-almostahlik.ma portal of the Ministry of Industry and Trade lets consumers file complaints online; disputes between a consumer and a provider are referred to a consumer-protection association.",
+    "values": [],
+    "unit": null,
+    "source_urls": [
+      "https://mcinet.gov.ma/sites/default/files/Portail%20du%20consommateur%20fr.pdf"
+    ],
+    "source_tier": "official",
+    "confidence": "likely",
+    "required_wording": "selon la présentation officielle du portail",
+    "required_wording_ar": "حسب التقديم الرسمي للبوابة",
+    "required_wording_en": "according to the portal's official presentation",
+    "conflicts": [],
+    "status": "proposed",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-04-18",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_oc_personal_travel_allowance_2026",
+    "topic": "other",
+    "claim_fr": "Depuis le 1er janvier 2026 (Instruction générale des opérations de change 2026), la dotation pour voyages personnels est de 100 000 dirhams de base par an, plus un supplément égal à 30 % de l'IR payé l'année précédente ; le total est plafonné à 500 000 dirhams par personne et par année civile.",
+    "claim_ar": "منذ فاتح يناير 2026 (التعليمة العامة لعمليات الصرف 2026)، تبلغ المخصصات الأساسية للأسفار الشخصية 100.000 درهم سنويا، يضاف إليها مبلغ يعادل 30% من الضريبة على الدخل المؤداة في السنة السابقة، في حدود 500.000 درهم للشخص في السنة المدنية.",
+    "claim_en": "Since 1 January 2026 (General Foreign Exchange Instruction 2026), the personal travel allowance is a base of 100,000 dirhams a year plus a supplement equal to 30% of the previous year's income tax, capped at 500,000 dirhams per person per calendar year.",
+    "values": [
+      "1",
+      "2026",
+      "100000",
+      "30",
+      "500000"
+    ],
+    "unit": "MAD",
+    "source_urls": [
+      "https://www.oc.gov.ma/fr/faq/quel-est-le-montant-de-la-dotation-pour-voyages-personnels",
+      "https://www.oc.gov.ma/sites/default/files/2025-12/Communiqu%C3%A9%20IGOC%202026.pdf"
+    ],
+    "source_tier": "official",
+    "confidence": "verified",
+    "required_wording": null,
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2026-11-19",
+    "valid_until": null,
+    "time_critical": true,
+    "supersedes": null
+  },
+  {
+    "id": "fact_oc_allowance_covers_religious_travel",
+    "topic": "other",
+    "claim_fr": "Depuis l'Instruction des changes de 2022, la dotation pour voyages personnels peut servir pour tout voyage personnel à l'étranger, y compris religieux (Omra, Hajj), touristique ou pour soins. L'ancienne dotation spécifique de 15 000 dirhams par pèlerin ne doit plus être citée comme règle actuelle.",
+    "claim_ar": "منذ تعليمة الصرف لسنة 2022، يمكن استعمال مخصصات الأسفار الشخصية لكل سفر شخصي إلى الخارج، بما فيه الديني (العمرة والحج) والسياحي وللعلاج. ولا ينبغي ذكر المخصص القديم الخاص بالحجاج (15.000 درهم) كقاعدة حالية.",
+    "claim_en": "Since the 2022 exchange instruction, the personal travel allowance can be used for any personal trip abroad, including religious travel (Omra, Hajj), tourism or medical care. The old dedicated allowance of 15,000 dirhams per pilgrim should not be cited as a current rule.",
+    "values": [
+      "2022",
+      "15000"
+    ],
+    "unit": "MAD",
+    "source_urls": [
+      "https://www.oc.gov.ma/sites/default/files/reglementation/pdf/2022-01/IGOC%202022.pdf",
+      "https://www.oc.gov.ma/sites/default/files/RG%202022%20VS.pdf"
+    ],
+    "source_tier": "official",
+    "confidence": "verified",
+    "required_wording": null,
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2026-11-19",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_oc_hajj_agency_ceilings_annual",
+    "topic": "other",
+    "claim_fr": "Les plafonds des dotations en devises accordées aux agences de voyages pour l'opération Hajj sont communiqués chaque année par l'Office des Changes aux banques ; ils ne sont pas publiés comme montant fixe pour le public.",
+    "claim_ar": "يبلغ مكتب الصرف الأبناك سنويا بسقوف المخصصات الممنوحة لوكالات الأسفار في إطار عملية الحج، ولا تُنشر كمبلغ ثابت للعموم.",
+    "claim_en": "The ceilings on foreign-currency allowances granted to travel agencies for the Hajj operation are communicated each year by the Office des Changes to banks; they are not published as a fixed public amount.",
+    "values": [],
+    "unit": null,
+    "source_urls": [
+      "https://www.oc.gov.ma/fr/faq?field_categorie_target_id=All&page=3"
+    ],
+    "source_tier": "official",
+    "confidence": "verified",
+    "required_wording": null,
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-04-18",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_morocco_moh_omra_meningitis_2025",
+    "topic": "health",
+    "claim_fr": "Le 7 février 2025, le ministère marocain de la Santé a annoncé que l'Arabie saoudite suspendait l'obligation du justificatif de vaccination contre la méningite pour la Omra ; il continue de recommander vivement ce vaccin, disponible dans les centres de santé agréés des régions et provinces.",
+    "claim_ar": "أعلنت وزارة الصحة المغربية يوم 7 فبراير 2025 أن السلطات السعودية علّقت إلزامية الإدلاء بشهادة التلقيح ضد التهاب السحايا لأداء العمرة، مع استمرارها في التوصية بشدة بهذا اللقاح المتوفر بالمراكز الصحية المعتمدة بمختلف الجهات والأقاليم.",
+    "claim_en": "On 7 February 2025 the Moroccan Health Ministry announced that Saudi Arabia had suspended the requirement to show meningitis vaccination proof for Omra; it still strongly recommends the vaccine, available at approved health centres across regions and provinces.",
+    "values": [
+      "7",
+      "2025"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://fr.le360.ma/societe/omra-larabie-saoudite-leve-lobligation-du-vaccin-contre-la-meningite-le-maroc-le-recommande-vivement_OTJ5RUISNVFRFKY2KPGVVKBT6Y/",
+      "https://snrtnews.com/fr/article/ministereomra-suspension-de-lobligation-de-la-vaccination-contre-la-meningi-112115",
+      "https://gulfnews.com/world/gulf/saudi/saudi-arabia-meningitis-vaccine-recommended-for-umrah-pilgrims-in-ramadan-2025-1.500042800"
+    ],
+    "source_tier": "media",
+    "confidence": "verified",
+    "required_wording": null,
+    "conflicts": [
+      {
+        "value": "ACWY obligatoire pour la Omra (règle annoncée en janvier 2025)",
+        "source": "fact_acwy_requirement (registry)"
+      }
+    ],
+    "status": "proposed",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2026-11-19",
+    "valid_until": null,
+    "time_critical": true,
+    "supersedes": null
+  },
+  {
+    "id": "fact_morocco_moon_sighting_process",
+    "topic": "ramadan_dates",
+    "claim_fr": "Au Maroc, le ministère des Habous fixe le début du Ramadan par l'observation du croissant le soir du 29 Chaabane : il recueille les rapports de ses délégués régionaux et des unités des Forces armées royales qui participent à l'observation, puis publie un communiqué le soir même. Le Ramadan 1448 n'est pas encore annoncé.",
+    "claim_ar": "في المغرب، تحدد وزارة الأوقاف بداية رمضان بمراقبة الهلال مساء 29 شعبان، إذ تتلقى تقارير مندوبيها الجهويين ووحدات القوات المسلحة الملكية المشاركة في المراقبة، ثم تصدر بلاغا في المساء نفسه. لم يُعلن بعد عن رمضان 1448هـ.",
+    "claim_en": "In Morocco the Habous ministry sets the start of Ramadan by sighting the crescent on the evening of 29 Shaban: it collects reports from its regional delegates and the Royal Armed Forces units taking part, then issues a communique that evening. Ramadan 1448 has not been announced yet.",
+    "values": [
+      "29",
+      "1448"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://www.habous.gov.ma/%D9%85%D8%B1%D8%A7%D9%82%D8%A8%D8%A9-%D8%A7%D9%84%D8%A3%D9%87%D9%84%D8%A9-4/22066-%D9%85%D8%B1%D8%A7%D9%82%D8%A8%D8%A9-%D9%87%D9%84%D8%A7%D9%84-%D8%B4%D9%87%D8%B1-%D8%B1%D9%85%D8%B6%D8%A7%D9%86-%D8%A7%D9%84%D9%85%D8%B9%D8%B8%D9%85-%D8%A7%D9%84%D8%A3%D8%B1%D8%A8%D8%B9%D8%A7%D8%A1-18-%D9%81%D8%A8%D8%B1%D8%A7%D9%8A%D8%B1-2026%D9%85.html",
+      "https://www.habous.gov.ma/%D9%85%D8%B1%D8%A7%D9%82%D8%A8%D8%A9-%D8%A7%D9%84%D8%A3%D9%87%D9%84%D8%A9-4/22067-%D9%81%D8%A7%D8%AA%D8%AD-%D8%B4%D9%87%D8%B1-%D8%B1%D9%85%D8%B6%D8%A7%D9%86-%D8%A7%D9%84%D9%85%D8%B9%D8%B8%D9%85-%D8%A7%D9%84%D8%AE%D9%85%D9%8A%D8%B3-19-%D9%81%D8%A8%D8%B1%D8%A7%D9%8A%D8%B1-2026%D9%85.html",
+      "https://www.habous.gov.ma/%D9%85%D8%B1%D8%A7%D9%82%D8%A8%D8%A9-%D8%A7%D9%84%D8%A3%D9%87%D9%84%D8%A9-4/20760-%D9%85%D8%B1%D8%A7%D9%82%D8%A8%D8%A9-%D9%87%D9%84%D8%A7%D9%84-%D8%B4%D9%87%D8%B1-%D8%B1%D9%85%D8%B6%D8%A7%D9%86-%D8%A7%D9%84%D9%85%D8%B9%D8%B8%D9%85-%D8%A7%D9%84%D8%AC%D9%85%D8%B9%D8%A9-28-%D9%81%D8%A8%D8%B1%D8%A7%D9%8A%D8%B12025%D9%85.html"
+    ],
+    "source_tier": "official",
+    "confidence": "verified",
+    "required_wording": null,
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-02-10",
+    "valid_until": null,
+    "time_critical": true,
+    "supersedes": null
+  },
+  {
+    "id": "fact_morocco_time_change_ramadan_2026",
+    "topic": "ramadan_dates",
+    "claim_fr": "Ramadan 2026 : le Maroc est revenu à l'heure légale (GMT) le dimanche 15 février 2026 à 3 h (recul de 60 minutes), puis à GMT+1 le dimanche 22 mars 2026 à 2 h, selon le ministère de la Transition numérique (communiqué du 2 février 2026, arrêté du Chef du gouvernement n° 3.06.26 du 29 janvier 2026).",
+    "claim_ar": "رمضان 2026: عاد المغرب إلى الساعة القانونية (غرينتش) يوم الأحد 15 فبراير 2026 على الساعة الثالثة صباحا بتأخير 60 دقيقة، ثم إلى غرينتش+1 يوم الأحد 22 مارس 2026 على الساعة الثانية صباحا، حسب وزارة الانتقال الرقمي (بلاغ 2 فبراير 2026، قرار رئيس الحكومة رقم 3.06.26 بتاريخ 29 يناير 2026).",
+    "claim_en": "Ramadan 2026: Morocco returned to legal time (GMT) on Sunday 15 February 2026 at 3:00 (clocks back 60 minutes), then to GMT+1 on Sunday 22 March 2026 at 2:00, according to the Digital Transition Ministry (communique of 2 February 2026, Head of Government order No. 3.06.26 of 29 January 2026).",
+    "values": [
+      "2026",
+      "15",
+      "3",
+      "00",
+      "60",
+      "1",
+      "22",
+      "2",
+      "3.06",
+      "26",
+      "29"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://www.mmsp.gov.ma/fr/actualites/retour-%C3%A0-lheure-l%C3%A9gale-du-royaume-gmt-0",
+      "https://medias24.com/2026/02/10/le-maroc-passe-a-lheure-gmt-ce-dimanche-15-fevrier-1625665/"
+    ],
+    "source_tier": "official",
+    "confidence": "verified",
+    "required_wording": null,
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-04-18",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_morocco_time_change_ramadan_2025",
+    "topic": "ramadan_dates",
+    "claim_fr": "Ramadan 2025 : le Maroc est passé à GMT le dimanche 23 février 2025 à 3 h et est revenu à GMT+1 le dimanche 6 avril 2025 à 2 h.",
+    "claim_ar": "رمضان 2025: انتقل المغرب إلى توقيت غرينتش يوم الأحد 23 فبراير 2025 على الساعة الثالثة صباحا، وعاد إلى غرينتش+1 يوم الأحد 6 أبريل 2025 على الساعة الثانية صباحا.",
+    "claim_en": "Ramadan 2025: Morocco moved to GMT on Sunday 23 February 2025 at 3:00 and returned to GMT+1 on Sunday 6 April 2025 at 2:00.",
+    "values": [
+      "2025",
+      "23",
+      "3",
+      "00",
+      "1",
+      "6",
+      "2"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://maroc.ma/fr/actualites/ramadan-2025-retour-lheure-legale-gmt-le-dimanche-23-fevrier-03h00",
+      "https://fnh.ma/article/actualites-marocaines/maroc-gmt-heure-ramadan-2025"
+    ],
+    "source_tier": "official",
+    "confidence": "verified",
+    "required_wording": null,
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-04-18",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_morocco_time_change_ramadan_2027_pending",
+    "topic": "ramadan_dates",
+    "claim_fr": "Au 20 octobre 2026, aucune annonce officielle n'a été trouvée sur le changement d'heure au Maroc pour le Ramadan 2027. En 2026, le communiqué officiel est paru le 2 février pour un passage à GMT le 15 février.",
+    "claim_ar": "إلى غاية 20 أكتوبر 2026، لم يُعثر على أي إعلان رسمي بخصوص تغيير الساعة بالمغرب خلال رمضان 2027. في 2026 صدر البلاغ الرسمي يوم 2 فبراير للعودة إلى غرينتش يوم 15 فبراير.",
+    "claim_en": "As of 20 October 2026 no official announcement was found on Morocco's clock change for Ramadan 2027. In 2026 the official communique came out on 2 February for a switch to GMT on 15 February.",
+    "values": [
+      "20",
+      "2026",
+      "2027",
+      "2",
+      "15"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://www.mmsp.gov.ma/fr/actualites/retour-%C3%A0-lheure-l%C3%A9gale-du-royaume-gmt-0"
+    ],
+    "source_tier": "official",
+    "confidence": "likely",
+    "required_wording": "aucune annonce officielle à ce jour",
+    "required_wording_ar": "لا يوجد إعلان رسمي إلى حدود الآن",
+    "required_wording_en": "no official announcement so far",
+    "conflicts": [],
+    "status": "proposed",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-01-20",
+    "valid_until": null,
+    "time_critical": true,
+    "supersedes": null
+  },
+  {
+    "id": "fact_morocco_ramadan_admin_hours",
+    "topic": "ramadan_dates",
+    "claim_fr": "Pendant le Ramadan, les administrations, établissements publics et collectivités territoriales du Maroc appliquent habituellement un horaire continu de 9 h à 15 h, du lundi au vendredi. L'horaire du Ramadan 2027 n'est pas encore annoncé.",
+    "claim_ar": "خلال شهر رمضان، تعتمد الإدارات العمومية والمؤسسات العمومية والجماعات الترابية بالمغرب عادة توقيتا مستمرا من التاسعة صباحا إلى الثالثة بعد الزوال، من الإثنين إلى الجمعة. لم يُعلن بعد عن توقيت رمضان 2027.",
+    "claim_en": "During Ramadan, Moroccan public administrations, public bodies and local authorities usually work a continuous 9:00-15:00 schedule, Monday to Friday. The Ramadan 2027 schedule is not yet announced.",
+    "values": [
+      "9",
+      "00",
+      "15",
+      "2027"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://www.mapexpress.ma/actualite/societe-et-regions/ramadan-horaire-continu-09h-15h-les-administrations-les-etablissements-publics-les-collectivites-territoriales-ministere/",
+      "https://www.mmsp.gov.ma/fr/actualites/les-horaires-de-travail-durant-le-mois-du-ramadan"
+    ],
+    "source_tier": "official",
+    "confidence": "likely",
+    "required_wording": "habituellement, selon les communiqués des années précédentes",
+    "required_wording_ar": "عادة، حسب بلاغات السنوات السابقة",
+    "required_wording_en": "usually, according to previous years' communiques",
+    "conflicts": [],
+    "status": "proposed",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-01-20",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  }
+]

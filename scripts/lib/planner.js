@@ -12,6 +12,12 @@ import { apiUnavailable, makeClient, callClaude, checkStop, SkipTopicError } fro
 import { ingestSemrush } from './semrush.js';
 
 const MIN_FACTS = { guide: 2, news: 2, data: 2 };
+// How each language searches (planning hints, not data: real volumes come only from the keyword registry).
+export const LANG_GUIDANCE = {
+  fr: 'French queries typed in Morocco: « omra », « prix omra », « visa omra », Moroccan cities and institutions (ONDA, ministère des Habous), dirhams. Moroccan French, not France French.',
+  ar: 'Arabic queries typed in Morocco and the Arab world, in Modern Standard Arabic (« عمرة », « تأشيرة العمرة », « مواعيد العمرة », « الحج »). Questions are often phrased as « كيف », « متى », « شروط ». Plan from Arabic search intent, not from the French topics.',
+  en: 'English queries from Moroccans abroad, international residents in Morocco and English-speaking pilgrims flying from Morocco (« Umrah from Morocco », « Umrah visa », « Hajj Morocco »). Plain international English.',
+};
 const id_ = s => String(s ?? '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9_]+/g, '_').replace(/^_+|_+$/g, '');
 
 export const PROPOSAL_SCHEMA = {
@@ -49,6 +55,8 @@ export const PLANNER_SYSTEM = [
   '- A topic stating visa, health or Hajj-procedure rules needs at least one approved fact with source_tier "official" in facts_needed.',
   '- slug: short ASCII words separated by hyphens, no year. internal_links: slugs from site_pages. sister_links: only from sister_pages. wt_target: an id from wikitours_targets when a link to the publisher helps the reader, else "".',
   '- Titles 20-70 characters, all different in wording from existing titles.',
+  '- Language (DECISIONS D-H): plan ONLY for the requested language, from how people search in THAT language (language_guidance). Title and primary_keyword are written natively in that language. Never propose a translation of a page or topic that exists in another language: the same intent may exist in two languages only when readers of both languages genuinely search for it, and then it keeps the same concept_id on this site (a concept never moves to another site).',
+  '- concept_id may repeat across languages only on this site and only once per language; primary_keyword must be unique in its language across the network.',
   'Return the JSON object only.',
 ].join('\n');
 
@@ -91,8 +99,10 @@ export async function runPlan({ root, today, site: onlySite = null, dryRun = fal
     if (onlySite && d !== onlySite) continue;
     const perDay = planningPerDay({ cadence, site: d, today, health });
     if (!perDay) { log(`${d}: disabled or paused, no planning`); continue; }
-    for (const lang of activeLanguages(content, d)) {
-      const perLang = Math.min(cadence.max_posts_per_language_per_day ?? 1, perDay);
+    const langs = activeLanguages(content, d);
+    for (const lang of langs) {
+      // D-H: the daily quota is shared by the active languages (rotation during the ramp, 1 each at the ceiling).
+      const perLang = Math.min(cadence.max_posts_per_language_per_day ?? 1, perDay / langs.size);
       const ready = topicsBySite[d].filter(t => t.status === 'queued' && topicLang(t) === lang && !factProblems(t, project.registry, today, minDays).length).length;
       const target = Math.ceil((cadence.queue_target_days ?? 30) * perLang);
       const days = ready / perLang;
@@ -155,7 +165,7 @@ export function planRequest({ project, content, topicsBySite, need, today, minDa
     .filter(k => k.lang === lang && !k.reserved_for && (!k.owner_site || k.owner_site === site) && !items.some(o => o.lang === lang && matchKey(o.primary_keyword || '') === k.match_key))
     .sort((a, b) => (b.volume ?? -1) - (a.volume ?? -1)).slice(0, 60).map(k => ({ keyword: k.keyword, volume: k.volume, owner: k.owner_site }));
   return {
-    today, site: site, language: lang, count: need.count,
+    today, site: site, language: lang, language_guidance: LANG_GUIDANCE[lang] || null, count: need.count,
     charter: { job: charter.job || s.meta.role, owns: charter.owns || [], never: charter.never || [], hard_rules: charter.hard_rules || [] },
     audience: charters.audience || null,
     banned_concepts: otherOwns,
@@ -164,7 +174,7 @@ export function planRequest({ project, content, topicsBySite, need, today, minDa
     existing_concepts: [...new Set(items.map(o => o.concept_id))],
     clusters_of_other_sites: [...new Set(items.filter(o => o.site !== site).map(o => o.cluster))],
     approved_facts: project.registryList.filter(f => factProblems({ facts_needed: [f.id], lang }, project.registry, today, minDays).length === 0)
-      .map(f => ({ id: f.id, topic: f.topic, source_tier: f.source_tier, claim_fr: f.claim_fr, review_by: f.review_by })),
+      .map(f => ({ id: f.id, topic: f.topic, source_tier: f.source_tier, claim_fr: f.claim_fr, ...(lang !== 'fr' && f[`claim_${lang}`] ? { [`claim_${lang}`]: f[`claim_${lang}`] } : {}), review_by: f.review_by })),
     approved_religious_texts: Object.values(project.kb || {}).filter(e => e.status === 'approved').length,
     keyword_candidates: keywords.length ? keywords : 'none yet (Semrush data pending): use realistic queries, never invent volumes',
     site_pages: published.filter(p => p.site === site && p.lang === lang && p.fm.type !== 'home').map(p => ({ slug: p.fm.slug, title: stripMarkers(p.fm.title) })),

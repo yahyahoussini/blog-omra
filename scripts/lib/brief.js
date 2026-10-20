@@ -6,8 +6,14 @@ import { topicSlug, topicLang } from './topics.js';
 import { stripMarkers } from '../../engine/lib/util.js';
 import { wordingFor } from '../../engine/lib/facts-gate.js';
 import { forLang } from '../../engine/lib/render.js';
+import { phrasesFor } from '../../engine/lib/config.js';
 
-const LANG_NAME = { fr: 'French written for Moroccan readers', ar: 'Modern Standard Arabic', en: 'English for Moroccan and international readers' };
+// DECISIONS D-H: every page is written natively in its language, never translated from another page.
+export const LANG_NAME = {
+  fr: 'French as written in Morocco (Moroccan French: dirhams, Moroccan cities and institutions, vouvoiement, no France-specific references)',
+  ar: 'natural Modern Standard Arabic as read in Morocco (not dialect, not a translation; Western digits 0-9; Moroccan institutions by their Arabic names)',
+  en: 'clear, plain English for Moroccan and international readers (short sentences, no idioms; « Umrah » and « Hajj »; MAD amounts as written in the facts)',
+};
 const WORD_TARGET = { guide: '1500-2200', explainer: '800-1300', checklist: '800-1200', local: '800-1200', data: '500-900', news: '400-700' };
 
 // The writer's contract is docs/ENGINE.md sections 3-6 (front matter, shortcodes, containers, facts), read at run time.
@@ -32,10 +38,12 @@ export function systemPrompt(root) {
     '5. Never invent prices, dates, rules, names, people, quotes, testimonials, statistics, seat counts or availability. Never write Qur\'an verses, hadith or du\'a text. No religious rulings.',
     '6. Links: same-site links only as [[link:slug|anchor]] with slugs from the brief (at least the required number); sister-site links only as [[site:domain/slug|anchor]] with targets from the brief; a wikitours.ma link only as [[wt:target|anchor]] when the brief allows one, never in the first sentence, never in a table, with a brand or descriptive anchor. Plain Markdown links only to URLs listed in allowed_outbound_urls.',
     '7. Do not write a byline, an author name, a « relu par » line, a disclosure box or a WhatsApp/CTA paragraph: the engine adds them. Never claim a human reviewed the page.',
-    '8. Never use these words or claims: « garanti », « 100 % », « 0 % d\'intérêt », « sans intérêt », « dernières places », « places limitées », « dépêchez-vous », « meilleur », « leader » about any agency.',
+    '8. Never use these words or claims, in any language: « garanti », « 100 % », « 0 % d\'intérêt », « sans intérêt », « dernières places », « places limitées », « dépêchez-vous », « meilleur », « leader » about any agency; « مضمون », « 100 % », « بدون فوائد », « أماكن محدودة », « سارعوا »; « guaranteed », « 100% », « 0% interest », « interest-free », « last seats », « limited places », « hurry », « best » about any agency.',
     '9. Start the body with a :::answer box (40-60 words) that answers the title. Include a :::unknown section (« what we do not know yet ») for guide and explainer posts. Use :::steps around numbered lists.',
     '10. Do not mention a year lower than the current season year in the title.',
     '11. Never write HTML tags (no <a>, <br>, <img>, comments): Markdown, shortcodes and containers only. Never name an agency, tour operator or company that is not in the brief.',
+    '12. Language: write the whole file (title, description, summary, headings, body, FAQ) natively in the language given by brief.language and front_matter_fixed.lang. fr = Moroccan French; ar = natural Modern Standard Arabic; en = clear English. Think and write in that language from the facts: never translate, adapt or mirror another page of the network, in any language. Use the claim in the page language when the fact gives one (claim_ar, claim_en), otherwise express claim_fr in your own words in the page language, keeping every value and the required wording exactly as given.',
+    '13. Rule words need a fact marker in every language: obligatoire, interdit, gratuit, garanti, remboursé, visa, vaccin, délai…; واجب، ممنوع، إلزامي، مجاني، تأشيرة، مضمون…; mandatory, required, prohibited, free of charge, guaranteed, refund, quota, visa, vaccine, deadline.',
     '',
     'Output: ONLY the complete Markdown file, starting with the line --- (YAML front matter, then the body). No code fences, no commentary.',
     'Front matter: copy front_matter_fixed exactly, then add title (20-70 characters), description (70-160 characters), summary (one sentence) and optionally faq (2-5 items whose answers follow the same fact rules). Do not add sources, reviewed_by, full_read or any other field.',
@@ -91,7 +99,7 @@ export function buildBrief({ project, content, topic, site, today, status, chart
 
   return {
     today,
-    language: LANG_NAME[lang] || lang,
+    language: { code: lang, write_as: LANG_NAME[lang] || lang, rule: 'Write natively in this language for its own readers and searches. Never translate another page.' },
     site: {
       domain: site, name: s.meta.name, role: s.meta.role, tagline: forLang(project, s.config.tagline, lang),
       job: charter.job || s.meta.role, owns: charter.owns || [], never: charter.never || [], hard_rules: charter.hard_rules || [],
@@ -105,11 +113,11 @@ export function buildBrief({ project, content, topic, site, today, status, chart
     front_matter_fixed: {
       slug: topicSlug(topic), type: topic.type, tier: topic.tier || 'C', lang, date: today, status, author: 'org',
       primary_keyword: topic.primary_keyword, cluster: topic.cluster, concept_id: topic.concept_id,
-      cta: { type: 'whatsapp', topic: topic.cta_topic || s.config.whatsapp?.default_topic || s.meta.name },
+      cta: { type: 'whatsapp', topic: topic.cta_topic || forLang(project, s.config.whatsapp?.default_topic, lang) || labels.waTopic || s.meta.name },
     },
     facts,
     allowed_outbound_urls: [...new Set(facts.flatMap(f => f.source_urls))],
-    approved_fixed_expressions: project.phrases[lang] || [],
+    approved_fixed_expressions: phrasesFor(project, site, lang),
     internal_links: internal,
     sister_links: sisterTargets,
     wikitours_link: wt,

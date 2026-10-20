@@ -1,0 +1,346 @@
+{
+  "fact_ramadan_1448_start_umq": {
+    "claim_ar": "وفق تقويم أم القرى (المملكة العربية السعودية)، يوافق 1 رمضان 1448 يوم الاثنين 8 فبراير 2027.",
+    "claim_en": "According to the Umm al-Qura calendar (Saudi Arabia), 1 Ramadan 1448 falls on Monday 8 February 2027.",
+    "required_wording_ar": "تقدير، رهين برؤية الهلال",
+    "required_wording_en": "estimate, subject to moon sighting"
+  },
+  "fact_eid_fitr_1448_expected": {
+    "claim_ar": "يُتوقع أن يحل عيد الفطر 1448 يوم الثلاثاء 9 مارس 2027 في المملكة العربية السعودية؛ ويتوقع موقع moonsighting.org.uk أن يبدأ شهر شوال يوم 10 مارس 2027.",
+    "claim_en": "Eid al-Fitr 1448 is expected on Tuesday 9 March 2027 in Saudi Arabia; moonsighting.org.uk forecasts the start of Shawwal on 10 March 2027.",
+    "required_wording_ar": "تقدير، رهين برؤية الهلال",
+    "required_wording_en": "estimate, subject to moon sighting"
+  },
+  "fact_morocco_ramadan_2026_start": {
+    "claim_ar": "في المغرب، بدأ شهر رمضان 1447 يوم الخميس 19 فبراير 2026، غداة رؤية الهلال من طرف الوزارة.",
+    "claim_en": "In Morocco, Ramadan 1447 began on Thursday 19 February 2026, the day after the ministry's sighting of the crescent moon."
+  },
+  "fact_saudi_ramadan_2026_start": {
+    "claim_ar": "حددت المحكمة العليا السعودية 1 رمضان 1447 يوم الأربعاء 18 فبراير 2026، خلافاً للتوقعات الفلكية.",
+    "claim_en": "Saudi Arabia's Supreme Court set 1 Ramadan 1447 on Wednesday 18 February 2026, contrary to astronomical forecasts."
+  },
+  "fact_morocco_ramadan_2026_offset": {
+    "claim_ar": "في 2026، بدأ المغرب شهر رمضان بعد المملكة العربية السعودية بيوم واحد. ولم يتأكد بعدُ تكرار الفارق نفسه في 2027.",
+    "claim_en": "In 2026, Morocco began Ramadan 1 day after Saudi Arabia. The same gap in 2027 is not confirmed."
+  },
+  "fact_rajab_1448_start": {
+    "claim_ar": "يبدأ شهر رجب 1448 في حدود 10 دجنبر 2026 (جدول أم القرى).",
+    "claim_en": "Rajab 1448 begins around 10 December 2026 (Umm al-Qura table).",
+    "required_wording_ar": "تقدير، رهين برؤية الهلال",
+    "required_wording_en": "estimate, subject to moon sighting"
+  },
+  "fact_shaaban_1448_start": {
+    "claim_ar": "يبدأ شهر شعبان 1448 يوم 9 أو 10 يناير 2027؛ ويرجح موقع moonsighting.org.uk يوم 10 يناير 2027 بالنسبة للمغرب.",
+    "claim_en": "Sha'ban 1448 begins on 9 or 10 January 2027; moonsighting.org.uk considers 10 January 2027 the most likely date for Morocco.",
+    "required_wording_ar": "تقدير، رهين برؤية الهلال",
+    "required_wording_en": "estimate, subject to moon sighting"
+  },
+  "fact_dhul_hijjah_1448_dates": {
+    "claim_ar": "من المرتقب أن يبدأ شهر ذي الحجة 1448 يوم 7 أو 8 ماي 2027، وأن يوافق يوم عرفة 15 أو 16 ماي، وعيد الأضحى 16 أو 17 ماي 2027 (تقديرات فلكية منشورة في الإمارات).",
+    "claim_en": "Dhu al-Hijjah 1448 would begin on 7 or 8 May 2027; the Day of Arafah would fall on 15 or 16 May and Eid al-Adha on 16 or 17 May 2027 (astronomical estimates published in the UAE).",
+    "required_wording_ar": "تقدير، رهين برؤية الهلال",
+    "required_wording_en": "estimate, subject to moon sighting"
+  },
+  "fact_muharram_1449_start": {
+    "claim_ar": "يوافق 1 محرم 1449 (رأس السنة الهجرية) في حدود 5-6 يونيو 2027؛ وعاشوراء في حدود 14-15 يونيو 2027.",
+    "claim_en": "1 Muharram 1449 (Islamic New Year) falls around 5-6 June 2027; Ashura around 14-15 June 2027.",
+    "required_wording_ar": "تقدير، رهين برؤية الهلال",
+    "required_wording_en": "estimate, subject to moon sighting"
+  },
+  "fact_mawlid_1449": {
+    "claim_ar": "يُتوقع أن يحل المولد النبوي (12 ربيع الأول 1449) في حدود 14 غشت 2027 وفق التقويم الجدولي؛ وتشير بعض التقاويم إلى 15 غشت.",
+    "claim_en": "The Mawlid (12 Rabi al-Awwal 1449) is expected around 14 August 2027 according to the tabular calendar; some calendars give 15 August.",
+    "required_wording_ar": "تقدير، رهين برؤية الهلال",
+    "required_wording_en": "estimate, subject to moon sighting"
+  },
+  "fact_morocco_religious_holidays": {
+    "claim_ar": "العطل الدينية الرسمية في المغرب: عيد الفطر (1-2 شوال، يومان)، عيد الأضحى (10-11 ذي الحجة، يومان)، 1 محرم (يوم واحد)، المولد النبوي (يومان). ولم تصبح التواريخ الميلادية لسنة 2027 رسمية بعد.",
+    "claim_en": "Religious public holidays in Morocco: Eid al-Fitr (1-2 Shawwal, 2 days), Eid al-Adha (10-11 Dhu al-Hijjah, 2 days), 1 Muharram (1 day), Mawlid (2 days). The Gregorian dates for 2027 are not yet official.",
+    "required_wording_ar": "حسب wafir.ma",
+    "required_wording_en": "according to wafir.ma"
+  },
+  "fact_umrah_1448_calendar": {
+    "claim_ar": "الجدول الزمني الرسمي لموسم العمرة 1448: إصدار التأشيرات والوصول ابتداءً من 31 ماي 2026؛ تصاريح نسك ودخول مكة المكرمة ابتداءً من 1 يونيو 2026؛ آخر موعد لإصدار التأشيرات 1 شوال 1448 (9 مارس 2027)؛ آخر موعد للدخول 15 شوال (23 مارس 2027)؛ آخر موعد للمغادرة 30 شوال (7 أبريل 2027).",
+    "claim_en": "Official Umrah 1448 season calendar: visas and arrivals from 31 May 2026; Nusuk permits and entry to Makkah from 1 June 2026; last visa issuance on 1 Shawwal 1448 (9 March 2027); last entry on 15 Shawwal (23 March 2027); last departure on 30 Shawwal (7 April 2027)."
+  },
+  "fact_umrah_1448_visas_open": {
+    "claim_ar": "موسم العمرة 1448: إصدار التأشيرات والوصول ابتداءً من 31 ماي 2026.",
+    "claim_en": "Umrah 1448 season: visa issuance and arrivals from 31 May 2026."
+  },
+  "fact_umrah_1448_nusuk_open": {
+    "claim_ar": "موسم العمرة 1448: تصاريح نسك ودخول مكة المكرمة ابتداءً من 1 يونيو 2026.",
+    "claim_en": "Umrah 1448 season: Nusuk permits and entry to Makkah from 1 June 2026."
+  },
+  "fact_umrah_1448_last_visa": {
+    "claim_ar": "آخر موعد لإصدار تأشيرات العمرة لموسم 1448: 1 شوال 1448، الموافق 9 مارس 2027.",
+    "claim_en": "Last Umrah visa issuance for the 1448 season: 1 Shawwal 1448, which is 9 March 2027."
+  },
+  "fact_umrah_1448_last_entry": {
+    "claim_ar": "آخر موعد لدخول المملكة العربية السعودية لأداء العمرة 1448: 15 شوال 1448، الموافق 23 مارس 2027.",
+    "claim_en": "Last entry into Saudi Arabia for Umrah 1448: 15 Shawwal 1448, which is 23 March 2027."
+  },
+  "fact_umrah_1448_last_departure": {
+    "claim_ar": "آخر موعد لمغادرة معتمري موسم العمرة 1448: 30 شوال 1448، الموافق 7 أبريل 2027.",
+    "claim_en": "Last departure of Umrah 1448 pilgrims: 30 Shawwal 1448, which is 7 April 2027."
+  },
+  "fact_ramadan_one_permit_2024": {
+    "claim_ar": "في مارس 2024، أعلنت الوزارة السعودية أنها لن تمنح سوى تصريح عمرة واحد لكل شخص خلال شهر رمضان. ولا يُعرف ما إذا كان هذا الإجراء سيُطبق في رمضان 1448.",
+    "claim_en": "In March 2024, the Saudi ministry announced it would issue only one Umrah permit per person during Ramadan. Whether this applies to Ramadan 1448 is not known.",
+    "required_wording_ar": "حسب Aaj News",
+    "required_wording_en": "according to Aaj News"
+  },
+  "fact_umrah_visa_entry_window": {
+    "claim_ar": "منذ 1 نونبر 2025 تقريباً، يجب استعمال تأشيرة العمرة في أجل شهر واحد من تاريخ إصدارها (مقابل 3 أشهر سابقاً)؛ وتُلغى التأشيرة غير المستعملة بعد 30 يوماً.",
+    "claim_en": "Since around 1 November 2025, the Umrah visa must be used within 1 month of issuance (compared with 3 months previously); an unused visa is cancelled after 30 days.",
+    "required_wording_ar": "حسب Gulf News",
+    "required_wording_en": "according to Gulf News"
+  },
+  "fact_umrah_visa_stay_3_months": {
+    "claim_ar": "بعد وصول المعتمر، يمكن أن تمتد الإقامة بتأشيرة العمرة إلى 3 أشهر.",
+    "claim_en": "Once the pilgrim has arrived, a stay on an Umrah visa can last up to 3 months.",
+    "required_wording_ar": "حسب Gulf News",
+    "required_wording_en": "according to Gulf News"
+  },
+  "fact_umrah_multi_entry_visa": {
+    "claim_ar": "في حدود 20 يوليوز 2026، أطلقت المملكة العربية السعودية تأشيرة عمرة متعددة الدخول صالحة لمدة سنة واحدة (365 يوماً)، لمدة إقامة إجمالية قدرها 90 يوماً؛ ويُشترط الحصول على باقة نسك من مقدم خدمة معتمد قبل كل زيارة؛ ولا تصلح هذه التأشيرة خلال موسم الحج (من 1 ذي القعدة إلى 13 ذي الحجة) ولا تعوض تأشيرة العمرة العادية. ولا يُعرف ما إذا كانت متاحة للمغاربة.",
+    "claim_en": "Around 20 July 2026, Saudi Arabia launched a multiple-entry Umrah visa valid for 1 year (365 days), for a total stay of 90 days; a Nusuk package from a licensed provider is required before each visit; it is not valid during the Hajj season (from 1 Dhu al-Qadah to 13 Dhu al-Hijjah) and does not replace the standard Umrah visa. Whether Moroccans can access it is not known.",
+    "required_wording_ar": "حسب Khaleej Times",
+    "required_wording_en": "according to Khaleej Times"
+  },
+  "fact_nusuk_umrah_direct": {
+    "claim_ar": "في غشت 2025، أطلقت وزارة الحج والعمرة السعودية خدمة «نسك عمرة»: يمكن للمعتمرين من خارج المملكة طلب التأشيرة وحجز خدماتهم مباشرة دون وسيط، مع بقاء الوكلاء المعتمدين خياراً متاحاً. ولا تؤكد أي قائمة منشورة أن المغرب من بين الدول المشمولة بالخدمة.",
+    "claim_en": "In August 2025, the Saudi Ministry of Hajj and Umrah launched “Nusuk Umrah”: pilgrims outside the Kingdom can apply for the visa and book their services directly, without an intermediary, with licensed agents remaining an option. No published list confirms that Morocco is among the countries served."
+  },
+  "fact_acwy_requirement": {
+    "claim_ar": "قاعدة أُعلن عنها في 2025: يجب على كل مسافر لأداء العمرة يبلغ من العمر سنة واحدة فأكثر أن يكون قد تلقى لقاح المكورات السحائية الرباعي ACWY قبل 10 أيام على الأقل من وصوله.",
+    "claim_en": "Rule announced in 2025: every Umrah traveller aged 1 year or over must have received a quadrivalent ACWY meningococcal vaccine at least 10 days before arrival.",
+    "required_wording_ar": "حسب Gulf News، ولم نعثر على تأكيد لموسم 1448",
+    "required_wording_en": "according to Gulf News, no confirmation found for 1448"
+  },
+  "fact_acwy_validity": {
+    "claim_ar": "وفق قاعدة ACWY لسنة 2025، تبلغ صلاحية اللقاح متعدد السكاريد 3 سنوات، وصلاحية اللقاح المقترن 5 سنوات.",
+    "claim_en": "Under the 2025 ACWY rule, a polysaccharide vaccine is valid for 3 years and a conjugate vaccine for 5 years.",
+    "required_wording_ar": "حسب Gulf News",
+    "required_wording_en": "according to Gulf News"
+  },
+  "fact_agency_selection_criteria": {
+    "claim_ar": "حسب وزيرة السياحة (شتنبر 2025)، يتم انتقاء وكالات الحج والعمرة على أساس كفاءتها المهنية والتقنية وضماناتها المالية.",
+    "claim_en": "According to the Minister of Tourism (September 2025), Hajj and Umrah agencies are selected on their professional and technical competence and their financial guarantees."
+  },
+  "fact_disputes_amicable_first": {
+    "claim_ar": "تُسوّى النزاعات بين الحجاج والمعتمرين والوكالات أولاً بالطرق الودية لدى مندوبيات وزارة السياحة.",
+    "claim_en": "Disputes between pilgrims and agencies are first settled amicably through the delegations of the Ministry of Tourism."
+  },
+  "fact_law_11_16_sanctions": {
+    "claim_ar": "يتيح القانون رقم 11-16 المتعلق بمهنة وكيل الأسفار معاقبة الوكالات.",
+    "claim_en": "Law 11-16 on the travel agent profession allows agencies to be sanctioned."
+  },
+  "fact_law_11_16_reform": {
+    "claim_ar": "نسخ القانون رقم 11-16 القانون رقم 31-96، ومنح الوكالات القائمة مهلة 24 شهراً لملاءمة وضعيتها، وأحدث تراخيص متدرجة حسب النشاط والمسؤولية، مع قواعد خاصة بالبيع عبر الإنترنت وعن بعد. ولا تُعرف الفئات بدقة.",
+    "claim_en": "Law 11-16 repealed Law 31-96, gave existing agencies 24 months to comply and created graduated licences according to activity and responsibility, with rules for online and distance selling. The exact categories are not known.",
+    "required_wording_ar": "حسب EcoActu",
+    "required_wording_en": "according to EcoActu"
+  },
+  "fact_official_agency_list": {
+    "claim_ar": "تنشر وزارة السياحة على موقعها اللائحة الرسمية لوكالات الأسفار المرخص لها.",
+    "claim_en": "The Ministry of Tourism publishes the official list of authorised travel agencies on its website."
+  },
+  "fact_sanctions_2022": {
+    "claim_ar": "في 2022، عاقبت وزارة السياحة 15 وكالة استناداً إلى القانون رقم 31-96، بعقوبات تراوحت بين الإنذار والسحب النهائي للرخصة؛ ولا يمكن للوكالات المعاقَبة طلب علامة العمرة لمدة 3 سنوات.",
+    "claim_en": "In 2022, the Ministry of Tourism sanctioned 15 agencies under Law 31-96, with penalties ranging from a warning to permanent withdrawal of the licence; sanctioned agencies cannot apply for the Umrah label for 3 years."
+  },
+  "fact_saudi_agency_suspension_2026": {
+    "claim_ar": "في 1 فبراير 2026، علّقت المملكة العربية السعودية عقود نحو 1.800 من أصل حوالي 5.800 وكالة عمرة أجنبية إثر عملية تقييم (السكن، النقل، إخفاقات التأشيرات)؛ ومُنحت هذه الوكالات مهلة 10 أيام للتصحيح، وجُمّد إصدار التأشيرات الجديدة عن طريقها.",
+    "claim_en": "On 1 February 2026, Saudi Arabia suspended the contracts of about 1,800 of the roughly 5,800 foreign Umrah agencies after an assessment (accommodation, transport, visa failures); they had 10 days to make corrections, and new visas through them were blocked."
+  },
+  "fact_unlicensed_agency_stranded": {
+    "claim_ar": "تركت وكالة بمراكش ضيوف الرحمن عالقين في تركيا: كانت تزاول نشاطها دون ترخيص لعدم تجديد رخصتها، ولذلك لم تكن مدرجة في اللائحة الرسمية. وقد أُعيد هؤلاء إلى أرض الوطن.",
+    "claim_en": "A Marrakech agency left pilgrims stranded in Turkey: it was operating without authorisation, having failed to renew its licence, and was therefore not on the official list. The pilgrims were repatriated.",
+    "required_wording_ar": "حسب H24info",
+    "required_wording_en": "according to H24info"
+  },
+  "fact_marrakech_fraud_2026": {
+    "claim_ar": "في فبراير 2026، أُوقف مسيّر وكالة بمراكش يُشتبه في تحصيله نحو 3,8 ملايين درهم (380 مليون سنتيم) مقابل رحلات عمرة لم تُنظَّم قط. ويتعلق الأمر بتوقيف وليس بإدانة.",
+    "claim_en": "In February 2026, the manager of a Marrakech agency was arrested; he is suspected of collecting about 3.8 million dirhams (380 million centimes) for Umrah trips that never took place. This is an arrest, not a conviction.",
+    "required_wording_ar": "حسب هسبريس",
+    "required_wording_en": "according to Hespress"
+  },
+  "fact_observatory_warning_2026": {
+    "claim_ar": "في 12 فبراير 2026، أطلق المرصد المغربي لحماية المستهلك تنبيهاً وطنياً يدعو إلى التحقق من الوضعية القانونية للوكالة قبل أداء ثمن العمرة.",
+    "claim_en": "On 12 February 2026, the Moroccan Consumer Protection Observatory issued a national alert urging people to check an agency's legal status before paying for an Umrah."
+  },
+  "fact_licensing_gaps_low_offers": {
+    "claim_ar": "اعتبر رئيس الفيدرالية أن ثغرات في منح التراخيص تسمح لأشخاص غير مؤهلين بمزاولة المهنة بشكل قانوني؛ فيما حذرت جمعية للمستهلكين من العروض المنشورة على الإنترنت بأسعار منخفضة بشكل غير طبيعي.",
+    "claim_en": "The federation's president said that gaps in licensing allow unqualified people to operate legally; a consumer association warned against online offers at abnormally low prices."
+  },
+  "fact_dgi_vip_omra_checks": {
+    "claim_ar": "عززت المديرية العامة للضرائب ومكتب الصرف مراقبتهما للنفقات المرتبطة برحلات العمرة «الفاخرة» أو «VIP».",
+    "claim_en": "The General Tax Directorate (DGI) and the Office des Changes have stepped up their checks on spending linked to “luxury” or “VIP” Umrah trips."
+  },
+  "fact_hajj_1448_registration": {
+    "claim_ar": "حج 1448/2027: جرى التسجيل الإلكتروني من 8 إلى 19 دجنبر 2025 عبر موقع وزارة الأوقاف والشؤون الإسلامية، ضمن لائحتين: لائحة تأطير الوزارة ولائحة وكالات الأسفار.",
+    "claim_en": "Hajj 1448/2027: online registration ran from 8 to 19 December 2025 on the website of the Ministry of Habous and Islamic Affairs, with 2 lists (ministry-supervised and travel agencies)."
+  },
+  "fact_hajj_1448_eligibility": {
+    "claim_ar": "بالنسبة لحج 1448، كان يُشترط في المترشحين أن يبلغوا 18 سنة فما فوق وألا يكونوا قد أدوا الحج خلال السنوات الـ10 الأخيرة.",
+    "claim_en": "For Hajj 1448, applicants had to be aged 18 or over and not have performed Hajj in the last 10 years."
+  },
+  "fact_hajj_1448_lottery": {
+    "claim_ar": "أُجريت قرعة حج 1448 من 2 إلى 13 مارس 2026؛ ونُشرت بعد ذلك اللوائح النهائية ولائحة انتظار.",
+    "claim_en": "The Hajj 1448 lottery took place from 2 to 13 March 2026; the final lists and a waiting list were published afterwards."
+  },
+  "fact_hajj_1447_timeline": {
+    "claim_ar": "حج 1447/2026: التسجيل من 13 إلى 24 يناير 2025، والقرعة من 23 يونيو إلى 4 يوليوز 2025. ويتقدم موعد التسجيل مع كل دورة.",
+    "claim_en": "Hajj 1447/2026: registration from 13 to 24 January 2025, lottery from 23 June to 4 July 2025. The registration calendar moves earlier with each cycle."
+  },
+  "fact_hajj_1449_no_announcement": {
+    "claim_ar": "إلى غاية 20 أكتوبر 2026، لم نعثر على أي إعلان رسمي بشأن التسجيل لحج 1449/2028.",
+    "claim_en": "As of 20 October 2026, no official announcement about registration for Hajj 1449/2028 had been found.",
+    "required_wording_ar": "في حدود علمنا",
+    "required_wording_en": "to our knowledge"
+  },
+  "fact_hajj_1447_quota": {
+    "claim_ar": "بلغت حصة المغرب من حج 1447 ما مجموعه 34.000 حاج: نحو 22.200 عبر النظام الرسمي للوزارة و11.800 عبر وكالات الأسفار المعتمدة.",
+    "claim_en": "Morocco's Hajj 1447 quota was 34,000 pilgrims: about 22,200 through the ministry's official system and 11,800 through licensed travel agencies.",
+    "required_wording_ar": "حسب Morocco World News",
+    "required_wording_en": "according to Morocco World News"
+  },
+  "fact_hajj_1446_quota_split": {
+    "claim_ar": "بالنسبة لحج 1446، كان التوزيع قريباً من ذلك: 22.400 حاج عبر النظام الرسمي و11.600 عبر الوكالات.",
+    "claim_en": "For Hajj 1446, the split was similar: 22,400 pilgrims through the official system and 11,600 through agencies.",
+    "required_wording_ar": "حسب Morocco World News",
+    "required_wording_en": "according to Morocco World News"
+  },
+  "fact_fm6_hajj_subsidy_1448": {
+    "claim_ar": "تلقت مؤسسة محمد السادس طلبات الاكتتاب في دعمها لحج 1448/2027 (لفائدة المنخرطين المسجلين في المسار الرسمي) من 16 مارس إلى 10 يوليوز 2026.",
+    "claim_en": "The Mohammed VI Foundation accepted subscriptions to its Hajj 1448/2027 subsidy (for members registered on the official track) from 16 March to 10 July 2026."
+  },
+  "fact_hajj_1447_final_cost": {
+    "claim_ar": "التكلفة النهائية لحج 1447 بالنسبة للحجاج المؤطَّرين من طرف الوزارة هي 63.021 درهماً (أُعلن عنها في 3 مارس 2026). وتشمل لأول مرة الهدي (720 ريالاً سعودياً)، ويُردّ مبلغ 1.979 درهماً من التسبيق البالغ 65.000 درهم. وأوردت وسائل إعلام أخرى مبلغي 63.221 و63.121 درهماً.",
+    "claim_en": "The final cost of Hajj 1447 for pilgrims supervised by the ministry is 63,021 dirhams (announced on 3 March 2026). For the first time it includes the sacrifice (hady, 720 Saudi riyals), and 1,979 dirhams of the 65,000-dirham advance are refunded. Other media reported 63,221 and 63,121 dirhams."
+  },
+  "fact_hajj_1448_provisional_cost": {
+    "claim_ar": "حج 1448: يؤدي الحجاج المقبولون مبلغاً مؤقتاً جزافياً قدره 65.000 درهم، في انتظار التكلفة النهائية التي قد ترتفع أو تنخفض؛ وقد أُعلن أن فترة الأداء تمتد من 29 يونيو إلى 10 يوليوز 2026. ولم يُعلن بعدُ عن التكلفة النهائية لحج 1448.",
+    "claim_en": "Hajj 1448: selected pilgrims pay a provisional flat amount of 65,000 dirhams, pending a final cost that may go up or down; the payment window was announced from 29 June to 10 July 2026. The final cost for 1448 has not yet been announced.",
+    "required_wording_ar": "مبلغ مؤقت، حسب EcoActu",
+    "required_wording_en": "provisional amount, according to EcoActu"
+  },
+  "fact_ramadan_price_avg_2023_2024": {
+    "claim_ar": "بلغ متوسط سعر عمرة رمضان (الطيران والفندق) نحو 25.000 درهم في 2023 ونحو 35.000 درهم في 2024.",
+    "claim_en": "The average price of a Ramadan Umrah (flight and hotel) was about 25,000 dirhams in 2023 and about 35,000 dirhams in 2024.",
+    "required_wording_ar": "حسب الفيدرالية، كما نقل عنها Medias24",
+    "required_wording_en": "according to the federation, quoted by Medias24"
+  },
+  "fact_ramadan_pilgrims_2023_2024": {
+    "claim_ar": "استقطبت عمرة رمضان أكثر من 30.000 مغربي في 2023 ونحو 20.000 في 2024، أي بانخفاض نسبته 30 %.",
+    "claim_en": "Ramadan Umrah drew more than 30,000 Moroccans in 2023 and about 20,000 in 2024, a drop of 30%.",
+    "required_wording_ar": "حسب الفيدرالية، كما نقل عنها Medias24",
+    "required_wording_en": "according to the federation, quoted by Medias24"
+  },
+  "fact_ramadan_2024_drop_causes": {
+    "claim_ar": "الأسباب المذكورة لتراجع عمرة رمضان في 2024: التضخم، والوضع الجيوسياسي، والقطاع غير المهيكل.",
+    "claim_en": "Causes cited for the decline in Ramadan Umrah in 2024: inflation, the geopolitical situation and the informal sector.",
+    "required_wording_ar": "حسب الفيدرالية، كما نقل عنها Medias24",
+    "required_wording_en": "according to the federation, quoted by Medias24"
+  },
+  "fact_no_ramadan_2027_price_data": {
+    "claim_ar": "إلى غاية 20 أكتوبر 2026، لم نعثر على أي معطيات منشورة عن أسعار عمرة رمضان 2027 (ولا 2026) صادرة عن وكالات مغربية أو عن الصحافة.",
+    "claim_en": "As of 20 October 2026, we had found no published price data for Ramadan Umrah 2027 (or 2026) from Moroccan agencies or the press."
+  },
+  "fact_flynas_casablanca_jeddah": {
+    "claim_ar": "تربط طيران ناس بين جدة والدار البيضاء منذ 2023، بمعدل 3 رحلات أسبوعياً عند إطلاق الخط.",
+    "claim_en": "flynas has connected Jeddah and Casablanca since 2023, with 3 flights a week at launch."
+  },
+  "fact_flynas_rabat_jeddah": {
+    "claim_ar": "أطلقت طيران ناس خط جدة-الرباط في 4 يوليوز 2026 بمعدل رحلة واحدة أسبوعياً، وهو أول خط مباشر لشركة طيران سعودية بين المدينتين.",
+    "claim_en": "flynas launched the Jeddah-Rabat route on 4 July 2026 with 1 flight a week: the first direct flight by a Saudi airline between the two cities."
+  },
+  "fact_flynas_rabat_2_weekly": {
+    "claim_ar": "كان من المقرر أن يرتفع عدد رحلات خط طيران ناس الرباط-جدة إلى رحلتين أسبوعياً ابتداءً من 19 غشت 2026.",
+    "claim_en": "The flynas Rabat-Jeddah route was due to increase to 2 flights a week from 19 August 2026.",
+    "required_wording_ar": "حسب Wego",
+    "required_wording_en": "according to Wego"
+  },
+  "fact_ram_saudi_routes": {
+    "claim_ar": "تبيع الخطوط الملكية المغربية رحلات الدار البيضاء-جدة والدار البيضاء-المدينة المنورة. ولا تُعرف الترددات ولا برنامج رمضان 2027.",
+    "claim_en": "Royal Air Maroc sells Casablanca-Jeddah and Casablanca-Madinah flights. Frequencies and the Ramadan 2027 schedule are not known.",
+    "required_wording_ar": "حسب موقع الخطوط الملكية المغربية",
+    "required_wording_en": "according to the Royal Air Maroc website"
+  },
+  "fact_ram_ramadan_2023_capacity": {
+    "claim_ar": "بالنسبة لرمضان 2023، أعلنت الخطوط الملكية المغربية عن أكثر من 61.000 مقعد على متن نحو مائة رحلة (حوالي 100) نحو جدة والمدينة المنورة، منها 28.000 مقعد لعمرة رمضان، انطلاقاً من 7 مدن: الدار البيضاء، الرباط، طنجة، وجدة، فاس، مراكش وأكادير.",
+    "claim_en": "For Ramadan 2023, Royal Air Maroc announced more than 61,000 seats on around a hundred flights (about 100) to Jeddah and Madinah, including 28,000 for Ramadan Umrah, from 7 cities: Casablanca, Rabat, Tangier, Oujda, Fez, Marrakech and Agadir."
+  },
+  "fact_ram_gulf_suspension_2026": {
+    "claim_ar": "إثر ضربات على إيران أواخر فبراير 2026، علّقت الخطوط الملكية المغربية رحلاتها بين الدار البيضاء والدوحة وبين الدار البيضاء ودبي، ومُدّد التعليق إلى غاية 15 أبريل 2026؛ ولم يُسجَّل أي تأثير على الرحلات نحو المملكة العربية السعودية.",
+    "claim_en": "After strikes on Iran in late February 2026, Royal Air Maroc suspended its Casablanca-Doha and Casablanca-Dubai flights, a suspension extended until 15 April 2026; no impact on routes to Saudi Arabia was reported."
+  },
+  "fact_hajj_2026_flights_onda": {
+    "claim_ar": "بالنسبة لحج 2026، أحصى المكتب الوطني للمطارات 91 رحلة ذهاب انطلاقاً من 9 مطارات مغربية (الدار البيضاء، الرباط-سلا، مراكش، أكادير، فاس، طنجة، وجدة، ورزازات، الداخلة) نحو المدينة المنورة وجدة، سيّرتها الخطوط الملكية المغربية وشركات طيران سعودية.",
+    "claim_en": "For Hajj 2026, Morocco's National Airports Office (ONDA) counted 91 outbound flights from 9 Moroccan airports (Casablanca, Rabat-Salé, Marrakech, Agadir, Fez, Tangier, Oujda, Ouarzazate, Dakhla) to Madinah and Jeddah, operated by Royal Air Maroc and Saudi airlines."
+  },
+  "fact_makkah_route_2026_cmn": {
+    "claim_ar": "بالنسبة لحج 2026، كانت مبادرة «طريق مكة» (إنهاء الإجراءات السعودية مسبقاً في مطار المغادرة) في سنتها الـ5 بالمحطة 3 لمطار محمد الخامس بالدار البيضاء.",
+    "claim_en": "For Hajj 2026, the “Makkah Route” programme (Saudi pre-clearance at the departure airport) was in its 5th year at Terminal 3 of Casablanca's Mohammed V Airport."
+  },
+  "fact_makkah_route_2026_rba": {
+    "claim_ar": "بالنسبة لحج 2026، جرى لأول مرة توسيع مبادرة «طريق مكة» لتشمل مطار الرباط-سلا. وهي تخص الحج وليس العمرة.",
+    "claim_en": "For Hajj 2026, the “Makkah Route” programme was extended for the first time to Rabat-Salé airport. It applies to Hajj, not Umrah."
+  },
+  "fact_school_calendar_2026_27": {
+    "claim_ar": "يحدد المقرر الوزاري رقم 047.26 الصادر في 3 يوليوز 2026 الجدول الزمني للسنة الدراسية 2026-2027 في المغرب؛ وقد انطلقت الدراسة في 7 شتنبر 2026؛ والعطل المدرسية التي تدوم 8 أيام هي: 18-25 أكتوبر 2026، و6-13 دجنبر 2026، و24-31 يناير 2027 (عطلة منتصف السنة)، و21-28 مارس 2027، و9-16 ماي 2027.",
+    "claim_en": "Morocco's 2026-2027 school calendar is set by ministerial decision 047.26 of 3 July 2026; classes began on 7 September 2026; the 8-day holidays are: 18-25 October 2026, 6-13 December 2026, 24-31 January 2027 (mid-year), 21-28 March 2027 and 9-16 May 2027."
+  },
+  "fact_school_start_2026": {
+    "claim_ar": "انطلق الموسم الدراسي 2026-2027 في المغرب يوم 7 شتنبر 2026.",
+    "claim_en": "The 2026-2027 school year in Morocco started on 7 September 2026."
+  },
+  "fact_school_break_oct_2026": {
+    "claim_ar": "عطلة مدرسية في المغرب من 18 إلى 25 أكتوبر 2026.",
+    "claim_en": "School holidays in Morocco from 18 to 25 October 2026."
+  },
+  "fact_school_break_dec_2026": {
+    "claim_ar": "عطلة مدرسية في المغرب من 6 إلى 13 دجنبر 2026.",
+    "claim_en": "School holidays in Morocco from 6 to 13 December 2026."
+  },
+  "fact_school_break_jan_2027": {
+    "claim_ar": "عطلة منتصف السنة الدراسية في المغرب من 24 إلى 31 يناير 2027.",
+    "claim_en": "Mid-year holidays in Morocco from 24 to 31 January 2027."
+  },
+  "fact_school_break_mar_2027": {
+    "claim_ar": "عطلة مدرسية في المغرب من 21 إلى 28 مارس 2027.",
+    "claim_en": "School holidays in Morocco from 21 to 28 March 2027."
+  },
+  "fact_school_break_may_2027": {
+    "claim_ar": "عطلة مدرسية في المغرب من 9 إلى 16 ماي 2027.",
+    "claim_en": "School holidays in Morocco from 9 to 16 May 2027."
+  },
+  "fact_young_pilgrims_trend": {
+    "claim_ar": "أصبحت العمرة توجهاً متنامياً لدى الشباب المغاربة منذ جائحة كوفيد (انتهاء المواسم الثابتة، الشهادات، شبكات التواصل الاجتماعي)؛ ويتحدث رئيس الفيدرالية عن حركة حقيقية خلال السنوات الـ5 الأخيرة.",
+    "claim_en": "Umrah has been a growing trend among young Moroccans since COVID (end of fixed seasons, testimonies, social media); the federation's president speaks of a real movement over the last 5 years.",
+    "required_wording_ar": "حسب Medias24",
+    "required_wording_en": "according to Medias24"
+  },
+  "fact_influencers_scholars_debate": {
+    "claim_ar": "يحقق مؤثرون مداخيل من محتويات حول عمرة رمضان؛ ويعترض علماء بأن مكة المكرمة ليست وجهة سياحية.",
+    "claim_en": "Influencers monetise content about Ramadan Umrah; religious scholars object that Makkah is not a tourist destination.",
+    "required_wording_ar": "حسب SNRTnews",
+    "required_wording_en": "according to SNRTnews"
+  },
+  "fact_morocco_internet_users_2025": {
+    "claim_ar": "في نهاية 2025، كان المغرب يضم 35,5 مليون مستخدم للإنترنت (92,2 % من السكان)، و22,8 مليون هوية مستخدم لشبكات التواصل الاجتماعي في أكتوبر 2025 (59,1 %).",
+    "claim_en": "At the end of 2025, Morocco had 35.5 million internet users (92.2% of the population) and 22.8 million social media user identities in October 2025 (59.1%)."
+  },
+  "fact_wikitours_licence": {
+    "claim_ar": "تشير Wiki Tours International على موقعها إلى الرخصة ODV-25012.",
+    "claim_en": "Wiki Tours International states the licence ODV-25012 on its website.",
+    "required_wording_ar": "حسب موقع الوكالة",
+    "required_wording_en": "according to the agency's website"
+  },
+  "fact_wikitours_since_2016": {
+    "claim_ar": "تشير Wiki Tours International إلى أنها تزاول نشاطها منذ 2016.",
+    "claim_en": "Wiki Tours International says it has been operating since 2016.",
+    "required_wording_ar": "حسب موقع الوكالة",
+    "required_wording_en": "according to the agency's website"
+  }
+}

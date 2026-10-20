@@ -104,30 +104,45 @@ export function topicConflicts(topic, site, items, project, { titleJaccard = 0.6
  * Picks today's topics for one site.
  * @returns {{ selected: object[], skipped: {id:string, reason:string}[] }}
  */
-export function selectTopics({ topics, site, project, items, today, minFactDays = 0, quota, langSlots, activeLangs }) {
+// langPlan (optional, cadence.js languagePlan): today's languages in order. Topics of planned languages are taken
+// first; a planned language with no eligible topic gives its slot to another active language that still has room
+// (langSlots), so a site never idles while one language's queue is empty.
+export function selectTopics({ topics, site, project, items, today, minFactDays = 0, quota, langSlots, activeLangs, langPlan = null }) {
   const selected = [], skipped = [];
   const used = {};
-  for (const t of topics) {
-    if (t.status !== 'queued') continue;
-    if (selected.length >= quota) break;
+  const planned = {};
+  for (const l of langPlan || []) planned[l] = (planned[l] || 0) + 1;
+  const pass = (t, fallback) => {
+    if (t.status !== 'queued' || selected.includes(t)) return;
+    if (selected.length >= quota) return;
     const lang = topicLang(t);
-    if (!activeLangs.has(lang)) { skipped.push({ id: t.id, reason: `no published ${lang} home page on ${site} yet` }); continue; }
-    if ((used[lang] || 0) >= langSlots(lang)) { skipped.push({ id: t.id, reason: `daily ${lang} slot used (DECISIONS D-H)` }); continue; }
-    if (!POST_TYPES.includes(t.type)) { skipped.push({ id: t.id, reason: `type "${t.type}" is not a generated post type (${POST_TYPES.join(', ')})` }); continue; }
-    const missing = ['id', 'title', 'primary_keyword', 'cluster', 'concept_id'].filter(k => !t[k]);
-    if (missing.length) { skipped.push({ id: t.id ?? '(no id)', reason: `missing fields: ${missing.join(', ')}` }); continue; }
-    if (!(t.facts_needed || []).length) { skipped.push({ id: t.id, reason: 'no facts_needed: a post needs at least one registry fact to cite' }); continue; }
-    const bad = factProblems(t, project.registry, today, minFactDays);
-    if (bad.length) { skipped.push({ id: t.id, reason: `facts not usable: ${bad.map(b => `${b.id} ${b.state}`).join('; ')}` }); continue; }
-    const rules = topicRuleProblems({ ...t, site }, project);
-    if (rules.length) { skipped.push({ id: t.id, reason: rules.join('; ') }); continue; }
-    // Published or drafted content is the truth here; planned topics were checked when they were planned.
-    const conflicts = topicConflicts(t, site, items.filter(o => o.kind === 'content'), project);
-    if (conflicts.length) { skipped.push({ id: t.id, reason: `conflict: ${conflicts.join('; ')}` }); continue; }
+    if (!activeLangs.has(lang)) { if (!fallback) skipped.push({ id: t.id, reason: `no published ${lang} home page on ${site} yet` }); return; }
+    if ((used[lang] || 0) >= langSlots(lang)) { if (!fallback) skipped.push({ id: t.id, reason: `daily ${lang} slot used (DECISIONS D-H)` }); return; }
+    if (langPlan && !fallback && (used[lang] || 0) >= (planned[lang] || 0)) { skipped.push({ id: t.id, reason: `not ${lang}'s turn today (languages rotate during the ramp, DECISIONS D-H)` }); return; }
+    const reason = eligibility(t, lang);
+    if (reason) { const prev = skipped.find(x => x.id === t.id); if (prev) prev.reason = reason; else skipped.push({ id: t.id, reason }); return; }
     used[lang] = (used[lang] || 0) + 1;
     selected.push(t);
-  }
+  };
+  for (const t of topics) pass(t, false);
+  if (langPlan && selected.length < quota) for (const t of topics) pass(t, true);
+  if (langPlan) for (const t of selected) { const i = skipped.findIndex(s => s.id === t.id); if (i >= 0) skipped.splice(i, 1); }
   return { selected, skipped };
+
+  function eligibility(t, lang) {
+    if (!POST_TYPES.includes(t.type)) return `type "${t.type}" is not a generated post type (${POST_TYPES.join(', ')})`;
+    const missing = ['id', 'title', 'primary_keyword', 'cluster', 'concept_id'].filter(k => !t[k]);
+    if (missing.length) return `missing fields: ${missing.join(', ')}`;
+    if (!(t.facts_needed || []).length) return 'no facts_needed: a post needs at least one registry fact to cite';
+    const bad = factProblems(t, project.registry, today, minFactDays);
+    if (bad.length) return `facts not usable: ${bad.map(b => `${b.id} ${b.state}`).join('; ')}`;
+    const rules = topicRuleProblems({ ...t, site }, project);
+    if (rules.length) return rules.join('; ');
+    // Published or drafted content is the truth here; planned topics were checked when they were planned.
+    const conflicts = topicConflicts(t, site, items.filter(o => o.kind === 'content'), project);
+    if (conflicts.length) return `conflict: ${conflicts.join('; ')}`;
+    return null;
+  }
 }
 
 // Languages with a published home page on a site (DECISIONS D-H: nothing builds in a language before its home page).

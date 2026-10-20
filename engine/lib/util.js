@@ -16,13 +16,8 @@ export const stripMarkers = s => String(s ?? '').replace(/\s*\[\[fact:[a-z0-9_]+
 export const todayISO = (now = new Date()) =>
   new Intl.DateTimeFormat('en-CA', { timeZone: 'Africa/Casablanca', year: 'numeric', month: '2-digit', day: '2-digit' }).format(now);
 
-const LOCALES = { fr: 'fr-FR', ar: 'ar-MA', en: 'en-GB' };
-const DATE_FORMATS = new Map(); // one Intl formatter per language (creating one per call is slow on big builds)
-export function formatDate(ymd, lang = 'fr') {
-  if (!ymd) return '';
-  if (!DATE_FORMATS.has(lang)) DATE_FORMATS.set(lang, new Intl.DateTimeFormat(LOCALES[lang] || 'fr-FR', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }));
-  return DATE_FORMATS.get(lang).format(new Date(ymd + 'T12:00:00Z'));
-}
+// Dates are formatted by i18n.js (fr-MA, ar-MA, en-GB, Africa/Casablanca); re-exported here for older imports.
+export { formatDate } from './i18n.js';
 
 export const sha256 = s => crypto.createHash('sha256').update(s).digest('hex');
 

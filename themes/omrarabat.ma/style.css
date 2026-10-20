@@ -1,5 +1,2 @@
-/* omrarabat.ma — placeholder palette; the site agent replaces this file. */
-:root{--bg:#f7fafc;--fg:#14273d;--muted:#4a5d70;--primary:#2b6cb0;--accent:#4f7a4a;--surface:#e6eff7;--border:#c4d4e3;--link:#2b6cb0;--font-head:Verdana, "Segoe UI", sans-serif}
-.site-header{border-bottom:3px solid var(--accent)}
-.home-hero{padding:1.5rem 0}
-.home-hero__tagline{color:var(--muted);font-size:1.15rem}
+/* omrarabat.ma — site-specific rules only. Colours, type and components come from themes/_base/base.css and the
+   tokens in theme.js (docs/DESIGN.md). Keep this file small: one system, eight publications. */

@@ -4,7 +4,9 @@
   "private": true,
   "description": "Static engine for the 8-site Omra/Hajj content network published by Wiki Tours International.",
   "type": "module",
-  "engines": { "node": ">=22" },
+  "engines": {
+    "node": ">=22"
+  },
   "scripts": {
     "build": "node scripts/build.js",
     "check": "node scripts/check.js",
@@ -23,5 +25,12 @@
     "gray-matter": "^4.0.3",
     "markdown-it": "^15.0.3",
     "markdown-it-container": "^4.0.0"
+  },
+  "devDependencies": {
+    "@fontsource/dm-mono": "^5.3.0",
+    "@fontsource/dm-sans": "^5.3.0",
+    "@fontsource/dm-serif-display": "^5.3.0",
+    "@fontsource/ibm-plex-sans-arabic": "^5.3.0",
+    "@fontsource/noto-kufi-arabic": "^5.3.0"
   }
 }

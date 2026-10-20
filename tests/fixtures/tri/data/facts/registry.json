@@ -1,0 +1,5 @@
+[
+  { "id": "fact_tri_last_visa", "topic": "umrah_season", "claim_fr": "SYNTHETIC: dernier visa le 9 mars 2027.", "claim_ar": "SYNTHETIC: آخر تأشيرة يوم 9 مارس 2027.", "claim_en": "SYNTHETIC: last visa on 9 March 2027.", "values": ["9", "2027"], "unit": null,
+    "source_urls": ["https://example.org/official/tri"], "source_tier": "official", "confidence": "verified", "required_wording": null, "conflicts": [],
+    "status": "approved", "verified_by": "fixture", "verified_at": "2026-10-20", "review_by": "2026-11-19", "valid_until": "2027-04-07", "time_critical": true, "supersedes": null }
+]

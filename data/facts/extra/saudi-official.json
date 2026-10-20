@@ -1,0 +1,979 @@
+[
+  {
+    "conflicts": [
+      {
+        "value": "exigence suspendue",
+        "source": "Article de presse bahreïni non daté, contredit par le document officiel du ministère saoudien de la Santé ; non retenu"
+      }
+    ],
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "valid_until": null,
+    "supersedes": null,
+    "id": "fact_health_moh_umrah_1447_meningococcal",
+    "topic": "health",
+    "claim_fr": "Selon le document officiel du ministère saoudien de la Santé pour la Omra 1447 (2026), toute personne venant accomplir la Omra doit être vaccinée contre le méningocoque : vaccin conjugué quadrivalent (ACYW) ou pentavalent (ACYWX) reçu dans les 5 dernières années, ou vaccin polysaccharidique quadrivalent (ACYW) reçu dans les 3 dernières années, au moins 10 jours avant l'arrivée. Le document pour la saison 1448 n'a pas été trouvé.",
+    "claim_ar": "وفق الوثيقة الرسمية لوزارة الصحة السعودية الخاصة بعمرة 1447هـ (2026)، يجب على كل من يقدم لأداء العمرة أن يكون مطعّمًا ضد الحمى الشوكية (المكورات السحائية): لقاح مقترن رباعي (ACYW) أو خماسي (ACYWX) خلال السنوات الخمس الأخيرة، أو لقاح سكري متعدد رباعي (ACYW) خلال السنوات الثلاث الأخيرة، وذلك قبل 10 أيام على الأقل من الوصول. لم نعثر على وثيقة موسم 1448هـ.",
+    "claim_en": "According to the Saudi Ministry of Health's official document for Umrah 1447 AH (2026), everyone coming to perform Umrah must be vaccinated against meningococcal disease: a quadrivalent (ACYW) or pentavalent (ACYWX) conjugate vaccine received within the last 5 years, or a quadrivalent (ACYW) polysaccharide vaccine received within the last 3 years, at least 10 days before arrival. The document for the 1448 AH season was not found.",
+    "values": [
+      "1447",
+      "2026",
+      "5",
+      "3",
+      "10",
+      "1448"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://www.moh.gov.sa/en/HealthAwareness/Pilgrims-Health/Documents/Health-Regulations-Umrah-EN.pdf"
+    ],
+    "source_tier": "official",
+    "confidence": "verified",
+    "required_wording": null,
+    "status": "approved",
+    "review_by": "2026-11-19",
+    "time_critical": true
+  },
+  {
+    "conflicts": [],
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "valid_until": null,
+    "supersedes": null,
+    "id": "fact_health_moh_umrah_areas",
+    "topic": "health",
+    "claim_fr": "Dans ses exigences sanitaires pour la Omra, le ministère saoudien de la Santé désigne comme « zones de la Omra » La Mecque, Médine, Djeddah et Taëf.",
+    "claim_ar": "تحدد وزارة الصحة السعودية في اشتراطاتها الصحية للعمرة «مناطق العمرة» بمكة المكرمة والمدينة المنورة وجدة والطائف.",
+    "claim_en": "In its Umrah health requirements, the Saudi Ministry of Health defines the \"Umrah areas\" as Makkah, Madinah, Jeddah and Taif.",
+    "values": [],
+    "unit": null,
+    "source_urls": [
+      "https://www.moh.gov.sa/en/HealthAwareness/Pilgrims-Health/Documents/Health-Regulations-Umrah-EN.pdf"
+    ],
+    "source_tier": "official",
+    "confidence": "verified",
+    "required_wording": null,
+    "status": "approved",
+    "review_by": "2027-04-18",
+    "time_critical": false
+  },
+  {
+    "conflicts": [],
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "valid_until": null,
+    "supersedes": null,
+    "id": "fact_health_moh_polio_rule",
+    "topic": "health",
+    "claim_fr": "Le document Omra 1447 du ministère saoudien de la Santé impose le vaccin contre la poliomyélite aux voyageurs venant de pays où circule le poliovirus sauvage ou un poliovirus dérivé d'une souche vaccinale. Nous n'avons pas vérifié si le Maroc figure sur cette liste de pays.",
+    "claim_ar": "تفرض وثيقة عمرة 1447هـ الصادرة عن وزارة الصحة السعودية لقاح شلل الأطفال على القادمين من دول ينتشر فيها فيروس شلل الأطفال البري أو المشتق من اللقاح. لم نتحقق مما إذا كان المغرب مدرجًا في قائمة هذه الدول.",
+    "claim_en": "The Saudi Ministry of Health's Umrah 1447 AH document requires polio vaccination for travellers from countries where wild or vaccine-derived poliovirus is circulating. We have not checked whether Morocco is on that list of countries.",
+    "values": [
+      "1447"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://www.moh.gov.sa/en/HealthAwareness/Pilgrims-Health/Documents/Health-Regulations-Umrah-EN.pdf"
+    ],
+    "source_tier": "official",
+    "confidence": "verified",
+    "required_wording": null,
+    "status": "approved",
+    "review_by": "2026-11-19",
+    "time_critical": true
+  },
+  {
+    "conflicts": [],
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "valid_until": null,
+    "supersedes": null,
+    "id": "fact_health_moh_yellow_fever_rule",
+    "topic": "health",
+    "claim_fr": "Selon le ministère saoudien de la Santé, les voyageurs venant de zones touchées par la fièvre jaune doivent être vaccinés contre la fièvre jaune pour la Omra.",
+    "claim_ar": "وفق وزارة الصحة السعودية، يجب على القادمين من مناطق موبوءة بالحمى الصفراء الحصول على لقاح الحمى الصفراء لأداء العمرة.",
+    "claim_en": "According to the Saudi Ministry of Health, travellers coming from yellow-fever-affected areas must be vaccinated against yellow fever for Umrah.",
+    "values": [],
+    "unit": null,
+    "source_urls": [
+      "https://www.moh.gov.sa/en/HealthAwareness/Pilgrims-Health/Documents/Health-Regulations-Umrah-EN.pdf"
+    ],
+    "source_tier": "official",
+    "confidence": "verified",
+    "required_wording": null,
+    "status": "approved",
+    "review_by": "2026-11-19",
+    "time_critical": true
+  },
+  {
+    "conflicts": [],
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "valid_until": null,
+    "supersedes": null,
+    "id": "fact_health_moh_flu_covid_recommended",
+    "topic": "health",
+    "claim_fr": "Les autorités sanitaires saoudiennes recommandent aux pèlerins de la Omra les vaccins contre la grippe saisonnière et le COVID-19, sans les rendre obligatoires.",
+    "claim_ar": "توصي السلطات الصحية السعودية المعتمرين بلقاحي الإنفلونزا الموسمية وكوفيد-19 دون أن تجعلهما إلزاميين.",
+    "claim_en": "Saudi health authorities recommend seasonal influenza and COVID-19 vaccines for Umrah pilgrims but do not make them mandatory.",
+    "values": [
+      "19"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://www.moh.gov.sa/en/HealthAwareness/Pilgrims-Health/Documents/Health-Regulations-Umrah-EN.pdf"
+    ],
+    "source_tier": "official",
+    "confidence": "verified",
+    "required_wording": null,
+    "status": "approved",
+    "review_by": "2026-11-19",
+    "time_critical": true
+  },
+  {
+    "conflicts": [],
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "valid_until": null,
+    "supersedes": null,
+    "id": "fact_health_moh_certificate_details",
+    "topic": "health",
+    "claim_fr": "Le ministère saoudien de la Santé demande que le certificat de vaccination du voyageur indique clairement le nom, le type et la date d'administration du vaccin méningococcique.",
+    "claim_ar": "تطلب وزارة الصحة السعودية أن تبيّن شهادة التطعيم الخاصة بالمسافر بوضوح اسم لقاح الحمى الشوكية ونوعه وتاريخ إعطائه.",
+    "claim_en": "The Saudi Ministry of Health asks that the traveller's vaccination certificate clearly state the name, type and date of administration of the meningococcal vaccine.",
+    "values": [],
+    "unit": null,
+    "source_urls": [
+      "https://www.moh.gov.sa/en/HealthAwareness/Pilgrims-Health/Documents/Health-Regulations-Umrah-EN.pdf"
+    ],
+    "source_tier": "official",
+    "confidence": "verified",
+    "required_wording": null,
+    "status": "approved",
+    "review_by": "2026-11-19",
+    "time_critical": true
+  },
+  {
+    "conflicts": [],
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "valid_until": null,
+    "supersedes": null,
+    "id": "fact_visa_umrah_hotel_nusuk_masar",
+    "topic": "visa",
+    "claim_fr": "Depuis le 10 juin 2025, un visa Omra n'est délivré que si l'hébergement est enregistré sur la plateforme Nusuk Masar, dans un hôtel agréé par le ministère saoudien du Tourisme qui confirme la réservation électroniquement.",
+    "claim_ar": "منذ 10 يونيو 2025، لا تصدر تأشيرة العمرة إلا إذا كان السكن مسجلًا على منصة «نسك مسار» في فندق مرخص من وزارة السياحة السعودية يؤكد الحجز إلكترونيًا.",
+    "claim_en": "Since 10 June 2025, an Umrah visa is issued only if the accommodation is registered on the Nusuk Masar platform, in a hotel licensed by the Saudi Ministry of Tourism that confirms the booking electronically.",
+    "values": [
+      "10",
+      "2025"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://gulfbusiness.com/en/2025/saudi-arabia/umrah-visas-require-valid-hotel-booking-via-nusuk/",
+      "https://www.khaleejtimes.com/world/gulf/umrah-changes-visa-rules-2025"
+    ],
+    "source_tier": "media",
+    "confidence": "likely",
+    "required_wording": "selon Gulf Business et Khaleej Times, citant le ministère saoudien",
+    "required_wording_ar": "وفق Gulf Business وKhaleej Times نقلًا عن الوزارة السعودية",
+    "required_wording_en": "according to Gulf Business and Khaleej Times, citing the Saudi ministry",
+    "status": "approved",
+    "review_by": "2026-11-19",
+    "time_critical": true
+  },
+  {
+    "conflicts": [],
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "valid_until": null,
+    "supersedes": null,
+    "id": "fact_visa_1448_nusuk_or_agent_transport",
+    "topic": "visa",
+    "claim_fr": "Pour la saison Omra 1448, la demande de visa passe par la plateforme Nusuk ou par un agent extérieur agréé ; chaque visa doit être lié à une réservation d'hôtel vérifiée sur Nusuk (La Mecque, Médine ou les deux) et un transport terrestre réservé à l'avance est aussi exigé.",
+    "claim_ar": "في موسم عمرة 1448هـ، يُقدَّم طلب التأشيرة عبر منصة «نسك» أو عبر وكيل خارجي معتمد، ويجب ربط كل تأشيرة بحجز فندقي موثق على «نسك» (مكة أو المدينة أو كلتيهما)، كما يُشترط حجز النقل البري مسبقًا.",
+    "claim_en": "For the 1448 AH Umrah season, visa applications go through the Nusuk platform or an approved external agent; every visa must be linked to a verified Nusuk hotel booking (Makkah, Madinah or both), and pre-booked ground transport is also required.",
+    "values": [
+      "1448"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://blog.wego.com/when-will-saudi-arabia-resume-issuing-umrah-visas/"
+    ],
+    "source_tier": "company_stated",
+    "confidence": "likely",
+    "required_wording": "selon le guide de voyage Wego, non confirmé par une source officielle",
+    "required_wording_ar": "وفق دليل السفر Wego، دون تأكيد من مصدر رسمي",
+    "required_wording_en": "according to the Wego travel guide, not confirmed by an official source",
+    "status": "proposed",
+    "review_by": "2026-11-19",
+    "time_critical": true
+  },
+  {
+    "conflicts": [],
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "valid_until": null,
+    "supersedes": null,
+    "id": "fact_visa_tourist_evisa_eligibility_guide",
+    "topic": "visa",
+    "claim_fr": "Selon le guide Omra du ministère saoudien du Hajj et de la Omra, peuvent notamment demander le e-visa (permettant la Omra) les résidents permanents de l'Union européenne, d'Amérique du Nord, d'Océanie et de certains pays d'Asie, ainsi que les titulaires d'un visa valide des États-Unis, du Royaume-Uni ou de l'espace Schengen.",
+    "claim_ar": "وفق دليل العمرة الصادر عن وزارة الحج والعمرة السعودية، يمكن بالخصوص للمقيمين إقامة دائمة في الاتحاد الأوروبي وأمريكا الشمالية وأوقيانوسيا وبعض دول آسيا، ولحاملي تأشيرة سارية للولايات المتحدة أو المملكة المتحدة أو دول شنغن، طلب التأشيرة الإلكترونية التي تتيح أداء العمرة.",
+    "claim_en": "According to the Saudi Ministry of Hajj and Umrah's Umrah guide, those who can apply for the eVisa (which allows Umrah) include permanent residents of the European Union, North America, Oceania and some Asian countries, and holders of a valid US, UK or Schengen visa.",
+    "values": [],
+    "unit": null,
+    "source_urls": [
+      "https://haj.gov.sa/-/media/Project/HAJJ/PDF-and-FILES/umrah-hero-guide/EN-Umrah-Guide.pdf"
+    ],
+    "source_tier": "official",
+    "confidence": "likely",
+    "required_wording": "selon le guide Omra du ministère (date d'édition non indiquée)",
+    "required_wording_ar": "وفق دليل العمرة الصادر عن الوزارة (تاريخ الإصدار غير مذكور)",
+    "required_wording_en": "according to the ministry's Umrah guide (edition date not stated)",
+    "status": "approved",
+    "review_by": "2026-11-19",
+    "time_critical": true
+  },
+  {
+    "conflicts": [],
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "valid_until": null,
+    "supersedes": null,
+    "id": "fact_visa_morocco_individual_route_unconfirmed",
+    "topic": "visa",
+    "claim_fr": "Au 20 octobre 2026, nous n'avons trouvé aucune source officielle confirmant qu'un Marocain résidant au Maroc peut obtenir le e-visa touristique saoudien ou demander seul son visa Omra en « pèlerin individuel » sur Nusuk ; le passage par un prestataire Omra agréé reste la voie documentée.",
+    "claim_ar": "حتى 20 أكتوبر 2026، لم نعثر على أي مصدر رسمي يؤكد أن المغربي المقيم في المغرب يمكنه الحصول على التأشيرة السياحية الإلكترونية السعودية أو طلب تأشيرة العمرة بنفسه كـ«معتمر فرد» عبر «نسك»؛ ويبقى المرور عبر مقدم خدمات عمرة معتمد هو الطريق الموثق.",
+    "claim_en": "As of 20 October 2026, we found no official source confirming that a Moroccan living in Morocco can get the Saudi tourist eVisa or apply for an Umrah visa alone as an \"individual pilgrim\" on Nusuk; going through an approved Umrah provider remains the documented route.",
+    "values": [
+      "20",
+      "2026"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://haj.gov.sa/-/media/Project/HAJJ/PDF-and-FILES/umrah-hero-guide/EN-Umrah-Guide.pdf",
+      "https://haj.gov.sa/en/Media-Center/Ministry-News/Ministry-of-Hajj-and-Umrah-launches-Nusuk-Umrah-service-to-enable-pilgrims-from-outside-the-Kingdom"
+    ],
+    "source_tier": "own_data",
+    "confidence": "verified",
+    "required_wording": null,
+    "status": "approved",
+    "review_by": "2026-11-19",
+    "time_critical": true
+  },
+  {
+    "conflicts": [],
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "valid_until": null,
+    "supersedes": null,
+    "id": "fact_visa_tourist_evisa_umrah_not_hajj",
+    "topic": "visa",
+    "claim_fr": "Le e-visa touristique saoudien permet d'accomplir la Omra en dehors de la saison du Hajj ; il ne permet pas le Hajj, qui exige un visa spécifique.",
+    "claim_ar": "تتيح التأشيرة السياحية الإلكترونية السعودية أداء العمرة خارج موسم الحج، ولا تتيح أداء الحج الذي يتطلب تأشيرة خاصة.",
+    "claim_en": "The Saudi tourist eVisa allows Umrah outside the Hajj season; it does not allow Hajj, which requires a dedicated visa.",
+    "values": [
+      "2022"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://www.thenationalnews.com/travel/2022/09/02/what-you-need-to-know-about-saudi-arabias-new-visa-rules/"
+    ],
+    "source_tier": "media",
+    "confidence": "likely",
+    "required_wording": "selon The National (2022)",
+    "required_wording_ar": "وفق صحيفة The National (2022)",
+    "required_wording_en": "according to The National (2022)",
+    "status": "approved",
+    "review_by": "2026-11-19",
+    "time_critical": true
+  },
+  {
+    "conflicts": [],
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "valid_until": null,
+    "supersedes": null,
+    "id": "fact_visa_center_morocco_48h_2023",
+    "topic": "visa",
+    "claim_fr": "En octobre 2023, lors d'une visite au Maroc, le ministre saoudien du Hajj et de la Omra, Tawfiq Al-Rabiah, a annoncé l'ouverture au Maroc d'un centre de visas destiné à ramener à 48 heures le délai d'obtention d'un visa saoudien. Son fonctionnement actuel n'a pas été vérifié.",
+    "claim_ar": "في أكتوبر 2023، وخلال زيارة للمغرب، أعلن وزير الحج والعمرة السعودي توفيق الربيعة افتتاح مركز للتأشيرات في المغرب لتقليص مدة الحصول على التأشيرة السعودية إلى 48 ساعة. لم نتحقق من وضعه الحالي.",
+    "claim_en": "In October 2023, during a visit to Morocco, Saudi Hajj and Umrah Minister Tawfiq Al-Rabiah announced a visa centre in Morocco meant to cut the time to obtain a Saudi visa to 48 hours. Its current operation has not been checked.",
+    "values": [
+      "2023",
+      "48"
+    ],
+    "unit": "heures",
+    "source_urls": [
+      "https://en.hespress.com/72103-saudi-minister-of-hajj-announces-eased-procedures-for-moroccan-pilgrims.html",
+      "https://www.arabnews.com/node/2386851"
+    ],
+    "source_tier": "media",
+    "confidence": "verified",
+    "required_wording": null,
+    "status": "approved",
+    "review_by": "2026-11-19",
+    "time_critical": false
+  },
+  {
+    "conflicts": [],
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "valid_until": null,
+    "supersedes": null,
+    "id": "fact_flights_saudia_morocco_umrah_2023",
+    "topic": "flights",
+    "claim_fr": "En octobre 2023, les autorités saoudiennes ont annoncé une hausse de 30 % des capacités de Saudia et une baisse de 10 % des prix des billets pour les pèlerins Omra marocains. L'application actuelle de ces mesures n'est pas connue.",
+    "claim_ar": "في أكتوبر 2023، أعلنت السلطات السعودية رفع الطاقة الاستيعابية للخطوط السعودية بنسبة 30% وخفض أسعار التذاكر بنسبة 10% للمعتمرين المغاربة. ولا يُعرف مدى تطبيق هذه الإجراءات حاليًا.",
+    "claim_en": "In October 2023, Saudi authorities announced a 30% increase in Saudia capacity and a 10% cut in ticket prices for Moroccan Umrah pilgrims. Whether these measures still apply is not known.",
+    "values": [
+      "2023",
+      "30",
+      "10"
+    ],
+    "unit": "%",
+    "source_urls": [
+      "https://pep.gov.sa/en/node/507"
+    ],
+    "source_tier": "official",
+    "confidence": "likely",
+    "required_wording": "annonce d'octobre 2023 (programme saoudien Pilgrim Experience) ; application actuelle non vérifiée",
+    "required_wording_ar": "إعلان أكتوبر 2023 (برنامج خدمة ضيوف الرحمن)؛ لم يُتحقق من التطبيق الحالي",
+    "required_wording_en": "October 2023 announcement (Saudi Pilgrim Experience Program); current application not verified",
+    "status": "approved",
+    "review_by": "2026-11-19",
+    "time_critical": false
+  },
+  {
+    "conflicts": [],
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "valid_until": null,
+    "supersedes": null,
+    "id": "fact_visa_umrah_insurance_included",
+    "topic": "visa",
+    "claim_fr": "Selon le ministère saoudien du Hajj et de la Omra, l'assurance est obligatoire pour les pèlerins Omra venant de l'étranger et elle est incluse dans les frais de visa ; elle couvre notamment les urgences médicales, les accidents, le décès et les retards ou annulations de vols.",
+    "claim_ar": "وفق وزارة الحج والعمرة السعودية، التأمين إلزامي للمعتمرين القادمين من الخارج وهو مشمول في رسوم التأشيرة، ويغطي بالخصوص الحالات الطبية الطارئة والحوادث والوفاة وتأخر الرحلات أو إلغاءها.",
+    "claim_en": "According to the Saudi Ministry of Hajj and Umrah, insurance is mandatory for Umrah pilgrims from abroad and is included in the visa fees; it covers medical emergencies, accidents, death and flight delays or cancellations, among others.",
+    "values": [],
+    "unit": null,
+    "source_urls": [
+      "https://gulfnews.com/world/gulf/saudi/saudi-arabia-mandatory-umrah-insurance-included-in-visa-fees-offers-comprehensive-coverage-for-pilgrims-1.97150343"
+    ],
+    "source_tier": "media",
+    "confidence": "likely",
+    "required_wording": "selon Gulf News, citant le ministère",
+    "required_wording_ar": "وفق Gulf News نقلًا عن الوزارة",
+    "required_wording_en": "according to Gulf News, citing the ministry",
+    "status": "approved",
+    "review_by": "2026-11-19",
+    "time_critical": true
+  },
+  {
+    "conflicts": [],
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "valid_until": null,
+    "supersedes": null,
+    "id": "fact_visa_umrah_insurance_cap_100k",
+    "topic": "visa",
+    "claim_fr": "Début 2023, le plafond de couverture de l'assurance Omra obligatoire a été porté à 100 000 riyals saoudiens, tandis que son coût était réduit.",
+    "claim_ar": "في مطلع 2023، رُفع سقف تغطية تأمين العمرة الإلزامي إلى 100.000 ريال سعودي مع خفض تكلفته.",
+    "claim_en": "In early 2023, the coverage cap of the mandatory Umrah insurance was raised to SAR 100,000 while its cost was reduced.",
+    "values": [
+      "2023",
+      "100000"
+    ],
+    "unit": "SAR",
+    "source_urls": [
+      "https://gulfnews.com/living-in-uae/visa-immigration/umrah-insurance-coverage-cost-reduced-coverage-increased-to-sr100000--all-you-need-to-know-1.1674571802165"
+    ],
+    "source_tier": "media",
+    "confidence": "likely",
+    "required_wording": "selon Gulf News (janvier 2023)",
+    "required_wording_ar": "وفق Gulf News (يناير 2023)",
+    "required_wording_en": "according to Gulf News (January 2023)",
+    "status": "approved",
+    "review_by": "2026-11-19",
+    "time_critical": true
+  },
+  {
+    "conflicts": [
+      {
+        "value": "aucun âge minimum",
+        "source": "FAQ commerciale halalbooking.com (sans source officielle)"
+      }
+    ],
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "valid_until": null,
+    "supersedes": null,
+    "id": "fact_umrah_permit_min_age_5",
+    "topic": "umrah_season",
+    "claim_fr": "En août 2026, le ministère saoudien du Hajj et de la Omra a précisé que l'âge minimum pour obtenir un permis via Nusuk est de 5 ans et qu'aucun permis n'est exigé pour les enfants de moins de 5 ans.",
+    "claim_ar": "في غشت 2026، أوضحت وزارة الحج والعمرة السعودية أن الحد الأدنى للعمر لإصدار التصاريح عبر «نسك» هو 5 سنوات، وأن الأطفال دون 5 سنوات لا يحتاجون إلى تصريح.",
+    "claim_en": "In August 2026, the Saudi Ministry of Hajj and Umrah stated that the minimum age to get a permit via Nusuk is 5 and that no permit is required for children under 5.",
+    "values": [
+      "2026",
+      "5"
+    ],
+    "unit": "ans",
+    "source_urls": [
+      "https://english.ajel.sa/news/v6pzvtvvw",
+      "https://haj.gov.sa/en/FAQ"
+    ],
+    "source_tier": "media",
+    "confidence": "likely",
+    "required_wording": "selon Ajel, citant le ministère (août 2026)",
+    "required_wording_ar": "وفق صحيفة عاجل نقلًا عن الوزارة (غشت 2026)",
+    "required_wording_en": "according to Ajel, citing the ministry (August 2026)",
+    "status": "approved",
+    "review_by": "2026-11-19",
+    "time_critical": true
+  },
+  {
+    "conflicts": [
+      {
+        "value": "45",
+        "source": "Ancien article pakistanais citant l'ambassade saoudienne à Karachi (seuil de 45 ans)"
+      }
+    ],
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "valid_until": null,
+    "supersedes": null,
+    "id": "fact_umrah_women_no_mahram_18",
+    "topic": "umrah_season",
+    "claim_fr": "Les autorités saoudiennes ont annoncé que les femmes de plus de 18 ans peuvent venir accomplir la Omra sans tuteur masculin (mahram). Aucune page officielle actuelle ne l'a confirmé dans notre recherche.",
+    "claim_ar": "أعلنت السلطات السعودية أن النساء فوق 18 عامًا يمكنهن القدوم لأداء العمرة دون محرم. ولم نجد في بحثنا صفحة رسمية حالية تؤكد ذلك.",
+    "claim_en": "Saudi authorities announced that women over 18 can come to perform Umrah without a male guardian (mahram). No current official page confirmed this in our research.",
+    "values": [
+      "18"
+    ],
+    "unit": "ans",
+    "source_urls": [
+      "https://gulfnews.com/world/gulf/saudi/saudis-to-allow-women-to-perform-umrah-without-a-male-guardian-1.1571739312358"
+    ],
+    "source_tier": "media",
+    "confidence": "likely",
+    "required_wording": "selon Gulf News ; règle actuelle à confirmer auprès d'une source officielle",
+    "required_wording_ar": "وفق Gulf News؛ القاعدة الحالية تحتاج إلى تأكيد من مصدر رسمي",
+    "required_wording_en": "according to Gulf News; current rule to be confirmed with an official source",
+    "status": "proposed",
+    "review_by": "2026-11-19",
+    "time_critical": true
+  },
+  {
+    "conflicts": [],
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "valid_until": null,
+    "supersedes": null,
+    "id": "fact_umrah_ramadan_permit_visa_needed",
+    "topic": "umrah_season",
+    "claim_fr": "Pour le Ramadan 1444 (2023), le ministère saoudien a ouvert les permis Omra du Ramadan sur l'application Nusuk ; les pèlerins venant de l'étranger devaient avoir un visa valide au moment de la réservation du permis, et une seule Omra par personne était autorisée pendant le mois.",
+    "claim_ar": "في رمضان 1444هـ (2023)، فتحت الوزارة السعودية تصاريح عمرة رمضان عبر تطبيق «نسك»، واشتُرط على القادمين من الخارج امتلاك تأشيرة سارية عند حجز التصريح، مع السماح بعمرة واحدة فقط لكل شخص خلال الشهر.",
+    "claim_en": "For Ramadan 1444 (2023), the Saudi ministry opened Ramadan Umrah permits on the Nusuk app; pilgrims from abroad needed a valid visa when booking the permit, and only one Umrah per person was allowed during the month.",
+    "values": [
+      "1444",
+      "2023",
+      "1448"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://www.arabnews.com/node/2265726"
+    ],
+    "source_tier": "media",
+    "confidence": "likely",
+    "required_wording": "selon Arab News (Ramadan 2023) ; règles du Ramadan 1448 non encore publiées",
+    "required_wording_ar": "وفق Arab News (رمضان 2023)؛ ضوابط رمضان 1448هـ لم تُنشر بعد",
+    "required_wording_en": "according to Arab News (Ramadan 2023); Ramadan 1448 rules not yet published",
+    "status": "approved",
+    "review_by": "2026-11-19",
+    "time_critical": true
+  },
+  {
+    "conflicts": [],
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "valid_until": null,
+    "supersedes": null,
+    "id": "fact_rawdah_permit_365_days",
+    "topic": "umrah_season",
+    "claim_fr": "Depuis décembre 2023, le ministère saoudien du Hajj et de la Omra délivre le permis de visite de la Rawda (mosquée du Prophète) une fois tous les 365 jours, via les applications Nusuk ou Tawakkalna.",
+    "claim_ar": "منذ دجنبر 2023، تصدر وزارة الحج والعمرة السعودية تصريح زيارة الروضة الشريفة (المسجد النبوي) مرة كل 365 يومًا عبر تطبيقي «نسك» أو «توكلنا».",
+    "claim_en": "Since December 2023, the Saudi Ministry of Hajj and Umrah has issued the Rawdah (Prophet's Mosque) visit permit once every 365 days, via the Nusuk or Tawakkalna apps.",
+    "values": [
+      "2023",
+      "365"
+    ],
+    "unit": "jours",
+    "source_urls": [
+      "https://gulfnews.com/world/gulf/saudi/saudi-arabia-visit-to-al-rawda-al-sharifa-limited-to-once-a-year-1.100095002"
+    ],
+    "source_tier": "media",
+    "confidence": "likely",
+    "required_wording": "selon Gulf News, citant le ministère (décembre 2023)",
+    "required_wording_ar": "وفق Gulf News نقلًا عن الوزارة (دجنبر 2023)",
+    "required_wording_en": "according to Gulf News, citing the ministry (December 2023)",
+    "status": "approved",
+    "review_by": "2026-11-19",
+    "time_critical": true
+  },
+  {
+    "conflicts": [],
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "valid_until": null,
+    "supersedes": null,
+    "id": "fact_rawdah_immediate_path",
+    "topic": "umrah_season",
+    "claim_fr": "Selon l'administration de Nusuk, la visite de la Rawda peut être répétée dans l'année via le service « Immediate Path » (accès immédiat) de l'application Nusuk, si le fidèle se trouve à proximité de la mosquée du Prophète.",
+    "claim_ar": "وفق إدارة «نسك»، يمكن تكرار زيارة الروضة الشريفة خلال العام عبر خدمة «المسار الفوري» في تطبيق «نسك» إذا كان الزائر قريبًا من المسجد النبوي.",
+    "claim_en": "According to Nusuk's management, a Rawdah visit can be repeated during the year via the Nusuk app's \"Immediate Path\" service if the worshipper is close to the Prophet's Mosque.",
+    "values": [],
+    "unit": null,
+    "source_urls": [
+      "https://gulfnews.com/world/gulf/saudi/saudi-arabia-worshippers-close-to-prophets-mosque-can-repeat-visit-to-al-rawda-al-sharifa-1.500012438"
+    ],
+    "source_tier": "media",
+    "confidence": "likely",
+    "required_wording": "selon Gulf News, citant l'administration de Nusuk",
+    "required_wording_ar": "وفق Gulf News نقلًا عن إدارة نسك",
+    "required_wording_en": "according to Gulf News, citing Nusuk's management",
+    "status": "approved",
+    "review_by": "2026-11-19",
+    "time_critical": true
+  },
+  {
+    "conflicts": [],
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "valid_until": null,
+    "supersedes": null,
+    "id": "fact_rawdah_10_min_no_show",
+    "topic": "umrah_season",
+    "claim_fr": "Selon les consignes rapportées par Gulf News, la visite de la Rawda est limitée à 10 minutes, et un permis non annulé puis non utilisé empêche toute nouvelle réservation pendant 1 an.",
+    "claim_ar": "وفق الإرشادات التي نقلتها Gulf News، تقتصر زيارة الروضة الشريفة على 10 دقائق، وعدم إلغاء تصريح لم يُستخدم يمنع أي حجز جديد لمدة سنة.",
+    "claim_en": "According to guidelines reported by Gulf News, a Rawdah visit is limited to 10 minutes, and failing to cancel an unused permit blocks any new booking for 1 year.",
+    "values": [
+      "10",
+      "1"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://gulfnews.com/world/mena/saudi-arabia-new-guidelines-set-for-visit-to-al-rawdah-al-sharif-in-medina-1.102833461"
+    ],
+    "source_tier": "media",
+    "confidence": "likely",
+    "required_wording": "selon Gulf News ; à vérifier dans l'application Nusuk",
+    "required_wording_ar": "وفق Gulf News؛ يُرجى التحقق في تطبيق نسك",
+    "required_wording_en": "according to Gulf News; check in the Nusuk app",
+    "status": "approved",
+    "review_by": "2026-11-19",
+    "time_critical": true
+  },
+  {
+    "conflicts": [],
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "valid_until": null,
+    "supersedes": null,
+    "id": "fact_zamzam_airport_rules",
+    "topic": "flights",
+    "claim_fr": "Selon le ministère saoudien du Hajj et de la Omra, l'eau de Zamzam ne doit pas être mise dans les bagages enregistrés ; chaque pèlerin au départ peut emporter 1 seule bouteille, achetée aux points de vente autorisés dans le terminal, sur présentation d'un visa Omra valide ou d'un permis Nusuk.",
+    "claim_ar": "وفق وزارة الحج والعمرة السعودية، لا يجوز وضع ماء زمزم في الأمتعة المشحونة؛ ويحق لكل معتمر مغادر حمل عبوة واحدة فقط يشتريها من نقاط البيع المعتمدة داخل صالة المطار، مع إبراز تأشيرة عمرة سارية أو تصريح من «نسك».",
+    "claim_en": "According to the Saudi Ministry of Hajj and Umrah, Zamzam water must not be packed in checked luggage; each departing pilgrim may carry only 1 bottle, bought at authorised sales points inside the terminal, on showing a valid Umrah visa or a Nusuk permit.",
+    "values": [
+      "1"
+    ],
+    "unit": "bouteille",
+    "source_urls": [
+      "https://gulfnews.com/world/gulf/saudi/saudi-arabia-simplifies-process-for-pilgrims-to-carry-zamzam-water-through-airports-1.500079107"
+    ],
+    "source_tier": "media",
+    "confidence": "likely",
+    "required_wording": "selon Gulf News, citant le ministère ; vérifier auprès de sa compagnie aérienne",
+    "required_wording_ar": "وفق Gulf News نقلًا عن الوزارة؛ يُرجى التحقق لدى شركة الطيران",
+    "required_wording_en": "according to Gulf News, citing the ministry; check with your airline",
+    "status": "approved",
+    "review_by": "2026-11-19",
+    "time_critical": true
+  },
+  {
+    "conflicts": [],
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "valid_until": null,
+    "supersedes": null,
+    "id": "fact_zamzam_5_litre_bottle",
+    "topic": "flights",
+    "claim_fr": "En 2019, la National Water Company (opérateur du projet Zamzam du roi Abdallah) a standardisé les bouteilles de Zamzam à 5 litres au lieu de 10 litres, vendues aux aéroports de Djeddah et de Médine.",
+    "claim_ar": "في 2019، وحّدت شركة المياه الوطنية (مشغّلة مشروع الملك عبدالله لسقيا زمزم) عبوات زمزم بسعة 5 لترات بدلًا من 10 لترات، وتباع في مطاري جدة والمدينة المنورة.",
+    "claim_en": "In 2019, the National Water Company (operator of the King Abdullah Zamzam project) standardised Zamzam bottles at 5 litres instead of 10 litres, sold at Jeddah and Madinah airports.",
+    "values": [
+      "2019",
+      "5",
+      "10"
+    ],
+    "unit": "litres",
+    "source_urls": [
+      "https://www.arabnews.com/node/1457111"
+    ],
+    "source_tier": "media",
+    "confidence": "likely",
+    "required_wording": "selon Arab News (2019)",
+    "required_wording_ar": "وفق Arab News (2019)",
+    "required_wording_en": "according to Arab News (2019)",
+    "status": "approved",
+    "review_by": "2026-11-19",
+    "time_critical": false
+  },
+  {
+    "conflicts": [],
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "valid_until": null,
+    "supersedes": null,
+    "id": "fact_umrah_1448_opening_arrivals",
+    "topic": "umrah_season",
+    "claim_fr": "Du 15 Dhou al-Hijja 1447 à la fin de Mouharram 1448, 931 500 pèlerins sont entrés en Arabie saoudite avec un visa Omra (+22,5 % sur un an) et plus de 1,27 million de pèlerins de l'étranger au total ; environ 75 % sont arrivés par avion. Principaux pays : Pakistan (environ 200 000), Indonésie (170 000), Irak (130 000).",
+    "claim_ar": "من 15 ذي الحجة 1447هـ حتى نهاية محرم 1448هـ، دخل المملكة 931.500 معتمر بتأشيرة عمرة (بزيادة 22,5% على أساس سنوي)، وأكثر من 1,27 مليون معتمر من الخارج إجمالًا؛ وصل نحو 75% منهم جوًا. أبرز الدول: باكستان (نحو 200.000) وإندونيسيا (170.000) والعراق (130.000).",
+    "claim_en": "From 15 Dhul Hijjah 1447 to the end of Muharram 1448, 931,500 pilgrims entered Saudi Arabia on Umrah visas (+22.5% year on year) and more than 1.27 million pilgrims from abroad in total; about 75% arrived by air. Top countries: Pakistan (about 200,000), Indonesia (170,000), Iraq (130,000).",
+    "values": [
+      "15",
+      "1447",
+      "1448",
+      "931500",
+      "22.5",
+      "1.27",
+      "75",
+      "200000",
+      "170000",
+      "130000"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://www.spa.gov.sa/en/N2636540",
+      "https://www.zawya.com/en/business/saudi-umrah-visa-arrivals-rise-22.5-to-931500-at-start-of-new-season-401768",
+      "https://ummid.com/news/2026/7/19/close-to-1-mn-muslims-visited-makkah-in-first-15-days-of-umrah-season-1448H.html"
+    ],
+    "source_tier": "official",
+    "confidence": "verified",
+    "required_wording": null,
+    "status": "approved",
+    "review_by": "2027-04-18",
+    "time_critical": false
+  },
+  {
+    "conflicts": [],
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "valid_until": null,
+    "supersedes": null,
+    "id": "fact_umrah_q1_2026_gastat",
+    "topic": "umrah_season",
+    "claim_fr": "Selon l'Autorité générale saoudienne des statistiques (GASTAT), 15 233 767 personnes ont accompli la Omra au 1er trimestre 2026, dont 5 769 271 venues de l'étranger.",
+    "claim_ar": "وفق الهيئة العامة للإحصاء السعودية، أدى 15.233.767 شخصًا العمرة في الربع الأول من 2026، منهم 5.769.271 قدموا من الخارج.",
+    "claim_en": "According to the Saudi General Authority for Statistics (GASTAT), 15,233,767 people performed Umrah in the first quarter of 2026, including 5,769,271 who came from abroad.",
+    "values": [
+      "15233767",
+      "1",
+      "2026",
+      "5769271"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://www.siasat.com/saudi-arabia-records-15-2-million-umrah-performers-in-q1-2026-3529475/"
+    ],
+    "source_tier": "media",
+    "confidence": "likely",
+    "required_wording": "selon Siasat, citant la GASTAT",
+    "required_wording_ar": "وفق Siasat نقلًا عن الهيئة العامة للإحصاء",
+    "required_wording_en": "according to Siasat, citing GASTAT",
+    "status": "approved",
+    "review_by": "2027-04-18",
+    "time_critical": false
+  },
+  {
+    "conflicts": [],
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "valid_until": null,
+    "supersedes": null,
+    "id": "fact_umrah_q1_2025_gastat",
+    "topic": "umrah_season",
+    "claim_fr": "Selon l'Autorité générale saoudienne des statistiques (GASTAT), 15 222 497 personnes ont accompli la Omra au 1er trimestre 2025.",
+    "claim_ar": "وفق الهيئة العامة للإحصاء السعودية، أدى 15.222.497 شخصًا العمرة في الربع الأول من 2025.",
+    "claim_en": "According to the Saudi General Authority for Statistics (GASTAT), 15,222,497 people performed Umrah in the first quarter of 2025.",
+    "values": [
+      "15222497",
+      "1",
+      "2025"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://www.stats.gov.sa/en/w/news/77"
+    ],
+    "source_tier": "official",
+    "confidence": "verified",
+    "required_wording": null,
+    "status": "approved",
+    "review_by": "2027-04-18",
+    "time_critical": false
+  },
+  {
+    "conflicts": [],
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "valid_until": null,
+    "supersedes": null,
+    "id": "fact_haramain_line_basics",
+    "topic": "other",
+    "claim_fr": "Le train à grande vitesse Haramain est une ligne électrifiée d'environ 450 km reliant La Mecque et Médine, à une vitesse d'exploitation de 300 km/h, avec 5 gares : La Mecque, Djeddah, l'aéroport international King Abdulaziz de Djeddah, King Abdullah Economic City et Médine.",
+    "claim_ar": "قطار الحرمين السريع خط مكهرب بطول نحو 450 كم يربط مكة المكرمة بالمدينة المنورة، بسرعة تشغيل 300 كم/ساعة، ويضم 5 محطات: مكة المكرمة وجدة ومطار الملك عبدالعزيز الدولي بجدة ومدينة الملك عبدالله الاقتصادية والمدينة المنورة.",
+    "claim_en": "The Haramain High Speed Railway is an electrified line of about 450 km linking Makkah and Madinah, with an operating speed of 300 km/h and 5 stations: Makkah, Jeddah, King Abdulaziz International Airport (Jeddah), King Abdullah Economic City and Madinah.",
+    "values": [
+      "450",
+      "300",
+      "5"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://www.railway-technology.com/projects/haramain-high-speed/",
+      "https://www.arabnews.pk/node/2642231"
+    ],
+    "source_tier": "media",
+    "confidence": "verified",
+    "required_wording": null,
+    "status": "approved",
+    "review_by": "2027-04-18",
+    "time_critical": false
+  },
+  {
+    "conflicts": [],
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "valid_until": null,
+    "supersedes": null,
+    "id": "fact_haramain_hajj_1447_plan",
+    "topic": "other",
+    "claim_fr": "Pour le Hajj 1447 (2026), le train Haramain a prévu plus de 5 300 trajets et plus de 2,21 millions de sièges du 1er au 20 Dhou al-Qa'da, soit plus de 210 000 sièges de plus que l'année précédente ; la flotte compte 35 trains électriques de 417 places (13 voitures).",
+    "claim_ar": "في حج 1447هـ (2026)، خطط قطار الحرمين لأكثر من 5.300 رحلة وأكثر من 2,21 مليون مقعد من 1 إلى 20 ذي القعدة، بزيادة تفوق 210.000 مقعد عن العام السابق؛ ويضم الأسطول 35 قطارًا كهربائيًا سعة كل منها 417 راكبًا (13 عربة).",
+    "claim_en": "For Hajj 1447 (2026), the Haramain train planned more than 5,300 trips and over 2.21 million seats from 1 to 20 Dhul Qadah, over 210,000 more seats than the previous year; the fleet has 35 electric trains of 417 seats (13 carriages).",
+    "values": [
+      "1447",
+      "2026",
+      "5300",
+      "2.21",
+      "1",
+      "20",
+      "210000",
+      "35",
+      "417",
+      "13"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://www.arabnews.pk/node/2642231",
+      "https://english.ajel.sa/business/haramain-railway-expands-capacity-to-22-million-seats-for-hajj-1447-ah"
+    ],
+    "source_tier": "media",
+    "confidence": "verified",
+    "required_wording": null,
+    "status": "approved",
+    "review_by": "2027-04-18",
+    "time_critical": false
+  },
+  {
+    "conflicts": [],
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "valid_until": null,
+    "supersedes": null,
+    "id": "fact_haramain_ramadan_2026_daily_trips",
+    "topic": "other",
+    "claim_fr": "Pendant les 10 derniers jours du Ramadan 2026, Saudi Arabia Railways (SAR) a porté le nombre de trajets quotidiens du train Haramain à plus de 140.",
+    "claim_ar": "خلال العشر الأواخر من رمضان 2026، رفعت الخطوط الحديدية السعودية (سار) عدد رحلات قطار الحرمين اليومية إلى أكثر من 140 رحلة.",
+    "claim_en": "During the last 10 days of Ramadan 2026, Saudi Arabia Railways (SAR) raised Haramain train daily trips to more than 140.",
+    "values": [
+      "10",
+      "2026",
+      "140"
+    ],
+    "unit": "trajets par jour",
+    "source_urls": [
+      "https://www.tradearabia.com/News/390168/Haramain-High-Speed-Railway-exceeds-140-daily-trips-in-last-10-days-of-Ramadan/TTN"
+    ],
+    "source_tier": "media",
+    "confidence": "likely",
+    "required_wording": "selon TradeArabia, citant l'agence SPA",
+    "required_wording_ar": "وفق TradeArabia نقلًا عن وكالة الأنباء السعودية",
+    "required_wording_en": "according to TradeArabia, citing SPA",
+    "status": "approved",
+    "review_by": "2027-04-18",
+    "time_critical": false
+  },
+  {
+    "conflicts": [],
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "valid_until": null,
+    "supersedes": null,
+    "id": "fact_hajj_1448_prep_meetings",
+    "topic": "hajj_process",
+    "claim_fr": "Le ministère saoudien du Hajj et de la Omra a lancé les réunions préparatoires de la saison du Hajj 1448 avec les bureaux des affaires des pèlerins de plus de 75 pays, pour examiner leurs plans opérationnels et présenter les règles de la saison.",
+    "claim_ar": "أطلقت وزارة الحج والعمرة السعودية الاجتماعات التحضيرية لموسم حج 1448هـ مع مكاتب شؤون الحجاج في أكثر من 75 دولة، لمراجعة خططها التشغيلية وعرض تعليمات الموسم.",
+    "claim_en": "The Saudi Ministry of Hajj and Umrah began preparatory meetings for the 1448 AH Hajj season with pilgrims' affairs offices from more than 75 countries, to review their operational plans and present the season's rules.",
+    "values": [
+      "1448",
+      "75"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://haj.gov.sa/en/Media-Center/Ministry-News/2026/Ministry-of-Hajj-and-Umrah-Begins-Preparatory-Meetings"
+    ],
+    "source_tier": "official",
+    "confidence": "verified",
+    "required_wording": null,
+    "status": "approved",
+    "review_by": "2026-11-19",
+    "time_critical": false
+  },
+  {
+    "conflicts": [],
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "valid_until": null,
+    "supersedes": null,
+    "id": "fact_hajj_1448_nusuk_masar_first_steps",
+    "topic": "hajj_process",
+    "claim_fr": "Selon le calendrier officiel du Hajj 1448 publié par le Sri Lanka, la saisie des préférences d'hébergement à La Mecque et Médine sur la plateforme Nusuk Masar a ouvert le 30 juin 2026 (15 Mouharram 1448), et environ 1/3 du coût du Hajj de chaque pèlerin devait être transféré en Arabie saoudite à partir du 15 juillet 2026. Le calendrier marocain n'a pas été publié.",
+    "claim_ar": "وفق الجدول الرسمي لحج 1448هـ الذي نشرته سريلانكا، فُتح إدخال تفضيلات السكن في مكة والمدينة على منصة «نسك مسار» في 30 يونيو 2026 (15 محرم 1448هـ)، وكان يتعين تحويل نحو ثلث تكلفة حج كل حاج إلى السعودية ابتداءً من 15 يوليوز 2026. لم يُنشر الجدول المغربي.",
+    "claim_en": "According to the official Hajj 1448 schedule published by Sri Lanka, entry of Makkah and Madinah accommodation preferences on the Nusuk Masar platform opened on 30 June 2026 (15 Muharram 1448), and about 1/3 of each pilgrim's Hajj cost was to be transferred to Saudi Arabia from 15 July 2026. Morocco's schedule has not been published.",
+    "values": [
+      "1448",
+      "30",
+      "2026",
+      "15",
+      "1",
+      "3"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://muslimaffairs.gov.lk/wp-content/uploads/2026/06/English-Official-Schedule-of-Operations-for-the-2027-Hajj-Season-1448H.pdf"
+    ],
+    "source_tier": "official",
+    "confidence": "likely",
+    "required_wording": "selon le calendrier officiel publié par le Sri Lanka ; application au Maroc non confirmée",
+    "required_wording_ar": "وفق الجدول الرسمي المنشور في سريلانكا؛ دون تأكيد انطباقه على المغرب",
+    "required_wording_en": "according to the official schedule published by Sri Lanka; application to Morocco not confirmed",
+    "status": "approved",
+    "review_by": "2026-11-19",
+    "time_critical": true
+  },
+  {
+    "conflicts": [],
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "valid_until": null,
+    "supersedes": null,
+    "id": "fact_hajj_1448_visa_start_bangladesh_roadmap",
+    "topic": "hajj_process",
+    "claim_fr": "Selon la feuille de route du Hajj 2027 (1448) publiée par le Bangladesh, l'accord bilatéral avec l'Arabie saoudite est prévu le 8 novembre 2026, la délivrance des visas Hajj doit commencer le 28 janvier 2027 et les vols le 8 avril 2027 ; le Hajj est attendu vers le 15 mai 2027, selon l'observation du croissant.",
+    "claim_ar": "وفق خارطة طريق حج 2027 (1448هـ) التي نشرتها بنغلاديش، من المقرر توقيع الاتفاق الثنائي مع السعودية في 8 نونبر 2026، وأن يبدأ إصدار تأشيرات الحج في 28 يناير 2027 والرحلات في 8 أبريل 2027؛ ويُتوقع الحج نحو 15 ماي 2027 حسب رؤية الهلال.",
+    "claim_en": "According to the Hajj 2027 (1448) roadmap published by Bangladesh, the bilateral agreement with Saudi Arabia is set for 8 November 2026, Hajj visa issuance is to begin on 28 January 2027 and flights on 8 April 2027; Hajj is expected around 15 May 2027, subject to moon sighting.",
+    "values": [
+      "2027",
+      "1448",
+      "8",
+      "2026",
+      "28",
+      "15"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://www.tbsnews.net/node/1457366",
+      "https://www.onmanorama.com/news/kerala/2026/09/04/2027-hajj-flights-begin-april.html"
+    ],
+    "source_tier": "media",
+    "confidence": "likely",
+    "required_wording": "selon le calendrier publié par le Bangladesh (The Business Standard) ; calendrier marocain non publié",
+    "required_wording_ar": "وفق الجدول المنشور في بنغلاديش (The Business Standard)؛ الجدول المغربي لم يُنشر",
+    "required_wording_en": "according to the schedule published by Bangladesh (The Business Standard); Morocco's schedule not published",
+    "status": "proposed",
+    "review_by": "2026-11-19",
+    "time_critical": true
+  },
+  {
+    "conflicts": [],
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "valid_until": null,
+    "supersedes": null,
+    "id": "fact_hajj_1448_package_contract_deadline",
+    "topic": "hajj_process",
+    "claim_fr": "Selon les calendriers publiés au Bangladesh et au Sri Lanka, les contrats des forfaits de services du Hajj 1448 sur Nusuk Masar doivent être conclus au plus tard le 23 janvier 2027 (15 Cha'bane 1448) ; une agence sri-lankaise indique aussi le 9 mars 2027 (1er Chawwal 1448) comme date limite de délivrance des visas Hajj.",
+    "claim_ar": "وفق الجداول المنشورة في بنغلاديش وسريلانكا، يجب إبرام عقود باقات خدمات حج 1448هـ على «نسك مسار» في موعد أقصاه 23 يناير 2027 (15 شعبان 1448هـ)؛ كما تذكر وكالة سريلانكية 9 مارس 2027 (1 شوال 1448هـ) آخر موعد لإصدار تأشيرات الحج.",
+    "claim_en": "According to schedules published in Bangladesh and Sri Lanka, Hajj 1448 service package contracts on Nusuk Masar must be signed by 23 January 2027 (15 Sha'ban 1448); a Sri Lankan agency also gives 9 March 2027 (1 Shawwal 1448) as the deadline for Hajj visa issuance.",
+    "values": [
+      "1448",
+      "23",
+      "2027",
+      "15",
+      "9",
+      "1"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://www.tbsnews.net/node/1457366",
+      "https://farhatravels.lk/articles/how-to-register-for-hajj/"
+    ],
+    "source_tier": "media",
+    "confidence": "likely",
+    "required_wording": "selon des calendriers publiés au Bangladesh et par une agence sri-lankaise ; non confirmé par le ministère saoudien",
+    "required_wording_ar": "وفق جداول منشورة في بنغلاديش ولدى وكالة سريلانكية؛ دون تأكيد من الوزارة السعودية",
+    "required_wording_en": "according to schedules published in Bangladesh and by a Sri Lankan agency; not confirmed by the Saudi ministry",
+    "status": "proposed",
+    "review_by": "2026-11-19",
+    "time_critical": true
+  },
+  {
+    "conflicts": [
+      {
+        "value": "50000",
+        "source": "Bernama : amende jusqu'à 50 000 riyals et 6 mois de prison pour le transport de personnes sans permis"
+      }
+    ],
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "valid_until": null,
+    "supersedes": null,
+    "id": "fact_hajj_1447_permit_penalties",
+    "topic": "hajj_process",
+    "claim_fr": "Pour le Hajj 1447 (2026), le ministère saoudien de l'Intérieur a fixé, du 1er Dhou al-Qa'da au 14 Dhou al-Hijja, une amende pouvant aller jusqu'à 20 000 riyals pour toute personne accomplissant ou tentant d'accomplir le Hajj sans permis, y compris les titulaires de visas de visite entrant ou restant à La Mecque et sur les lieux saints ; jusqu'à 100 000 riyals pour ceux qui les aident, les transportent ou les hébergent ; et l'expulsion avec interdiction d'entrée de 10 ans pour les résidents et les personnes en situation irrégulière. Les règles du Hajj 1448 ne sont pas encore publiées.",
+    "claim_ar": "في حج 1447هـ (2026)، حددت وزارة الداخلية السعودية، من 1 ذي القعدة إلى 14 ذي الحجة، غرامة تصل إلى 20.000 ريال لكل من يؤدي الحج أو يحاول أداءه دون تصريح، بمن فيهم حاملو تأشيرات الزيارة الذين يدخلون مكة والمشاعر المقدسة أو يبقون فيها؛ وغرامة تصل إلى 100.000 ريال لمن يساعدهم أو ينقلهم أو يؤويهم؛ والترحيل مع المنع من الدخول 10 سنوات للمقيمين والمخالفين. ولم تُنشر بعد ضوابط حج 1448هـ.",
+    "claim_en": "For Hajj 1447 (2026), the Saudi Ministry of Interior set, from 1 Dhul Qadah to 14 Dhul Hijjah, fines of up to SAR 20,000 for anyone performing or trying to perform Hajj without a permit, including visit-visa holders entering or staying in Makkah and the holy sites; up to SAR 100,000 for those who help, transport or shelter them; and deportation with a 10-year entry ban for residents and overstayers. Hajj 1448 rules are not yet published.",
+    "values": [
+      "1447",
+      "2026",
+      "1",
+      "14",
+      "20000",
+      "100000",
+      "10",
+      "1448"
+    ],
+    "unit": "SAR",
+    "source_urls": [
+      "https://www.businesstoday.in/amp/world/story/saudi-arabia-imposes-rs45-lakh-fine-10-year-ban-for-hajj-without-permit-529914-2026-05-05",
+      "https://propakistani.pk/2026/04/15/saudi-arabia-announces-strict-penalties-for-illegal-hajj/amp/"
+    ],
+    "source_tier": "media",
+    "confidence": "verified",
+    "required_wording": null,
+    "status": "approved",
+    "review_by": "2026-11-19",
+    "time_critical": true
+  }
+]

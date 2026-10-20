@@ -1,15 +1,11 @@
-/* offresomra.ma — placeholder palette; the site agent replaces this file. */
-:root{--bg:#fffdf7;--fg:#3b2a1a;--muted:#6b5a48;--primary:#8a5a00;--accent:#e0a100;--surface:#fbf0d6;--border:#e7d3a6;--link:#8a5a00;--font-head:"Lucida Grande", "Segoe UI", sans-serif}
-.site-header{border-bottom:3px solid var(--accent)}
-.home-hero{padding:1.5rem 0}
-.home-hero__tagline{color:var(--muted);font-size:1.15rem}
-/* Comparateur (:::tool compare-offres) */
-.compare__grid{display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr))}
-.compare__offer{border:1px solid var(--border);border-radius:.5rem;padding:.75rem;background:var(--surface)}
-.compare__row{display:flex;flex-direction:column;gap:.25rem;margin:.5rem 0}
-.compare__row input{padding:.4rem;border:1px solid var(--border);border-radius:.3rem;font:inherit}
-.compare__check{display:flex;gap:.5rem;align-items:flex-start;margin:.3rem 0}
-.compare__button{margin-top:1rem;padding:.6rem 1.2rem;background:var(--primary);color:#fff;border:0;border-radius:.4rem;font:inherit;cursor:pointer}
-.compare__table{width:100%;border-collapse:collapse;margin-top:1rem}
-.compare__table th,.compare__table td{border:1px solid var(--border);padding:.4rem;text-align:start;vertical-align:top}
-.compare__note{color:var(--muted);font-size:.95rem}
+/* offresomra.ma — site-specific rules only (tokens and components come from themes/_base/base.css).
+   Comparateur (:::tool compare-offres): offers on a 2px seam, inputs 44px with labels above (DESIGN.md §5 Tool). */
+.compare__grid{display:grid;gap:var(--seam);background:var(--line);border:var(--seam) solid var(--line);grid-template-columns:repeat(auto-fit,minmax(min(100%,15rem),1fr))}
+.compare__offer{margin:0;border:0;border-radius:0;padding:16px;background:var(--surface);min-width:0}
+.compare__offer legend{padding:0;margin:0 0 8px;font-family:var(--serif);font-size:1.375rem}
+.compare__row{display:flex;flex-direction:column;gap:4px;margin:12px 0}
+.compare__check{display:flex;gap:8px;align-items:flex-start;margin:8px 0}
+.compare__check label{text-transform:none;letter-spacing:0;font:400 .9375rem/1.4 var(--body);color:var(--ink)}
+.compare__button{margin-top:16px}
+.compare__table{width:100%;margin-top:16px}
+.compare__note{color:var(--ink-3);font-size:.9375rem}

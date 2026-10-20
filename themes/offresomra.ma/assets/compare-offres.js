@@ -59,7 +59,7 @@
     grid.appendChild(box);
   }
   form.appendChild(grid);
-  form.appendChild(el('button', { type: 'submit', class: 'compare__button' }, 'Comparer'));
+  form.appendChild(el('button', { type: 'submit', class: 'compare__button button button--primary' }, 'Comparer'));
   var out = el('div', { class: 'compare__result', 'aria-live': 'polite' });
   root.appendChild(form);
   root.appendChild(out);
@@ -95,7 +95,9 @@
       r[1].forEach(function (c) { tr.appendChild(el('td', null, c)); });
       table.appendChild(tr);
     });
-    out.appendChild(table);
+    var wrap = el('div', { class: 'table-wrap' });
+    wrap.appendChild(table);
+    out.appendChild(wrap);
     out.appendChild(el('p', { class: 'compare__note' }, 'Ces chiffres sont les vôtres : l\'outil ne connaît aucun prix et ne garde rien. Une ligne « à demander » est une question à poser à l\'agence avant de payer.'));
   });
 })();

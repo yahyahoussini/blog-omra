@@ -1,0 +1,16 @@
+{
+  "_doc": "DECISIONS D-D (overrides STRATEGY 3.5 / 8.2 where they differ). Enforced by the links gate.",
+  "min_same_site_links_per_post": 3,
+  "sister_links_per_post": 2,
+  "sister_rel": "follow",
+  "max_links_per_sister_pair_per_week": 5,
+  "block_reciprocal_page_pairs": true,
+  "money_links_per_post": 1,
+  "money_link_rel": "nofollow",
+  "money_link_not_in_first_paragraph": true,
+  "money_link_lang_note": { "fr": " (page en anglais)", "ar": " (صفحة باللغة الإنجليزية)" },
+  "brand_anchor_patterns": ["wiki ?tours", "bab makka", "wikitours\\.ma"],
+  "banned_money_anchor_patterns": ["prix omra", "omra pas cher", "omra ramadan prix", "prix hajj", "agence omra", "meilleure? (agence|offre)", "promo"],
+  "brand_anchor_min_share": 0.6,
+  "external_rel": ""
+}

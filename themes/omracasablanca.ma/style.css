@@ -1,5 +1,2 @@
-/* omracasablanca.ma — placeholder palette; the site agent replaces this file. */
-:root{--bg:#fdfbf6;--fg:#1b2a36;--muted:#4f5f6b;--primary:#1f5f8b;--accent:#c9a96e;--surface:#f4ecd8;--border:#dccfb0;--link:#1f5f8b;--font-head:"Gill Sans", "Segoe UI", sans-serif}
-.site-header{border-bottom:3px solid var(--accent)}
-.home-hero{padding:1.5rem 0}
-.home-hero__tagline{color:var(--muted);font-size:1.15rem}
+/* omracasablanca.ma — site-specific rules only. Colours, type and components come from themes/_base/base.css and the
+   tokens in theme.js (docs/DESIGN.md). Keep this file small: one system, eight publications. */

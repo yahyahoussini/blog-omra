@@ -108,11 +108,15 @@ The generator does **nothing** while `launch_date` is `null`. To start:
 
 The ramp (DECISIONS D-C) then works like this, per site:
 
-| Days after launch | Posts per day per site |
-|---|---|
-| 1-14 | 1 |
-| 15-28 | 2 |
-| from 29 | 3 (1 French + 1 Arabic + 1 English, DECISIONS D-H) |
+| Days after launch | Posts per day per site | Languages (when the site has French, Arabic and English home pages) |
+|---|---|---|
+| 1-14 | 1 | one language a day, in turn: French, then Arabic, then English, then French again… |
+| 15-28 | 2 | two languages a day, in turn (French + Arabic, then English + French, then Arabic + English…) |
+| from 29 | 3 | 1 French + 1 Arabic + 1 English every day (DECISIONS D-H) |
+
+So each language gets the same share. Never more than one post per language, site and day. If a language has no
+topic ready that day, its slot goes to another language instead of being lost. The order is
+`config/cadence.json → languages`.
 
 A language gets posts only after its own home page exists. **Today only French has home pages, so every site
 publishes at most 1 post per day (`max_posts_per_language_per_day: 1`), whatever the ramp says.** Days 15-28 (2/day)
@@ -121,6 +125,16 @@ and 29+ (3/day) need native Arabic and English pages first: for each of the 8 si
 translated (DECISIONS D-H), by a native writer the client names (an Arabic reviewer is recommended). The weekly
 planner then fills the Arabic and English queues by itself. Facts that need a `required_wording` also need
 `required_wording_ar` / `required_wording_en` before Arabic or English posts can cite them (section 7).
+
+### Three languages, written separately
+
+Every site publishes French at the root (`https://guideomra.ma/`), Arabic under `/ar/` (written right to left) and
+English under `/en/`. Each language has its own pages and its own topics: **nothing is translated** (DECISIONS D-H).
+A page that exists in French does not have to exist in Arabic or English. When two pages of the same site really
+answer the same question in two languages, writers give them the same `translation_key`: search engines then see
+them as language versions (hreflang), and the language switcher (FR · العربية · EN, at the top of every page) jumps
+between them. Otherwise the switcher opens the other language's home page. Pages of different sites are never linked
+this way.
 
 A site with no eligible topic left simply waits (it never pads). The ceiling of 3 is `max_posts_per_day_per_site`;
 the ramp is the `ramp` list in the same file.
@@ -198,13 +212,15 @@ The AI may only state a number, a date or a rule that is in `data/facts/registry
 The generator also writes **missing-fact requests** to `data/facts/candidates.jsonl` when it needed a fact it did
 not have; they are listed in the weekly report.
 
-To add or renew a fact, edit `data/facts/registry.json` (a list of entries). Fields:
+To add or renew a fact, edit `data/facts/registry.json` (a list of entries). You may also keep facts in extra files
+in `data/facts/extra/` (for example `data/facts/extra/hajj-1448.json`), same format; they are read together. An id may
+appear only once across all files: a repeated id stops the build of every site until it is fixed. Fields:
 
 | Field | Meaning |
 |---|---|
 | `id` | `fact_` + lowercase words, never changed once used (pages cite it as `[[fact:id]]`) |
 | `topic` | one of `ramadan_dates`, `umrah_season`, `visa`, `health`, `hajj_process`, `hajj_cost`, `prices`, `flights`, `agency_rules`, `fraud_cases`, `school_calendar`, `wikitours`, `offers`, `local_casablanca`, `other` |
-| `claim_fr` | the fact in one or two French sentences, as you checked it (`claim_ar`, `claim_en` optional) |
+| `claim_fr` | the fact in one or two French sentences, as you checked it (`claim_ar`, `claim_en` optional: the same fact written natively in Arabic / English, helpful for Arabic and English posts) |
 | `values` | every number the claim contains, as text without spaces (`"63021"`, `"2027"`). A page may only use these numbers. |
 | `unit` | `MAD`, `days`… or `null` |
 | `source_urls` | the page(s) where you checked it |
@@ -233,8 +249,9 @@ without checking the source. After editing, the `ci` workflow (or `npm test`) va
 
 ## 8. Topics
 
-Each site's plan is `content/<domain>/topics.json`. The weekly planner keeps about 30 days of topics per site and
-language. It only proposes topics inside the site's charter (`config/charters.json`), never a topic reserved for
+Each site's plan is `content/<domain>/topics.json`. Every topic has a `lang` (`fr`, `ar` or `en`). The weekly planner
+keeps about 30 days of topics per site and language, proposing each language's topics from how people search in that
+language (not from the French plan), and the generator writes each post natively in its language. It only proposes topics inside the site's charter (`config/charters.json`), never a topic reserved for
 wikitours.ma, and never a topic, keyword or concept that another site already owns. You may edit the file by hand.
 
 Topic `status`: `queued` (waiting), `done` (written; `file` says where), `failed` (rejected twice by the gates; the

@@ -1,0 +1,9 @@
+{
+  "base_lang": "fr",
+  "posts_per_page": 12,
+  "sites": [
+    { "domain": "tri.test", "name": "Tri Test", "ref": "TR", "role": "trilingual fixture site", "cf_project": "tri-test", "languages": ["fr", "ar", "en"], "theme": "tri.test", "flows": [], "money_share_cap": 0.3 },
+    { "domain": "other.test", "name": "Other Test", "ref": "OT", "role": "second fixture site", "cf_project": "other-test", "languages": ["fr", "ar"], "theme": "other.test", "flows": [], "money_share_cap": 0.3 }
+  ],
+  "robots": { "search_bots": ["Googlebot", "Bingbot"], "training_bots": {} }
+}

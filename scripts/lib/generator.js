@@ -5,7 +5,7 @@ import { loadProject } from '../../engine/lib/config.js';
 import { loadContent } from '../../engine/lib/content.js';
 import { sha256 } from '../../engine/lib/util.js';
 import { readJSON, writeJSON, readJSONL, appendJSONL, isoWeek, paths } from './common.js';
-import { siteQuota, languageSlots, addSpend, spendStatus } from './cadence.js';
+import { siteQuota, languageSlots, languagePlan, addSpend, spendStatus } from './cadence.js';
 import { loadTopics, saveTopics, selectTopics, networkItems, activeLanguages, postCounts, topicSlug, topicLang } from './topics.js';
 import { buildBrief, systemPrompt, draftMessage, revisionMessage, VERIFIER_SYSTEM, VERIFY_SCHEMA, verifyMessage, claimErrors } from './brief.js';
 import { normalizeDraft, briefChecks, gateDraft, networkBaseline, missingRequests } from './draft-gate.js';
@@ -82,13 +82,15 @@ export async function runGenerate({ root, today, site: onlySite = null, limit = 
     const q = siteQuota({ cadence, site, today, health, postsToday: counts.today, postsThisWeek: counts.week, simulateLaunch: dryRun });
     if (!q.quota) { summary.idle.push({ site, reason: q.reasons.join('; ') || 'quota reached for today' }); log(`${site}: idle (${q.reasons.join('; ') || `today's quota of ${q.perDay} is used`})`); continue; }
     const topics = loadTopics(root, site);
+    const activeLangs = activeLanguages(content, site);
     const { selected, skipped } = selectTopics({
       topics, site, project, items: networkItems(content), today, minFactDays: cadence.min_fact_days_left ?? 0,
-      quota: Math.min(q.quota, budget), langSlots: languageSlots(cadence, counts.todayByLang), activeLangs: activeLanguages(content, site),
+      quota: Math.min(q.quota, budget), langSlots: languageSlots(cadence, counts.todayByLang), activeLangs,
+      langPlan: languagePlan({ cadence, day: q.day, perDay: q.perDay, active: activeLangs }),
     });
     for (const s of skipped) log(`${site}: topic ${s.id} waits: ${s.reason}`);
     if (!selected.length) { summary.idle.push({ site, reason: 'no eligible queued topic (supply brake: the site idles)' }); log(`${site}: quota ${q.quota}${q.reasons.length ? ` (${q.reasons.join('; ')})` : ''}, no eligible queued topic: idle`); continue; }
-    log(`${site}: ramp day ${q.day}, quota ${q.quota}, ${selected.length} topic(s) selected${q.reasons.length ? ` (${q.reasons.join('; ')})` : ''}`);
+    log(`${site}: ramp day ${q.day}, quota ${q.quota} (${[...new Set(selected.map(topicLang))].join(' + ')}), ${selected.length} topic(s) selected${q.reasons.length ? ` (${q.reasons.join('; ')})` : ''}`);
 
     for (const topic of selected) {
       if (budget <= 0) break;

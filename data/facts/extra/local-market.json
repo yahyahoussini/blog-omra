@@ -1,0 +1,1150 @@
+[
+  {
+    "id": "fact_local_cmn_t3_hajj_2026",
+    "topic": "local_casablanca",
+    "claim_fr": "Pour le Hajj 2026, l'ONDA a entièrement adapté le terminal 3 de l'aéroport Mohammed V de Casablanca aux vols du Hajj : espaces dédiés dès les accès extérieurs, signalétique spécifique et points d'information. Ce dispositif concerne le Hajj, pas les vols Omra réguliers.",
+    "claim_ar": "خلال موسم حج 2026، كيّف المكتب الوطني للمطارات المحطة 3 بمطار محمد الخامس بالدار البيضاء بالكامل لرحلات الحج: فضاءات مخصصة منذ المداخل الخارجية، وتشوير خاص، ونقاط للإرشاد. يخص هذا الترتيب الحج وليس رحلات العمرة المنتظمة.",
+    "claim_en": "For Hajj 2026, ONDA fully adapted Terminal 3 of Casablanca Mohammed V airport for Hajj flights: dedicated areas from the outside access points, specific signage and information points. This set-up applies to Hajj, not to regular Umrah flights.",
+    "values": [
+      "2026",
+      "3"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://telquel.ma/instant-t/2026/05/22/hajj-2026-londa-deploie-un-dispositif-special_1991022/",
+      "https://lematin.ma/nation/hajj-2026-londa-renforce-le-dispositif-daccompagnement-des-pelerins/347329"
+    ],
+    "source_tier": "media",
+    "confidence": "verified",
+    "required_wording": null,
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-04-18",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_local_cmn_hajj_2023_flights",
+    "topic": "local_casablanca",
+    "claim_fr": "Pour le Hajj 2023, l'ONDA a affecté le terminal 3 de l'aéroport Mohammed V aux vols du Hajj : 37 des quelque 86 vols dédiés partaient de Casablanca, dont 23 opérés par Royal Air Maroc, 11 par flynas et 3 par Saudia, pour environ 34 000 pèlerins au total.",
+    "claim_ar": "خلال حج 2023، خصص المكتب الوطني للمطارات المحطة 3 بمطار محمد الخامس لرحلات الحج: 37 رحلة من أصل نحو 86 رحلة مخصصة انطلقت من الدار البيضاء، منها 23 للخطوط الملكية المغربية و11 لطيران ناس و3 للخطوط السعودية، لفائدة نحو 34.000 حاج إجمالًا.",
+    "claim_en": "For Hajj 2023, ONDA assigned Terminal 3 of Mohammed V airport to Hajj flights: 37 of the roughly 86 dedicated flights left from Casablanca, 23 operated by Royal Air Maroc, 11 by flynas and 3 by Saudia, for about 34,000 pilgrims in total.",
+    "values": [
+      "2023",
+      "3",
+      "37",
+      "86",
+      "23",
+      "11",
+      "34000"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://snrtnews.com/fr/article/hajj-2023-un-important-dispositif-mis-en-place-par-londa-76424",
+      "https://www.infomediaire.net/?p=147353"
+    ],
+    "source_tier": "media",
+    "confidence": "verified",
+    "required_wording": null,
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-04-18",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_flights_hajj_2023_by_airport",
+    "topic": "flights",
+    "claim_fr": "Répartition des vols du Hajj 2023 hors Casablanca : Rabat-Salé 19, Agadir 7, Fès 7, Marrakech 6 et Oujda 6, Tanger étant aussi desservi. Ces vols s'ajoutaient aux vols réguliers entre le Maroc et l'Arabie saoudite.",
+    "claim_ar": "توزيع رحلات حج 2023 خارج الدار البيضاء: الرباط-سلا 19، أكادير 7، فاس 7، مراكش 6، ووجدة 6، إضافة إلى طنجة. وقد أضيفت هذه الرحلات إلى الرحلات المنتظمة بين المغرب والسعودية.",
+    "claim_en": "Hajj 2023 flights outside Casablanca: Rabat-Salé 19, Agadir 7, Fez 7, Marrakech 6 and Oujda 6, with Tangier also served. These flights came on top of regular flights between Morocco and Saudi Arabia.",
+    "values": [
+      "2023",
+      "19",
+      "7",
+      "6"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://snrtnews.com/fr/article/hajj-2023-un-important-dispositif-mis-en-place-par-londa-76424",
+      "https://www.infomediaire.net/?p=147353"
+    ],
+    "source_tier": "media",
+    "confidence": "verified",
+    "required_wording": null,
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-04-18",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_local_cmn_intl_flights_t1_2021",
+    "topic": "local_casablanca",
+    "claim_fr": "Depuis le 7 mai 2021, l'ONDA a transféré tous les vols internationaux de l'aéroport Mohammed V du terminal 2 au terminal 1 ; il indiquait qu'une réouverture du terminal 2 pourrait être décidée quand le trafic reviendrait à la normale. Nous n'avons pas trouvé de source confirmant l'affectation actuelle des terminaux pour les vols vers l'Arabie saoudite.",
+    "claim_ar": "منذ 7 ماي 2021، نقل المكتب الوطني للمطارات جميع الرحلات الدولية بمطار محمد الخامس من المحطة 2 إلى المحطة 1، وأشار إلى إمكانية إعادة فتح المحطة 2 عند عودة الحركة الجوية إلى طبيعتها. لم نجد مصدرًا يؤكد التوزيع الحالي للمحطات بالنسبة للرحلات نحو السعودية.",
+    "claim_en": "Since 7 May 2021, ONDA moved all international flights at Mohammed V airport from Terminal 2 to Terminal 1; it said Terminal 2 could reopen once traffic returned to normal. We found no source confirming which terminal currently handles flights to Saudi Arabia.",
+    "values": [
+      "7",
+      "2021",
+      "2",
+      "1"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://onda.ma/content/download/12177/151149/version/1/fichier/CP+transfert+des+vols+de+T2+au+T1+%2800000004%29.pdf",
+      "https://telquel.ma/2021/05/07/aeroport-mohammed-v-de-casablanca-les-vols-internationaux-transferes-au-terminal-1_1721344"
+    ],
+    "source_tier": "official",
+    "confidence": "likely",
+    "required_wording": "selon l'ONDA (communiqué de mai 2021) ; vérifiez le terminal sur votre billet ou auprès de la compagnie",
+    "required_wording_ar": "حسب المكتب الوطني للمطارات (بلاغ ماي 2021)؛ تحقق من المحطة في تذكرتك أو لدى شركة الطيران",
+    "required_wording_en": "according to ONDA (May 2021 statement); check the terminal on your ticket or with the airline",
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-04-18",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_local_cmn_t1_capacity",
+    "topic": "local_casablanca",
+    "claim_fr": "Le terminal 1 de l'aéroport Mohammed V a été inauguré le 22 janvier 2019 : 76 000 m² et une capacité d'environ 7 millions de passagers par an, portant la capacité totale de l'aéroport à 14 millions.",
+    "claim_ar": "دُشّنت المحطة 1 بمطار محمد الخامس في 22 يناير 2019، بمساحة 76.000 متر مربع وطاقة استيعابية تقارب 7 ملايين مسافر سنويًا، ما رفع الطاقة الإجمالية للمطار إلى 14 مليونًا.",
+    "claim_en": "Terminal 1 of Mohammed V airport was inaugurated on 22 January 2019: 76,000 m² and a capacity of about 7 million passengers a year, bringing the airport's total capacity to 14 million.",
+    "values": [
+      "1",
+      "22",
+      "2019",
+      "76000",
+      "7",
+      "14"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://telquel.ma/2019/01/22/mohammed-vi-inaugure-le-nouveau-terminal-1-de-laeroport-de-casablanca_1626091",
+      "https://medias24.com/2019/01/22/le-terminal-1-de-laeroport-mohammed-v-inaugure-par-le-roi-et-ouvert-a-partir-de-jeudi/"
+    ],
+    "source_tier": "media",
+    "confidence": "verified",
+    "required_wording": null,
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-04-18",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_local_cmn_train_station_access",
+    "topic": "local_casablanca",
+    "claim_fr": "Selon l'ONDA, la gare ferroviaire de l'aéroport Mohammed V est accessible depuis le hall des arrivées et dispose de guichets et de bornes libre-service ; l'ONDA renvoie vers oncf.ma pour les correspondances, les horaires et les tarifs.",
+    "claim_ar": "حسب المكتب الوطني للمطارات، يمكن الوصول إلى محطة القطار بمطار محمد الخامس من بهو الوصول، وتتوفر على شبابيك وآلات للخدمة الذاتية؛ ويحيل المكتب إلى موقع oncf.ma لمعرفة الربط والمواعيد والأسعار.",
+    "claim_en": "According to ONDA, the railway station at Mohammed V airport is reached from the arrivals hall and has ticket offices and self-service machines; ONDA refers travellers to oncf.ma for connections, timetables and fares.",
+    "values": [],
+    "unit": null,
+    "source_urls": [
+      "https://www.onda.ma/en/Our-Airports/Casablanca-Mohammed-V-Airport/Access-Facilitations/Arrival",
+      "https://onda.ma/fr/Nos-A%C3%A9roports/A%C3%A9roport-Casablanca-Mohammed-V/Acc%C3%A8s-Facilitations/Par-train"
+    ],
+    "source_tier": "official",
+    "confidence": "verified",
+    "required_wording": null,
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-04-18",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_local_cmn_train_fare_onda_page",
+    "topic": "local_casablanca",
+    "claim_fr": "La page « Par train » de l'ONDA indique 50 dirhams en 2e classe et 70 dirhams en 1re classe pour le train de l'aéroport Mohammed V, avec des départs de l'aéroport généralement de 6 h 50 à 22 h 50, et une gare au sous-sol du terminal 1. Ces chiffres n'ont pas été confirmés sur oncf.ma.",
+    "claim_ar": "تشير صفحة «بالقطار» على موقع المكتب الوطني للمطارات إلى 50 درهمًا في الدرجة الثانية و70 درهمًا في الدرجة الأولى لقطار مطار محمد الخامس، مع انطلاقات من المطار عمومًا بين 6:50 و22:50، ومحطة في الطابق السفلي للمحطة 1. لم يتم تأكيد هذه الأرقام على موقع oncf.ma.",
+    "claim_en": "ONDA's 'By train' page gives 50 dirhams in 2nd class and 70 dirhams in 1st class for the Mohammed V airport train, with departures from the airport generally from 6:50 to 22:50, and a station in the basement of Terminal 1. These figures were not confirmed on oncf.ma.",
+    "values": [
+      "50",
+      "2",
+      "70",
+      "1",
+      "6",
+      "22"
+    ],
+    "unit": "MAD",
+    "source_urls": [
+      "https://onda.ma/en/Our-Airports/Casablanca-Mohammed-V-Airport/Access-Facilitations/By-train"
+    ],
+    "source_tier": "official",
+    "confidence": "estimate",
+    "required_wording": "selon la page de l'ONDA, à vérifier sur oncf.ma avant le départ",
+    "required_wording_ar": "حسب صفحة المكتب الوطني للمطارات، ويجب التحقق منها على موقع oncf.ma قبل السفر",
+    "required_wording_en": "according to ONDA's page; check on oncf.ma before travelling",
+    "conflicts": [
+      {
+        "value": "pas de tarif train affiché, renvoi vers oncf.ma",
+        "source_url": "https://onda.ma/fr/Nos-A%C3%A9roports/A%C3%A9roport-Casablanca-Mohammed-V/Acc%C3%A8s-Facilitations/Par-train"
+      },
+      {
+        "value": "1 train par heure de 5h40 à 22h55 (Ramadan 1447)",
+        "source_url": "https://telquel.ma/2026/02/17/ramadan-1447-loncf-adapte-son-offre-de-trains-pour-mieux-accompagner-ses-voyageurs_1975646"
+      }
+    ],
+    "status": "proposed",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2026-11-19",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_local_cmn_train_ramadan_1447",
+    "topic": "local_casablanca",
+    "claim_fr": "Pendant le Ramadan 1447 (février-mars 2026), l'ONCF a maintenu sur la ligne de l'aéroport Mohammed V une fréquence d'1 train par heure, de 5 h 40 à 22 h 55. Le programme du Ramadan 1448 (2027) n'est pas encore publié.",
+    "claim_ar": "خلال رمضان 1447 (فبراير-مارس 2026)، حافظ المكتب الوطني للسكك الحديدية على خط مطار محمد الخامس على وتيرة قطار واحد كل ساعة، من 5:40 إلى 22:55. لم يُنشر بعد برنامج رمضان 1448 (2027).",
+    "claim_en": "During Ramadan 1447 (February-March 2026), ONCF kept a frequency of 1 train per hour on the Mohammed V airport line, from 5:40 to 22:55. The Ramadan 1448 (2027) schedule has not been published yet.",
+    "values": [
+      "1447",
+      "2026",
+      "1",
+      "5",
+      "40",
+      "22",
+      "55",
+      "1448",
+      "2027"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://telquel.ma/2026/02/17/ramadan-1447-loncf-adapte-son-offre-de-trains-pour-mieux-accompagner-ses-voyageurs_1975646",
+      "https://ledesk.ma/encontinu/ramadan-1447-loncf-adapte-son-programme-et-renforce-son-offre-de-trains/"
+    ],
+    "source_tier": "media",
+    "confidence": "verified",
+    "required_wording": null,
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-01-31",
+    "valid_until": null,
+    "time_critical": true,
+    "supersedes": null
+  },
+  {
+    "id": "fact_local_cmn_train_ramadan_1446",
+    "topic": "local_casablanca",
+    "claim_fr": "Pendant le Ramadan 1446 (2025), l'ONCF a annoncé le maintien d'1 train par heure de 5 h à 23 h pour la desserte de l'aéroport Mohammed V.",
+    "claim_ar": "خلال رمضان 1446 (2025)، أعلن المكتب الوطني للسكك الحديدية الإبقاء على قطار واحد كل ساعة من 5:00 إلى 23:00 لخدمة مطار محمد الخامس.",
+    "claim_en": "During Ramadan 1446 (2025), ONCF announced it would keep 1 train per hour from 5:00 to 23:00 serving Mohammed V airport.",
+    "values": [
+      "1446",
+      "2025",
+      "1",
+      "5",
+      "00",
+      "23"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://www.oncf.ma/fr/Actualites/L-oncf-adapte-son-offre-de-transport-durant-le-mois-de-ramadan-1446",
+      "https://snrtnews.com/fr/article/loncf-adapte-son-offre-de-transport-durant-le-mois-de-ramadan-114497"
+    ],
+    "source_tier": "official",
+    "confidence": "verified",
+    "required_wording": null,
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-04-18",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_local_cmn_aerobus_fare",
+    "topic": "local_casablanca",
+    "claim_fr": "Selon l'ONDA, l'Aérobus relie l'aéroport Mohammed V à la gare Casa-Port pour un tarif unique de 50 dirhams, payable en espèces, par carte bancaire ou par carte rechargeable ; l'ONDA le présente comme l'option la moins chère vers le centre-ville.",
+    "claim_ar": "حسب المكتب الوطني للمطارات، تربط حافلة «Aérobus» مطار محمد الخامس بمحطة الدار البيضاء الميناء بسعر موحد قدره 50 درهمًا، يُؤدى نقدًا أو بالبطاقة البنكية أو ببطاقة قابلة للشحن؛ ويقدمها المكتب كأرخص وسيلة نحو وسط المدينة.",
+    "claim_en": "According to ONDA, the Aérobus links Mohammed V airport with Casa-Port station for a flat fare of 50 dirhams, payable in cash, by bank card or by rechargeable card; ONDA presents it as the cheapest option to the city centre.",
+    "values": [
+      "50"
+    ],
+    "unit": "MAD",
+    "source_urls": [
+      "https://onda.ma/fr/Nos-A%C3%A9roports/A%C3%A9roport-Casablanca-Mohammed-V/Acc%C3%A8s-Facilitations/Par-train"
+    ],
+    "source_tier": "official",
+    "confidence": "likely",
+    "required_wording": "selon le site de l'ONDA (page non datée)",
+    "required_wording_ar": "حسب موقع المكتب الوطني للمطارات (صفحة غير مؤرخة)",
+    "required_wording_en": "according to ONDA's website (undated page)",
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2026-11-19",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_local_cmn_makkah_route_2026_first_flight",
+    "topic": "local_casablanca",
+    "claim_fr": "Hajj 2026 : le premier vol « Route de La Mecque » au départ de l'aéroport Mohammed V de Casablanca était programmé le 7 mai 2026.",
+    "claim_ar": "حج 2026: كانت أول رحلة ضمن مبادرة «طريق مكة» انطلاقًا من مطار محمد الخامس بالدار البيضاء مبرمجة يوم 7 ماي 2026.",
+    "claim_en": "Hajj 2026: the first 'Makkah Route' flight from Casablanca Mohammed V airport was scheduled for 7 May 2026.",
+    "values": [
+      "2026",
+      "7"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://lematin.ma/nation/hajj-2026-le-service-route-de-la-mecque-etendu-a-laeroport-rabat-sale/342902"
+    ],
+    "source_tier": "media",
+    "confidence": "verified",
+    "required_wording": null,
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-03-01",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_flights_rba_makkah_route_2026_start",
+    "topic": "flights",
+    "claim_fr": "Hajj 2026 : le programme « Route de La Mecque » a démarré à l'aéroport de Rabat-Salé le 4 mai 2026, avec un premier vol ce jour-là.",
+    "claim_ar": "حج 2026: انطلقت مبادرة «طريق مكة» بمطار الرباط-سلا يوم 4 ماي 2026، مع أول رحلة في اليوم نفسه.",
+    "claim_en": "Hajj 2026: the 'Makkah Route' programme started at Rabat-Salé airport on 4 May 2026, with a first flight that day.",
+    "values": [
+      "2026",
+      "4"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://fr.le360.ma/societe/hajj-2026-le-programme-route-de-la-mecque-sinstalle-a-laeroport-de-rabat-sale-des-ce-4-mai_KNNNWELNURDSXKBWKZRSYN465Q/",
+      "https://lematin.ma/nation/hajj-2026-le-service-route-de-la-mecque-etendu-a-laeroport-rabat-sale/342902"
+    ],
+    "source_tier": "media",
+    "confidence": "verified",
+    "required_wording": null,
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-03-01",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_flights_rba_shuttle_bus_2026",
+    "topic": "flights",
+    "claim_fr": "Depuis janvier 2026, selon l'ONDA, la navette en bus de l'aéroport de Rabat-Salé part toutes les 15 minutes vers Rabat, au tarif unique de 25 dirhams, avec paiement possible par carte bancaire.",
+    "claim_ar": "منذ يناير 2026، وحسب المكتب الوطني للمطارات، تنطلق حافلة النقل بمطار الرباط-سلا كل 15 دقيقة نحو الرباط، بسعر موحد قدره 25 درهمًا، مع إمكانية الأداء بالبطاقة البنكية.",
+    "claim_en": "Since January 2026, according to ONDA, the Rabat-Salé airport shuttle bus leaves every 15 minutes for Rabat, at a flat fare of 25 dirhams, with card payment accepted.",
+    "values": [
+      "2026",
+      "15",
+      "25"
+    ],
+    "unit": "MAD",
+    "source_urls": [
+      "https://www.onda.ma/content/download/18846/236409/version/62/fichier/CP%2BAe%CC%81roport%2BRba%2B-%2BBus_taxis%2BFR.pdf",
+      "https://telquel.ma/instant-t/2026/01/08/londa-ameliore-les-services-de-transport-a-laeroport-de-rabat-sale_1969335/",
+      "https://lematin.ma/regions/can-2025-londa-renforce-loffre-de-bus-et-taxis-de-laeroport-rabat-sale/323383"
+    ],
+    "source_tier": "official",
+    "confidence": "verified",
+    "required_wording": null,
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2026-11-19",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_flights_rba_wetaxi_2026",
+    "topic": "flights",
+    "claim_fr": "Depuis le 5 janvier 2026, un service de taxis commandés par application (Wetaxi) fonctionne à l'aéroport de Rabat-Salé, pour Rabat, Salé et les villes voisines, avec paiement par carte.",
+    "claim_ar": "منذ 5 يناير 2026، تعمل بمطار الرباط-سلا خدمة سيارات أجرة تُطلب عبر تطبيق (Wetaxi)، نحو الرباط وسلا والمدن المجاورة، مع الأداء بالبطاقة.",
+    "claim_en": "Since 5 January 2026, an app-booked taxi service (Wetaxi) has operated at Rabat-Salé airport, covering Rabat, Salé and nearby towns, with card payment.",
+    "values": [
+      "5",
+      "2026"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://telquel.ma/instant-t/2026/01/08/londa-ameliore-les-services-de-transport-a-laeroport-de-rabat-sale_1969335/",
+      "https://www.onda.ma/content/download/18846/236409/version/62/fichier/CP%2BAe%CC%81roport%2BRba%2B-%2BBus_taxis%2BFR.pdf"
+    ],
+    "source_tier": "official",
+    "confidence": "verified",
+    "required_wording": null,
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-04-18",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_flights_saudia_cmn_14_weekly_2024",
+    "topic": "flights",
+    "claim_fr": "Saudia a porté sa ligne Djeddah-Casablanca de 10 à 14 vols par semaine à partir du 31 mars 2024. La fréquence actuelle n'a pas été vérifiée sur le site de Saudia.",
+    "claim_ar": "رفعت الخطوط السعودية رحلاتها بين جدة والدار البيضاء من 10 إلى 14 رحلة أسبوعيًا ابتداءً من 31 مارس 2024. لم يتم التحقق من الوتيرة الحالية على موقع الخطوط السعودية.",
+    "claim_en": "Saudia increased its Jeddah-Casablanca route from 10 to 14 weekly flights from 31 March 2024. The current frequency was not checked on Saudia's website.",
+    "values": [
+      "10",
+      "14",
+      "31",
+      "2024"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://blog.wego.com/saudia-to-increase-flight-frequencies-to-kuwait-dammam-and-more-news/",
+      "https://lufthansa-city-center.foleon.com/destination-magazines/lcc-presents-saudi-airlines/new-routes-and-destinations"
+    ],
+    "source_tier": "media",
+    "confidence": "likely",
+    "required_wording": "selon Wego, qui cite une annonce de Saudia",
+    "required_wording_ar": "حسب موقع Wego نقلًا عن إعلان للخطوط السعودية",
+    "required_wording_en": "according to Wego, citing a Saudia announcement",
+    "conflicts": [],
+    "status": "proposed",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-01-18",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_flights_saudia_marrakech_2022",
+    "topic": "flights",
+    "claim_fr": "En juin 2022, Saudia a repris ses vols directs saisonniers Djeddah-Marrakech, avec 3 vols par semaine en Boeing 787-9 de 298 sièges ; Marrakech était alors sa 2e destination au Maroc après Casablanca. Nous n'avons pas vérifié si cette ligne est opérée en 2026.",
+    "claim_ar": "في يونيو 2022، استأنفت الخطوط السعودية رحلاتها المباشرة الموسمية بين جدة ومراكش، بمعدل 3 رحلات أسبوعيًا على متن طائرة بوينغ 787-9 بسعة 298 مقعدًا؛ وكانت مراكش وجهتها الثانية في المغرب بعد الدار البيضاء. لم نتحقق مما إذا كان هذا الخط مشغلًا في 2026.",
+    "claim_en": "In June 2022, Saudia resumed seasonal direct Jeddah-Marrakech flights, with 3 weekly flights on a 298-seat Boeing 787-9; Marrakech was then its 2nd destination in Morocco after Casablanca. We did not check whether this route operates in 2026.",
+    "values": [
+      "2022",
+      "3",
+      "787",
+      "9",
+      "298",
+      "2",
+      "2026"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://snrtnews.com/fr/article/la-compagnie-aerienne-saudia-reprend-ses-vols-directs-vers-marrakech-46316",
+      "https://fr.hespress.com/268937-268937.html"
+    ],
+    "source_tier": "media",
+    "confidence": "verified",
+    "required_wording": null,
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-04-18",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_flights_saudi_68_monthly_2023",
+    "topic": "flights",
+    "claim_fr": "L'accord signé à Rabat le 4 octobre 2023 par le ministre marocain des Habous et le ministre saoudien du Hajj et de la Omra prévoyait une hausse progressive des dessertes saoudiennes pendant les périodes de Omra jusqu'à 68 vols par mois, et une franchise bagages portée de 46 à 69 kg par pèlerin. La mise en œuvre de ces mesures n'a pas été vérifiée.",
+    "claim_ar": "نصّ الاتفاق الموقع بالرباط في 4 أكتوبر 2023 بين وزير الأوقاف المغربي ووزير الحج والعمرة السعودي على رفع تدريجي للرحلات السعودية خلال مواسم العمرة لتصل إلى 68 رحلة شهريًا، ورفع وزن الأمتعة المسموح به من 46 إلى 69 كلغ لكل معتمر. لم يتم التحقق من تنفيذ هذه الإجراءات.",
+    "claim_en": "The agreement signed in Rabat on 4 October 2023 by Morocco's Habous minister and the Saudi Hajj and Umrah minister provided for a gradual increase in Saudi flights during Umrah periods to 68 flights a month, and a baggage allowance raised from 46 to 69 kg per pilgrim. Implementation of these measures was not verified.",
+    "values": [
+      "4",
+      "2023",
+      "68",
+      "46",
+      "69"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://fr.le360.ma/economie/hajj-et-omra-ce-qui-va-changer_EHN32ZXANZAVJEU4N4CN5ALBZA/",
+      "https://en.hespress.com/72103-saudi-minister-of-hajj-announces-eased-procedures-for-moroccan-pilgrims.html"
+    ],
+    "source_tier": "media",
+    "confidence": "likely",
+    "required_wording": "mesures annoncées en octobre 2023, selon Le360 et Hespress",
+    "required_wording_ar": "إجراءات أُعلن عنها في أكتوبر 2023، حسب Le360 وهسبريس",
+    "required_wording_en": "measures announced in October 2023, according to Le360 and Hespress",
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-04-18",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_flights_flynas_300k_passengers",
+    "topic": "flights",
+    "claim_fr": "flynas indique avoir transporté plus de 300 000 passagers entre l'Arabie saoudite et le Maroc en 3 ans d'exploitation de sa ligne Djeddah-Casablanca, et avoir opéré des vols supplémentaires pour les pèlerins au départ du Maroc.",
+    "claim_ar": "تقول طيران ناس إنها نقلت أكثر من 300.000 مسافر بين السعودية والمغرب خلال 3 سنوات من تشغيل خطها جدة-الدار البيضاء، وإنها سيّرت رحلات إضافية للحجاج والمعتمرين انطلاقًا من المغرب.",
+    "claim_en": "flynas says it has carried more than 300,000 passengers between Saudi Arabia and Morocco in 3 years of operating its Jeddah-Casablanca route, and has run extra flights for pilgrims from Morocco.",
+    "values": [
+      "300000",
+      "3"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://www.flynas.com/en/media-center/news-updates/flynas-celebrates-3-years-of-operating-flights-between-jeddah-and-cazablanca-and-announces-the-launch-of-a-new-air-route-to-rabat-soon/"
+    ],
+    "source_tier": "airline",
+    "confidence": "likely",
+    "required_wording": "selon flynas",
+    "required_wording_ar": "حسب طيران ناس",
+    "required_wording_en": "according to flynas",
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-04-18",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_flights_ram_one_third_2022",
+    "topic": "flights",
+    "claim_fr": "Lors des critiques sur le manque de vols pour la Omra du Ramadan 2022, Royal Air Maroc a indiqué assurer environ le tiers de l'offre aérienne, les deux autres tiers étant assurés par d'autres compagnies internationales, dont les compagnies saoudiennes.",
+    "claim_ar": "ردًّا على الانتقادات بشأن نقص الرحلات لعمرة رمضان 2022، أوضحت الخطوط الملكية المغربية أنها تؤمّن نحو ثلث العرض الجوي، فيما تؤمّن شركات دولية أخرى، منها الشركات السعودية، الثلثين المتبقيين.",
+    "claim_en": "Responding to criticism over a lack of flights for the Ramadan 2022 Umrah, Royal Air Maroc said it provided about one third of the air capacity, with the other two thirds provided by other international airlines, including Saudi carriers.",
+    "values": [
+      "2022"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://snrtnews.com/fr/article/manque-des-vols-pour-lomra-du-ramadan-la-ram-se-justifie-37658"
+    ],
+    "source_tier": "media",
+    "confidence": "likely",
+    "required_wording": "selon Royal Air Maroc, citée par SNRTnews",
+    "required_wording_ar": "حسب الخطوط الملكية المغربية، نقلًا عن SNRTnews",
+    "required_wording_en": "according to Royal Air Maroc, quoted by SNRTnews",
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-04-18",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_flights_ramadan_2025_full",
+    "topic": "flights",
+    "claim_fr": "Début mars 2025, LesEco rapportait qu'il restait difficile de trouver un vol direct Casablanca-Djeddah pour la Omra du Ramadan malgré la hausse des dessertes, presque toutes les compagnies affichant complet sur les vols directs Maroc-Arabie saoudite en février 2025.",
+    "claim_ar": "في مطلع مارس 2025، أفادت LesEco بأن العثور على رحلة مباشرة بين الدار البيضاء وجدة لعمرة رمضان ظل صعبًا رغم زيادة الرحلات، إذ أعلنت جل الشركات امتلاء رحلاتها المباشرة بين المغرب والسعودية في فبراير 2025.",
+    "claim_en": "In early March 2025, LesEco reported that a direct Casablanca-Jeddah flight for the Ramadan Umrah was still hard to find despite more frequencies, with almost all airlines full on direct Morocco-Saudi flights in February 2025.",
+    "values": [
+      "2025"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://leseco.ma/maroc/omra-ramadan-cest-la-haute-saison-pour-les-agences-de-voyages.html"
+    ],
+    "source_tier": "media",
+    "confidence": "likely",
+    "required_wording": "selon LesEco",
+    "required_wording_ar": "حسب LesEco",
+    "required_wording_en": "according to LesEco",
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-04-18",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_prices_2025_federation_30000",
+    "topic": "prices",
+    "claim_fr": "En janvier 2025, avant la saison de Chaabane et du Ramadan, le président de la Fédération nationale des agences de voyages, Mohamed Semlali, a déclaré que le coût de la Omra avait augmenté jusqu'à 50 % par rapport aux années précédentes, et que les forfaits économiques les moins chers commençaient à 30 000 dirhams par personne, contre environ 14 000 à 20 000 dirhams auparavant.",
+    "claim_ar": "في يناير 2025، وقبل موسم شعبان ورمضان، صرّح رئيس الجامعة الوطنية لوكالات الأسفار، محمد السملالي، بأن كلفة العمرة ارتفعت بما يصل إلى 50 في المائة مقارنة بالسنوات السابقة، وأن أرخص الباقات الاقتصادية تبدأ من 30.000 درهم للشخص، مقابل نحو 14.000 إلى 20.000 درهم سابقًا.",
+    "claim_en": "In January 2025, ahead of the Shaban and Ramadan season, the president of the national federation of travel agencies, Mohamed Semlali, said the cost of Umrah had risen by up to 50% compared with previous years, and that the cheapest economy packages started at 30,000 dirhams per person, against about 14,000 to 20,000 dirhams before.",
+    "values": [
+      "2025",
+      "50",
+      "30000",
+      "14000",
+      "20000"
+    ],
+    "unit": "MAD",
+    "source_urls": [
+      "https://www.moroccoworldnews.com/2025/01/165881/rising-costs-of-umrah-packages-for-shaban-ramadan-spark-concerns-in-morocco/"
+    ],
+    "source_tier": "media",
+    "confidence": "likely",
+    "required_wording": "selon le président de la fédération, cité par Morocco World News (janvier 2025)",
+    "required_wording_ar": "حسب رئيس الجامعة، كما نقل عنه موقع Morocco World News (يناير 2025)",
+    "required_wording_en": "according to the federation's president, quoted by Morocco World News (January 2025)",
+    "conflicts": [
+      {
+        "value": "forfaits de base de 14 000 à 30 000 MAD, contre 11 000 MAD l'année précédente (gérant d'agence casablancais, même article)",
+        "source_url": "https://www.moroccoworldnews.com/2025/01/165881/rising-costs-of-umrah-packages-for-shaban-ramadan-spark-concerns-in-morocco/"
+      },
+      {
+        "value": "environ 25 000 MAD minimum pour certains forfaits du Ramadan 2025",
+        "source_url": "https://leseco.ma/maroc/omra-ramadan-cest-la-haute-saison-pour-les-agences-de-voyages.html"
+      }
+    ],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2026-11-19",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_prices_ramadan_2025_leseco",
+    "topic": "prices",
+    "claim_fr": "Pour la Omra du Ramadan 2025, LesEco indiquait qu'il fallait compter environ 25 000 dirhams minimum pour certains forfaits, et 2 à 3 fois plus pour les formules premium et VIP pour une personne.",
+    "claim_ar": "بالنسبة لعمرة رمضان 2025، أشارت LesEco إلى ضرورة رصد نحو 25.000 درهم كحد أدنى لبعض الباقات، ومرتين إلى ثلاث مرات أكثر للصيغ الممتازة وVIP للشخص الواحد.",
+    "claim_en": "For the Ramadan 2025 Umrah, LesEco said some packages started at about 25,000 dirhams, and premium and VIP packages cost 2 to 3 times more per person.",
+    "values": [
+      "2025",
+      "25000",
+      "2",
+      "3"
+    ],
+    "unit": "MAD",
+    "source_urls": [
+      "https://leseco.ma/maroc/omra-ramadan-cest-la-haute-saison-pour-les-agences-de-voyages.html"
+    ],
+    "source_tier": "media",
+    "confidence": "likely",
+    "required_wording": "selon LesEco (mars 2025)",
+    "required_wording_ar": "حسب LesEco (مارس 2025)",
+    "required_wording_en": "according to LesEco (March 2025)",
+    "conflicts": [
+      {
+        "value": "30 000 MAD minimum pour les forfaits économiques (président de la fédération, janvier 2025)",
+        "source_url": "https://www.moroccoworldnews.com/2025/01/165881/rising-costs-of-umrah-packages-for-shaban-ramadan-spark-concerns-in-morocco/"
+      }
+    ],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2026-11-19",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_prices_rajab_shaban_2025_hespress",
+    "topic": "prices",
+    "claim_fr": "Fin décembre 2024, des agences citées par Hespress proposaient la Omra à partir de 16 500 dirhams (chambre quadruple) pour la seconde moitié de Rajab et 15 500 dirhams pour 2 semaines en Chaabane ; les formules couvrant une partie du Ramadan partaient de 18 000 dirhams et dépassaient généralement 20 000 dirhams. Ces prix étaient discutés entre professionnels.",
+    "claim_ar": "أواخر دجنبر 2024، كانت وكالات نقلت عنها هسبريس تعرض العمرة ابتداءً من 16.500 درهم (غرفة رباعية) للنصف الثاني من رجب، و15.500 درهم لأسبوعين في شعبان؛ أما الصيغ التي تشمل جزءًا من رمضان فتبدأ من 18.000 درهم وتتجاوز عمومًا 20.000 درهم. وكانت هذه الأسعار محل نقاش بين المهنيين.",
+    "claim_en": "In late December 2024, agencies quoted by Hespress offered Umrah from 16,500 dirhams (quad room) for the second half of Rajab and 15,500 dirhams for 2 weeks in Shaban; packages covering part of Ramadan started at 18,000 dirhams and generally exceeded 20,000 dirhams. These prices were disputed among professionals.",
+    "values": [
+      "2024",
+      "16500",
+      "15500",
+      "2",
+      "18000",
+      "20000"
+    ],
+    "unit": "MAD",
+    "source_urls": [
+      "https://www.hespress.com/%D9%88%D9%83%D8%A7%D9%84%D8%A7%D8%AA-%D8%A3%D8%B3%D9%81%D8%A7%D8%B1-%D9%85%D8%BA%D8%B1%D8%A8%D9%8A%D8%A9-%D8%AA%D9%82%D8%AF%D9%85-%D8%B9%D8%B1%D9%88%D8%B6-%D8%A7%D9%84%D8%B9%D9%85%D8%B1%D8%A9-%D8%A8-1485098.html"
+    ],
+    "source_tier": "media",
+    "confidence": "likely",
+    "required_wording": "selon des agences citées par Hespress (décembre 2024)",
+    "required_wording_ar": "حسب وكالات أسفار نقلت عنها هسبريس (دجنبر 2024)",
+    "required_wording_en": "according to agencies quoted by Hespress (December 2024)",
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2026-11-19",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_prices_ramadan_2024_le360_budget",
+    "topic": "prices",
+    "claim_fr": "En mars 2024, le président de l'association des agences de voyages de Casablanca-Settat estimait une Omra économique du Ramadan à environ 25 000 dirhams, dont un billet aller-retour d'environ 14 000 dirhams en moyenne ; les offres de luxe pouvaient dépasser 60 000 dirhams, avec un billet en classe affaires à 35 000 dirhams aller-retour. Le prix dépend de la distance de l'hôtel à la mosquée al-Haram et de la durée du séjour.",
+    "claim_ar": "في مارس 2024، قدّر رئيس جمعية وكالات الأسفار بجهة الدار البيضاء-سطات كلفة عمرة رمضان الاقتصادية بنحو 25.000 درهم، منها تذكرة ذهاب وإياب بنحو 14.000 درهم في المتوسط؛ وقد تتجاوز العروض الفاخرة 60.000 درهم، مع تذكرة درجة الأعمال بـ35.000 درهم ذهابًا وإيابًا. ويتوقف السعر على قرب الفندق من المسجد الحرام ومدة الإقامة.",
+    "claim_en": "In March 2024, the president of the Casablanca-Settat travel agencies association put an economy Ramadan Umrah at about 25,000 dirhams, including an average return ticket of about 14,000 dirhams; luxury offers could exceed 60,000 dirhams, with a business-class return ticket at 35,000 dirhams. The price depends on the hotel's distance from al-Haram mosque and the length of stay.",
+    "values": [
+      "2024",
+      "25000",
+      "14000",
+      "60000",
+      "35000"
+    ],
+    "unit": "MAD",
+    "source_urls": [
+      "https://fr.le360.ma/societe/quel-budget-prevoir-pour-la-omra-en-ce-mois-sacre_32YFGWS7Y5AY3ETSHC6CQ73EGA/"
+    ],
+    "source_tier": "media",
+    "confidence": "likely",
+    "required_wording": "selon un responsable associatif cité par Le360 (mars 2024)",
+    "required_wording_ar": "حسب مسؤول جمعوي نقل عنه موقع Le360 (مارس 2024)",
+    "required_wording_en": "according to an agency-association head quoted by Le360 (March 2024)",
+    "conflicts": [
+      {
+        "value": "coût moyen d'environ 35 000 MAD en 2024 (fédération, Medias24)",
+        "source_url": "https://medias24.com/2024/04/03/omra-2024-inflation-situation-geopolitique-et-secteur-informel-ont-fait-chuter-le-nombre-de-pelerins/"
+      }
+    ],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2026-11-19",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_prices_off_ramadan_up_to_50_2024",
+    "topic": "prices",
+    "claim_fr": "Selon le même responsable cité par Le360 en mars 2024, les prix grimpent surtout pendant les 10 derniers jours du Ramadan, et une Omra hors Ramadan peut coûter jusqu'à 50 % de moins.",
+    "claim_ar": "حسب المسؤول نفسه الذي نقل عنه Le360 في مارس 2024، ترتفع الأسعار خاصة خلال العشر الأواخر من رمضان، وقد تكلّف العمرة خارج رمضان أقل بما يصل إلى 50 في المائة.",
+    "claim_en": "According to the same official quoted by Le360 in March 2024, prices climb most during the last 10 days of Ramadan, and an Umrah outside Ramadan can cost up to 50% less.",
+    "values": [
+      "2024",
+      "10",
+      "50"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://fr.le360.ma/societe/quel-budget-prevoir-pour-la-omra-en-ce-mois-sacre_32YFGWS7Y5AY3ETSHC6CQ73EGA/"
+    ],
+    "source_tier": "media",
+    "confidence": "likely",
+    "required_wording": "selon un responsable associatif cité par Le360 (mars 2024)",
+    "required_wording_ar": "حسب مسؤول جمعوي نقل عنه موقع Le360 (مارس 2024)",
+    "required_wording_en": "according to an agency-association head quoted by Le360 (March 2024)",
+    "conflicts": [
+      {
+        "value": "hors Ramadan 20 à 35 % moins cher (guide Wafir, juin 2026)",
+        "source_url": "https://wafir.ma/fr/guide/omra-ete-2026-maroc-12-agences-comparatif-prix-financement"
+      }
+    ],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2026-11-19",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_prices_2022_cheapest_24000",
+    "topic": "prices",
+    "claim_fr": "En 2022, le président de la Fédération nationale des agences de voyages, Mohamed Semlali, indiquait que le forfait Omra le moins cher était passé de 18 000 à 24 000 dirhams depuis la pandémie, surtout à cause de la hausse des billets d'avion.",
+    "claim_ar": "في 2022، أوضح رئيس الجامعة الوطنية لوكالات الأسفار، محمد السملالي، أن أرخص باقة عمرة ارتفعت من 18.000 إلى 24.000 درهم منذ الجائحة، أساسًا بسبب ارتفاع أسعار تذاكر الطيران.",
+    "claim_en": "In 2022, the president of the national federation of travel agencies, Mohamed Semlali, said the cheapest Umrah package had risen from 18,000 to 24,000 dirhams since the pandemic, mainly because of higher airfares.",
+    "values": [
+      "2022",
+      "18000",
+      "24000"
+    ],
+    "unit": "MAD",
+    "source_urls": [
+      "https://lematin.ma/express/2022/voila-omra-coutera-plus-cher-cette-annee/373280.html"
+    ],
+    "source_tier": "media",
+    "confidence": "likely",
+    "required_wording": "selon le président de la fédération, cité par Le Matin (2022)",
+    "required_wording_ar": "حسب رئيس الجامعة، كما نقلت عنه جريدة Le Matin (2022)",
+    "required_wording_en": "according to the federation's president, quoted by Le Matin (2022)",
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2026-11-19",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_prices_agency_margin_2023",
+    "topic": "prices",
+    "claim_fr": "En 2023, Challenge relevait une hausse de plus de 30 % du coût de la Omra, liée à l'offre aérienne et à l'hébergement, et situait la marge des agences entre 10 et 25 % du prix du forfait.",
+    "claim_ar": "في 2023، رصدت مجلة Challenge ارتفاعًا يفوق 30 في المائة في كلفة العمرة، مرتبطًا بالعرض الجوي والإقامة، وقدّرت هامش ربح الوكالات بين 10 و25 في المائة من سعر الباقة.",
+    "claim_en": "In 2023, Challenge reported a rise of more than 30% in the cost of Umrah, linked to air capacity and accommodation, and put agencies' margins at 10 to 25% of the package price.",
+    "values": [
+      "2023",
+      "30",
+      "10",
+      "25"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://www.challenge.ma/hajj-et-omra-un-business-en-pleine-mutation-258626/"
+    ],
+    "source_tier": "media",
+    "confidence": "likely",
+    "required_wording": "selon Challenge (2023)",
+    "required_wording_ar": "حسب مجلة Challenge (2023)",
+    "required_wording_en": "according to Challenge (2023)",
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2026-11-19",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_market_precovid_ramadan_share",
+    "topic": "other",
+    "claim_fr": "Avant la pandémie, la Omra attirait plus de 100 000 pèlerins marocains par an, dont près de 60 % pendant le Ramadan.",
+    "claim_ar": "قبل الجائحة، كانت العمرة تستقطب أكثر من 100.000 معتمر مغربي سنويًا، نحو 60 في المائة منهم خلال رمضان.",
+    "claim_en": "Before the pandemic, Umrah drew more than 100,000 Moroccan pilgrims a year, nearly 60% of them during Ramadan.",
+    "values": [
+      "100000",
+      "60"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://www.challenge.ma/hajj-et-omra-un-business-en-pleine-mutation-258626/"
+    ],
+    "source_tier": "media",
+    "confidence": "likely",
+    "required_wording": "selon Challenge",
+    "required_wording_ar": "حسب مجلة Challenge",
+    "required_wording_en": "according to Challenge",
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-04-18",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_market_bookings_drop_oct_2026",
+    "topic": "other",
+    "claim_fr": "Le 14 octobre 2026, le président de la FNAAVM, Mohamed Semlali, a indiqué à Medias24 que les réservations de Omra au Maroc avaient chuté d'environ 60 % après les attaques houthies contre l'aéroport de Riyad (à partir du 10 octobre 2026). Aucune annulation n'était signalée pour le Hajj, mais la fédération redoute un effet sur le Ramadan de février 2027 et le Hajj de mai 2027.",
+    "claim_ar": "في 14 أكتوبر 2026، صرّح رئيس الجامعة الوطنية لجمعيات وكالات الأسفار بالمغرب، محمد السملالي، لموقع Medias24 بأن حجوزات العمرة في المغرب تراجعت بنحو 60 في المائة بعد هجمات الحوثيين على مطار الرياض (ابتداءً من 10 أكتوبر 2026). ولم تُسجَّل إلغاءات بالنسبة للحج، لكن الجامعة تخشى تأثيرًا على رمضان فبراير 2027 وحج ماي 2027.",
+    "claim_en": "On 14 October 2026, FNAAVM president Mohamed Semlali told Medias24 that Umrah bookings in Morocco had dropped by about 60% after Houthi attacks on Riyadh airport (from 10 October 2026). No Hajj cancellations were reported, but the federation fears an impact on Ramadan in February 2027 and Hajj in May 2027.",
+    "values": [
+      "14",
+      "2026",
+      "60",
+      "10",
+      "2027"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://medias24.com/2026/10/14/omra-les-attaques-houthies-a-riyad-font-chuter-les-reservations-de-60-et-menacent-le-ramadan-et-le-hajj-1779351"
+    ],
+    "source_tier": "media",
+    "confidence": "likely",
+    "required_wording": "selon le président de la FNAAVM, cité par Medias24 (14 octobre 2026)",
+    "required_wording_ar": "حسب رئيس الجامعة الوطنية لجمعيات وكالات الأسفار، كما نقل عنه موقع Medias24 (14 أكتوبر 2026)",
+    "required_wording_en": "according to the FNAAVM president, quoted by Medias24 (14 October 2026)",
+    "conflicts": [],
+    "status": "proposed",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2026-11-19",
+    "valid_until": null,
+    "time_critical": true,
+    "supersedes": null
+  },
+  {
+    "id": "fact_market_size_100k_2026",
+    "topic": "other",
+    "claim_fr": "Selon la FNAAVM (octobre 2026), le marché de la Omra représente près de 100 000 Marocains par an.",
+    "claim_ar": "حسب الجامعة الوطنية لجمعيات وكالات الأسفار بالمغرب (أكتوبر 2026)، تمثل سوق العمرة قرابة 100.000 مغربي سنويًا.",
+    "claim_en": "According to FNAAVM (October 2026), the Umrah market represents nearly 100,000 Moroccans a year.",
+    "values": [
+      "2026",
+      "100000"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://medias24.com/2026/10/14/omra-les-attaques-houthies-a-riyad-font-chuter-les-reservations-de-60-et-menacent-le-ramadan-et-le-hajj-1779351"
+    ],
+    "source_tier": "media",
+    "confidence": "estimate",
+    "required_wording": "selon la fédération des agences de voyages, citée par Medias24",
+    "required_wording_ar": "حسب جامعة وكالات الأسفار، كما نقل عنها موقع Medias24",
+    "required_wording_en": "according to the travel agencies federation, quoted by Medias24",
+    "conflicts": [],
+    "status": "proposed",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-04-18",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_agency_refunds_contract_terms_2026",
+    "topic": "agency_rules",
+    "claim_fr": "En octobre 2026, faute de consigne officielle déconseillant les voyages en Arabie saoudite, les remboursements des Omras annulées tardivement restaient soumis aux conditions du contrat et à d'éventuelles pénalités ; les agences paient généralement les hôtels d'avance et ne récupèrent pas automatiquement ces sommes.",
+    "claim_ar": "في أكتوبر 2026، وفي غياب أي توجيه رسمي ينصح بعدم السفر إلى السعودية، ظلت استرجاعات مبالغ العمرات الملغاة متأخرًا خاضعة لشروط العقد ولغرامات محتملة؛ إذ تؤدي الوكالات عادة ثمن الفنادق مسبقًا ولا تسترجع هذه المبالغ تلقائيًا.",
+    "claim_en": "In October 2026, with no official advice against travel to Saudi Arabia, refunds for late-cancelled Umrah trips remained subject to contract terms and possible penalties; agencies usually pay hotels in advance and do not automatically recover that money.",
+    "values": [
+      "2026"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://medias24.com/2026/10/14/omra-les-attaques-houthies-a-riyad-font-chuter-les-reservations-de-60-et-menacent-le-ramadan-et-le-hajj-1779351"
+    ],
+    "source_tier": "media",
+    "confidence": "likely",
+    "required_wording": "selon la fédération des agences de voyages, citée par Medias24",
+    "required_wording_ar": "حسب جامعة وكالات الأسفار، كما نقل عنها موقع Medias24",
+    "required_wording_en": "according to the travel agencies federation, quoted by Medias24",
+    "conflicts": [],
+    "status": "proposed",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2026-11-19",
+    "valid_until": null,
+    "time_critical": true,
+    "supersedes": null
+  },
+  {
+    "id": "fact_market_omra_without_agency_2025",
+    "topic": "other",
+    "claim_fr": "En mars 2025, LesEco notait que de nombreux Marocains préparent désormais leur Omra eux-mêmes, sans agence, l'application Nusuk facilitant l'obtention du visa ; un éditorial du même journal ajoutait que les Marocains préfèrent généralement passer par une agence pour un « pack global ».",
+    "claim_ar": "في مارس 2025، لاحظت LesEco أن كثيرًا من المغاربة باتوا يحضّرون عمرتهم بأنفسهم دون وكالة، إذ يسهّل تطبيق «نسك» الحصول على التأشيرة؛ وأضافت افتتاحية للجريدة نفسها أن المغاربة يفضلون عمومًا المرور عبر وكالة للحصول على «باقة شاملة».",
+    "claim_en": "In March 2025, LesEco noted that many Moroccans now organise their Umrah themselves, without an agency, with the Nusuk app making the visa easier to get; an editorial in the same paper added that Moroccans generally prefer an agency for an all-in package.",
+    "values": [
+      "2025"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://leseco.ma/maroc/omra-ramadan-cest-la-haute-saison-pour-les-agences-de-voyages.html",
+      "https://leseco.ma/opinion/edito-omra-ramadanesque.html"
+    ],
+    "source_tier": "media",
+    "confidence": "likely",
+    "required_wording": "selon LesEco",
+    "required_wording_ar": "حسب LesEco",
+    "required_wording_en": "according to LesEco",
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-04-18",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_prices_summer_2026_wafir_guide",
+    "topic": "prices",
+    "claim_fr": "Un guide comparatif de Wafir (mis à jour en juin 2026) relevait, pour l'été 2026, des forfaits Omra de 18 000 à 45 000 dirhams chez 12 agences, et des tarifs hors Ramadan inférieurs de 20 à 35 %. Il s'agit d'un site comparateur, pas d'un média d'information.",
+    "claim_ar": "رصد دليل مقارنة لموقع Wafir (محيَّن في يونيو 2026)، بالنسبة لصيف 2026، باقات عمرة تتراوح بين 18.000 و45.000 درهم لدى 12 وكالة، وأسعارًا خارج رمضان أقل بنسبة 20 إلى 35 في المائة. يتعلق الأمر بموقع للمقارنة وليس بوسيلة إعلامية إخبارية.",
+    "claim_en": "A Wafir comparison guide (updated June 2026) found summer 2026 Umrah packages from 18,000 to 45,000 dirhams across 12 agencies, and off-Ramadan prices 20 to 35% lower. Wafir is a comparison site, not a news outlet.",
+    "values": [
+      "2026",
+      "18000",
+      "45000",
+      "12",
+      "20",
+      "35"
+    ],
+    "unit": "MAD",
+    "source_urls": [
+      "https://wafir.ma/fr/guide/omra-ete-2026-maroc-12-agences-comparatif-prix-financement"
+    ],
+    "source_tier": "company_stated",
+    "confidence": "estimate",
+    "required_wording": "selon un guide comparatif de Wafir (juin 2026)",
+    "required_wording_ar": "حسب دليل مقارنة لموقع Wafir (يونيو 2026)",
+    "required_wording_en": "according to a Wafir comparison guide (June 2026)",
+    "conflicts": [],
+    "status": "proposed",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2026-11-19",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_agency_sanctions_ramadan_2022_detail",
+    "topic": "agency_rules",
+    "claim_fr": "En mai 2022, après les plaintes liées à la Omra du Ramadan 2022, le ministère du Tourisme a prononcé 2 retraits définitifs de licence, 2 retraits provisoires de 3 mois et 7 avertissements ; les agences sanctionnées ne pouvaient plus postuler au label du pèlerinage pendant 3 ans. Le comité consultatif s'était réuni les 8 mars, 22 avril et 5 mai 2022.",
+    "claim_ar": "في ماي 2022، وبعد الشكايات المتعلقة بعمرة رمضان 2022، قررت وزارة السياحة سحبين نهائيين للرخصة، وسحبين مؤقتين لمدة 3 أشهر، و7 إنذارات؛ ولم يعد بإمكان الوكالات المعاقبة الترشح لعلامة تنظيم الحج والعمرة لمدة 3 سنوات. وكانت اللجنة الاستشارية قد اجتمعت في 8 مارس و22 أبريل و5 ماي 2022.",
+    "claim_en": "In May 2022, after complaints about the Ramadan 2022 Umrah, the Ministry of Tourism ordered 2 permanent licence withdrawals, 2 provisional 3-month withdrawals and 7 warnings; the sanctioned agencies could not apply for the pilgrimage label for 3 years. The advisory committee had met on 8 March, 22 April and 5 May 2022.",
+    "values": [
+      "2022",
+      "2",
+      "3",
+      "7",
+      "8",
+      "22",
+      "5"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://telquel.ma/instant-t/2022/05/07/omra-2022-le-ministere_1765750/",
+      "https://fr.le360.ma/economie/omra-de-ramadan-2022-le-ministere-du-tourisme-sanctionne-plusieurs-agences-de-voyages-259682/",
+      "https://medias24.com/2022/05/09/omra-des-agences-de-voyages-sanctionnees/"
+    ],
+    "source_tier": "media",
+    "confidence": "verified",
+    "required_wording": null,
+    "conflicts": [
+      {
+        "value": "15 agences sanctionnées en 2022 (fact_sanctions_2022 ; périmètre possiblement différent)",
+        "source_url": "https://fr.hespress.com/270927-270927.html"
+      }
+    ],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-04-18",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_agency_saudi_suspension_new_visas_only",
+    "topic": "agency_rules",
+    "claim_fr": "Après la suspension par l'Arabie saoudite, début février 2026, des contrats de quelque 1 800 agences Omra étrangères, le président de la fédération marocaine des agences de voyages a rassuré les pèlerins : selon lui, la mesure ne touchait que la délivrance de nouveaux visas et relevait d'une stratégie de régulation, non d'une sanction.",
+    "claim_ar": "بعد تعليق السعودية، مطلع فبراير 2026، عقود نحو 1800 وكالة عمرة أجنبية، طمأن رئيس الجامعة المغربية لوكالات الأسفار المعتمرين: فحسبه، لا يمس الإجراء سوى إصدار التأشيرات الجديدة ويندرج ضمن استراتيجية تنظيمية وليس عقوبة.",
+    "claim_en": "After Saudi Arabia suspended the contracts of some 1,800 foreign Umrah agencies in early February 2026, the president of Morocco's travel agencies federation reassured pilgrims: in his view, the measure only affected the issuance of new visas and was part of a regulatory strategy, not a sanction.",
+    "values": [
+      "2026",
+      "1800"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://www.moroccoworldnews.com/2026/02/277206/saudi-arabia-suspends-contracts-with-1800-foreign-umrah-travel-agencies/"
+    ],
+    "source_tier": "media",
+    "confidence": "likely",
+    "required_wording": "selon le président de la fédération, cité par Morocco World News",
+    "required_wording_ar": "حسب رئيس الجامعة، كما نقل عنه موقع Morocco World News",
+    "required_wording_en": "according to the federation's president, quoted by Morocco World News",
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-04-18",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_fraud_pre_ramadan_pattern_2024",
+    "topic": "fraud_cases",
+    "claim_fr": "En mars 2024, selon une revue de presse de Le360, les arnaques à la Omra avaient repris avant même le Ramadan : des dizaines de personnes à Salé disaient avoir été escroquées par une agence peu après l'ouverture des inscriptions ; l'association régionale des agences de Rabat-Salé-Kénitra jugeait que ces affaires nuisaient à la profession, et les autorités avaient averti les agences contre la délivrance de visas hors procédures officielles.",
+    "claim_ar": "في مارس 2024، وحسب قراءة صحفية لموقع Le360، عادت عمليات النصب في العمرة حتى قبل رمضان: عشرات الأشخاص بسلا قالوا إن وكالة احتالت عليهم بعد فتح التسجيلات بقليل؛ واعتبرت الجمعية الجهوية لوكالات الأسفار بالرباط-سلا-القنيطرة أن هذه القضايا تسيء إلى المهنة، فيما حذّرت السلطات الوكالات من إصدار تأشيرات خارج المساطر الرسمية.",
+    "claim_en": "In March 2024, according to a Le360 press review, Umrah scams had resumed even before Ramadan: dozens of people in Salé said an agency had defrauded them shortly after registrations opened; the Rabat-Salé-Kénitra regional agency association said such cases harmed the profession, and the authorities had warned agencies against issuing visas outside official procedures.",
+    "values": [
+      "2024"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://fr.le360.ma/societe/omra-le-ramadan-na-pas-encore-commence-mais-les-arnaques-si_VQY3F6HO3FEKBL7BGNOLO4KPJQ/"
+    ],
+    "source_tier": "media",
+    "confidence": "likely",
+    "required_wording": "selon une revue de presse de Le360 (mars 2024)",
+    "required_wording_ar": "حسب قراءة صحفية لموقع Le360 (مارس 2024)",
+    "required_wording_en": "according to a Le360 press review (March 2024)",
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-04-18",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_fraud_visa_scam_arrests_2024",
+    "topic": "fraud_cases",
+    "claim_fr": "Le 3 juillet 2024, TelQuel a rapporté 3 arrestations à Marrakech et Fès pour escroquerie aux visas de pèlerinage. Il s'agit d'arrestations, pas de condamnations.",
+    "claim_ar": "في 3 يوليوز 2024، أفادت TelQuel بتوقيف 3 أشخاص بمراكش وفاس بتهمة النصب في تأشيرات الحج والعمرة. يتعلق الأمر بتوقيفات وليس بأحكام إدانة.",
+    "claim_en": "On 3 July 2024, TelQuel reported 3 arrests in Marrakech and Fez over pilgrimage-visa fraud. These were arrests, not convictions.",
+    "values": [
+      "3",
+      "2024"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://telquel.ma/instant-t/2024/07/03/marrakech-et-fes-trois-arrestations-pour-escroquerie-aux-visas-de-pelerinage_1881397/"
+    ],
+    "source_tier": "media",
+    "confidence": "verified",
+    "required_wording": null,
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-04-18",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_fraud_saudi_warning_fake_offers_2025",
+    "topic": "fraud_cases",
+    "claim_fr": "Le 9 avril 2025, le ministère saoudien du Hajj et de la Omra a mis en garde contre les publicités trompeuses et les offres fictives : seuls le parcours électronique de son site officiel et l'application Nusuk étaient présentés comme canaux approuvés pour réserver les forfaits du Hajj.",
+    "claim_ar": "في 9 أبريل 2025، حذّرت وزارة الحج والعمرة السعودية من الإعلانات المضللة والعروض الوهمية: إذ قُدّم المسار الإلكتروني لموقعها الرسمي وتطبيق «نسك» باعتبارهما القناتين المعتمدتين الوحيدتين لحجز باقات الحج.",
+    "claim_en": "On 9 April 2025, the Saudi Ministry of Hajj and Umrah warned against misleading advertising and fake offers: only the e-track on its official website and the Nusuk app were presented as approved channels for booking Hajj packages.",
+    "values": [
+      "9",
+      "2025"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://telquel.ma/instant-t/2025/04/09/hajj-larabie-saoudite-met-en-garde-contre-les-annonces-trompeuses_1925979/"
+    ],
+    "source_tier": "media",
+    "confidence": "verified",
+    "required_wording": null,
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-04-18",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  }
+]

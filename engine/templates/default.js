@@ -1,43 +1,43 @@
 // Default templates. Each returns an HTML string. A theme can override any of them through
 // themes/<domain>/theme.js -> templates: { name(ctx, ...args, defaults) }.
 // Stable class names are documented in docs/ENGINE.md.
-import { esc, stripMarkers, formatDate, fill } from '../lib/util.js';
+import { esc, stripMarkers, fill } from '../lib/util.js';
+import { formatDate, formatHijri, langInfo } from '../lib/i18n.js';
 
 const attr = (name, v) => (v ? ` ${name}="${esc(v)}"` : '');
 
 export function layout(ctx, d) {
-  const { site, L, lang } = ctx;
-  const dir = lang === 'ar' ? 'rtl' : 'ltr';
-  // Fonts are self-hosted only (STRATEGY 10.7, no third parties): themes/<domain>/assets/fonts/*.woff2 + @font-face in
-  // style.css; theme.fonts lists the files to preload.
-  const fontLinks = (site.theme.fonts || []).filter(f => f && f !== 'system' && f.endsWith('.woff2'))
-    .map(f => `<link rel="preload" href="/assets/fonts/${esc(f)}" as="font" type="font/woff2" crossorigin>`).join('\n');
-  const scripts = (d.scripts || []).map(src => `<script src="${esc(src)}" defer></script>\n`).join('');
-  const hreflang = (d.alternates || []).map(a => `<link rel="alternate" hreflang="${a.hreflang}" href="${esc(a.href)}">`).join('\n');
+  const { site, L, lang, langInfo: li } = ctx;
+  // Fonts are self-hosted (docs/DESIGN.md §6): base.css declares them, the engine copies the WOFF2 files to
+  // /assets/fonts/ and the page preloads one face, the body face of its language.
+  const fontLinks = ctx.fontPreload ? `<link rel="preload" href="${esc(ctx.fontPreload)}" as="font" type="font/woff2" crossorigin>\n` : '';
+  const scripts = [...(d.scripts || []), ...(ctx.themeDefault === 'dark' ? ['/assets/theme-toggle.js'] : [])]
+    .map(src => `<script src="${esc(src)}" defer></script>\n`).join('');
+  const hreflang = (d.alternates || []).map(a => `<link rel="alternate" hreflang="${a.hreflang}" href="${esc(a.href)}">\n`).join('');
+  const theme = ctx.themeDefault === 'dark' ? ' data-theme="dark"' : '';
   return `<!doctype html>
-<html lang="${lang}-MA" dir="${dir}">
+<html lang="${li.html}" dir="${li.dir}"${theme}>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${esc(d.title)}</title>
 <meta name="description" content="${esc(d.description)}">
 <link rel="canonical" href="${esc(d.canonical)}">
-${d.noindex ? '<meta name="robots" content="noindex">\n' : ''}${hreflang}
-<meta property="og:type" content="${d.ogType || 'website'}">
+${d.noindex ? '<meta name="robots" content="noindex">\n' : ''}${hreflang}<meta property="og:type" content="${d.ogType || 'website'}">
 <meta property="og:title" content="${esc(d.title)}">
 <meta property="og:description" content="${esc(d.description)}">
 <meta property="og:url" content="${esc(d.canonical)}">
-<meta property="og:site_name" content="${esc(site.meta.name)}">
-<meta property="og:locale" content="${lang}_MA">
+<meta property="og:site_name" content="${esc(site.config.name || site.meta.name)}">
+<meta property="og:locale" content="${li.og}">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="${esc(d.title)}">
 <meta name="twitter:description" content="${esc(d.description)}">
+<meta name="color-scheme" content="${ctx.themeDefault === 'dark' ? 'dark light' : 'light'}">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-${ctx.hasFeed ? `<link rel="alternate" type="application/rss+xml" title="${esc(site.meta.name)}" href="${ctx.prefix}/rss.xml">\n` : ''}${fontLinks}
-<style>${ctx.css}</style>
+${ctx.hasFeed ? `<link rel="alternate" type="application/rss+xml" title="${esc(site.config.name || site.meta.name)}" href="${ctx.prefix}/rss.xml">\n` : ''}${fontLinks}<style>${ctx.css}</style>
 ${d.jsonld}
 </head>
-<body class="site site--${esc(site.theme.id.replace(/\./g, '-'))} page--${esc(d.pageType || 'page')}">
+<body class="site site--${esc(site.theme.id.replace(/\./g, '-'))} page--${esc(d.pageType || 'page')} lang-${lang}">
 <a class="skip-link" href="#contenu">${esc(L.skip)}</a>
 ${ctx.t('header')}
 <main id="contenu" class="site-main">
@@ -49,14 +49,31 @@ ${scripts}</body>
 `;
 }
 
+// FR · العربية · EN as text links; each link carries the target language (lang, hreflang, dir).
+export function languageSwitcher(ctx) {
+  if (!ctx.languages?.length) return '';
+  const items = ctx.languages.map(l => {
+    const li = langInfo(l.lang);
+    const info = `lang="${li.html}" hreflang="${li.hreflang}" dir="${li.dir}"`;
+    return l.current
+      ? `<li class="lang-switch__item"><a class="lang-switch__link" href="${esc(l.url)}" ${info} aria-current="true" title="${esc(l.name)}">${esc(l.label)}</a></li>`
+      : `<li class="lang-switch__item"><a class="lang-switch__link" href="${esc(l.url)}" ${info} title="${esc(l.name)}">${esc(l.label)}</a></li>`;
+  }).join('');
+  return `<nav class="lang-switch" aria-label="${esc(ctx.L.langSwitch)}"><ul class="lang-switch__list">${items}</ul></nav>`;
+}
+
 export function header(ctx) {
   const { site, L } = ctx;
   const layoutName = site.theme.layout?.header || 'split';
   const items = ctx.nav.map(n => `<li class="site-nav__item"><a class="site-nav__link" href="${esc(n.url)}"${n.current ? ' aria-current="page"' : ''}>${esc(n.label)}</a></li>`).join('');
+  const toggle = ctx.themeDefault === 'dark' ? `<button class="theme-toggle" type="button" aria-pressed="true" hidden>${esc(L.themeToggle)}</button>` : '';
   return `<header class="site-header site-header--${esc(layoutName)}">
 <div class="site-header__inner">
-<a class="site-brand" href="${ctx.prefix}/"><span class="site-brand__name">${esc(site.config.name || site.meta.name)}</span>${ctx.tagline ? `<span class="site-brand__tagline">${esc(ctx.tagline)}</span>` : ''}</a>
+<a class="site-brand" href="${ctx.prefix}/"><span class="site-brand__name">${esc(site.config.name || site.meta.name)}</span><span class="site-brand__by">${esc(L.byWikiTours)}</span>${ctx.tagline ? `<span class="site-brand__tagline">${esc(ctx.tagline)}</span>` : ''}</a>
+<div class="site-header__tools">
 ${items ? `<nav class="site-nav" aria-label="${esc(L.mainNav)}"><ul class="site-nav__list">${items}</ul></nav>` : ''}
+${languageSwitcher(ctx)}${toggle}
+</div>
 </div>
 </header>`;
 }
@@ -95,7 +112,9 @@ export function byline(ctx, page) {
     ? esc(ctx.author.name)
     : `<a href="${esc(ctx.editeurUrl)}">${esc(L.orgName)}</a>`;
   const updated = fm.updated && fm.updated !== fm.date ? ` · ${esc(L.updated)} <time datetime="${fm.updated}">${esc(formatDate(fm.updated, lang))}</time>` : '';
-  let out = `<p class="byline__meta">${esc(L.byPrefix)} ${author} · ${esc(L.published)} <time datetime="${fm.date}">${esc(formatDate(fm.date, lang))}</time>${updated}</p>`;
+  const hijri = formatHijri(fm.date, lang);
+  const hijriHtml = hijri ? ` <span class="byline__hijri">(${esc(fill(L.hijriApprox, { date: hijri }))})</span>` : '';
+  let out = `<p class="byline__meta">${esc(L.byPrefix)} ${author} · ${esc(L.published)} <time datetime="${fm.date}">${esc(formatDate(fm.date, lang))}</time>${hijriHtml}${updated}</p>`;
   if (ctx.reviewer) out += `<p class="byline__review">${esc(fill(L.reviewedBy, { name: ctx.reviewer.name, role: ctx.reviewer.role, date: formatDate(fm.reviewed_at, lang) }))}</p>`;
   if (fm.tier === 'C') out += `<p class="byline__ai">${esc(L.aiLine)}${ctx.checkedLine ? ' ' + esc(ctx.checkedLine) : ''}</p>`;
   if (fm.tier === 'B') out += `<p class="byline__ai">${esc(L.dataLine)}${ctx.checkedLine ? ' ' + esc(ctx.checkedLine) : ''}</p>`;
@@ -147,7 +166,7 @@ export function article(ctx, page, parts) {
   };
   return `${ctx.t('breadcrumbs', parts.crumbs)}
 <article class="article article--${esc(page.fm.type)}">
-<header class="article__header">
+<header class="article__header cover">
 <h1 class="article__title">${esc(stripMarkers(page.fm.title))}</h1>
 ${page.fm.type === 'home' ? '' : ctx.t('byline', page)}
 ${parts.stale ? `<p class="stale-banner" role="status">${esc(ctx.L.staleBanner)}</p>` : ''}
@@ -161,7 +180,7 @@ export function home(ctx, page, parts) {
   const sections = site.config.home?.sections || site.theme.layout?.home || ['hero', 'intro', 'pillars', 'latest', 'cta', 'about'];
   const title = esc(stripMarkers(page.fm.title));
   const blocks = {
-    hero: `<section class="home-hero"><h1 class="home-hero__title">${title}</h1>${ctx.tagline ? `<p class="home-hero__tagline">${esc(ctx.tagline)}</p>` : ''}</section>`,
+    hero: `<section class="home-hero cover"><h1 class="home-hero__title">${title}</h1>${ctx.tagline ? `<p class="home-hero__tagline">${esc(ctx.tagline)}</p>` : ''}${parts.ctaLink ? `<p class="cover__actions"><a class="button button--primary cover__cta" href="${esc(parts.ctaLink.href)}"${parts.ctaLink.external ? ' rel="nofollow noopener"' : ''}>${esc(L.ctaButton)}</a></p>` : ''}</section>`,
     intro: `<section class="home-intro prose">\n${parts.bodyHtml}</section>`,
     pillars: parts.pillars ? `<section class="home-pillars"><h2 class="home-section__title">${esc(L.pillars)}</h2>${parts.pillars}</section>` : '',
     latest: parts.latest ? `<section class="home-latest"><h2 class="home-section__title">${esc(L.latest)}</h2>${parts.latest}</section>` : '',
@@ -180,8 +199,8 @@ ${d.nextUrl ? `<a class="pager__next" rel="next" href="${esc(d.nextUrl)}">${esc(
 </nav>` : '';
   return `${ctx.t('breadcrumbs', d.crumbs)}
 <section class="listing">
-<h1 class="listing__title">${esc(d.heading)}</h1>
-${d.intro ? `<p class="listing__intro">${esc(d.intro)}</p>` : ''}
+<header class="listing__header cover"><h1 class="listing__title">${esc(d.heading)}</h1>
+${d.intro ? `<p class="listing__intro">${esc(d.intro)}</p>` : ''}</header>
 ${cardList(ctx, d.items) || `<p>${esc(L.empty)}</p>`}
 ${pager}
 </section>`;

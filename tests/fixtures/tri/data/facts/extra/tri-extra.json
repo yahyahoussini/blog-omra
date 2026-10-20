@@ -1,0 +1,6 @@
+[
+  { "id": "fact_tri_window", "topic": "umrah_season", "claim_fr": "SYNTHETIC: fenêtre de 30 jours.", "claim_en": "SYNTHETIC: a 30-day window.", "values": ["30"], "unit": null,
+    "source_urls": ["https://example.org/news/tri-window"], "source_tier": "media", "confidence": "likely",
+    "required_wording": "selon le journal test", "required_wording_ar": "حسب الجريدة التجريبية", "required_wording_en": "according to the test paper", "conflicts": [],
+    "status": "approved", "verified_by": "fixture", "verified_at": "2026-10-19", "review_by": "2026-11-19", "valid_until": null, "time_critical": true, "supersedes": null }
+]

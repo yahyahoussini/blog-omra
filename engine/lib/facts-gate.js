@@ -9,6 +9,10 @@ const NUM = /[0-9٠-٩]+(?:[ .,\u202F][0-9]{3})*(?:[.,][0-9]+)?/g;
 // Unicode-aware stems: JS \b is ASCII-only, so "garantie", "interdite", "requise" used to slip through.
 // "visa" also matches "visage": an accepted false positive (it only sends a sentence to review).
 const CLAIM_WORDS = /(?<!\p{L})(obligatoir|interdi|exig|requi[st]|requier|gratuit|garanti|rembours|quota|visa|vaccin|d[ée]lai|date limite)\p{L}*|(?<!\p{L})(?:[وفبل]?ال)?(واجب|ممنوع|إلزامي|الزامي|مجاني|تأشير|مضمون|مسترجع)\p{L}*/iu;
+// Engine addition (DECISIONS D-H): English rule words, checked on every page like the French and Arabic ones
+// (quota, visa and vaccin* are already shared stems above).
+const CLAIM_WORDS_EN = /(?<!\p{L})(mandator|requir|forbid|prohibit|free of charge|guarante|refund|deadline)\p{L}*/iu;
+export const hasRuleWord = s => CLAIM_WORDS.test(s) || CLAIM_WORDS_EN.test(s);
 const AR_DIGITS = s => s.replace(/[٠-٩]/g, d => String(d.charCodeAt(0) - 0x0660));
 export const norm = s => AR_DIGITS(String(s)).replace(/[ .,\u202F](?=\d{3}\b)/g, '').replace(',', '.');
 export const splitSentences = t => t.replace(/\n+/g, ' ').split(/(?<=[.!?؟])\s+/).map(s => s.trim()).filter(Boolean);
@@ -22,7 +26,7 @@ export function factsGate(text, registry, { today = todayISO(), approvedPhrases 
     const nums = (bare.match(NUM) || []).map(norm);
     if (!ids.length) {
       if (nums.length) errors.push({ rule: 'digits-without-fact', sentence: bare });
-      else if (CLAIM_WORDS.test(bare)) errors.push({ rule: 'rule-word-without-fact', sentence: bare });
+      else if (hasRuleWord(bare)) errors.push({ rule: 'rule-word-without-fact', sentence: bare });
       continue;
     }
     const allowed = new Set();

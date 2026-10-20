@@ -57,6 +57,18 @@ export function languageSlots(cadence, postsTodayByLang = {}) {
   return lang => Math.max(0, max - (postsTodayByLang[lang] || 0));
 }
 
+// D-H: which languages get today's posts on ramp day `day`. At the 3/day ceiling every active language gets one
+// (1 fr + 1 ar + 1 en); during the ramp (1 or 2 per day) the languages rotate day by day, so over time each language
+// gets an equal share. Only languages with a published home page (`active`) take part. Returns e.g. ['ar'] or ['en', 'fr'].
+export function languagePlan({ cadence, day = 1, perDay, active }) {
+  const order = (cadence.languages || ['fr', 'ar', 'en']).filter(l => active.has(l));
+  const max = cadence.max_posts_per_language_per_day ?? 1;
+  const slots = Math.min(Math.max(0, perDay), order.length * max);
+  if (!slots) return [];
+  const start = ((Math.max(1, day ?? 1) - 1) * perDay) % order.length;
+  return Array.from({ length: slots }, (_, i) => order[(start + i) % order.length]);
+}
+
 // Expected posts per day once the queue is consumed (planning): current ramp step x multiplier, at least 1.
 export function planningPerDay({ cadence, site, today, health = {} }) {
   const q = siteQuota({ cadence, site, today, health, simulateLaunch: true });

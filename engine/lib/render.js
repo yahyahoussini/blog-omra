@@ -1,16 +1,15 @@
 // Renders content pages and generated pages (listings, hubs, 404) to full HTML strings.
-import fs from 'node:fs';
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
 import * as defaults from '../templates/default.js';
-import { esc, stripMarkers, formatDate, fill } from './util.js';
+import { esc, stripMarkers, fill } from './util.js';
+import { formatDate, formatNumber, langInfo } from './i18n.js';
+import { siteCss, defaultTheme } from './theme.js';
+import { PRELOAD, hasFont } from './fonts.js';
 import { renderMarkdown, renderInline, gateText, plainText, findRawHtml, MENTION, NOGATE } from './markdown.js';
 import { buildSources, resolveShortcodes, resolveSlug, factIdsIn } from './shortcodes.js';
 import { langPrefix, group } from './content.js';
 import { waLink, refCode } from './wa.js';
 import { buildJsonLd, jsonLdScript } from './schema.js';
 
-const BASE_CSS = fs.readFileSync(path.join(path.dirname(fileURLToPath(import.meta.url)), '../templates/base.css'), 'utf8');
 const PILLAR_TYPES = new Set(['pillar', 'hub']);
 
 // Per-language site text. A plain value belongs to the base language only; an object keyed by
@@ -50,11 +49,34 @@ function networkHtml(ctx, site, lang) {
 }
 
 // Template context for one site + language. ctx = { project, pages, index, today, warn }
+// Nav lists per language: { fr: [...], ar: [...], en: [...] }, or one list whose entries carry "lang" (no lang = base language).
+export function navFor(project, list, lang) {
+  if (list && !Array.isArray(list)) return list[lang] || [];
+  return (list || []).filter(n => (n.lang || project.network.base_lang || 'fr') === lang);
+}
+
+// Language switcher: every language of the site that has a home page. Target = the page sharing this page's
+// translation_key in that language (the home for home pages), otherwise that language's home.
+export function languageLinks(ctx, site, lang, currentUrl, page) {
+  const out = [];
+  for (const l of site.meta.languages) {
+    const pages = group(ctx, site.domain, l);
+    const home = pages.find(p => p.fm.type === 'home');
+    if (!home) continue;
+    let target = null;
+    if (l === lang) target = currentUrl ? { url: currentUrl } : home;
+    else if (page?.fm.type === 'home') target = home;
+    else if (page?.fm.translation_key && !page.noindexFinal) target = pages.find(p => p.fm.translation_key === page.fm.translation_key && p.fm.type !== 'home' && !p.noindexFinal);
+    out.push({ lang: l, url: (target || home).url, current: l === lang, label: langInfo(l).short, name: langInfo(l).name, translated: !!target && l !== lang });
+  }
+  return out.length > 1 ? out : [];
+}
+
 export function templateCtx(ctx, site, lang, currentUrl, page = null) {
   const L = site.labels[lang] || site.labels.fr;
   const prefix = langPrefix(ctx.project, lang);
-  const resolveNav = list => (list || [])
-    .filter(n => (n.lang || ctx.project.network.base_lang || 'fr') === lang)
+  const preload = PRELOAD[lang];
+  const resolveNav = list => navFor(ctx.project, list, lang)
     .map(n => {
       const t = resolveSlug(ctx, site.domain, lang, n.slug);
       if (!t) { if (n.slug !== 'blog') ctx.navErrors.push({ site: site.domain, msg: `navigation entry "${n.slug}" does not resolve` }); return null; }
@@ -62,7 +84,11 @@ export function templateCtx(ctx, site, lang, currentUrl, page = null) {
     }).filter(Boolean);
   const tctx = {
     project: ctx.project, site, lang, L, prefix, page,
-    css: BASE_CSS + '\n' + (site.theme.css || ''),
+    css: siteCss(ctx.project.root, site),
+    langInfo: langInfo(lang),
+    languages: languageLinks(ctx, site, lang, currentUrl, page),
+    themeDefault: defaultTheme(site.theme),
+    fontPreload: preload && hasFont(preload) ? `/assets/fonts/${preload}` : null,
     tagline: forLang(ctx.project, site.config.tagline, lang),
     hasFeed: hasFeed(ctx, site.domain, lang),
     nav: resolveNav(site.config.nav),
@@ -84,7 +110,7 @@ export function disclosureBox(L) {
 function buildCta(ctx, tctx, page, topicOverride) {
   const { site, L } = tctx;
   const fmCta = page.fm.cta || { type: 'whatsapp' };
-  const topic = topicOverride || fmCta.topic || site.config.whatsapp?.default_topic || site.meta.name;
+  const topic = topicOverride || fmCta.topic || forLang(ctx.project, site.config.whatsapp?.default_topic, page.lang) || tctx.L.waTopic || site.meta.name;
   const number = site.config.whatsapp?.number;
   let wa;
   if (number) {
@@ -101,7 +127,7 @@ function buildCta(ctx, tctx, page, topicOverride) {
       wt = { href: t.url, anchor: t.label, rel: policy.money_link_rel || 'nofollow', note: t.lang !== page.lang ? policy.money_link_lang_note?.[page.lang] : '', target: t };
     }
   }
-  return { html: tctx.t('cta', { wa, wt }), wt };
+  return { html: tctx.t('cta', { wa, wt }), wt, wa };
 }
 
 function checkedLine(L, sources, lang) {
@@ -189,6 +215,7 @@ export function renderContentPage(ctx, page) {
   const parts = {
     bodyHtml: r.html, crumbs, faq, sources, stale: page.staleFacts.length > 0,
     ctaHtml: cta && !r.html.includes('class="cta"') ? cta.html : '',
+    ctaLink: cta?.wa || null, // the cover band's primary button (home)
     related: defaults.cardList(tctx, related),
     clusterList: defaults.cardList(tctx, clusterPosts),
   };
@@ -201,17 +228,7 @@ export function renderContentPage(ctx, page) {
     main = tctx.t('article', page, parts);
   }
 
-  // hreflang only between translations of the same page on the same site.
-  // DECISIONS D-H: home pages are always linked; other pages only through a shared translation_key.
-  // Noindexed versions are never alternates.
-  let alternates = [];
-  if ((fm.translation_key || fm.type === 'home') && !page.noindexFinal) {
-    const versions = ctx.pages.filter(p => p.site === page.site && !p.noindexFinal && (fm.type === 'home' ? p.fm.type === 'home' : p.fm.translation_key === fm.translation_key));
-    if (versions.length > 1) {
-      const base = versions.find(v => v.lang === (project.network.base_lang || 'fr')) || versions[0];
-      alternates = [...versions.map(v => ({ hreflang: `${v.lang}-MA`, href: v.absUrl })), { hreflang: 'x-default', href: base.absUrl }];
-    }
-  }
+  const alternates = page.alternates = hreflangAlternates(ctx, page);
   const title = stripMarkers(fm.title), description = stripMarkers(fm.description);
   const jsonld = buildJsonLd(project, {
     site, page, kind: fm.type === 'home' ? 'home' : 'content', title, description, url: page.url, lang: page.lang, crumbs,
@@ -225,6 +242,22 @@ export function renderContentPage(ctx, page) {
     scripts: r.tools.map(name => `/assets/${name}.js`),
   });
   return page;
+}
+
+// hreflang only between versions of the same page on the same site (DECISIONS D-H): home pages always; other pages
+// only through a shared translation_key (one page per language). Never across domains, never to a noindexed version.
+// Values fr-MA, ar-MA, en; x-default = the French version, or the page itself when there is none.
+export function hreflangAlternates(ctx, page) {
+  const fm = page.fm;
+  if (!(fm.translation_key || fm.type === 'home') || page.noindexFinal) return [];
+  const versions = ctx.pages.filter(p => p.site === page.site && !p.noindexFinal
+    && (fm.type === 'home' ? p.fm.type === 'home' : p.fm.type !== 'home' && p.fm.translation_key === fm.translation_key));
+  const byLang = new Map();
+  for (const v of versions) if (!byLang.has(v.lang)) byLang.set(v.lang, v);
+  byLang.set(page.lang, page);
+  if (byLang.size < 2) return [];
+  const base = byLang.get(ctx.project.network.base_lang || 'fr') || page;
+  return [...[...byLang.values()].map(v => ({ hreflang: langInfo(v.lang).hreflang, href: v.absUrl })), { hreflang: 'x-default', href: base.absUrl }];
 }
 
 // Generated pages for one site + language: blog listing (paginated), cluster hubs, 404.
@@ -254,10 +287,10 @@ export function renderGeneratedPages(ctx, site, lang) {
     for (let n = 1; n <= total; n++) {
       const url = n === 1 ? `${prefix}/blog/` : `${prefix}/blog/page/${n}/`;
       const heading = blogCfg.title || `${L.blogTitle} – ${site.meta.name}`;
-      const title = n === 1 ? heading : `${heading} (${fill(L.pageN, { n })})`;
-      const crumbs = n === 1 ? [home, { name: L.blog, url }] : [home, { name: L.blog, url: `${prefix}/blog/` }, { name: fill(L.pageN, { n }), url }];
+      const title = n === 1 ? heading : `${heading} (${fill(L.pageN, { n: formatNumber(n, lang) })})`;
+      const crumbs = n === 1 ? [home, { name: L.blog, url }] : [home, { name: L.blog, url: `${prefix}/blog/` }, { name: fill(L.pageN, { n: formatNumber(n, lang) }), url }];
       make(url, {
-        title, description: n === 1 ? desc : `${desc} (${fill(L.pageN, { n })})`, crumbs,
+        title, description: n === 1 ? desc : `${desc} (${fill(L.pageN, { n: formatNumber(n, lang) })})`, crumbs,
         main: t => t.t('listing', { heading: title, intro: n === 1 ? blogCfg.intro : null, items: posts.slice((n - 1) * per, n * per), crumbs, totalPages: total,
           prevUrl: n > 1 ? (n === 2 ? `${prefix}/blog/` : `${prefix}/blog/page/${n - 1}/`) : null,
           nextUrl: n < total ? `${prefix}/blog/page/${n + 1}/` : null }),

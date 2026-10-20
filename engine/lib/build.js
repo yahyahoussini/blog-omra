@@ -8,6 +8,8 @@ import { renderContentPage, renderGeneratedPages, prepareStale, forLang } from '
 import { registryGate, frontmatterGate, runGates } from './gates.js';
 import { sitemapXml, sitemapIndexXml, rssXml, robotsTxt, headersFile, redirectsFile, faviconSvg } from './seo.js';
 import { indexNowKey } from './indexnow.js';
+import { fontAssets, fontFiles } from './fonts.js';
+import { defaultTheme, TOGGLE_JS } from './theme.js';
 import { todayISO, writeFile, stripMarkers } from './util.js';
 
 const fileOf = url => (url.endsWith('/') ? url.slice(1) + 'index.html' : url.slice(1));
@@ -71,6 +73,9 @@ export async function buildNetwork({ root, outDir, today = todayISO(), only = nu
     const siteGen = generated.filter(g => g.site === site.domain);
     for (const g of siteGen) put(g.file || fileOf(g.url), g.html);
     for (const a of site.theme.assets || []) put(a.rel, fs.readFileSync(a.file));
+    // Design system assets: self-hosted fonts (Arabic faces only for sites with Arabic pages), the dark-mode toggle.
+    for (const a of fontAssets({ arabic: sitePages.some(p => p.lang === 'ar') })) if (!files.has(a.rel)) files.set(a.rel, fs.readFileSync(a.file));
+    if (defaultTheme(site.theme) === 'dark' && !files.has('assets/theme-toggle.js')) files.set('assets/theme-toggle.js', fs.readFileSync(TOGGLE_JS));
 
     const abs = u => `https://${site.domain}${u}`;
     const lastPost = lang => sitePages.filter(p => p.kind === 'posts' && p.lang === lang).map(p => p.fm.updated || p.fm.date).sort().pop();
@@ -79,7 +84,8 @@ export async function buildNetwork({ root, outDir, today = todayISO(), only = nu
       if (p.noindexFinal) continue;
       let lastmod = p.fm.updated || p.fm.date;
       if (p.fm.type === 'home') lastmod = [lastmod, lastPost(p.lang)].filter(Boolean).sort().pop();
-      (p.kind === 'posts' ? postEntries : pageEntries).push({ loc: p.absUrl, lastmod });
+      // xhtml:link alternates only for hreflang pairs (homes, translation_key pages).
+      (p.kind === 'posts' ? postEntries : pageEntries).push({ loc: p.absUrl, lastmod, alternates: p.alternates || [] });
     }
     for (const g of siteGen.filter(g => g.sitemap)) pageEntries.push({ loc: abs(g.url), lastmod: g.lastmod });
     const parts = [{ name: 'sitemap-pages.xml', entries: pageEntries }, { name: 'sitemap-posts.xml', entries: postEntries }].filter(x => x.entries.length);
@@ -106,6 +112,8 @@ export async function buildNetwork({ root, outDir, today = todayISO(), only = nu
   }
 
   for (const e of ctx.navErrors) add('error', 'links', { site: e.site }, e.msg);
+  const { missing } = fontFiles();
+  if (missing.length) add('warning', 'fonts', null, `${missing.length} font file(s) not found (${missing.slice(0, 3).join(', ')}…): run npm ci (the @fontsource devDependencies); pages fall back to system fonts`);
   const overlayFiles = new Set(overlay.map(o => path.normalize(o.file).split(path.sep).join('/')));
   const focus = focusOverlay ? new Set(pages.filter(p => overlayFiles.has(p.file))) : null;
   runGates({ project, pages, generated, outputs, today, add, focus });

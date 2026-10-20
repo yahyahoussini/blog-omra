@@ -208,8 +208,8 @@ test('Arabic and English pages: /ar/ and /en/ URLs, rtl, hreflang (homes always,
   });
   const enHome = r.pages.find(p => p.lang === 'en' && p.fm.type === 'home');
   assert.equal(enHome.url, '/en/');
-  assert.match(enHome.html, /<html lang="en-MA" dir="ltr">/);
-  for (const [l, href] of [['fr-MA', 'https://alpha.test/'], ['ar-MA', 'https://alpha.test/ar/'], ['en-MA', 'https://alpha.test/en/'], ['x-default', 'https://alpha.test/']])
+  assert.match(enHome.html, /<html lang="en" dir="ltr">/);
+  for (const [l, href] of [['fr-MA', 'https://alpha.test/'], ['ar-MA', 'https://alpha.test/ar/'], ['en', 'https://alpha.test/en/'], ['x-default', 'https://alpha.test/']])
     assert.ok(enHome.html.includes(`<link rel="alternate" hreflang="${l}" href="${href}">`), l);
   assert.ok(r.errors.some(e => e.gate === 'banned-claim' && /guaranteed/.test(e.msg)), 'English banned claims apply');
   const arPage = r.pages.find(p => p.lang === 'ar' && p.fm.slug === 'guide-test');

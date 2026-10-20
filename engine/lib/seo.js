@@ -1,12 +1,15 @@
 // Site-level files: sitemaps, RSS, robots.txt, Cloudflare Pages _headers / _redirects, favicon.
 import { esc, stripMarkers } from './util.js';
+import { langInfo } from './i18n.js';
 
 const xmlEsc = esc;
 
-// entries: [{ loc, lastmod }]
+// entries: [{ loc, lastmod, alternates?: [{ hreflang, href }] }]. Every language is in the same sitemap; alternates
+// (xhtml:link) appear only on hreflang pairs, exactly as in the pages' <head>.
 export function sitemapXml(entries) {
-  const urls = entries.map(e => `  <url><loc>${xmlEsc(e.loc)}</loc>${e.lastmod ? `<lastmod>${e.lastmod}</lastmod>` : ''}</url>`).join('\n');
-  return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`;
+  const withAlt = entries.some(e => e.alternates?.length);
+  const urls = entries.map(e => `  <url><loc>${xmlEsc(e.loc)}</loc>${e.lastmod ? `<lastmod>${e.lastmod}</lastmod>` : ''}${(e.alternates || []).map(a => `\n    <xhtml:link rel="alternate" hreflang="${xmlEsc(a.hreflang)}" href="${xmlEsc(a.href)}"/>`).join('')}${e.alternates?.length ? '\n  ' : ''}</url>`).join('\n');
+  return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"${withAlt ? ' xmlns:xhtml="http://www.w3.org/1999/xhtml"' : ''}>\n${urls}\n</urlset>\n`;
 }
 
 export function sitemapIndexXml(parts) {
@@ -31,7 +34,7 @@ export function rssXml({ domain, title, description, lang, feedPath, homePath = 
     <title>${xmlEsc(title)}</title>
     <link>https://${domain}${homePath}</link>
     <description>${xmlEsc(description)}</description>
-    <language>${lang}-MA</language>
+    <language>${langInfo(lang).html}</language>
     <atom:link href="https://${domain}${feedPath}" rel="self" type="application/rss+xml"/>
 ${items}
   </channel>
@@ -91,9 +94,9 @@ export function redirectsFile(site) {
   return (rules.length ? rules.join('\n') : '# No redirects (add them in config/sites/' + site.domain + '.json -> redirects)') + '\n';
 }
 
-// A tiny geometric favicon in the theme colours.
+// A tiny geometric favicon in the theme colours (black tile, site accent star; DESIGN.md §2).
 export function faviconSvg(theme) {
   const p = theme.palette || {};
-  const bg = p.primary || '#234', fg = p.accent || '#fc6';
-  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="${bg}"/><path d="M16 5l3.2 7.8L27 16l-7.8 3.2L16 27l-3.2-7.8L5 16l7.8-3.2z" fill="${fg}"/></svg>\n`;
+  const bg = theme.tokens ? '#0A0A0A' : p.primary || '#234', fg = theme.tokens?.['accent-on-dark'] || theme.tokens?.accent || p.accent || '#fc6';
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="2" fill="${bg}"/><path d="M16 5l3.2 7.8L27 16l-7.8 3.2L16 27l-3.2-7.8L5 16l7.8-3.2z" fill="${fg}"/></svg>\n`;
 }

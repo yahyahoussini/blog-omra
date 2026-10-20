@@ -4,6 +4,7 @@ import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { readJSON, exists } from './util.js';
 import { defaultLabels } from '../templates/labels.js';
+import { LANG_CODES } from './i18n.js';
 
 const optional = (file, fallback) => (exists(file) ? readJSON(file) : fallback);
 
@@ -20,22 +21,28 @@ export async function loadProject(root) {
     authors: optional(cfg('authors.json'), []),
     phrases: optional(cfg('approved-phrases.json'), {}),
     entities: optional(cfg('entities.json'), { allowed: [] }),
-    registryList: optional(path.join(root, 'data/facts/registry.json'), []),
     sites: new Map(),
   };
+  // Facts: data/facts/registry.json + every data/facts/extra/*.json (same schema). Ids must be unique across files:
+  // registryGate reports a duplicate as an error with no site, which blocks the whole build.
+  project.registryFiles = loadFactFiles(root);
+  project.registryList = project.registryFiles.flatMap(f => f.facts);
   project.registry = Object.fromEntries(project.registryList.map(f => [f.id, f]));
   // Approved religious texts (gate 4): one JSON file per entry in data/facts/kb/.
   const kbDir = path.join(root, 'data/facts/kb');
   project.kbList = exists(kbDir) ? fs.readdirSync(kbDir).filter(f => f.endsWith('.json')).sort().map(f => ({ _file: f, ...readJSON(path.join(kbDir, f)) })) : [];
   project.kb = Object.fromEntries(project.kbList.map(e => [e.id, e]));
-  project.approvedPhrases = [...(project.phrases.fr || []), ...(project.phrases.ar || []), ...(project.phrases.en || [])];
+  // Network-wide approved phrases (all languages; per-language lists via phrasesFor()).
+  project.approvedPhrases = LANG_CODES.flatMap(l => project.phrases[l] || []);
   project.wtTargets = Object.fromEntries(project.targets.targets.map(t => [t.id, t]));
 
   for (const meta of network.sites) {
     const siteFile = cfg(`sites/${meta.domain}.json`);
     const config = optional(siteFile, {});
     const theme = await loadTheme(root, meta.theme || meta.domain);
-    project.sites.set(meta.domain, { domain: meta.domain, meta, config, theme, labels: mergeLabels(theme, config) });
+    const site = { domain: meta.domain, meta, config, theme, labels: mergeLabels(theme, config) };
+    site.approvedPhrases = Object.fromEntries(LANG_CODES.map(l => [l, mergePhrases(project.phrases, config.approved_phrases, l)]));
+    project.sites.set(meta.domain, site);
   }
   return project;
 }
@@ -66,3 +73,22 @@ function mergeLabels(theme, config) {
   }
   return out;
 }
+
+function loadFactFiles(root) {
+  const files = [{ file: 'data/facts/registry.json', facts: optional(path.join(root, 'data/facts/registry.json'), []) }];
+  const extraDir = path.join(root, 'data/facts/extra');
+  if (exists(extraDir)) for (const name of fs.readdirSync(extraDir).filter(f => f.endsWith('.json')).sort())
+    files.push({ file: `data/facts/extra/${name}`, facts: readJSON(path.join(extraDir, name)) });
+  for (const f of files) if (!Array.isArray(f.facts)) throw new Error(`${f.file} must be a JSON array of facts`);
+  return files;
+}
+
+// Approved phrases for one language: config/approved-phrases.json -> <lang> plus the site's optional
+// approved_phrases ({ fr: [], ar: [], en: [] }, or a flat list that applies to every language).
+export function mergePhrases(network, site, lang) {
+  const own = Array.isArray(site) ? site : (site?.[lang] || []);
+  return [...new Set([...(network?.[lang] || []), ...own])];
+}
+
+// Phrases the facts gate removes on a page of `site` in `lang`.
+export const phrasesFor = (project, site, lang) => project.sites.get(site)?.approvedPhrases?.[lang] || project.phrases[lang] || [];

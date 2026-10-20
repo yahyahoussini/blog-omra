@@ -1,6 +1,7 @@
 // JSON-LD @graph per page (STRATEGY 4.3). Organization publisher everywhere — never
 // LocalBusiness / TravelAgency on a satellite, never Event, HowTo or self-serving reviews.
 import { plainText } from './markdown.js';
+import { langInfo } from './i18n.js';
 
 export function organizationNode(publisher) {
   const org = { '@type': 'Organization', '@id': publisher['@id'], name: publisher.name, url: publisher.url };
@@ -30,7 +31,7 @@ export function buildJsonLd(project, d) {
     graph.push({
       '@type': 'WebSite', '@id': siteId, url: `https://${domain}/`, name: d.site.meta.name,
       alternateName: `${d.site.meta.name} par Wiki Tours`,
-      inLanguage: (d.languages || [d.lang]).map(l => `${l}-MA`), publisher: orgRef,
+      inLanguage: (d.languages || [d.lang]).map(l => langInfo(l).html), publisher: orgRef,
     });
   }
   if (d.crumbs?.length) {
@@ -41,7 +42,7 @@ export function buildJsonLd(project, d) {
   }
   const p = d.page;
   const fm = p?.fm || {};
-  const base = { '@id': abs(d.url) + '#main', url: abs(d.url), inLanguage: `${d.lang}-MA`, isPartOf: { '@id': siteId }, publisher: orgRef };
+  const base = { '@id': abs(d.url) + '#main', url: abs(d.url), inLanguage: langInfo(d.lang).html, isPartOf: { '@id': siteId }, publisher: orgRef };
   if (p && (p.kind === 'posts' || ARTICLE_PAGE_TYPES.has(fm.type))) {
     graph.push({
       '@type': p.kind === 'posts' ? 'BlogPosting' : 'Article', ...base,

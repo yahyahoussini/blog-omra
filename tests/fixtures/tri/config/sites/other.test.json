@@ -1,0 +1,8 @@
+{
+  "name": "Other Test",
+  "tagline": "Second site de test",
+  "ref": "OT",
+  "nav": [{ "label": "Calendrier", "slug": "calendrier-autre" }],
+  "footer_nav": [{ "label": "Éditeur", "slug": "editeur" }, { "label": "Contact", "slug": "contact" }, { "lang": "ar", "label": "الناشر", "slug": "editeur" }, { "lang": "ar", "label": "اتصل بنا", "slug": "contact" }],
+  "whatsapp": { "number": null, "default_topic": "Question autre" }
+}
