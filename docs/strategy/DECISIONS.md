@@ -43,5 +43,11 @@ Each held site gets a distinct, standalone job so it passes the test « would th
 ## D-G. Semrush
 - The Semrush connector is connected but the account had **no API units** on 2026-10-20. Keyword lists are PLACEHOLDERS from the research. When API units exist (or CSV exports arrive in `data/semrush/raw/`), the registry is rebuilt from real data.
 
-## D-H. Language
-- French first (root). Arabic under `/ar/` in phase 2 (the engine supports it; RTL ready).
+## D-H. Language: Arabic, French and English — original content, no mirroring (client decision)
+- Every site publishes in **three languages**: French at the root, Arabic under `/ar/` (RTL, Modern Standard Arabic), English under `/en/`.
+- **No mirroring, no translation.** Each language has its own topic plan built from how people search in that language (Arabic queries, French queries, English queries), and every page is written natively. The same topic may exist in two languages only when the intent is genuinely shared; those pages are written separately, not translated.
+- **hreflang** links only pages that serve the same intent on the same site (always the home pages; pillars only when a `translation_key` pairs genuine equivalents). Otherwise no hreflang.
+- **Cannibalisation:** a concept (`concept_id`) stays on one site in every language — Arabic and English versions of a concept live on the site that owns it.
+- **Cadence:** the 3 posts/day/site ceiling is spread as **1 French + 1 Arabic + 1 English** per site per day (after the ramp).
+- Arabic pages publish under the same automated gates (the strategy's Arabic-reviewer gate §7.4 #21 is overridden by D-C auto mode; a native reviewer is still recommended).
+- Goal restated by the client: **control Moroccan Omra and Hajj search (SEO), AI answers (GEO) and direct answers (AEO) in Morocco, in all three languages.**

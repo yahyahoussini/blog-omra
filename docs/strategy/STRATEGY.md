@@ -1,6 +1,6 @@
 # Omra Network Strategy — serving wikitours.ma
 
-> **Client decisions (2026-10-20) override parts of this document — read [`DECISIONS.md`](DECISIONS.md) first.** In short: all 8 sites are built, 3 posts/day/site fully automated with a ramp and kill-switches, sister links up to 2 per post, wikitours.ma never touched.
+> **Client decisions (2026-10-20) override parts of this document — read [`DECISIONS.md`](DECISIONS.md) first.** In short: all 8 sites are built, in Arabic, French and English with original (non-mirrored) content, 3 posts/day/site (1 per language) fully automated with a ramp and kill-switches, sister links up to 2 per post, wikitours.ma never touched.
 
 > **Status & assumptions (read first)**
 > - **Date:** 2026-10-20. Final strategy v1.1 (review fixes applied the same day).
