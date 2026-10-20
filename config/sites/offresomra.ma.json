@@ -1,34 +1,86 @@
 {
   "name": "Offres Omra",
-  "tagline": "Lire, décoder et comparer une offre Omra avant de signer",
+  "tagline": {
+    "fr": "Lire, décoder et comparer une offre Omra avant de signer",
+    "ar": "قراءة عرض العمرة وفهمه ومقارنته قبل التوقيع",
+    "en": "Reading, decoding and comparing an Umrah offer before you sign"
+  },
   "ref": "OF",
-  "nav": [
-    {
-      "label": "Comparateur",
-      "slug": "comparateur"
-    },
-    {
-      "label": "Articles",
-      "slug": "blog"
-    },
-    {
-      "label": "Contact",
-      "slug": "contact"
-    }
-  ],
-  "footer_nav": [
-    {
-      "label": "L'éditeur",
-      "slug": "editeur"
-    },
-    {
-      "label": "Contact",
-      "slug": "contact"
-    }
-  ],
+  "nav": {
+    "fr": [
+      {
+        "label": "Comparateur",
+        "slug": "comparateur"
+      },
+      {
+        "label": "Articles",
+        "slug": "blog"
+      },
+      {
+        "label": "Contact",
+        "slug": "contact"
+      }
+    ],
+    "ar": [
+      {
+        "label": "المقالات",
+        "slug": "blog"
+      },
+      {
+        "label": "اتصل بنا",
+        "slug": "contact"
+      }
+    ],
+    "en": [
+      {
+        "label": "Articles",
+        "slug": "blog"
+      },
+      {
+        "label": "Contact",
+        "slug": "contact"
+      }
+    ]
+  },
+  "footer_nav": {
+    "fr": [
+      {
+        "label": "L'éditeur",
+        "slug": "editeur"
+      },
+      {
+        "label": "Contact",
+        "slug": "contact"
+      }
+    ],
+    "ar": [
+      {
+        "label": "الناشر",
+        "slug": "editeur"
+      },
+      {
+        "label": "اتصل بنا",
+        "slug": "contact"
+      }
+    ],
+    "en": [
+      {
+        "label": "Publisher",
+        "slug": "editeur"
+      },
+      {
+        "label": "Contact",
+        "slug": "contact"
+      }
+    ]
+  },
   "whatsapp": {
     "number": null,
-    "default_topic": "Aide pour lire une offre Omra"
+    "default_topic": {
+      "fr": "Aide pour lire une offre Omra",
+      "ar": "مساعدة في قراءة عرض عمرة",
+      "en": "Help reading an Umrah offer"
+    }
   },
   "labels": {
     "fr": {}
@@ -44,8 +96,18 @@
     ]
   },
   "blog": {
-    "title": "Articles – Offres Omra",
-    "description": "Articles d'Offres Omra : décoder une offre, repérer les signaux d'alerte et comparer deux propositions sur les bons critères."
+    "fr": {
+      "title": "Articles – Offres Omra",
+      "description": "Articles d'Offres Omra : décoder une offre, repérer les signaux d'alerte et comparer deux propositions sur les bons critères."
+    },
+    "ar": {
+      "title": "مقالات – Offres Omra",
+      "description": "مقالات Offres Omra: فهم تفاصيل عرض العمرة، والانتباه لعلامات الإنذار، ومقارنة عرضين وفق المعايير الصحيحة."
+    },
+    "en": {
+      "title": "Articles – Offres Omra",
+      "description": "Offres Omra articles: decoding an Umrah offer, spotting warning signs and comparing two proposals on the criteria that matter."
+    }
   },
   "clusters": {},
   "redirects": []

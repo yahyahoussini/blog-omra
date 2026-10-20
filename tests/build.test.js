@@ -203,6 +203,11 @@ test('Arabic and English pages: /ar/ and /en/ URLs, rtl, hreflang (homes always,
     const fr = path.join(root, 'content/alpha.test/fr/pages/guide-test.md');
     fs.writeFileSync(fr, fs.readFileSync(fr, 'utf8').replace('nav_order: 1', 'nav_order: 1\ntranslation_key: calendar'));
     fs.writeFileSync(path.join(root, 'config/authors.json'), JSON.stringify([{ id: 'fixture-reviewer', name: 'Relecteur fictif de test', role: 'fixture' }]));
+    // Each language with a home page needs its own footer nav (gate site-config).
+    const sc = path.join(root, 'config/sites/alpha.test.json');
+    const c = JSON.parse(fs.readFileSync(sc, 'utf8'));
+    c.footer_nav.push({ lang: 'ar', label: 'الناشر', slug: 'editeur' }, { lang: 'en', label: 'Publisher', slug: 'editeur' });
+    fs.writeFileSync(sc, JSON.stringify(c));
     const net = path.join(root, 'config/network.json');
     const n = JSON.parse(fs.readFileSync(net, 'utf8')); n.sites[0].languages = ['fr', 'ar', 'en']; fs.writeFileSync(net, JSON.stringify(n));
   });

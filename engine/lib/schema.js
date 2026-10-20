@@ -30,7 +30,8 @@ export function buildJsonLd(project, d) {
   if (d.kind === 'home') {
     graph.push({
       '@type': 'WebSite', '@id': siteId, url: `https://${domain}/`, name: d.site.meta.name,
-      alternateName: `${d.site.meta.name} par Wiki Tours`,
+      // in the page's language (labels.<lang>.byWikiTours: « par Wiki Tours », « من Wiki Tours », « by Wiki Tours »)
+      alternateName: `${d.site.meta.name} ${(d.site.labels?.[d.lang] || d.site.labels?.fr)?.byWikiTours || 'par Wiki Tours'}`,
       inLanguage: (d.languages || [d.lang]).map(l => langInfo(l).html), publisher: orgRef,
     });
   }

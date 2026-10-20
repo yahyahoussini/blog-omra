@@ -1,30 +1,82 @@
 {
   "name": "Guide Omra",
-  "tagline": "Le guide sourcé de la Omra et du Hajj depuis le Maroc",
+  "tagline": {
+    "fr": "Le guide sourcé de la Omra et du Hajj depuis le Maroc",
+    "ar": "الدليل الموثق بالمصادر للعمرة والحج انطلاقا من المغرب",
+    "en": "The sourced guide to Umrah and Hajj from Morocco"
+  },
   "ref": "GO",
-  "nav": [
-    {
-      "label": "Articles",
-      "slug": "blog"
-    },
-    {
-      "label": "Contact",
-      "slug": "contact"
-    }
-  ],
-  "footer_nav": [
-    {
-      "label": "L'éditeur",
-      "slug": "editeur"
-    },
-    {
-      "label": "Contact",
-      "slug": "contact"
-    }
-  ],
+  "nav": {
+    "fr": [
+      {
+        "label": "Articles",
+        "slug": "blog"
+      },
+      {
+        "label": "Contact",
+        "slug": "contact"
+      }
+    ],
+    "ar": [
+      {
+        "label": "المقالات",
+        "slug": "blog"
+      },
+      {
+        "label": "اتصل بنا",
+        "slug": "contact"
+      }
+    ],
+    "en": [
+      {
+        "label": "Articles",
+        "slug": "blog"
+      },
+      {
+        "label": "Contact",
+        "slug": "contact"
+      }
+    ]
+  },
+  "footer_nav": {
+    "fr": [
+      {
+        "label": "L'éditeur",
+        "slug": "editeur"
+      },
+      {
+        "label": "Contact",
+        "slug": "contact"
+      }
+    ],
+    "ar": [
+      {
+        "label": "الناشر",
+        "slug": "editeur"
+      },
+      {
+        "label": "اتصل بنا",
+        "slug": "contact"
+      }
+    ],
+    "en": [
+      {
+        "label": "Publisher",
+        "slug": "editeur"
+      },
+      {
+        "label": "Contact",
+        "slug": "contact"
+      }
+    ]
+  },
   "whatsapp": {
     "number": null,
-    "default_topic": "Question sur la préparation de ma Omra"
+    "default_topic": {
+      "fr": "Question sur la préparation de ma Omra",
+      "ar": "سؤال حول التحضير لعمرتي",
+      "en": "Question about preparing my Umrah"
+    }
   },
   "labels": {
     "fr": {}
@@ -40,8 +92,18 @@
     ]
   },
   "blog": {
-    "title": "Articles – Guide Omra",
-    "description": "Articles de Guide Omra : rites, documents, santé, permis et calendriers officiels, chacun avec ses sources et sa date de vérification."
+    "fr": {
+      "title": "Articles – Guide Omra",
+      "description": "Articles de Guide Omra : rites, documents, santé, permis et calendriers officiels, chacun avec ses sources et sa date de vérification."
+    },
+    "ar": {
+      "title": "مقالات – Guide Omra",
+      "description": "مقالات Guide Omra: المناسك والوثائق والصحة والتقاويم الرسمية، كل مقال بمصادره وتاريخ التحقق منه."
+    },
+    "en": {
+      "title": "Articles – Guide Omra",
+      "description": "Guide Omra articles: rituals, documents, health and official calendars, each with its sources and the date it was checked."
+    }
   },
   "clusters": {},
   "redirects": []

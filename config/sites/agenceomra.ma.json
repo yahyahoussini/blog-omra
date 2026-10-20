@@ -1,30 +1,82 @@
 {
   "name": "Agence Omra",
-  "tagline": "Vérifier et choisir une agence agréée, sans classement",
+  "tagline": {
+    "fr": "Vérifier et choisir une agence agréée, sans classement",
+    "ar": "التحقق من وكالة عمرة معتمدة واختيارها، دون تصنيف",
+    "en": "Checking and choosing a licensed Umrah agency, with no rankings"
+  },
   "ref": "AG",
-  "nav": [
-    {
-      "label": "Articles",
-      "slug": "blog"
-    },
-    {
-      "label": "Contact",
-      "slug": "contact"
-    }
-  ],
-  "footer_nav": [
-    {
-      "label": "L'éditeur",
-      "slug": "editeur"
-    },
-    {
-      "label": "Contact",
-      "slug": "contact"
-    }
-  ],
+  "nav": {
+    "fr": [
+      {
+        "label": "Articles",
+        "slug": "blog"
+      },
+      {
+        "label": "Contact",
+        "slug": "contact"
+      }
+    ],
+    "ar": [
+      {
+        "label": "المقالات",
+        "slug": "blog"
+      },
+      {
+        "label": "اتصل بنا",
+        "slug": "contact"
+      }
+    ],
+    "en": [
+      {
+        "label": "Articles",
+        "slug": "blog"
+      },
+      {
+        "label": "Contact",
+        "slug": "contact"
+      }
+    ]
+  },
+  "footer_nav": {
+    "fr": [
+      {
+        "label": "L'éditeur",
+        "slug": "editeur"
+      },
+      {
+        "label": "Contact",
+        "slug": "contact"
+      }
+    ],
+    "ar": [
+      {
+        "label": "الناشر",
+        "slug": "editeur"
+      },
+      {
+        "label": "اتصل بنا",
+        "slug": "contact"
+      }
+    ],
+    "en": [
+      {
+        "label": "Publisher",
+        "slug": "editeur"
+      },
+      {
+        "label": "Contact",
+        "slug": "contact"
+      }
+    ]
+  },
   "whatsapp": {
     "number": null,
-    "default_topic": "Questions sur une agence agréée"
+    "default_topic": {
+      "fr": "Questions sur une agence agréée",
+      "ar": "سؤال حول وكالة معتمدة",
+      "en": "Question about a licensed agency"
+    }
   },
   "labels": {
     "fr": {}
@@ -40,8 +92,18 @@
     ]
   },
   "blog": {
-    "title": "Articles – Agence Omra",
-    "description": "Articles d'Agence Omra : vérifier une licence, lire un contrat, repérer les signaux d'alerte et savoir quoi faire en cas de litige."
+    "fr": {
+      "title": "Articles – Agence Omra",
+      "description": "Articles d'Agence Omra : vérifier une licence, lire un contrat, repérer les signaux d'alerte et savoir quoi faire en cas de litige."
+    },
+    "ar": {
+      "title": "مقالات – Agence Omra",
+      "description": "مقالات Agence Omra: كيف تتحقق من رخصة الوكالة، وتقرأ العقد، وتنتبه لعلامات الإنذار، وماذا تفعل عند حدوث نزاع."
+    },
+    "en": {
+      "title": "Articles – Agence Omra",
+      "description": "Agence Omra articles: how to check an agency licence, read a contract, spot warning signs and what to do if a dispute arises."
+    }
   },
   "clusters": {},
   "redirects": []

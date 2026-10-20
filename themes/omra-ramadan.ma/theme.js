@@ -11,7 +11,9 @@ export default {
       "surface": "#14173A",
       "surface-2": "#1C2050",
       "line": "#2C3170",
-      "accent-soft": "#1C2050"
+      "accent-soft": "#1C2050",
+      "header-line": "#E0B451",
+      "cover-bg": "#07081C"
     },
     "default": "dark"
   },

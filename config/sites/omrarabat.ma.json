@@ -1,30 +1,82 @@
 {
   "name": "Omra Rabat",
-  "tagline": "Partir de Rabat-Salé-Kénitra : vols, accès et logistique",
+  "tagline": {
+    "fr": "Partir de Rabat-Salé-Kénitra : vols, accès et logistique",
+    "ar": "الانطلاق من جهة الرباط-سلا-القنيطرة: الرحلات والوصول والتنقل",
+    "en": "Leaving from Rabat-Salé-Kénitra: flights, access and logistics"
+  },
   "ref": "RB",
-  "nav": [
-    {
-      "label": "Articles",
-      "slug": "blog"
-    },
-    {
-      "label": "Contact",
-      "slug": "contact"
-    }
-  ],
-  "footer_nav": [
-    {
-      "label": "L'éditeur",
-      "slug": "editeur"
-    },
-    {
-      "label": "Contact",
-      "slug": "contact"
-    }
-  ],
+  "nav": {
+    "fr": [
+      {
+        "label": "Articles",
+        "slug": "blog"
+      },
+      {
+        "label": "Contact",
+        "slug": "contact"
+      }
+    ],
+    "ar": [
+      {
+        "label": "المقالات",
+        "slug": "blog"
+      },
+      {
+        "label": "اتصل بنا",
+        "slug": "contact"
+      }
+    ],
+    "en": [
+      {
+        "label": "Articles",
+        "slug": "blog"
+      },
+      {
+        "label": "Contact",
+        "slug": "contact"
+      }
+    ]
+  },
+  "footer_nav": {
+    "fr": [
+      {
+        "label": "L'éditeur",
+        "slug": "editeur"
+      },
+      {
+        "label": "Contact",
+        "slug": "contact"
+      }
+    ],
+    "ar": [
+      {
+        "label": "الناشر",
+        "slug": "editeur"
+      },
+      {
+        "label": "اتصل بنا",
+        "slug": "contact"
+      }
+    ],
+    "en": [
+      {
+        "label": "Publisher",
+        "slug": "editeur"
+      },
+      {
+        "label": "Contact",
+        "slug": "contact"
+      }
+    ]
+  },
   "whatsapp": {
     "number": null,
-    "default_topic": "Départ de Rabat"
+    "default_topic": {
+      "fr": "Départ de Rabat",
+      "ar": "الانطلاق من الرباط",
+      "en": "Leaving from Rabat"
+    }
   },
   "labels": {
     "fr": {}
@@ -40,8 +92,18 @@
     ]
   },
   "blog": {
-    "title": "Articles – Omra Rabat",
-    "description": "Articles d'Omra Rabat : vols depuis Rabat-Salé, accès à l'aéroport et logistique pour les pèlerins de la région Rabat-Salé-Kénitra."
+    "fr": {
+      "title": "Articles – Omra Rabat",
+      "description": "Articles d'Omra Rabat : vols depuis Rabat-Salé, accès à l'aéroport et logistique pour les pèlerins de la région Rabat-Salé-Kénitra."
+    },
+    "ar": {
+      "title": "مقالات – Omra Rabat",
+      "description": "مقالات Omra Rabat: الرحلات من الرباط-سلا، والوصول إلى المطار، والتنقل لمعتمري جهة الرباط-سلا-القنيطرة."
+    },
+    "en": {
+      "title": "Articles – Omra Rabat",
+      "description": "Omra Rabat articles: flights from Rabat-Salé, getting to the airport and logistics for pilgrims in the Rabat-Salé-Kénitra region."
+    }
   },
   "clusters": {},
   "redirects": []

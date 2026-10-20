@@ -246,7 +246,8 @@ export function renderContentPage(ctx, page) {
 
 // hreflang only between versions of the same page on the same site (DECISIONS D-H): home pages always; other pages
 // only through a shared translation_key (one page per language). Never across domains, never to a noindexed version.
-// Values fr-MA, ar-MA, en; x-default = the French version, or the page itself when there is none.
+// Values fr-MA, ar-MA, en; x-default = one version for the whole set, the same on every member (and in the sitemap):
+// the base-language (French) version, else English, else Arabic.
 export function hreflangAlternates(ctx, page) {
   const fm = page.fm;
   if (!(fm.translation_key || fm.type === 'home') || page.noindexFinal) return [];
@@ -256,7 +257,8 @@ export function hreflangAlternates(ctx, page) {
   for (const v of versions) if (!byLang.has(v.lang)) byLang.set(v.lang, v);
   byLang.set(page.lang, page);
   if (byLang.size < 2) return [];
-  const base = byLang.get(ctx.project.network.base_lang || 'fr') || page;
+  const order = [ctx.project.network.base_lang || 'fr', 'en', 'ar', ...byLang.keys()];
+  const base = byLang.get(order.find(l => byLang.has(l)));
   return [...[...byLang.values()].map(v => ({ hreflang: langInfo(v.lang).hreflang, href: v.absUrl })), { hreflang: 'x-default', href: base.absUrl }];
 }
 

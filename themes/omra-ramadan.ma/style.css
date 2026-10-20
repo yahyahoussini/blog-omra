@@ -1,3 +1,5 @@
-/* omra-ramadan.ma — dark by default (night indigo + gold). Components come from themes/_base/base.css. */
-:root[data-theme=dark] .site-header{border-bottom-color:var(--accent-on-dark)}
-:root[data-theme=dark] .cover{background:#07081C}
+/* omra-ramadan.ma — dark by default (night indigo + gold). Components come from themes/_base/base.css.
+   Dark-only styling goes through dark tokens (theme.js tokens.dark: header-line, cover-bg), never through
+   `:root[data-theme=dark] <selector>` rules: the engine resets every dark token for readers whose device asks for light. */
+.site-header{border-bottom-color:var(--header-line,var(--ink))}
+.cover{background:var(--cover-bg,var(--black))}

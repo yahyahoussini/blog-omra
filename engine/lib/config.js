@@ -80,6 +80,37 @@ function loadFactFiles(root) {
   if (exists(extraDir)) for (const name of fs.readdirSync(extraDir).filter(f => f.endsWith('.json')).sort())
     files.push({ file: `data/facts/extra/${name}`, facts: readJSON(path.join(extraDir, name)) });
   for (const f of files) if (!Array.isArray(f.facts)) throw new Error(`${f.file} must be a JSON array of facts`);
+  return applyI18nOverlay(files, optional(path.join(root, OVERLAY_FILE), null));
+}
+
+// data/facts/i18n/registry-overlay.json: { "<fact id>": { claim_ar, claim_en, required_wording_ar, required_wording_en } }.
+// Native Arabic / English versions of existing facts, kept apart from the French facts. Only those four fields are
+// accepted; an unknown id, another field, or a value that contradicts the fact file is a registry error
+// (`files.overlayErrors`, reported by registryGate: it blocks every site). The merged facts are then validated by
+// the registry schema like any other fact.
+export const OVERLAY_FILE = 'data/facts/i18n/registry-overlay.json';
+const OVERLAY_FIELDS = new Set(['claim_ar', 'claim_en', 'required_wording_ar', 'required_wording_en']);
+export function applyI18nOverlay(files, overlay) {
+  const errors = [];
+  if (overlay != null) {
+    if (typeof overlay !== 'object' || Array.isArray(overlay)) errors.push(`${OVERLAY_FILE} must be a JSON object keyed by fact id`);
+    else {
+      const where = new Map();
+      files.forEach((f, i) => f.facts.forEach((fact, j) => { if (fact?.id && !where.has(fact.id)) where.set(fact.id, [i, j]); }));
+      for (const [id, add] of Object.entries(overlay)) {
+        if (!where.has(id)) { errors.push(`${OVERLAY_FILE}: unknown fact id ${id}`); continue; }
+        if (!add || typeof add !== 'object' || Array.isArray(add)) { errors.push(`${OVERLAY_FILE}: ${id} must be an object`); continue; }
+        const bad = Object.keys(add).filter(k => !OVERLAY_FIELDS.has(k));
+        if (bad.length) { errors.push(`${OVERLAY_FILE}: ${id}: field(s) ${bad.join(', ')} not allowed (only ${[...OVERLAY_FIELDS].join(', ')})`); continue; }
+        const [i, j] = where.get(id);
+        const fact = files[i].facts[j];
+        const clash = Object.keys(add).filter(k => fact[k] != null && fact[k] !== add[k]);
+        if (clash.length) { errors.push(`${OVERLAY_FILE}: ${id}: ${clash.join(', ')} differs from ${files[i].file}`); continue; }
+        files[i].facts[j] = { ...fact, ...add };
+      }
+    }
+  }
+  files.overlayErrors = errors;
   return files;
 }
 

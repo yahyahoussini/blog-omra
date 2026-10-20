@@ -5,16 +5,27 @@
 import { todayISO } from './util.js';
 
 const MARK = /\[\[fact:([a-z0-9_]+)\]\]/g;
-const NUM = /[0-9٠-٩]+(?:[ .,\u202F][0-9]{3})*(?:[.,][0-9]+)?/g;
+// Thousands groups: space, dot, comma, narrow no-break space or the Arabic thousands separator ٬ (U+066C), in Western
+// or Arabic-Indic digits; decimals: comma, dot or the Arabic decimal separator ٫ (U+066B).
+const NUM = /[0-9٠-٩]+(?:[ .,\u202F٬][0-9٠-٩]{3})*(?:[.,٫][0-9٠-٩]+)?/g;
 // Unicode-aware stems: JS \b is ASCII-only, so "garantie", "interdite", "requise" used to slip through.
 // "visa" also matches "visage": an accepted false positive (it only sends a sentence to review).
-const CLAIM_WORDS = /(?<!\p{L})(obligatoir|interdi|exig|requi[st]|requier|gratuit|garanti|rembours|quota|visa|vaccin|d[ée]lai|date limite)\p{L}*|(?<!\p{L})(?:[وفبل]?ال)?(واجب|ممنوع|إلزامي|الزامي|مجاني|تأشير|مضمون|مسترجع)\p{L}*/iu;
+// Arabic: optional clitics (و/ف, then ب/ل/ك and/or the article ال, or لل) before the stem. Stems cover obligation
+// (واجب، يجب، يلزم، إلزام، إجباري، شرط، مطلوب), bans (ممنوع، يمنع، محظور، حظر، غير مسموح), vaccines, quotas,
+// deadlines (آخر أجل، آخر موعد، موعد نهائي، مهلة), refunds, permits and visas. « أجل » alone is not a stem
+// (« من أجل » = « pour »); « شرط » also matches « شرطة » and « تصريح » a press statement: accepted false positives.
+const AR_STEMS = ['واجب', 'يجب', 'ممنوع', 'يمنع', 'إلزام', 'الزام', 'يلزم', 'ملزم', 'لزام', 'إجباري', 'اجباري', 'مجاني', 'تأشير',
+  'مضمون', 'مسترجع', 'مسترد', 'استرداد', 'استرجاع', 'يسترد', 'يسترجع', 'شرط', 'شروط', 'يشترط', 'اشتراط', 'مشروط', 'مطلوب',
+  'لقاح', 'تلقيح', 'تطعيم', 'حصة', 'حصص', 'آخر\\s+أجل', 'آخر\\s+موعد', 'موعد\\s+(?:ال)?نهائي', 'أجل\\s+(?:ال)?نهائي', 'آجال', 'مهلة',
+  'محظور', 'يحظر', 'حظر', 'غير\\s+مسموح', 'لا\\s+يسمح', 'تصريح', 'تصاريح'];
+const CLAIM_WORDS = new RegExp('(?<!\\p{L})(obligatoir|interdi|exig|requi[st]|requier|gratuit|garanti|rembours|quota|visa|vaccin|d[ée]lai|date limite)\\p{L}*'
+  + `|(?<!\\p{L})(?:[وف]?(?:[بلك]?ال|لل|[بلك])?)(?:${AR_STEMS.join('|')})\\p{L}*`, 'iu');
 // Engine addition (DECISIONS D-H): English rule words, checked on every page like the French and Arabic ones
 // (quota, visa and vaccin* are already shared stems above).
-const CLAIM_WORDS_EN = /(?<!\p{L})(mandator|requir|forbid|prohibit|free of charge|guarante|refund|deadline)\p{L}*/iu;
+const CLAIM_WORDS_EN = /(?<!\p{L})(?:(mandator|compulsor|obligator|requir|forbid|prohibit|banned|free of charge|guarante|refund|deadline|permit|not allowed|not permitted)\p{L}*|(must|bans?)(?!\p{L}))/iu;
 export const hasRuleWord = s => CLAIM_WORDS.test(s) || CLAIM_WORDS_EN.test(s);
 const AR_DIGITS = s => s.replace(/[٠-٩]/g, d => String(d.charCodeAt(0) - 0x0660));
-export const norm = s => AR_DIGITS(String(s)).replace(/[ .,\u202F](?=\d{3}\b)/g, '').replace(',', '.');
+export const norm = s => AR_DIGITS(String(s)).replace(/[ .,\u202F٬](?=\d{3}\b)/g, '').replace(/[,٫]/, '.');
 export const splitSentences = t => t.replace(/\n+/g, ' ').split(/(?<=[.!?؟])\s+/).map(s => s.trim()).filter(Boolean);
 
 export function factsGate(text, registry, { today = todayISO(), approvedPhrases = [] } = {}) {

@@ -83,10 +83,14 @@ export async function runGenerate({ root, today, site: onlySite = null, limit = 
     if (!q.quota) { summary.idle.push({ site, reason: q.reasons.join('; ') || 'quota reached for today' }); log(`${site}: idle (${q.reasons.join('; ') || `today's quota of ${q.perDay} is used`})`); continue; }
     const topics = loadTopics(root, site);
     const activeLangs = activeLanguages(content, site);
+    const langPlan = languagePlan({ cadence, day: q.day, perDay: q.perDay, active: activeLangs });
+    // D-H caps each language at max_posts_per_language_per_day: with only French home pages a site stays at 1/day
+    // even when the ramp allows 2 or 3 (docs/RUNBOOK.md). Say so in the log instead of cutting volume silently.
+    if (langPlan.length < q.perDay) log(`${site}: the ramp allows ${q.perDay}/day, ${langPlan.length} used: active language(s) ${[...activeLangs].join(', ') || 'none'} × ${cadence.max_posts_per_language_per_day ?? 1} per language per day (DECISIONS D-H; Arabic and English home pages unlock the rest)`);
     const { selected, skipped } = selectTopics({
       topics, site, project, items: networkItems(content), today, minFactDays: cadence.min_fact_days_left ?? 0,
       quota: Math.min(q.quota, budget), langSlots: languageSlots(cadence, counts.todayByLang), activeLangs,
-      langPlan: languagePlan({ cadence, day: q.day, perDay: q.perDay, active: activeLangs }),
+      langPlan,
     });
     for (const s of skipped) log(`${site}: topic ${s.id} waits: ${s.reason}`);
     if (!selected.length) { summary.idle.push({ site, reason: 'no eligible queued topic (supply brake: the site idles)' }); log(`${site}: quota ${q.quota}${q.reasons.length ? ` (${q.reasons.join('; ')})` : ''}, no eligible queued topic: idle`); continue; }

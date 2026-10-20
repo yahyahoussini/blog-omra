@@ -227,7 +227,7 @@ appear only once across all files: a repeated id stops the build of every site u
 | `source_tier` | `official`, `media`, `airline`, `company_stated`, `own_data` or `academic` |
 | `confidence` | `verified`, `likely` or `estimate`; the last two need `required_wording` |
 | `required_wording` | words that must appear in the same sentence, e.g. « selon Gulf News » |
-| `required_wording_ar`, `required_wording_en` | the same wording, written natively in Arabic / English. Without it, the fact cannot be cited on Arabic / English pages |
+| `required_wording_ar`, `required_wording_en` | the same wording, written natively in Arabic / English. Without it, the fact cannot be cited on Arabic / English pages. For the facts of `registry.json` they live in `data/facts/i18n/registry-overlay.json` (with `claim_ar` / `claim_en`), merged at build |
 | `status` | `approved` (usable), `proposed` (waiting), `expired`, `disputed`, `retired` |
 | `verified_by` | who checked it. Today: `desk-research-2026-10-20`; put a real name when a person re-checks it |
 | `verified_at` | the day it was checked (`YYYY-MM-DD`); shown on pages as « consulté le » |

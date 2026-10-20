@@ -44,6 +44,7 @@ config/legal.json              legal_ok: lawyer sign-off date, or null
 config/cadence.json            publish mode and ramp (read by the automation, not by the engine)
 data/facts/registry.json       the only allowed source of numbers, dates and rules (STRATEGY 10.3 schema)
 data/facts/extra/*.json        more facts, same schema, merged with registry.json (ids unique across all files)
+data/facts/i18n/registry-overlay.json  claim_ar / claim_en / required_wording_ar / required_wording_en for existing fact ids, merged at load (unknown id or other field = registry error)
 data/facts/candidates.jsonl    proposals waiting for a human (never usable)
 data/facts/kb/<id>.json        approved religious texts, shown only through [[kb:id]] (empty until a religious reviewer is named)
 content/<domain>/<lang>/pages/<slug>.md   pages (home, pillars, trust pages, tools...)
@@ -74,7 +75,8 @@ tests/                         node:test suites; tests/fixtures/mini is a two-si
    equal `slug`** (ASCII, also for Arabic pages: `content/guideomra.ma/ar/posts/shurut-tashira-umra.md`).
 3. Write front matter (section 3) and the body (sections 4-6). Every number, date and rule needs a
    `[[fact:...]]` marker that points to an approved registry fact (section 6).
-4. Posts need at least 3 same-site links in the body, at least 1 source (2 for pillar, guide, news, data),
+4. Posts need at least 3 same-site links in the body (to pages in the post's own language: a link that falls back to a
+   French page renders but does not count), at least 1 source (2 for pillar, guide, news, data),
    and a `:::unknown` section if they are a pillar, guide or explainer.
 5. Run `npm run check`. Fix every error. Warnings go to the weekly digest.
 6. `status: published` with a future `date` = scheduled: the page builds on that date.
@@ -105,7 +107,7 @@ YAML between `---` lines. Validated by `engine/schemas/frontmatter.schema.json` 
 | `cta` | no (default whatsapp) | `{ type: whatsapp \| wikitours \| none, topic?, wt_target? }`. `topic` goes into the WhatsApp message. `wikitours` adds a link to `wt_target` in the CTA box (counts as the post's one wikitours.ma link). Trust pages usually use `none`. |
 | `noindex` | no | `true` → `<meta name="robots" content="noindex">` and out of the sitemap. |
 | `nav_order` | no | Sort order of pages in the home « pillars » list (and of pillars for a cluster). |
-| `translation_key` | no | Same value on pages of **one site** that serve the **same intent** in different languages, each written separately (never translated) → reciprocal hreflang + `x-default` (the French version, or the page itself when there is no French one) and the language switcher links to it. At most one page per language and key on a site (error otherwise); never across domains. Home pages are always paired, without a key. No key = no hreflang, and the switcher links to the other language's home. |
+| `translation_key` | no | Same value on pages of **one site** that serve the **same intent** in different languages, each written separately (never translated) → reciprocal hreflang + `x-default` (one version for the whole set, printed identically by every member and in the sitemap: the French version, else the English one, else the Arabic one) and the language switcher links to it. At most one page per language and key on a site (error otherwise); never across domains. Home pages are always paired, without a key. No key = no hreflang, and the switcher links to the other language's home. |
 | `requires_legal` | no | `true` → excluded from the build until `config/legal.json` has `legal_ok` (prixomra comparisons, agency names, offer boards). A **post** that names an agency or company not in `config/entities.json` is blocked while `legal_ok` is null. |
 | `summary` | no | Short text for cards and RSS (falls back to `description`). Gated like the description. |
 | `page_id` | no | 1-9999. Pins the 4-digit page id in the WhatsApp reference code. Normally derived from the slug. |
@@ -145,6 +147,9 @@ faq:
   the page's language. A `concept_id` may appear once per language **on the site that owns it**.
 - The facts gate reads Western and Arabic-Indic digits and French, Arabic and English rule words; a fact with a
   `required_wording` needs `required_wording_ar` / `required_wording_en` to be cited in Arabic / English.
+- Every language with a `home` page needs its own `nav`, `footer_nav` (error when missing: no trust links), `tagline`,
+  `whatsapp.default_topic` and `blog.description` in `config/sites/<domain>.json` (`{ "fr": …, "ar": …, "en": … }`), and
+  its own `editeur` and `contact` pages (gate *site-config*: warnings unless stated).
 - `[[link:slug]]` resolves in the page's language first (then French). Container labels, the byline, the CTA, the
   disclosure box, the sources heading, breadcrumbs and the footer are localized by the engine.
 
@@ -228,12 +233,15 @@ The facts gate (STRATEGY 10.4, ported verbatim in `engine/lib/facts-gate.js`) re
 summary, body, FAQ and image alt texts, sentence by sentence:
 
 - A sentence with **a digit** (Latin or Arabic-Indic) or **a rule word** (obligatoire, interdit, exigé, requis,
-  gratuit, garanti, remboursé, quota, visa, vaccin, délai, date limite; the Arabic واجب, ممنوع, إلزامي, مجاني,
-  تأشيرة, مضمون…; the English mandatory, required, forbidden, prohibited, free of charge, guaranteed, refund,
-  deadline (quota, visa, vaccine are shared stems); any gender/plural form, on every page) must cite at least one fact
-  with `[[fact:id]]`.
+  gratuit, garanti, remboursé, quota, visa, vaccin, délai, date limite; the Arabic واجب, يجب, يلزم, إلزامي, إجباري,
+  شرط/شروط/يشترط, مطلوب, ممنوع/يمنع, محظور/حظر, غير مسموح/لا يسمح, مجاني, تأشيرة, مضمون, استرداد/استرجاع, لقاح/تلقيح/تطعيم,
+  حصة, آخر أجل/آخر موعد/موعد نهائي, مهلة, تصريح, with their و/ف/ب/ل/ك/ال clitics; the English mandatory, compulsory,
+  obligatory, required, must, forbidden, prohibited, banned, not allowed, not permitted, permit, free of charge,
+  guaranteed, refund, deadline (quota, visa, vaccine are shared stems); any gender/plural form, on every page) must
+  cite at least one fact with `[[fact:id]]`.
 - Every number in the sentence must be one of the cited facts' `values` (thousand separators and decimal commas
-  are normalised: `63 021` = `63.021` = `63021`; `3,8` = `3.8`).
+  are normalised: `63 021` = `63.021` = `63021`; `3,8` = `3.8`; in Arabic `٦٣٬٠٢١` = `٦٣ ٠٢١` = `63021` and
+  `٣٫٨` = `3.8`).
 - The fact must be `approved`, not past `review_by`, not past `valid_until`.
 - Arabic and English pages cite the same registry ids (`claim_ar` / `claim_en` are optional native versions of the
   claim for writers and the generator). Write numbers with Western digits or Arabic-Indic digits (both checked).
@@ -328,7 +336,7 @@ used twice across files is a build error that blocks every site) with `status: a
   Event, HowTo, Review or AggregateRating.
 - **Head:** `<html lang="fr-MA" dir="ltr">` (`ar-MA` / `rtl` under `/ar/`, `en` / `ltr` under `/en/`), unique
   title and description, absolute self-canonical, OG (`og:locale` fr_MA / ar_MA / en_GB) + Twitter tags; hreflang
-  (`fr-MA`, `ar-MA`, `en`, `x-default` → the French version or the page itself) between the home pages of a site and
+  (`fr-MA`, `ar-MA`, `en`, `x-default` → the French version, else English, else Arabic, the same on every page of the set) between the home pages of a site and
   between `translation_key` pairs on the same site, reciprocal, never across domains and never to a noindexed version.
   The RSS link appears only when that language has an indexable post (the feed exists). One font preload (the body
   face of the page language) and the site stylesheet inlined (base.css + tokens + style.css: no CSS request).
@@ -389,7 +397,10 @@ export default {
   `themes/<domain>/style.css` (small site-specific rules only), inlined in one `<style>` (no extra request).
 - Dark mode: a dark-default site renders dark; readers whose device asks for light (`prefers-color-scheme`) get the
   light tokens; the toggle (`/assets/theme-toggle.js`, vanilla, no network) switches and remembers the reader's choice
-  in their browser. Light-default sites have no toggle.
+  in their browser. Light-default sites have no toggle. The light override resets every token the dark state sets
+  (its light value, or `initial` for a dark-only token) and `color-scheme`, so a theme styles its dark state only
+  through `tokens.dark` (e.g. omra-ramadan.ma's `header-line` and `cover-bg`, used in style.css as
+  `var(--cover-bg, var(--black))`), never with `:root[data-theme=dark] <selector>` rules (tests/i18n-fixes.test.js).
 - Home sections: `hero` (the black cover band: H1, tagline and the primary WhatsApp button), `intro` (the home page
   body), `pillars` (pages other than home/trust, by `nav_order`), `latest` (6 latest posts), `cta`, `about` (link to
   `/editeur/`). `config/sites/<domain>.json → home.sections` overrides the theme. Without `hero`, an

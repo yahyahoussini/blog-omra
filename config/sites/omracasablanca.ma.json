@@ -1,30 +1,82 @@
 {
   "name": "Omra Casablanca",
-  "tagline": "Partir de Casablanca : aéroport Mohammed V et logistique régionale",
+  "tagline": {
+    "fr": "Partir de Casablanca : aéroport Mohammed V et logistique régionale",
+    "ar": "الانطلاق من الدار البيضاء: مطار محمد الخامس والتنقل في الجهة",
+    "en": "Leaving from Casablanca: Mohammed V airport and regional logistics"
+  },
   "ref": "CA",
-  "nav": [
-    {
-      "label": "Articles",
-      "slug": "blog"
-    },
-    {
-      "label": "Contact",
-      "slug": "contact"
-    }
-  ],
-  "footer_nav": [
-    {
-      "label": "L'éditeur",
-      "slug": "editeur"
-    },
-    {
-      "label": "Contact",
-      "slug": "contact"
-    }
-  ],
+  "nav": {
+    "fr": [
+      {
+        "label": "Articles",
+        "slug": "blog"
+      },
+      {
+        "label": "Contact",
+        "slug": "contact"
+      }
+    ],
+    "ar": [
+      {
+        "label": "المقالات",
+        "slug": "blog"
+      },
+      {
+        "label": "اتصل بنا",
+        "slug": "contact"
+      }
+    ],
+    "en": [
+      {
+        "label": "Articles",
+        "slug": "blog"
+      },
+      {
+        "label": "Contact",
+        "slug": "contact"
+      }
+    ]
+  },
+  "footer_nav": {
+    "fr": [
+      {
+        "label": "L'éditeur",
+        "slug": "editeur"
+      },
+      {
+        "label": "Contact",
+        "slug": "contact"
+      }
+    ],
+    "ar": [
+      {
+        "label": "الناشر",
+        "slug": "editeur"
+      },
+      {
+        "label": "اتصل بنا",
+        "slug": "contact"
+      }
+    ],
+    "en": [
+      {
+        "label": "Publisher",
+        "slug": "editeur"
+      },
+      {
+        "label": "Contact",
+        "slug": "contact"
+      }
+    ]
+  },
   "whatsapp": {
     "number": null,
-    "default_topic": "Départ de Casablanca"
+    "default_topic": {
+      "fr": "Départ de Casablanca",
+      "ar": "الانطلاق من الدار البيضاء",
+      "en": "Leaving from Casablanca"
+    }
   },
   "labels": {
     "fr": {}
@@ -40,8 +92,18 @@
     ]
   },
   "blog": {
-    "title": "Articles – Omra Casablanca",
-    "description": "Articles d'Omra Casablanca : partir de l'aéroport Mohammed V, accès, démarches et logistique dans la région Casablanca-Settat."
+    "fr": {
+      "title": "Articles – Omra Casablanca",
+      "description": "Articles d'Omra Casablanca : partir de l'aéroport Mohammed V, accès, démarches et logistique dans la région Casablanca-Settat."
+    },
+    "ar": {
+      "title": "مقالات – Omra Casablanca",
+      "description": "مقالات Omra Casablanca: السفر من مطار محمد الخامس، والوصول إليه، والإجراءات والتنقل في جهة الدار البيضاء-سطات."
+    },
+    "en": {
+      "title": "Articles – Omra Casablanca",
+      "description": "Omra Casablanca articles: flying from Mohammed V airport, getting there, paperwork and logistics in the Casablanca-Settat region."
+    }
   },
   "clusters": {},
   "redirects": []

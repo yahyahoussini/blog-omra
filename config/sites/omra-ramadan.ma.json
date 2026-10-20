@@ -1,30 +1,82 @@
 {
   "name": "Omra Ramadan",
-  "tagline": "Dates, délais et préparation de la Omra pendant le Ramadan",
+  "tagline": {
+    "fr": "Dates, délais et préparation de la Omra pendant le Ramadan",
+    "ar": "مواعيد عمرة رمضان والتحضير لها انطلاقا من المغرب",
+    "en": "Ramadan Umrah from Morocco: dates, timing and preparation"
+  },
   "ref": "OR",
-  "nav": [
-    {
-      "label": "Articles",
-      "slug": "blog"
-    },
-    {
-      "label": "Contact",
-      "slug": "contact"
-    }
-  ],
-  "footer_nav": [
-    {
-      "label": "L'éditeur",
-      "slug": "editeur"
-    },
-    {
-      "label": "Contact",
-      "slug": "contact"
-    }
-  ],
+  "nav": {
+    "fr": [
+      {
+        "label": "Articles",
+        "slug": "blog"
+      },
+      {
+        "label": "Contact",
+        "slug": "contact"
+      }
+    ],
+    "ar": [
+      {
+        "label": "المقالات",
+        "slug": "blog"
+      },
+      {
+        "label": "اتصل بنا",
+        "slug": "contact"
+      }
+    ],
+    "en": [
+      {
+        "label": "Articles",
+        "slug": "blog"
+      },
+      {
+        "label": "Contact",
+        "slug": "contact"
+      }
+    ]
+  },
+  "footer_nav": {
+    "fr": [
+      {
+        "label": "L'éditeur",
+        "slug": "editeur"
+      },
+      {
+        "label": "Contact",
+        "slug": "contact"
+      }
+    ],
+    "ar": [
+      {
+        "label": "الناشر",
+        "slug": "editeur"
+      },
+      {
+        "label": "اتصل بنا",
+        "slug": "contact"
+      }
+    ],
+    "en": [
+      {
+        "label": "Publisher",
+        "slug": "editeur"
+      },
+      {
+        "label": "Contact",
+        "slug": "contact"
+      }
+    ]
+  },
   "whatsapp": {
     "number": null,
-    "default_topic": "Omra Ramadan – dates, personnes, budget"
+    "default_topic": {
+      "fr": "Omra Ramadan – dates, personnes, budget",
+      "ar": "عمرة رمضان – التواريخ وعدد الأشخاص والميزانية",
+      "en": "Ramadan Umrah – dates, travellers, budget"
+    }
   },
   "labels": {
     "fr": {}
@@ -40,8 +92,18 @@
     ]
   },
   "blog": {
-    "title": "Articles – Omra Ramadan",
-    "description": "Articles Omra Ramadan : dates prévues, délais de visa, quand réserver et ce que le mois sacré change pour un pèlerin parti du Maroc."
+    "fr": {
+      "title": "Articles – Omra Ramadan",
+      "description": "Articles Omra Ramadan : dates prévues, délais de visa, quand réserver et ce que le mois sacré change pour un pèlerin parti du Maroc."
+    },
+    "ar": {
+      "title": "مقالات – Omra Ramadan",
+      "description": "مقالات Omra Ramadan: المواعيد المتوقعة، ومتى تحجز، وما الذي يغيره الشهر الفضيل بالنسبة للمعتمر المسافر من المغرب."
+    },
+    "en": {
+      "title": "Articles – Omra Ramadan",
+      "description": "Omra Ramadan articles: expected dates, when to book and what the holy month changes for a pilgrim travelling from Morocco."
+    }
   },
   "clusters": {},
   "redirects": []

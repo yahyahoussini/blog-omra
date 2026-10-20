@@ -1,30 +1,82 @@
 {
   "name": "Prix Omra",
-  "tagline": "Observatoire des prix de la Omra et historique officiel du coût du Hajj",
+  "tagline": {
+    "fr": "Observatoire des prix de la Omra et historique officiel du coût du Hajj",
+    "ar": "مرصد أسعار العمرة والسجل الرسمي لتكلفة الحج",
+    "en": "Umrah price observatory and the official record of Hajj costs"
+  },
   "ref": "PX",
-  "nav": [
-    {
-      "label": "Articles",
-      "slug": "blog"
-    },
-    {
-      "label": "Contact",
-      "slug": "contact"
-    }
-  ],
-  "footer_nav": [
-    {
-      "label": "L'éditeur",
-      "slug": "editeur"
-    },
-    {
-      "label": "Contact",
-      "slug": "contact"
-    }
-  ],
+  "nav": {
+    "fr": [
+      {
+        "label": "Articles",
+        "slug": "blog"
+      },
+      {
+        "label": "Contact",
+        "slug": "contact"
+      }
+    ],
+    "ar": [
+      {
+        "label": "المقالات",
+        "slug": "blog"
+      },
+      {
+        "label": "اتصل بنا",
+        "slug": "contact"
+      }
+    ],
+    "en": [
+      {
+        "label": "Articles",
+        "slug": "blog"
+      },
+      {
+        "label": "Contact",
+        "slug": "contact"
+      }
+    ]
+  },
+  "footer_nav": {
+    "fr": [
+      {
+        "label": "L'éditeur",
+        "slug": "editeur"
+      },
+      {
+        "label": "Contact",
+        "slug": "contact"
+      }
+    ],
+    "ar": [
+      {
+        "label": "الناشر",
+        "slug": "editeur"
+      },
+      {
+        "label": "اتصل بنا",
+        "slug": "contact"
+      }
+    ],
+    "en": [
+      {
+        "label": "Publisher",
+        "slug": "editeur"
+      },
+      {
+        "label": "Contact",
+        "slug": "contact"
+      }
+    ]
+  },
   "whatsapp": {
     "number": null,
-    "default_topic": "Je veux un devis Omra – budget ___"
+    "default_topic": {
+      "fr": "Je veux un devis Omra – budget ___",
+      "ar": "أريد عرض سعر لعمرة – الميزانية ___",
+      "en": "I would like an Umrah quote – budget ___"
+    }
   },
   "labels": {
     "fr": {}
@@ -40,8 +92,18 @@
     ]
   },
   "blog": {
-    "title": "Articles – Prix Omra",
-    "description": "Analyses de Prix Omra : coût officiel du Hajj année par année, moyennes publiées et méthode, avec la date de chaque chiffre."
+    "fr": {
+      "title": "Articles – Prix Omra",
+      "description": "Analyses de Prix Omra : coût officiel du Hajj année par année, moyennes publiées et méthode, avec la date de chaque chiffre."
+    },
+    "ar": {
+      "title": "مقالات – Prix Omra",
+      "description": "تحليلات Prix Omra: التكلفة الرسمية للحج سنة بعد سنة، والمعدلات المنشورة والمنهجية، مع تاريخ كل رقم."
+    },
+    "en": {
+      "title": "Articles – Prix Omra",
+      "description": "Prix Omra analyses: the official cost of Hajj year by year, published averages and method, with the date of every figure."
+    }
   },
   "clusters": {},
   "redirects": []

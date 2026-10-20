@@ -4,6 +4,13 @@
 import { esc, stripMarkers, fill } from '../lib/util.js';
 import { formatDate, formatHijri, langInfo } from '../lib/i18n.js';
 
+// « Référence : {ref} » / « Reference: {ref} » / « المرجع: {ref} »: the punctuation lives in the label (labels.<lang>.ctaRef);
+// a label without {ref} gets the code after a space.
+const refLine = (label, ref) => {
+  const [pre, post = ''] = String(label).includes('{ref}') ? String(label).split('{ref}') : [`${label} `];
+  return `${esc(pre)}<span>${esc(ref)}</span>${esc(post)}`;
+};
+
 const attr = (name, v) => (v ? ` ${name}="${esc(v)}"` : '');
 
 export function layout(ctx, d) {
@@ -150,7 +157,7 @@ export function cta(ctx, { wa, wt }) {
 <p class="cta__title">${esc(L.ctaTitle)}</p>
 <p class="cta__text">${esc(wa.external ? L.ctaText : L.ctaFallbackText)}</p>
 <a class="cta__button" href="${esc(wa.href)}"${rel}>${esc(L.ctaButton)}</a>
-<p class="cta__ref">${esc(L.ctaRef)} : <span>${esc(wa.ref)}</span></p>
+<p class="cta__ref">${refLine(L.ctaRef, wa.ref)}</p>
 ${wtHtml}</aside>`;
 }
 

@@ -1,30 +1,82 @@
 {
   "name": "Voyage Omra",
-  "tagline": "Vols, bagages, chaleur et santé : la logistique du pèlerinage",
+  "tagline": {
+    "fr": "Vols, bagages, chaleur et santé : la logistique du pèlerinage",
+    "ar": "الرحلات والأمتعة والحرارة والصحة: الجانب اللوجستي للرحلة",
+    "en": "Flights, luggage, heat and health: the logistics of the pilgrimage"
+  },
   "ref": "VO",
-  "nav": [
-    {
-      "label": "Articles",
-      "slug": "blog"
-    },
-    {
-      "label": "Contact",
-      "slug": "contact"
-    }
-  ],
-  "footer_nav": [
-    {
-      "label": "L'éditeur",
-      "slug": "editeur"
-    },
-    {
-      "label": "Contact",
-      "slug": "contact"
-    }
-  ],
+  "nav": {
+    "fr": [
+      {
+        "label": "Articles",
+        "slug": "blog"
+      },
+      {
+        "label": "Contact",
+        "slug": "contact"
+      }
+    ],
+    "ar": [
+      {
+        "label": "المقالات",
+        "slug": "blog"
+      },
+      {
+        "label": "اتصل بنا",
+        "slug": "contact"
+      }
+    ],
+    "en": [
+      {
+        "label": "Articles",
+        "slug": "blog"
+      },
+      {
+        "label": "Contact",
+        "slug": "contact"
+      }
+    ]
+  },
+  "footer_nav": {
+    "fr": [
+      {
+        "label": "L'éditeur",
+        "slug": "editeur"
+      },
+      {
+        "label": "Contact",
+        "slug": "contact"
+      }
+    ],
+    "ar": [
+      {
+        "label": "الناشر",
+        "slug": "editeur"
+      },
+      {
+        "label": "اتصل بنا",
+        "slug": "contact"
+      }
+    ],
+    "en": [
+      {
+        "label": "Publisher",
+        "slug": "editeur"
+      },
+      {
+        "label": "Contact",
+        "slug": "contact"
+      }
+    ]
+  },
   "whatsapp": {
     "number": null,
-    "default_topic": "Vols et logistique de ma Omra"
+    "default_topic": {
+      "fr": "Vols et logistique de ma Omra",
+      "ar": "الرحلات والتنقل في عمرتي",
+      "en": "Flights and logistics for my Umrah"
+    }
   },
   "labels": {
     "fr": {}
@@ -40,8 +92,18 @@
     ]
   },
   "blog": {
-    "title": "Articles – Voyage Omra",
-    "description": "Carnet de Voyage Omra : vols depuis le Maroc, aéroports de départ, bagages, chaleur et santé en route, avec des sources datées."
+    "fr": {
+      "title": "Articles – Voyage Omra",
+      "description": "Carnet de Voyage Omra : vols depuis le Maroc, aéroports de départ, bagages, chaleur et santé en route, avec des sources datées."
+    },
+    "ar": {
+      "title": "مقالات – Voyage Omra",
+      "description": "دفتر Voyage Omra: الرحلات من المغرب، ومطارات الانطلاق، والأمتعة، والحرارة والصحة أثناء السفر، مع مصادر مؤرخة."
+    },
+    "en": {
+      "title": "Articles – Voyage Omra",
+      "description": "Voyage Omra notebook: flights from Morocco, departure airports, luggage, heat and health on the road, with dated sources."
+    }
   },
   "clusters": {},
   "redirects": []

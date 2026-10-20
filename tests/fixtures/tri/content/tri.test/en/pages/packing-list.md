@@ -1,6 +1,6 @@
 ---
 title: "Packing list: what the test pilgrim keeps at hand"
-description: "An English-only checklist page with no French or Arabic equivalent, so it must carry no hreflang alternates at all."
+description: "An English-only checklist page with no French or Arabic equivalent, so it carries no hreflang alternates at all."
 slug: "packing-list"
 type: "checklist"
 tier: "C"

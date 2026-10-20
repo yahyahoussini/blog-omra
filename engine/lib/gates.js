@@ -9,7 +9,8 @@ import { graphemes, LANGS } from './i18n.js';
 import { matchKey } from './normalize.js';
 import { docFeatures, hamming, jaccard, similarPairs, similarSetPairs, simhashBuckets } from './similarity.js';
 import { MENTION, plainText } from './markdown.js';
-import { RESERVED_SLUGS, ARTICLE_TYPES } from './content.js';
+import { RESERVED_SLUGS, ARTICLE_TYPES, langPrefix } from './content.js';
+import { navFor, forLang } from './render.js';
 
 const SCHEMA_DIR = new URL('../schemas/', import.meta.url);
 const ajv = new Ajv2020({ allErrors: true, strict: false, useDefaults: true });
@@ -49,7 +50,7 @@ export const BANNED = {
   en: [
     [/(?<!\p{L})guarantee(d|s)?(?!\p{L})/iu, '« guaranteed »'],
     [/0\s?%\s*interest|interest[- ]free/iu, '« 0% interest »'],
-    [/(last|only \S+)\s+(seats|places|spots)|limited (seats|places|spots)|hurry|book now before|offer ends|act now/iu, 'fake urgency'],
+    [/(last|only \S+)\s+(seats|places|spots)|limited (seats|places|spots|availability)|(?<!\p{L})(seats|places|spots)(?!\p{L})([^.!?]{0,50}?\s(are|is|remain|remains))?\s+limited|hurry|book now before|offer ends|act now/iu, 'fake urgency'],
     [/(wiki\s?tours|bab\s?makka)[^.!?]{0,60}(best|number one|no\.?\s?1|leader|most trusted)/iu, 'superlative about Wiki Tours'],
   ],
 };
@@ -79,6 +80,7 @@ export function registryGate(project, add) {
       if (!validateFact(f)) add('error', 'registry', null, `${file}: ${f.id}: ${ajvMsg(validateFact.errors)}`);
     }
   }
+  for (const msg of project.registryFiles?.overlayErrors || []) add('error', 'registry', null, msg);
   // Religious KB: valid entries, approved only by a real person listed in config/authors.json.
   const people = new Set(project.authors.map(a => a.id));
   for (const { _file, ...e } of project.kbList || []) {
@@ -176,7 +178,12 @@ function focusPairs(n, isFocus) {
 function cannibalGate(project, pages, add, focus = null) {
   const reservedConcepts = new Set(project.targets.reserved_concepts.map(c => c.concept_id));
   const reservedKw = project.targets.reserved_keyword_patterns.map(s => new RegExp(s, 'i'));
-  const art = pages.filter(p => p.fm.primary_keyword);
+  // Pages in publication order: the first page of a keyword, concept or cluster owns it and the error lands on the
+  // newer page, whatever the order of sites in config/network.json. Same date: network order, then file path.
+  const siteRank = new Map(project.network.sites.map((s, i) => [s.domain, i]));
+  const art = pages.filter(p => p.fm.primary_keyword)
+    .sort((a, b) => String(a.fm.date).localeCompare(String(b.fm.date)) || (siteRank.get(a.site) ?? 0) - (siteRank.get(b.site) ?? 0)
+      || String(a.file).localeCompare(String(b.file)));
   const byKey = new Map(), byConcept = new Map(), clusterOwner = new Map();
   for (const p of art) {
     const fm = p.fm;
@@ -186,9 +193,9 @@ function cannibalGate(project, pages, add, focus = null) {
     if (byKey.has(k)) add('error', 'cannibalisation', p, `same primary keyword as ${byKey.get(k).absUrl}`); else byKey.set(k, p);
     // DECISIONS D-H: a concept stays on one site in every language, and once per language.
     const prev = byConcept.get(fm.concept_id) || [];
-    const clash = prev.find(o => o.site !== p.site || o.lang === p.lang);
-    if (clash) add('error', 'cannibalisation', p, `concept "${fm.concept_id}" already served by ${clash.absUrl} (${clash.site !== p.site ? 'owned by another site' : 'same language: update that page instead'})`);
-    byConcept.set(fm.concept_id, [...prev, p]);
+    const clash = prev.find(o => o.site !== p.site) || prev.find(o => o.lang === p.lang);
+    if (clash) add('error', 'cannibalisation', p, `concept "${fm.concept_id}" already served by ${clash.absUrl} (${clash.site !== p.site ? `owned by another site: ${clash.site}, since ${clash.fm.date}` : 'same language: update that page instead'})`);
+    else byConcept.set(fm.concept_id, [...prev, p]);   // a rejected page never becomes an owner
     const owner = clusterOwner.get(fm.cluster);
     if (owner && owner !== p.site) add('error', 'cannibalisation', p, `cluster "${fm.cluster}" belongs to ${owner}`); else clusterOwner.set(fm.cluster, p.site);
   }
@@ -253,14 +260,19 @@ function linksGate(project, pages, add) {
     for (const e of p.linkErrors) add('error', 'links', p, e);
     for (const w of p.linkWarnings || []) add('warning', 'links', p, w);
     const flows = new Set(project.sites.get(p.site).meta.flows || []);
-    const same = p.links.filter(l => l.kind === 'same' && l.where === 'body');
+    // Only links to pages in the post's own language count toward the minimum (a [[link:...]] that falls back to a
+    // base-language page, or a raw /contact/ link on an Arabic page, still renders but does not count).
+    const hrefLang = hrefLangOf(project);
+    const sameAll = p.links.filter(l => l.kind === 'same' && l.where === 'body');
+    const same = sameAll.filter(l => (l.target?.lang ?? hrefLang(l.href)) === p.lang);
+    let crossLang = sameAll.length - same.length;
     const sister = p.links.filter(l => l.kind === 'sister');
     const wt = p.links.filter(l => l.kind === 'wt');
     // raw Markdown links: internal ones count as same-site; network / wikitours ones are not allowed.
     let rawInternal = 0;
     for (const { href, tag } of hrefs(p.bodyHtml)) {
       if (href.startsWith('#') || /class="(cta__button|network-link)"/.test(tag)) continue;
-      if (href.startsWith('/')) { if (!same.some(l => l.href === href)) rawInternal++; continue; }
+      if (href.startsWith('/')) { if (!sameAll.some(l => l.href === href)) { if (hrefLang(href) === p.lang) rawInternal++; else crossLang++; } continue; }
       let host; try { host = new URL(href).hostname.replace(/^www\./, ''); } catch { continue; }
       if (host === 'wa.me') continue;
       if (host === p.site) add('error', 'links', p, `absolute link to this site (${href}): use [[link:slug|anchor]]`);
@@ -269,7 +281,8 @@ function linksGate(project, pages, add) {
       if (host === 'wikitours.ma' && policy.money_link_rel && !new RegExp(`rel="[^"]*${policy.money_link_rel}`).test(tag)) add('error', 'links', p, `wikitours.ma link without rel="${policy.money_link_rel}"`);
     }
     if (p.kind === 'posts' && same.length + rawInternal < policy.min_same_site_links_per_post)
-      add('error', 'links', p, `${same.length + rawInternal} same-site links in the body, posts need ≥ ${policy.min_same_site_links_per_post}`);
+      add('error', 'links', p, `${same.length + rawInternal} same-site links in the body, posts need ≥ ${policy.min_same_site_links_per_post}`
+        + (crossLang ? ` (${crossLang} link(s) to pages in another language do not count: write the ${p.lang} page or link another ${p.lang} page)` : ''));
     if (sister.length > policy.sister_links_per_post) add('error', 'links', p, `${sister.length} sister links > ${policy.sister_links_per_post} per post`);
     for (const l of sister) {
       if (!flows.has(l.domain)) add('error', 'links', p, `sister link to ${l.domain} is not in the flow map of ${p.site} (config/network.json)`);
@@ -450,6 +463,40 @@ export const seasonYearOf = today => { const y = Number(today.slice(0, 4)); retu
 
 // Runs every post-render gate. state = { project, pages, generated, outputs, today, add, focus? }
 // focus (generator drafts): Set of pages; the pairwise gates then only compare those pages with the network.
+// Language of a same-site path: /ar/... -> ar, /en/... -> en, anything else -> the base language.
+function hrefLangOf(project) {
+  const base = project.network.base_lang || 'fr';
+  const prefixed = Object.keys(LANGS).filter(l => l !== base).map(l => [l, langPrefix(project, l)]).filter(([, pre]) => pre);
+  return href => prefixed.find(([, pre]) => href === pre || href.startsWith(pre + '/'))?.[0] ?? base;
+}
+
+// Per-language site chrome (D-H): every language that has a home page needs its own footer nav (trust links: error),
+// header nav, tagline, WhatsApp topic and, when it has posts, a blog description (warnings), plus an « éditeur » and a
+// « contact » page written in that language (warning: until they exist the byline, CTA and links fall back to the
+// base-language pages).
+export function siteLanguageGate(project, pages, add) {
+  for (const site of project.sites.values()) {
+    for (const lang of site.meta.languages || []) {
+      const own = pages.filter(p => p.site === site.domain && p.lang === lang);
+      if (!own.some(p => p.fm.type === 'home')) continue;
+      const where = { site: site.domain, url: `${langPrefix(project, lang)}/` };
+      const cfg = `config/sites/${site.domain}.json`;
+      if (!navFor(project, site.config.footer_nav, lang).length)
+        add('error', 'site-config', where, `${lang}: footer_nav has no ${lang} entries (${cfg} → footer_nav.${lang}): the footer would have no trust links`);
+      if (!navFor(project, site.config.nav, lang).length)
+        add('warning', 'site-config', where, `${lang}: nav has no ${lang} entries (${cfg} → nav.${lang}): the header would have no navigation`);
+      if (!forLang(project, site.config.tagline, lang)) add('warning', 'site-config', where, `${lang}: no tagline for this language (${cfg} → tagline.${lang})`);
+      if (!forLang(project, site.config.whatsapp?.default_topic, lang))
+        add('warning', 'site-config', where, `${lang}: no WhatsApp topic for this language (${cfg} → whatsapp.default_topic.${lang})`);
+      if (own.some(p => p.kind === 'posts') && !forLang(project, site.config.blog, lang)?.description)
+        add('warning', 'site-config', where, `${lang}: no blog description for this language (${cfg} → blog.${lang}.description)`);
+      for (const slug of ['editeur', 'contact'])
+        if (!own.some(p => p.kind === 'pages' && p.fm.slug === slug))
+          add('warning', 'site-config', where, `${lang}: no « ${slug} » page in this language (content/${site.domain}/${lang}/pages/${slug}.md): the byline, CTA, footer and [[link:${slug}]] fall back to the base-language page`);
+    }
+  }
+}
+
 export function runGates({ project, pages, generated, outputs, today, add, focus = null }) {
   const seasonYear = seasonYearOf(today);
   for (const p of pages) {
@@ -461,6 +508,7 @@ export function runGates({ project, pages, generated, outputs, today, add, focus
   // Duplicate checks compare pages of the same language only (D-H: languages are written separately, never mirrored).
   for (const lang of new Set(pages.map(p => p.lang))) duplicateGate(pages.filter(p => p.lang === lang), add, focus);
   linksGate(project, pages, add);
+  siteLanguageGate(project, pages, add);
   resolutionGate(project, outputs, pages, add);
   metaUniqueness(pages, generated, add);
   htmlGates(project, outputs, add);
