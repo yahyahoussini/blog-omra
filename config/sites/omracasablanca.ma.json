@@ -1,0 +1,48 @@
+{
+  "name": "Omra Casablanca",
+  "tagline": "Partir de Casablanca : aéroport Mohammed V et logistique régionale",
+  "ref": "CA",
+  "nav": [
+    {
+      "label": "Articles",
+      "slug": "blog"
+    },
+    {
+      "label": "Contact",
+      "slug": "contact"
+    }
+  ],
+  "footer_nav": [
+    {
+      "label": "L'éditeur",
+      "slug": "editeur"
+    },
+    {
+      "label": "Contact",
+      "slug": "contact"
+    }
+  ],
+  "whatsapp": {
+    "number": null,
+    "default_topic": "Départ de Casablanca"
+  },
+  "labels": {
+    "fr": {}
+  },
+  "home": {
+    "sections": [
+      "hero",
+      "intro",
+      "latest",
+      "pillars",
+      "about",
+      "cta"
+    ]
+  },
+  "blog": {
+    "title": "Articles – Omra Casablanca",
+    "description": "Articles d'Omra Casablanca : partir de l'aéroport Mohammed V, accès, démarches et logistique dans la région Casablanca-Settat."
+  },
+  "clusters": {},
+  "redirects": []
+}

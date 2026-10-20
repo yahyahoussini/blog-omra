@@ -1,0 +1,5 @@
+/* voyageomra.ma — placeholder palette; the site agent replaces this file. */
+:root{--bg:#f6efe2;--fg:#2e2418;--muted:#62533f;--primary:#8f4424;--accent:#c98a2b;--surface:#ecdfc7;--border:#d4c09c;--link:#8f4424;--font-head:"Palatino Linotype", Palatino, serif}
+.site-header{border-bottom:3px solid var(--accent)}
+.home-hero{padding:1.5rem 0}
+.home-hero__tagline{color:var(--muted);font-size:1.15rem}

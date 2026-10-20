@@ -1,0 +1,1810 @@
+[
+  {
+    "id": "fact_ramadan_1448_start_umq",
+    "topic": "ramadan_dates",
+    "claim_fr": "Selon le calendrier Umm al-Qura (Arabie saoudite), le 1er Ramadan 1448 tombe le lundi 8 février 2027.",
+    "values": [
+      "1",
+      "1448",
+      "8",
+      "2027"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://blog.wego.com/ramadan-2027/"
+    ],
+    "source_tier": "media",
+    "confidence": "estimate",
+    "required_wording": "estimation, sous réserve d'observation du croissant",
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-02-07",
+    "valid_until": null,
+    "time_critical": true,
+    "supersedes": null
+  },
+  {
+    "id": "fact_eid_fitr_1448_expected",
+    "topic": "ramadan_dates",
+    "claim_fr": "L'Aïd al-Fitr 1448 est attendu le mardi 9 mars 2027 en Arabie saoudite ; moonsighting.org.uk prévoit le début de Chawwal le 10 mars 2027.",
+    "values": [
+      "1448",
+      "9",
+      "10",
+      "2027"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://blog.wego.com/ramadan-2027/"
+    ],
+    "source_tier": "media",
+    "confidence": "estimate",
+    "required_wording": "estimation, sous réserve d'observation du croissant",
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-03-08",
+    "valid_until": null,
+    "time_critical": true,
+    "supersedes": null
+  },
+  {
+    "id": "fact_morocco_ramadan_2026_start",
+    "topic": "ramadan_dates",
+    "claim_fr": "Au Maroc, le Ramadan 1447 a commencé le jeudi 19 février 2026, au lendemain de l'observation du croissant par le ministère.",
+    "values": [
+      "1447",
+      "19",
+      "2026"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://telquel.ma/instant-t/2026/02/18/jeudi-19-fevrier-1er-jour-du-mois-de-ramadan-au-maroc_1975833/"
+    ],
+    "source_tier": "media",
+    "confidence": "verified",
+    "required_wording": null,
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-04-18",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_saudi_ramadan_2026_start",
+    "topic": "ramadan_dates",
+    "claim_fr": "La Cour suprême saoudienne a fixé le 1er Ramadan 1447 au mercredi 18 février 2026, contre les prévisions astronomiques.",
+    "values": [
+      "1",
+      "1447",
+      "18",
+      "2026"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://uk.news.yahoo.com/saudi-arabia-declares-ramadan-2026-163342225.html"
+    ],
+    "source_tier": "media",
+    "confidence": "verified",
+    "required_wording": null,
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-04-18",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_morocco_ramadan_2026_offset",
+    "topic": "ramadan_dates",
+    "claim_fr": "En 2026, le Maroc a commencé le Ramadan 1 jour après l'Arabie saoudite. Le même écart en 2027 n'est pas confirmé.",
+    "values": [
+      "2026",
+      "1",
+      "2027"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://telquel.ma/instant-t/2026/02/18/jeudi-19-fevrier-1er-jour-du-mois-de-ramadan-au-maroc_1975833/"
+    ],
+    "source_tier": "media",
+    "confidence": "verified",
+    "required_wording": null,
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-04-18",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_rajab_1448_start",
+    "topic": "other",
+    "claim_fr": "Rajab 1448 commence vers le 10 décembre 2026 (table Umm al-Qura).",
+    "values": [
+      "1448",
+      "10",
+      "2026"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://moonsighting.org.uk/moon/sighting-reports/report-1448-08.html"
+    ],
+    "source_tier": "media",
+    "confidence": "estimate",
+    "required_wording": "estimation, sous réserve d'observation du croissant",
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2026-12-09",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_shaaban_1448_start",
+    "topic": "other",
+    "claim_fr": "Cha'bane 1448 commence le 9 ou le 10 janvier 2027 ; moonsighting.org.uk juge le 10 janvier 2027 le plus probable pour le Maroc.",
+    "values": [
+      "1448",
+      "9",
+      "10",
+      "2027"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://moonsighting.org.uk/moon/sighting-reports/report-1448-08.html"
+    ],
+    "source_tier": "media",
+    "confidence": "estimate",
+    "required_wording": "estimation, sous réserve d'observation du croissant",
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-01-08",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_dhul_hijjah_1448_dates",
+    "topic": "hajj_process",
+    "claim_fr": "Dhou al-Hijja 1448 commencerait le 7 ou le 8 mai 2027 ; le jour d'Arafat tomberait le 15 ou le 16 mai et l'Aïd al-Adha le 16 ou le 17 mai 2027 (estimations astronomiques publiées aux Émirats).",
+    "values": [
+      "1448",
+      "7",
+      "8",
+      "15",
+      "16",
+      "17",
+      "2027"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://www.khaleejtimes.com/uae/ramadan-eid-al-fitr-eid-al-adha-2027-likely-dates"
+    ],
+    "source_tier": "media",
+    "confidence": "estimate",
+    "required_wording": "estimation, sous réserve d'observation du croissant",
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-05-06",
+    "valid_until": null,
+    "time_critical": true,
+    "supersedes": null
+  },
+  {
+    "id": "fact_muharram_1449_start",
+    "topic": "other",
+    "claim_fr": "Le 1er Mouharram 1449 (nouvel an de l'Hégire) tombe vers le 5-6 juin 2027 ; Achoura vers le 14-15 juin 2027.",
+    "values": [
+      "1",
+      "1449",
+      "5",
+      "6",
+      "14",
+      "15",
+      "2027"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://truecalendar.com/hijri/1449"
+    ],
+    "source_tier": "media",
+    "confidence": "estimate",
+    "required_wording": "estimation, sous réserve d'observation du croissant",
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-06-04",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_mawlid_1449",
+    "topic": "other",
+    "claim_fr": "Le Mawlid (12 Rabi al-Awwal 1449) est attendu vers le 14 août 2027 selon le calendrier tabulaire ; certains calendriers donnent le 15 août.",
+    "values": [
+      "12",
+      "1449",
+      "14",
+      "15",
+      "2027"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://islamic.app/hijri/mawlid/2027"
+    ],
+    "source_tier": "media",
+    "confidence": "estimate",
+    "required_wording": "estimation, sous réserve d'observation du croissant",
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-08-13",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_morocco_religious_holidays",
+    "topic": "other",
+    "claim_fr": "Jours fériés religieux au Maroc : Aïd al-Fitr (1-2 Chawwal, 2 jours), Aïd al-Adha (10-11 Dhou al-Hijja, 2 jours), 1er Mouharram (1 jour), Mawlid (2 jours). Les dates grégoriennes de 2027 ne sont pas encore officielles.",
+    "values": [
+      "1",
+      "2",
+      "10",
+      "11",
+      "2027"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://wafir.ma/fr/guide/calendrier-jours-feries-maroc-2026-2027"
+    ],
+    "source_tier": "media",
+    "confidence": "likely",
+    "required_wording": "selon wafir.ma",
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-04-18",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_umrah_1448_calendar",
+    "topic": "umrah_season",
+    "claim_fr": "Calendrier officiel de la saison Omra 1448 : visas et arrivées à partir du 31 mai 2026 ; permis Nusuk et entrée à La Mecque à partir du 1er juin 2026 ; dernière délivrance de visas le 1er Chawwal 1448 (9 mars 2027) ; dernière entrée le 15 Chawwal (23 mars 2027) ; dernier départ le 30 Chawwal (7 avril 2027).",
+    "values": [
+      "1448",
+      "31",
+      "2026",
+      "1",
+      "9",
+      "2027",
+      "15",
+      "23",
+      "30",
+      "7"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://haj.gov.sa/en/Media-Center/Ministry-News/2026/Ministry-of-Hajj-and-Umrah-Announces-the-Umrah-Season-Calendar-for-1448-AH"
+    ],
+    "source_tier": "official",
+    "confidence": "verified",
+    "required_wording": null,
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2026-11-19",
+    "valid_until": "2027-04-07",
+    "time_critical": true,
+    "supersedes": null
+  },
+  {
+    "id": "fact_umrah_1448_visas_open",
+    "topic": "umrah_season",
+    "claim_fr": "Saison Omra 1448 : délivrance des visas et arrivées à partir du 31 mai 2026.",
+    "values": [
+      "1448",
+      "31",
+      "2026"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://haj.gov.sa/en/Media-Center/Ministry-News/2026/Ministry-of-Hajj-and-Umrah-Announces-the-Umrah-Season-Calendar-for-1448-AH"
+    ],
+    "source_tier": "official",
+    "confidence": "verified",
+    "required_wording": null,
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2026-11-19",
+    "valid_until": "2027-04-07",
+    "time_critical": true,
+    "supersedes": null
+  },
+  {
+    "id": "fact_umrah_1448_nusuk_open",
+    "topic": "umrah_season",
+    "claim_fr": "Saison Omra 1448 : permis Nusuk et entrée à La Mecque à partir du 1er juin 2026.",
+    "values": [
+      "1448",
+      "1",
+      "2026"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://haj.gov.sa/en/Media-Center/Ministry-News/2026/Ministry-of-Hajj-and-Umrah-Announces-the-Umrah-Season-Calendar-for-1448-AH"
+    ],
+    "source_tier": "official",
+    "confidence": "verified",
+    "required_wording": null,
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2026-11-19",
+    "valid_until": "2027-04-07",
+    "time_critical": true,
+    "supersedes": null
+  },
+  {
+    "id": "fact_umrah_1448_last_visa",
+    "topic": "umrah_season",
+    "claim_fr": "Dernière délivrance de visas Omra de la saison 1448 : 1er Chawwal 1448, soit le 9 mars 2027.",
+    "values": [
+      "1",
+      "1448",
+      "9",
+      "2027"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://haj.gov.sa/en/Media-Center/Ministry-News/2026/Ministry-of-Hajj-and-Umrah-Announces-the-Umrah-Season-Calendar-for-1448-AH"
+    ],
+    "source_tier": "official",
+    "confidence": "verified",
+    "required_wording": null,
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2026-11-19",
+    "valid_until": "2027-04-07",
+    "time_critical": true,
+    "supersedes": null
+  },
+  {
+    "id": "fact_umrah_1448_last_entry",
+    "topic": "umrah_season",
+    "claim_fr": "Dernière entrée en Arabie saoudite pour la Omra 1448 : 15 Chawwal 1448, soit le 23 mars 2027.",
+    "values": [
+      "15",
+      "1448",
+      "23",
+      "2027"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://haj.gov.sa/en/Media-Center/Ministry-News/2026/Ministry-of-Hajj-and-Umrah-Announces-the-Umrah-Season-Calendar-for-1448-AH"
+    ],
+    "source_tier": "official",
+    "confidence": "verified",
+    "required_wording": null,
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2026-11-19",
+    "valid_until": "2027-04-07",
+    "time_critical": true,
+    "supersedes": null
+  },
+  {
+    "id": "fact_umrah_1448_last_departure",
+    "topic": "umrah_season",
+    "claim_fr": "Dernier départ des pèlerins de la Omra 1448 : 30 Chawwal 1448, soit le 7 avril 2027.",
+    "values": [
+      "30",
+      "1448",
+      "7",
+      "2027"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://haj.gov.sa/en/Media-Center/Ministry-News/2026/Ministry-of-Hajj-and-Umrah-Announces-the-Umrah-Season-Calendar-for-1448-AH"
+    ],
+    "source_tier": "official",
+    "confidence": "verified",
+    "required_wording": null,
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2026-11-19",
+    "valid_until": "2027-04-07",
+    "time_critical": true,
+    "supersedes": null
+  },
+  {
+    "id": "fact_ramadan_one_permit_2024",
+    "topic": "umrah_season",
+    "claim_fr": "En mars 2024, le ministère saoudien a annoncé ne délivrer qu'un seul permis Omra par personne pendant le Ramadan. Son application au Ramadan 1448 n'est pas connue.",
+    "values": [
+      "2024",
+      "1448"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://beta.english.aaj.tv/news/30355098"
+    ],
+    "source_tier": "media",
+    "confidence": "likely",
+    "required_wording": "selon Aaj News",
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2026-11-19",
+    "valid_until": null,
+    "time_critical": true,
+    "supersedes": null
+  },
+  {
+    "id": "fact_umrah_visa_entry_window",
+    "topic": "visa",
+    "claim_fr": "Depuis le 1er novembre 2025 environ, le visa Omra doit être utilisé dans un délai d'1 mois après sa délivrance (contre 3 mois auparavant) ; un visa non utilisé est annulé après 30 jours.",
+    "values": [
+      "1",
+      "2025",
+      "3",
+      "30"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://gulfnews.com/world/gulf/saudi/saudi-arabia-announces-new-amendments-to-umrah-visa-rules-1.500328262"
+    ],
+    "source_tier": "media",
+    "confidence": "likely",
+    "required_wording": "selon Gulf News",
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2026-11-19",
+    "valid_until": null,
+    "time_critical": true,
+    "supersedes": null
+  },
+  {
+    "id": "fact_umrah_visa_stay_3_months",
+    "topic": "visa",
+    "claim_fr": "Une fois le pèlerin arrivé, le séjour avec un visa Omra peut durer jusqu'à 3 mois.",
+    "values": [
+      "3"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://gulfnews.com/world/gulf/saudi/saudi-arabia-announces-new-amendments-to-umrah-visa-rules-1.500328262"
+    ],
+    "source_tier": "media",
+    "confidence": "likely",
+    "required_wording": "selon Gulf News",
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2026-11-19",
+    "valid_until": null,
+    "time_critical": true,
+    "supersedes": null
+  },
+  {
+    "id": "fact_umrah_multi_entry_visa",
+    "topic": "visa",
+    "claim_fr": "Vers le 20 juillet 2026, l'Arabie saoudite a lancé un visa Omra à entrées multiples valable 1 an (365 jours), pour un séjour total de 90 jours ; un forfait Nusuk d'un prestataire agréé est requis avant chaque visite ; il n'est pas valable pendant la saison du Hajj (du 1er Dhou al-Qa'da au 13 Dhou al-Hijja) et ne remplace pas le visa Omra standard. L'accès des Marocains n'est pas connu.",
+    "values": [
+      "20",
+      "2026",
+      "1",
+      "365",
+      "90",
+      "13"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://www.khaleejtimes.com/world/gulf/saudi-arabia-launches-90-day-multiple-entry-umrah-visa-with-1-year-validity-2"
+    ],
+    "source_tier": "media",
+    "confidence": "likely",
+    "required_wording": "selon Khaleej Times",
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2026-11-19",
+    "valid_until": null,
+    "time_critical": true,
+    "supersedes": null
+  },
+  {
+    "id": "fact_nusuk_umrah_direct",
+    "topic": "visa",
+    "claim_fr": "En août 2025, le ministère saoudien du Hajj et de la Omra a lancé « Nusuk Umrah » : les pèlerins hors du Royaume peuvent demander le visa et réserver leurs services directement, sans intermédiaire, les agents agréés restant une option. Aucune liste publiée ne confirme que le Maroc fait partie des pays desservis.",
+    "values": [
+      "2025"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://haj.gov.sa/en/Media-Center/Ministry-News/Ministry-of-Hajj-and-Umrah-launches-Nusuk-Umrah-service-to-enable-pilgrims-from-outside-the-Kingdom"
+    ],
+    "source_tier": "official",
+    "confidence": "verified",
+    "required_wording": null,
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2026-11-19",
+    "valid_until": null,
+    "time_critical": true,
+    "supersedes": null
+  },
+  {
+    "id": "fact_acwy_requirement",
+    "topic": "health",
+    "claim_fr": "Règle annoncée en 2025 : tout voyageur Omra âgé d'1 an ou plus doit avoir reçu un vaccin méningococcique quadrivalent ACWY au moins 10 jours avant son arrivée.",
+    "values": [
+      "2025",
+      "1",
+      "10"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://gulfnews.com/living-in-uae/health/umrah-2025-meningitis-vaccine-now-mandatory-for-all-pilgrims-1.500025860"
+    ],
+    "source_tier": "media",
+    "confidence": "likely",
+    "required_wording": "selon Gulf News, confirmation pour 1448 non trouvée",
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2026-11-19",
+    "valid_until": null,
+    "time_critical": true,
+    "supersedes": null
+  },
+  {
+    "id": "fact_acwy_validity",
+    "topic": "health",
+    "claim_fr": "Pour la règle ACWY de 2025, un vaccin polysaccharidique est valable 3 ans et un vaccin conjugué 5 ans.",
+    "values": [
+      "2025",
+      "3",
+      "5"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://gulfnews.com/living-in-uae/health/umrah-2025-meningitis-vaccine-now-mandatory-for-all-pilgrims-1.500025860"
+    ],
+    "source_tier": "media",
+    "confidence": "likely",
+    "required_wording": "selon Gulf News",
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2026-11-19",
+    "valid_until": null,
+    "time_critical": true,
+    "supersedes": null
+  },
+  {
+    "id": "fact_agency_selection_criteria",
+    "topic": "agency_rules",
+    "claim_fr": "Selon la ministre du Tourisme (septembre 2025), les agences Hajj et Omra sont sélectionnées sur leur compétence professionnelle et technique et sur leurs garanties financières.",
+    "values": [
+      "2025"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://fr.hespress.com/441379-hajj-et-omra-mesures-renforcees-pour-proteger-les-pelerins-marocains.html"
+    ],
+    "source_tier": "media",
+    "confidence": "verified",
+    "required_wording": null,
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-04-18",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_disputes_amicable_first",
+    "topic": "agency_rules",
+    "claim_fr": "Les litiges entre pèlerins et agences sont d'abord réglés à l'amiable auprès des délégations du ministère du Tourisme.",
+    "values": [],
+    "unit": null,
+    "source_urls": [
+      "https://fr.hespress.com/441379-hajj-et-omra-mesures-renforcees-pour-proteger-les-pelerins-marocains.html"
+    ],
+    "source_tier": "media",
+    "confidence": "verified",
+    "required_wording": null,
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-04-18",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_law_11_16_sanctions",
+    "topic": "agency_rules",
+    "claim_fr": "La loi 11-16 sur la profession d'agent de voyages permet de sanctionner les agences.",
+    "values": [
+      "11",
+      "16"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://fr.hespress.com/441379-hajj-et-omra-mesures-renforcees-pour-proteger-les-pelerins-marocains.html"
+    ],
+    "source_tier": "media",
+    "confidence": "verified",
+    "required_wording": null,
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-04-18",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_law_11_16_reform",
+    "topic": "agency_rules",
+    "claim_fr": "La loi 11-16 a abrogé la loi 31-96, laissé 24 mois aux agences existantes pour se mettre en conformité et créé des licences graduées selon l'activité et la responsabilité, avec des règles pour la vente en ligne et à distance. Les catégories exactes ne sont pas connues.",
+    "values": [
+      "11",
+      "16",
+      "31",
+      "96",
+      "24"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://ecoactu.ma/?p=17467"
+    ],
+    "source_tier": "media",
+    "confidence": "likely",
+    "required_wording": "selon EcoActu",
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-04-18",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_official_agency_list",
+    "topic": "agency_rules",
+    "claim_fr": "Le ministère du Tourisme publie sur son site la liste officielle des agences de voyages autorisées.",
+    "values": [],
+    "unit": null,
+    "source_urls": [
+      "https://h24info.ma/?p=985412"
+    ],
+    "source_tier": "media",
+    "confidence": "verified",
+    "required_wording": null,
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-01-18",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_sanctions_2022",
+    "topic": "agency_rules",
+    "claim_fr": "En 2022, le ministère du Tourisme a sanctionné 15 agences sur la base de la loi 31-96, de l'avertissement jusqu'au retrait définitif de la licence ; les agences sanctionnées ne peuvent pas demander la labellisation Omra pendant 3 ans.",
+    "values": [
+      "2022",
+      "15",
+      "31",
+      "96",
+      "3"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://www.bladi.net/omra-voici-liste-agences-voyages-sanctionnees,92963.html"
+    ],
+    "source_tier": "media",
+    "confidence": "verified",
+    "required_wording": null,
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-04-18",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_saudi_agency_suspension_2026",
+    "topic": "agency_rules",
+    "claim_fr": "Le 1er février 2026, l'Arabie saoudite a suspendu les contrats d'environ 1 800 des quelque 5 800 agences Omra étrangères après une évaluation (hébergement, transport, échecs de visas) ; elles avaient 10 jours pour corriger, et les nouveaux visas par leur intermédiaire étaient bloqués.",
+    "values": [
+      "1",
+      "2026",
+      "1800",
+      "5800",
+      "10"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://gulfnews.com/world/gulf/saudi/saudi-arabia-suspends-1800-foreign-umrah-agencies-after-review-1.500430224"
+    ],
+    "source_tier": "media",
+    "confidence": "verified",
+    "required_wording": null,
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2026-11-19",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_unlicensed_agency_stranded",
+    "topic": "fraud_cases",
+    "claim_fr": "Une agence de Marrakech a laissé des pèlerins bloqués en Turquie : elle exerçait sans autorisation, faute d'avoir renouvelé sa licence, et ne figurait donc pas sur la liste officielle. Les pèlerins ont été rapatriés.",
+    "values": [],
+    "unit": null,
+    "source_urls": [
+      "https://h24info.ma/?p=985412"
+    ],
+    "source_tier": "media",
+    "confidence": "verified",
+    "required_wording": "selon H24info",
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-04-18",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_marrakech_fraud_2026",
+    "topic": "fraud_cases",
+    "claim_fr": "En février 2026, le gérant d'une agence de Marrakech a été arrêté ; il est soupçonné d'avoir encaissé environ 3,8 millions de dirhams (380 millions de centimes) pour des Omras jamais réalisées. Il s'agit d'une arrestation, pas d'une condamnation.",
+    "values": [
+      "2026",
+      "3.8",
+      "380"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://fr.hespress.com/462180-omra-lobservatoire-du-consommateur-appelle-a-un-controle-renforce-des-agences.html"
+    ],
+    "source_tier": "media",
+    "confidence": "verified",
+    "required_wording": "selon Hespress",
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-04-18",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_observatory_warning_2026",
+    "topic": "fraud_cases",
+    "claim_fr": "Le 12 février 2026, l'Observatoire marocain de protection du consommateur a lancé une alerte nationale invitant à vérifier le statut légal d'une agence avant de payer une Omra.",
+    "values": [
+      "12",
+      "2026"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://fr.hespress.com/462180-omra-lobservatoire-du-consommateur-appelle-a-un-controle-renforce-des-agences.html"
+    ],
+    "source_tier": "media",
+    "confidence": "verified",
+    "required_wording": null,
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-04-18",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_licensing_gaps_low_offers",
+    "topic": "fraud_cases",
+    "claim_fr": "Le président de la fédération a estimé que des failles dans l'octroi des licences permettent à des personnes non qualifiées d'exercer légalement ; une association de consommateurs a mis en garde contre les offres en ligne à prix anormalement bas.",
+    "values": [],
+    "unit": null,
+    "source_urls": [
+      "https://en.hespress.com/131697-moroccan-authorities-consumer-groups-warn-against-travel-scams-amid-luxury-umrah-audit.html"
+    ],
+    "source_tier": "media",
+    "confidence": "verified",
+    "required_wording": null,
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-04-18",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_dgi_vip_omra_checks",
+    "topic": "fraud_cases",
+    "claim_fr": "La Direction générale des impôts (DGI) et l'Office des changes ont renforcé leurs contrôles sur les dépenses liées aux Omras « de luxe » ou « VIP ».",
+    "values": [],
+    "unit": null,
+    "source_urls": [
+      "https://en.hespress.com/131697-moroccan-authorities-consumer-groups-warn-against-travel-scams-amid-luxury-umrah-audit.html"
+    ],
+    "source_tier": "media",
+    "confidence": "verified",
+    "required_wording": null,
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-04-18",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_hajj_1448_registration",
+    "topic": "hajj_process",
+    "claim_fr": "Hajj 1448/2027 : l'inscription électronique s'est déroulée du 8 au 19 décembre 2025 sur le site du ministère des Habous, avec 2 listes (encadrement du ministère et agences de voyages).",
+    "values": [
+      "1448",
+      "2027",
+      "8",
+      "19",
+      "2025",
+      "2"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://fr.hespress.com/451603-linscription-electronique-des-candidats-au-hajj-1448-h-du-8-au-19-decembre-2025.html"
+    ],
+    "source_tier": "media",
+    "confidence": "verified",
+    "required_wording": null,
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-04-18",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_hajj_1448_eligibility",
+    "topic": "hajj_process",
+    "claim_fr": "Pour le Hajj 1448, les candidats devaient avoir 18 ans ou plus et ne pas avoir accompli le Hajj au cours des 10 dernières années.",
+    "values": [
+      "1448",
+      "18",
+      "10"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://fr.hespress.com/451603-linscription-electronique-des-candidats-au-hajj-1448-h-du-8-au-19-decembre-2025.html"
+    ],
+    "source_tier": "media",
+    "confidence": "verified",
+    "required_wording": null,
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-04-18",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_hajj_1448_lottery",
+    "topic": "hajj_process",
+    "claim_fr": "Le tirage au sort du Hajj 1448 a eu lieu du 2 au 13 mars 2026 ; les listes définitives et une liste d'attente ont été publiées ensuite.",
+    "values": [
+      "1448",
+      "2",
+      "13",
+      "2026"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://fr.le360.ma/societe/hajj-le-tirage-au-sort-aura-lieu-du-2-au-13-mars_KD5PVC6DUBFO3DRSPKJDKWEAQU/"
+    ],
+    "source_tier": "media",
+    "confidence": "verified",
+    "required_wording": null,
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-04-18",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_hajj_1447_timeline",
+    "topic": "hajj_process",
+    "claim_fr": "Hajj 1447/2026 : inscription du 13 au 24 janvier 2025, tirage au sort du 23 juin au 4 juillet 2025. Le calendrier d'inscription avance à chaque cycle.",
+    "values": [
+      "1447",
+      "2026",
+      "13",
+      "24",
+      "2025",
+      "23",
+      "4"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://medias24.com/2025/06/16/hajj-2026-le-tirage-au-sort-aura-lieu-du-23-juin-au-04-juillet-2025/"
+    ],
+    "source_tier": "media",
+    "confidence": "verified",
+    "required_wording": null,
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-04-18",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_hajj_1449_no_announcement",
+    "topic": "hajj_process",
+    "claim_fr": "Au 20 octobre 2026, aucune annonce officielle concernant l'inscription au Hajj 1449/2028 n'avait été trouvée.",
+    "values": [
+      "20",
+      "2026",
+      "1449",
+      "2028"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://medias24.com/2025/06/16/hajj-2026-le-tirage-au-sort-aura-lieu-du-23-juin-au-04-juillet-2025/",
+      "https://fr.hespress.com/451603-linscription-electronique-des-candidats-au-hajj-1448-h-du-8-au-19-decembre-2025.html"
+    ],
+    "source_tier": "media",
+    "confidence": "likely",
+    "required_wording": "à notre connaissance",
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2026-11-19",
+    "valid_until": null,
+    "time_critical": true,
+    "supersedes": null
+  },
+  {
+    "id": "fact_hajj_1447_quota",
+    "topic": "hajj_process",
+    "claim_fr": "Le quota du Hajj 1447 pour le Maroc était de 34 000 pèlerins : environ 22 200 par le système officiel du ministère et 11 800 par les agences de voyages agréées.",
+    "values": [
+      "1447",
+      "34000",
+      "22200",
+      "11800"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://www.moroccoworldnews.com/2026/04/288023/morocco-sets-34000-pilgrims-quota-lower-costs-digital-upgrade-for-hajj-season/"
+    ],
+    "source_tier": "media",
+    "confidence": "likely",
+    "required_wording": "selon Morocco World News",
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-04-18",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_hajj_1446_quota_split",
+    "topic": "hajj_process",
+    "claim_fr": "Pour le Hajj 1446, la répartition était proche : 22 400 pèlerins par le système officiel et 11 600 par les agences.",
+    "values": [
+      "1446",
+      "22400",
+      "11600"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://www.moroccoworldnews.com/2026/04/288023/morocco-sets-34000-pilgrims-quota-lower-costs-digital-upgrade-for-hajj-season/"
+    ],
+    "source_tier": "media",
+    "confidence": "likely",
+    "required_wording": "selon Morocco World News",
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-04-18",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_fm6_hajj_subsidy_1448",
+    "topic": "hajj_process",
+    "claim_fr": "La Fondation Mohammed VI a reçu les souscriptions à sa subvention Hajj 1448/2027 (adhérents inscrits sur le circuit officiel) du 16 mars au 10 juillet 2026.",
+    "values": [
+      "1448",
+      "2027",
+      "16",
+      "10",
+      "2026"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://snrtnews.com/fr/article/hajj-1448h2027-la-fondation-mohammed-vi-ouvre-les-souscriptions-a-la-subvention-149672"
+    ],
+    "source_tier": "media",
+    "confidence": "verified",
+    "required_wording": null,
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-04-18",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_hajj_1447_final_cost",
+    "topic": "hajj_cost",
+    "claim_fr": "Le coût définitif du Hajj 1447 pour les pèlerins encadrés par le ministère est de 63 021 dirhams (annoncé le 3 mars 2026). Il inclut pour la première fois le sacrifice (hady, 720 riyals saoudiens), et 1 979 dirhams de l'avance de 65 000 dirhams sont remboursés. D'autres médias ont rapporté 63 221 et 63 121 dirhams.",
+    "values": [
+      "1447",
+      "63021",
+      "3",
+      "2026",
+      "720",
+      "1979",
+      "65000",
+      "63221",
+      "63121"
+    ],
+    "unit": "MAD",
+    "source_urls": [
+      "https://fr.le360.ma/societe/hajj-1447h-les-frais-definitifs-fixes-a-63021-dirhams_HFBAQQU5INGOPKRWSNL7NY2QN4/"
+    ],
+    "source_tier": "media",
+    "confidence": "verified",
+    "required_wording": null,
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-04-18",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_hajj_1448_provisional_cost",
+    "topic": "hajj_cost",
+    "claim_fr": "Hajj 1448 : les pèlerins retenus paient un montant provisoire forfaitaire de 65 000 dirhams, en attendant un coût définitif qui peut varier à la hausse ou à la baisse ; la fenêtre de paiement était annoncée du 29 juin au 10 juillet 2026. Le coût définitif 1448 n'est pas encore annoncé.",
+    "values": [
+      "1448",
+      "65000",
+      "29",
+      "10",
+      "2026"
+    ],
+    "unit": "MAD",
+    "source_urls": [
+      "https://ecoactu.ma/hajj-1447h-le-cout-fixe-a-63-021-dh-remboursement-prevu-des-le-9-mars-2026/"
+    ],
+    "source_tier": "media",
+    "confidence": "likely",
+    "required_wording": "montant provisoire, selon EcoActu",
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2026-11-19",
+    "valid_until": null,
+    "time_critical": true,
+    "supersedes": null
+  },
+  {
+    "id": "fact_ramadan_price_avg_2023_2024",
+    "topic": "prices",
+    "claim_fr": "Le prix moyen d'une Omra du Ramadan (vol et hôtel) était d'environ 25 000 dirhams en 2023 et d'environ 35 000 dirhams en 2024.",
+    "values": [
+      "25000",
+      "2023",
+      "35000",
+      "2024"
+    ],
+    "unit": "MAD",
+    "source_urls": [
+      "https://medias24.com/2024/04/03/omra-2024-inflation-situation-geopolitique-et-secteur-informel-ont-fait-chuter-le-nombre-de-pelerins/"
+    ],
+    "source_tier": "media",
+    "confidence": "likely",
+    "required_wording": "selon la fédération, citée par Medias24",
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2026-11-19",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_ramadan_pilgrims_2023_2024",
+    "topic": "prices",
+    "claim_fr": "La Omra du Ramadan a attiré plus de 30 000 Marocains en 2023 et environ 20 000 en 2024, soit une baisse de 30 %.",
+    "values": [
+      "30000",
+      "2023",
+      "20000",
+      "2024",
+      "30"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://medias24.com/2024/04/03/omra-2024-inflation-situation-geopolitique-et-secteur-informel-ont-fait-chuter-le-nombre-de-pelerins/"
+    ],
+    "source_tier": "media",
+    "confidence": "likely",
+    "required_wording": "selon la fédération, citée par Medias24",
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2026-11-19",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_ramadan_2024_drop_causes",
+    "topic": "prices",
+    "claim_fr": "Causes citées pour la baisse de la Omra du Ramadan en 2024 : l'inflation, la situation géopolitique et le secteur informel.",
+    "values": [
+      "2024"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://medias24.com/2024/04/03/omra-2024-inflation-situation-geopolitique-et-secteur-informel-ont-fait-chuter-le-nombre-de-pelerins/"
+    ],
+    "source_tier": "media",
+    "confidence": "likely",
+    "required_wording": "selon la fédération, citée par Medias24",
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2026-11-19",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_no_ramadan_2027_price_data",
+    "topic": "prices",
+    "claim_fr": "Au 20 octobre 2026, nous n'avons trouvé aucune donnée publiée de prix de la Omra du Ramadan 2027 (ni 2026) provenant d'agences marocaines ou de la presse.",
+    "values": [
+      "20",
+      "2026",
+      "2027"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://wafir.ma/fr/guide/omra-ete-2026-maroc-12-agences-comparatif-prix-financement",
+      "https://medias24.com/2024/04/03/omra-2024-inflation-situation-geopolitique-et-secteur-informel-ont-fait-chuter-le-nombre-de-pelerins/"
+    ],
+    "source_tier": "own_data",
+    "confidence": "verified",
+    "required_wording": null,
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2026-11-19",
+    "valid_until": null,
+    "time_critical": true,
+    "supersedes": null
+  },
+  {
+    "id": "fact_flynas_casablanca_jeddah",
+    "topic": "flights",
+    "claim_fr": "flynas relie Djeddah et Casablanca depuis 2023, avec 3 vols par semaine au lancement.",
+    "values": [
+      "2023",
+      "3"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://www.flynas.com/en/media-center/news-updates/flynas-announces-the-launch-of-direct-flights-between-jeddah-and-the-moroccan-capital-rabat-starting-from-july-4th-becomimg-the-first-saudi-carrier-to-operate-direct-flights-between-the-two-cities"
+    ],
+    "source_tier": "airline",
+    "confidence": "verified",
+    "required_wording": null,
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-01-18",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_flynas_rabat_jeddah",
+    "topic": "flights",
+    "claim_fr": "flynas a lancé la ligne Djeddah-Rabat le 4 juillet 2026 avec 1 vol par semaine : c'est le premier vol direct d'une compagnie saoudienne entre les deux villes.",
+    "values": [
+      "4",
+      "2026",
+      "1"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://www.flynas.com/en/media-center/news-updates/flynas-announces-the-launch-of-direct-flights-between-jeddah-and-the-moroccan-capital-rabat-starting-from-july-4th-becomimg-the-first-saudi-carrier-to-operate-direct-flights-between-the-two-cities"
+    ],
+    "source_tier": "airline",
+    "confidence": "verified",
+    "required_wording": null,
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-01-18",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_flynas_rabat_2_weekly",
+    "topic": "flights",
+    "claim_fr": "La ligne flynas Rabat-Djeddah devait passer à 2 vols par semaine à partir du 19 août 2026.",
+    "values": [
+      "2",
+      "19",
+      "2026"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://blog.wego.com/flynas-direct-jeddah-rabat/"
+    ],
+    "source_tier": "media",
+    "confidence": "likely",
+    "required_wording": "selon Wego",
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-01-18",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_ram_saudi_routes",
+    "topic": "flights",
+    "claim_fr": "Royal Air Maroc vend des vols Casablanca-Djeddah et Casablanca-Médine. Les fréquences et le programme du Ramadan 2027 ne sont pas connus.",
+    "values": [
+      "2027"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://www.royalairmaroc.com/en/flights-to-saudi-arabia"
+    ],
+    "source_tier": "airline",
+    "confidence": "likely",
+    "required_wording": "selon le site de Royal Air Maroc",
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-01-18",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_ram_ramadan_2023_capacity",
+    "topic": "flights",
+    "claim_fr": "Pour le Ramadan 2023, Royal Air Maroc a annoncé plus de 61 000 sièges sur une centaine de vols (environ 100) vers Djeddah et Médine, dont 28 000 pour la Omra du Ramadan, au départ de 7 villes : Casablanca, Rabat, Tanger, Oujda, Fès, Marrakech et Agadir.",
+    "values": [
+      "2023",
+      "61000",
+      "100",
+      "28000",
+      "7"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://snrtnews.com/fr/article/omra-et-haj-la-ram-deploie-un-nouveau-programme-de-vols-69745"
+    ],
+    "source_tier": "media",
+    "confidence": "verified",
+    "required_wording": null,
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-04-18",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_ram_gulf_suspension_2026",
+    "topic": "flights",
+    "claim_fr": "Après des frappes sur l'Iran fin février 2026, Royal Air Maroc a suspendu ses vols Casablanca-Doha et Casablanca-Dubaï, suspension prolongée jusqu'au 15 avril 2026 ; aucun impact sur les liaisons vers l'Arabie saoudite n'a été signalé.",
+    "values": [
+      "2026",
+      "15"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://medias24.com/2026/03/27/royal-air-maroc-prolonge-la-suspension-de-ses-vols-vers-dubai-et-doha-jusquau-15-avril-1649760/"
+    ],
+    "source_tier": "media",
+    "confidence": "verified",
+    "required_wording": null,
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-04-18",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_hajj_2026_flights_onda",
+    "topic": "flights",
+    "claim_fr": "Pour le Hajj 2026, l'ONDA a compté 91 vols aller depuis 9 aéroports marocains (Casablanca, Rabat-Salé, Marrakech, Agadir, Fès, Tanger, Oujda, Ouarzazate, Dakhla) vers Médine et Djeddah, opérés par Royal Air Maroc et des compagnies saoudiennes.",
+    "values": [
+      "2026",
+      "91",
+      "9"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://telquel.ma/instant-t/2026/05/22/hajj-2026-londa-deploie-un-dispositif-special_1991022/"
+    ],
+    "source_tier": "media",
+    "confidence": "verified",
+    "required_wording": null,
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-04-18",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_makkah_route_2026_cmn",
+    "topic": "local_casablanca",
+    "claim_fr": "Pour le Hajj 2026, le programme « Route de La Mecque » (pré-dédouanement saoudien à l'aéroport de départ) en était à sa 5e année au terminal 3 de l'aéroport Mohammed V de Casablanca.",
+    "values": [
+      "2026",
+      "5",
+      "3"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://telquel.ma/instant-t/2026/05/22/hajj-2026-londa-deploie-un-dispositif-special_1991022/"
+    ],
+    "source_tier": "media",
+    "confidence": "verified",
+    "required_wording": null,
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-03-01",
+    "valid_until": null,
+    "time_critical": true,
+    "supersedes": null
+  },
+  {
+    "id": "fact_makkah_route_2026_rba",
+    "topic": "flights",
+    "claim_fr": "Pour le Hajj 2026, le programme « Route de La Mecque » a été étendu pour la première fois à l'aéroport de Rabat-Salé. Il concerne le Hajj, pas la Omra.",
+    "values": [
+      "2026"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://telquel.ma/instant-t/2026/05/22/hajj-2026-londa-deploie-un-dispositif-special_1991022/"
+    ],
+    "source_tier": "media",
+    "confidence": "verified",
+    "required_wording": null,
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-03-01",
+    "valid_until": null,
+    "time_critical": true,
+    "supersedes": null
+  },
+  {
+    "id": "fact_school_calendar_2026_27",
+    "topic": "school_calendar",
+    "claim_fr": "Le calendrier scolaire 2026-2027 au Maroc est fixé par la décision ministérielle 047.26 du 3 juillet 2026 ; les cours ont commencé le 7 septembre 2026 ; les vacances de 8 jours sont : 18-25 octobre 2026, 6-13 décembre 2026, 24-31 janvier 2027 (mi-année), 21-28 mars 2027 et 9-16 mai 2027.",
+    "values": [
+      "2026",
+      "2027",
+      "047.26",
+      "3",
+      "7",
+      "8",
+      "18",
+      "25",
+      "6",
+      "13",
+      "24",
+      "31",
+      "21",
+      "28",
+      "9",
+      "16"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://en.le360.ma/society/2026-27-school-year-key-dates-for-students-and-teachers_ORTNN5RKQ5DYJGJHTE5ULMCDYM/",
+      "https://www.demarchesmaroc.com/?p=38158"
+    ],
+    "source_tier": "media",
+    "confidence": "verified",
+    "required_wording": null,
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-04-18",
+    "valid_until": "2027-07-31",
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_school_start_2026",
+    "topic": "school_calendar",
+    "claim_fr": "La rentrée scolaire 2026-2027 au Maroc a eu lieu le 7 septembre 2026.",
+    "values": [
+      "2026",
+      "2027",
+      "7"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://en.le360.ma/society/2026-27-school-year-key-dates-for-students-and-teachers_ORTNN5RKQ5DYJGJHTE5ULMCDYM/"
+    ],
+    "source_tier": "media",
+    "confidence": "verified",
+    "required_wording": null,
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-04-18",
+    "valid_until": "2027-07-31",
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_school_break_oct_2026",
+    "topic": "school_calendar",
+    "claim_fr": "Vacances scolaires au Maroc du 18 au 25 octobre 2026.",
+    "values": [
+      "18",
+      "25",
+      "2026"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://en.le360.ma/society/2026-27-school-year-key-dates-for-students-and-teachers_ORTNN5RKQ5DYJGJHTE5ULMCDYM/",
+      "https://www.demarchesmaroc.com/?p=38158"
+    ],
+    "source_tier": "media",
+    "confidence": "verified",
+    "required_wording": null,
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-04-18",
+    "valid_until": "2027-07-31",
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_school_break_dec_2026",
+    "topic": "school_calendar",
+    "claim_fr": "Vacances scolaires au Maroc du 6 au 13 décembre 2026.",
+    "values": [
+      "6",
+      "13",
+      "2026"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://en.le360.ma/society/2026-27-school-year-key-dates-for-students-and-teachers_ORTNN5RKQ5DYJGJHTE5ULMCDYM/",
+      "https://www.demarchesmaroc.com/?p=38158"
+    ],
+    "source_tier": "media",
+    "confidence": "verified",
+    "required_wording": null,
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-04-18",
+    "valid_until": "2027-07-31",
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_school_break_jan_2027",
+    "topic": "school_calendar",
+    "claim_fr": "Vacances de mi-année au Maroc du 24 au 31 janvier 2027.",
+    "values": [
+      "24",
+      "31",
+      "2027"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://en.le360.ma/society/2026-27-school-year-key-dates-for-students-and-teachers_ORTNN5RKQ5DYJGJHTE5ULMCDYM/",
+      "https://www.demarchesmaroc.com/?p=38158"
+    ],
+    "source_tier": "media",
+    "confidence": "verified",
+    "required_wording": null,
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-04-18",
+    "valid_until": "2027-07-31",
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_school_break_mar_2027",
+    "topic": "school_calendar",
+    "claim_fr": "Vacances scolaires au Maroc du 21 au 28 mars 2027.",
+    "values": [
+      "21",
+      "28",
+      "2027"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://en.le360.ma/society/2026-27-school-year-key-dates-for-students-and-teachers_ORTNN5RKQ5DYJGJHTE5ULMCDYM/",
+      "https://www.demarchesmaroc.com/?p=38158"
+    ],
+    "source_tier": "media",
+    "confidence": "verified",
+    "required_wording": null,
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-04-18",
+    "valid_until": "2027-07-31",
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_school_break_may_2027",
+    "topic": "school_calendar",
+    "claim_fr": "Vacances scolaires au Maroc du 9 au 16 mai 2027.",
+    "values": [
+      "9",
+      "16",
+      "2027"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://en.le360.ma/society/2026-27-school-year-key-dates-for-students-and-teachers_ORTNN5RKQ5DYJGJHTE5ULMCDYM/",
+      "https://www.demarchesmaroc.com/?p=38158"
+    ],
+    "source_tier": "media",
+    "confidence": "verified",
+    "required_wording": null,
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-04-18",
+    "valid_until": "2027-07-31",
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_young_pilgrims_trend",
+    "topic": "other",
+    "claim_fr": "La Omra est une tendance croissante chez les jeunes Marocains depuis le COVID (fin des saisons fixes, témoignages, réseaux sociaux) ; le président de la fédération parle d'un vrai mouvement sur les 5 dernières années.",
+    "values": [
+      "5"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://medias24.com/2025/02/13/tourisme-religieux-la-omra-devient-une-tendance-qui-prend-de-lampleur-chez-les-jeunes/"
+    ],
+    "source_tier": "media",
+    "confidence": "likely",
+    "required_wording": "selon Medias24",
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-04-18",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_influencers_scholars_debate",
+    "topic": "other",
+    "claim_fr": "Des influenceurs monétisent des contenus sur la Omra du Ramadan ; des oulémas objectent que La Mecque n'est pas une destination touristique.",
+    "values": [],
+    "unit": null,
+    "source_urls": [
+      "https://snrtnews.com/fr/article/omra-20-quand-une-pratique-religieuse-se-commercialise-116219"
+    ],
+    "source_tier": "media",
+    "confidence": "likely",
+    "required_wording": "selon SNRTnews",
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-04-18",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_morocco_internet_users_2025",
+    "topic": "other",
+    "claim_fr": "Fin 2025, le Maroc comptait 35,5 millions d'internautes (92,2 % de la population) et 22,8 millions d'identités d'utilisateurs de réseaux sociaux en octobre 2025 (59,1 %).",
+    "values": [
+      "2025",
+      "35.5",
+      "92.2",
+      "22.8",
+      "59.1"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://datareportal.com/reports/digital-2026-morocco"
+    ],
+    "source_tier": "media",
+    "confidence": "verified",
+    "required_wording": null,
+    "conflicts": [],
+    "status": "approved",
+    "verified_by": "desk-research-2026-10-20",
+    "verified_at": "2026-10-20",
+    "review_by": "2027-04-18",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_wikitours_licence",
+    "topic": "wikitours",
+    "claim_fr": "Wiki Tours International indique sur son site la licence ODV-25012.",
+    "values": [
+      "25012"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://wikitours.ma/en/bab-makka"
+    ],
+    "source_tier": "company_stated",
+    "confidence": "likely",
+    "required_wording": "selon le site de l'agence",
+    "conflicts": [],
+    "status": "proposed",
+    "review_by": "2027-04-18",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  },
+  {
+    "id": "fact_wikitours_since_2016",
+    "topic": "wikitours",
+    "claim_fr": "Wiki Tours International indique exercer depuis 2016.",
+    "values": [
+      "2016"
+    ],
+    "unit": null,
+    "source_urls": [
+      "https://wikitours.ma/en/bab-makka"
+    ],
+    "source_tier": "company_stated",
+    "confidence": "likely",
+    "required_wording": "selon le site de l'agence",
+    "conflicts": [],
+    "status": "proposed",
+    "review_by": "2027-04-18",
+    "valid_until": null,
+    "time_critical": false,
+    "supersedes": null
+  }
+]

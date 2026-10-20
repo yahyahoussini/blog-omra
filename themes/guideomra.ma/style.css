@@ -1,0 +1,5 @@
+/* guideomra.ma — placeholder palette; the site agent replaces this file. */
+:root{--bg:#fbf8f1;--fg:#1f2a24;--muted:#57625b;--primary:#0f5b4a;--accent:#b08d3c;--surface:#efe6d2;--border:#d8ccb0;--link:#0f5b4a;--font-head:Georgia, "Times New Roman", serif}
+.site-header{border-bottom:3px solid var(--accent)}
+.home-hero{padding:1.5rem 0}
+.home-hero__tagline{color:var(--muted);font-size:1.15rem}

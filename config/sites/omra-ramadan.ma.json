@@ -1,0 +1,48 @@
+{
+  "name": "Omra Ramadan",
+  "tagline": "Dates, délais et préparation de la Omra pendant le Ramadan",
+  "ref": "OR",
+  "nav": [
+    {
+      "label": "Articles",
+      "slug": "blog"
+    },
+    {
+      "label": "Contact",
+      "slug": "contact"
+    }
+  ],
+  "footer_nav": [
+    {
+      "label": "L'éditeur",
+      "slug": "editeur"
+    },
+    {
+      "label": "Contact",
+      "slug": "contact"
+    }
+  ],
+  "whatsapp": {
+    "number": null,
+    "default_topic": "Omra Ramadan – dates, personnes, budget"
+  },
+  "labels": {
+    "fr": {}
+  },
+  "home": {
+    "sections": [
+      "hero",
+      "intro",
+      "latest",
+      "pillars",
+      "cta",
+      "about"
+    ]
+  },
+  "blog": {
+    "title": "Articles – Omra Ramadan",
+    "description": "Articles Omra Ramadan : dates prévues, délais de visa, quand réserver et ce que le mois sacré change pour un pèlerin parti du Maroc."
+  },
+  "clusters": {},
+  "redirects": []
+}

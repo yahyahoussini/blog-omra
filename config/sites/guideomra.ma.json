@@ -1,0 +1,48 @@
+{
+  "name": "Guide Omra",
+  "tagline": "Le guide sourcé de la Omra et du Hajj depuis le Maroc",
+  "ref": "GO",
+  "nav": [
+    {
+      "label": "Articles",
+      "slug": "blog"
+    },
+    {
+      "label": "Contact",
+      "slug": "contact"
+    }
+  ],
+  "footer_nav": [
+    {
+      "label": "L'éditeur",
+      "slug": "editeur"
+    },
+    {
+      "label": "Contact",
+      "slug": "contact"
+    }
+  ],
+  "whatsapp": {
+    "number": null,
+    "default_topic": "Question sur la préparation de ma Omra"
+  },
+  "labels": {
+    "fr": {}
+  },
+  "home": {
+    "sections": [
+      "hero",
+      "intro",
+      "pillars",
+      "latest",
+      "cta",
+      "about"
+    ]
+  },
+  "blog": {
+    "title": "Articles – Guide Omra",
+    "description": "Articles de Guide Omra : rites, documents, santé, permis et calendriers officiels, chacun avec ses sources et sa date de vérification."
+  },
+  "clusters": {},
+  "redirects": []
+}

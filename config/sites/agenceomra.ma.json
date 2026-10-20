@@ -1,0 +1,48 @@
+{
+  "name": "Agence Omra",
+  "tagline": "Vérifier et choisir une agence agréée, sans classement",
+  "ref": "AG",
+  "nav": [
+    {
+      "label": "Articles",
+      "slug": "blog"
+    },
+    {
+      "label": "Contact",
+      "slug": "contact"
+    }
+  ],
+  "footer_nav": [
+    {
+      "label": "L'éditeur",
+      "slug": "editeur"
+    },
+    {
+      "label": "Contact",
+      "slug": "contact"
+    }
+  ],
+  "whatsapp": {
+    "number": null,
+    "default_topic": "Questions sur une agence agréée"
+  },
+  "labels": {
+    "fr": {}
+  },
+  "home": {
+    "sections": [
+      "hero",
+      "intro",
+      "pillars",
+      "latest",
+      "about",
+      "cta"
+    ]
+  },
+  "blog": {
+    "title": "Articles – Agence Omra",
+    "description": "Articles d'Agence Omra : vérifier une licence, lire un contrat, repérer les signaux d'alerte et savoir quoi faire en cas de litige."
+  },
+  "clusters": {},
+  "redirects": []
+}

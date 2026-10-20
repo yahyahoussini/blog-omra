@@ -1,0 +1,5 @@
+/* prixomra.ma — placeholder palette; the site agent replaces this file. */
+:root{--bg:#f7f5f0;--fg:#2b2b2b;--muted:#5e5a52;--primary:#9c3f24;--accent:#c0573a;--surface:#ece6da;--border:#d6cdbb;--link:#9c3f24;--font-head:"Helvetica Neue", Arial, sans-serif}
+.site-header{border-bottom:3px solid var(--accent)}
+.home-hero{padding:1.5rem 0}
+.home-hero__tagline{color:var(--muted);font-size:1.15rem}

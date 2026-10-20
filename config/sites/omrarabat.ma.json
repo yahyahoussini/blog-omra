@@ -1,0 +1,48 @@
+{
+  "name": "Omra Rabat",
+  "tagline": "Partir de Rabat-Salé-Kénitra : vols, accès et logistique",
+  "ref": "RB",
+  "nav": [
+    {
+      "label": "Articles",
+      "slug": "blog"
+    },
+    {
+      "label": "Contact",
+      "slug": "contact"
+    }
+  ],
+  "footer_nav": [
+    {
+      "label": "L'éditeur",
+      "slug": "editeur"
+    },
+    {
+      "label": "Contact",
+      "slug": "contact"
+    }
+  ],
+  "whatsapp": {
+    "number": null,
+    "default_topic": "Départ de Rabat"
+  },
+  "labels": {
+    "fr": {}
+  },
+  "home": {
+    "sections": [
+      "hero",
+      "intro",
+      "pillars",
+      "cta",
+      "latest",
+      "about"
+    ]
+  },
+  "blog": {
+    "title": "Articles – Omra Rabat",
+    "description": "Articles d'Omra Rabat : vols depuis Rabat-Salé, accès à l'aéroport et logistique pour les pèlerins de la région Rabat-Salé-Kénitra."
+  },
+  "clusters": {},
+  "redirects": []
+}

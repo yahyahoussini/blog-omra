@@ -1,0 +1,5 @@
+/* omra-ramadan.ma — placeholder palette; the site agent replaces this file. */
+:root{--bg:#14173a;--fg:#f3eedd;--muted:#c9c3ae;--primary:#e6c36a;--accent:#e6c36a;--surface:#1f2452;--border:#3a4078;--link:#f0d48a;--font-head:"Trebuchet MS", "Segoe UI", sans-serif}
+.site-header{border-bottom:3px solid var(--accent)}
+.home-hero{padding:1.5rem 0}
+.home-hero__tagline{color:var(--muted);font-size:1.15rem}

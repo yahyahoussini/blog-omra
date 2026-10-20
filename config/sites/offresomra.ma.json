@@ -1,0 +1,48 @@
+{
+  "name": "Offres Omra",
+  "tagline": "Lire, décoder et comparer une offre Omra avant de signer",
+  "ref": "OF",
+  "nav": [
+    {
+      "label": "Articles",
+      "slug": "blog"
+    },
+    {
+      "label": "Contact",
+      "slug": "contact"
+    }
+  ],
+  "footer_nav": [
+    {
+      "label": "L'éditeur",
+      "slug": "editeur"
+    },
+    {
+      "label": "Contact",
+      "slug": "contact"
+    }
+  ],
+  "whatsapp": {
+    "number": null,
+    "default_topic": "Aide pour lire une offre Omra"
+  },
+  "labels": {
+    "fr": {}
+  },
+  "home": {
+    "sections": [
+      "hero",
+      "intro",
+      "pillars",
+      "latest",
+      "cta",
+      "about"
+    ]
+  },
+  "blog": {
+    "title": "Articles – Offres Omra",
+    "description": "Articles d'Offres Omra : décoder une offre, repérer les signaux d'alerte et comparer deux propositions sur les bons critères."
+  },
+  "clusters": {},
+  "redirects": []
+}

@@ -1,0 +1,48 @@
+{
+  "name": "Prix Omra",
+  "tagline": "Observatoire des prix de la Omra et historique officiel du coût du Hajj",
+  "ref": "PX",
+  "nav": [
+    {
+      "label": "Articles",
+      "slug": "blog"
+    },
+    {
+      "label": "Contact",
+      "slug": "contact"
+    }
+  ],
+  "footer_nav": [
+    {
+      "label": "L'éditeur",
+      "slug": "editeur"
+    },
+    {
+      "label": "Contact",
+      "slug": "contact"
+    }
+  ],
+  "whatsapp": {
+    "number": null,
+    "default_topic": "Je veux un devis Omra – budget ___"
+  },
+  "labels": {
+    "fr": {}
+  },
+  "home": {
+    "sections": [
+      "hero",
+      "intro",
+      "pillars",
+      "latest",
+      "about",
+      "cta"
+    ]
+  },
+  "blog": {
+    "title": "Articles – Prix Omra",
+    "description": "Analyses de Prix Omra : coût officiel du Hajj année par année, moyennes publiées et méthode, avec la date de chaque chiffre."
+  },
+  "clusters": {},
+  "redirects": []
+}

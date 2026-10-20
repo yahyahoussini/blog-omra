@@ -1,0 +1,48 @@
+{
+  "name": "Voyage Omra",
+  "tagline": "Vols, bagages, chaleur et santé : la logistique du pèlerinage",
+  "ref": "VO",
+  "nav": [
+    {
+      "label": "Articles",
+      "slug": "blog"
+    },
+    {
+      "label": "Contact",
+      "slug": "contact"
+    }
+  ],
+  "footer_nav": [
+    {
+      "label": "L'éditeur",
+      "slug": "editeur"
+    },
+    {
+      "label": "Contact",
+      "slug": "contact"
+    }
+  ],
+  "whatsapp": {
+    "number": null,
+    "default_topic": "Vols et logistique de ma Omra"
+  },
+  "labels": {
+    "fr": {}
+  },
+  "home": {
+    "sections": [
+      "hero",
+      "pillars",
+      "intro",
+      "latest",
+      "cta",
+      "about"
+    ]
+  },
+  "blog": {
+    "title": "Articles – Voyage Omra",
+    "description": "Carnet de Voyage Omra : vols depuis le Maroc, aéroports de départ, bagages, chaleur et santé en route, avec des sources datées."
+  },
+  "clusters": {},
+  "redirects": []
+}
