@@ -11,6 +11,13 @@ import { tmpNetwork, cleanup, readJson, readLines, alphaTopic, GOOD_DRAFT, BAD_D
 after(cleanup);
 const quiet = () => {};
 const usage = { input_tokens: 1000, output_tokens: 2000, cache_creation_input_tokens: 0, cache_read_input_tokens: 500 };
+// Claims verifier stub (gate 3): every claim maps to a brief fact unless `claims` says otherwise.
+const verifier = (claims = [{ claim: 'dernière délivrance le 9 mars 2027', fact_ids: ['fact_test_last_visa'] }]) => {
+  const fn = async ({ format }) => { fn.calls.push(format); const text = JSON.stringify({ claims }); return { text, content: [{ type: 'text', text }], usage, stopReason: 'end_turn' }; };
+  fn.calls = [];
+  return fn;
+};
+const gen = o => runGenerate({ verifyFn: verifier(), ...o });
 const stub = (...texts) => {
   const calls = [];
   const fn = async ({ system, messages }) => { calls.push({ system, messages }); const text = texts[Math.min(calls.length - 1, texts.length - 1)]; return { text, content: [{ type: 'text', text }], usage, stopReason: 'end_turn' }; };
@@ -21,7 +28,7 @@ const stub = (...texts) => {
 test('auto mode: a passing draft is written as published today, the topic is done, spend is tracked', async () => {
   const root = tmpNetwork({ topics: { 'alpha.test': [alphaTopic()] } });
   const draftFn = stub(GOOD_DRAFT);
-  const s = await runGenerate({ root, today: TODAY, draftFn, log: quiet });
+  const s = await gen({ root, today: TODAY, draftFn, log: quiet });
   assert.equal(s.written.length, 1, JSON.stringify(readLines(root, 'data/state/failures.jsonl')));
   const file = path.join(root, 'content/alpha.test/fr/posts/derniere-date-utile.md');
   const text = fs.readFileSync(file, 'utf8');
@@ -32,8 +39,8 @@ test('auto mode: a passing draft is written as published today, the topic is don
   assert.doesNotMatch(text, /ignored-by-the-generator/);
   assert.equal(readJson(root, 'content/alpha.test/topics.json')[0].status, 'done');
   const spend = readJson(root, 'data/state/spend.json');
-  assert.equal(spend.months['2026-10'].calls, 1);
-  assert.equal(spend.months['2026-10'].usd_estimate, (1000 * 5 + 2000 * 25 + 500 * 0.5) / 1e6);
+  assert.equal(spend.months['2026-10'].calls, 2); // draft + claims verifier
+  assert.equal(spend.months['2026-10'].usd_estimate, 2 * (1000 * 5 + 2000 * 25 + 500 * 0.5) / 1e6);
   assert.equal(draftFn.calls.length, 1);
   assert.match(draftFn.calls[0].system, /\[\[fact:<id>\]\]/);
   assert.match(draftFn.calls[0].messages[0].content, /"fact_test_last_visa"/);
@@ -44,7 +51,7 @@ test('auto mode: a passing draft is written as published today, the topic is don
 test('one revision: gate errors are fed back, the second draft passes', async () => {
   const root = tmpNetwork({ topics: { 'alpha.test': [alphaTopic()] } });
   const draftFn = stub(BAD_DRAFT, GOOD_DRAFT);
-  const s = await runGenerate({ root, today: TODAY, draftFn, log: quiet });
+  const s = await gen({ root, today: TODAY, draftFn, log: quiet });
   assert.equal(s.written.length, 1);
   assert.equal(draftFn.calls.length, 2);
   const second = draftFn.calls[1].messages;
@@ -57,7 +64,7 @@ test('one revision: gate errors are fed back, the second draft passes', async ()
 
 test('two failures: discarded, logged, topic failed, MISSING requests become candidates', async () => {
   const root = tmpNetwork({ topics: { 'alpha.test': [alphaTopic()] } });
-  const s = await runGenerate({ root, today: TODAY, draftFn: stub(BAD_DRAFT), log: quiet });
+  const s = await gen({ root, today: TODAY, draftFn: stub(BAD_DRAFT), log: quiet });
   assert.equal(s.failed.length, 1);
   assert.ok(!fs.existsSync(path.join(root, 'content/alpha.test/fr/posts/derniere-date-utile.md')));
   const topic = readJson(root, 'content/alpha.test/topics.json')[0];
@@ -71,9 +78,21 @@ test('two failures: discarded, logged, topic failed, MISSING requests become can
   assert.equal(readLines(root, 'data/state/drafts.jsonl').length, 2);
 });
 
+test('claims verifier (gate 3): an unsupported claim is fed back, and blocks the post when it stays', async () => {
+  const root = tmpNetwork({ topics: { 'alpha.test': [alphaTopic()] } });
+  const draftFn = stub(GOOD_DRAFT);
+  const verifyFn = verifier([{ claim: 'Nusuk permet de réserver sans agence', fact_ids: [] }]);
+  const s = await runGenerate({ root, today: TODAY, draftFn, verifyFn, log: quiet });
+  assert.equal(s.failed.length, 1);
+  assert.equal(draftFn.calls.length, 2);
+  assert.match(draftFn.calls[1].messages[2].content, /\[claims\] claim not supported by a fact of the brief: « Nusuk permet/);
+  assert.equal(verifyFn.calls[0].type, 'json_schema');
+  assert.ok(!fs.existsSync(path.join(root, 'content/alpha.test/fr/posts/derniere-date-utile.md')));
+});
+
 test('review mode: written as draft and listed in the weekly queue', async () => {
   const root = tmpNetwork({ cadence: { publish_mode: 'review' }, topics: { 'alpha.test': [alphaTopic()] } });
-  const s = await runGenerate({ root, today: TODAY, draftFn: stub(GOOD_DRAFT), log: quiet });
+  const s = await gen({ root, today: TODAY, draftFn: stub(GOOD_DRAFT), log: quiet });
   assert.equal(s.written[0].status, 'draft');
   assert.match(fs.readFileSync(path.join(root, 'content/alpha.test/fr/posts/derniere-date-utile.md'), 'utf8'), /status: draft/);
   const q = readJson(root, 'data/queue/2026-W43.json');
@@ -82,27 +101,27 @@ test('review mode: written as draft and listed in the weekly queue', async () =>
 
 test('idle cases: no launch date, spend cap reached, quota already used today', async () => {
   let root = tmpNetwork({ cadence: { launch_date: null }, topics: { 'alpha.test': [alphaTopic()] } });
-  let s = await runGenerate({ root, today: TODAY, draftFn: stub(GOOD_DRAFT), log: quiet });
+  let s = await gen({ root, today: TODAY, draftFn: stub(GOOD_DRAFT), log: quiet });
   assert.equal(s.written.length, 0);
   assert.match(s.idle.find(x => x.site === 'alpha.test').reason, /launch_date/);
 
   root = tmpNetwork({ topics: { 'alpha.test': [alphaTopic()] } });
   fs.mkdirSync(path.join(root, 'data/state'), { recursive: true });
   fs.writeFileSync(path.join(root, 'data/state/spend.json'), JSON.stringify({ months: { '2026-10': { usd_estimate: 10 } } }));
-  s = await runGenerate({ root, today: TODAY, draftFn: stub(GOOD_DRAFT), log: quiet });
+  s = await gen({ root, today: TODAY, draftFn: stub(GOOD_DRAFT), log: quiet });
   assert.match(s.stopped, /spend cap/);
 
   // Ramp day 1 = 1 post per day: a run after a post dated today does nothing more.
   root = tmpNetwork({ cadence: { launch_date: TODAY }, topics: { 'alpha.test': [alphaTopic(), alphaTopic({ id: 'al-fr-0002', slug: 'autre', primary_keyword: 'autre test', concept_id: 'test_other', title: 'Un autre sujet de démonstration utile' })] } });
-  s = await runGenerate({ root, today: TODAY, draftFn: stub(GOOD_DRAFT), log: quiet });
+  s = await gen({ root, today: TODAY, draftFn: stub(GOOD_DRAFT), log: quiet });
   assert.equal(s.written.length, 1);
-  s = await runGenerate({ root, today: TODAY, draftFn: stub(GOOD_DRAFT), log: quiet });
+  s = await gen({ root, today: TODAY, draftFn: stub(GOOD_DRAFT), log: quiet });
   assert.equal(s.written.length, 0);
 });
 
 test('skips without API credentials (no stub, not a dry run)', async () => {
   const root = tmpNetwork({ topics: { 'alpha.test': [alphaTopic()] } });
-  const s = await runGenerate({ root, today: TODAY, env: {}, log: quiet });
+  const s = await gen({ root, today: TODAY, env: {}, log: quiet });
   assert.match(s.stopped, /ANTHROPIC_API_KEY and CLAUDE_MODEL not set/);
 });
 

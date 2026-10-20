@@ -1,1 +1,31 @@
-[]
+[
+  {
+    "id": "rb-fr-0001",
+    "lang": "fr",
+    "title": "Vol direct Rabat-Djeddah : ce que l’on sait de la ligne flynas",
+    "slug": "vol-direct-rabat-djeddah",
+    "primary_keyword": "vol direct rabat djeddah",
+    "cluster": "depart_rba",
+    "concept_id": "rabat_jeddah_direct_flight",
+    "type": "explainer",
+    "tier": "C",
+    "internal_links": [],
+    "sister_links": [],
+    "status": "queued",
+    "planned_at": "2026-10-20",
+    "planned_by": "seed",
+    "angle": "La ligne flynas Rabat-Djeddah : lancement, fréquence annoncée, et ce qu’il faut vérifier avant de réserver depuis Rabat-Salé.",
+    "outline": [
+      "Le lancement de la ligne",
+      "La fréquence annoncée",
+      "Avant de réserver : ce qu’il faut vérifier",
+      "Ce que nous ne savons pas encore"
+    ],
+    "facts_needed": [
+      "fact_flynas_rabat_jeddah",
+      "fact_flynas_rabat_2_weekly"
+    ],
+    "cta_topic": "Préparer un départ depuis Rabat",
+    "notes": "Wiki Tours est basée à Casablanca : ne jamais suggérer un bureau à Rabat."
+  }
+]

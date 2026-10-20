@@ -3,10 +3,13 @@
 //   [[link:slug|anchor]]          same-site link (page or post slug; "blog" = blog index)
 //   [[site:domain/slug|anchor]]   sister-site link (only along config/network.json flows)
 //   [[wt:target_id|anchor]]       link to wikitours.ma (rel from config/link-policy.json)
-import { esc } from './util.js';
-import { langPrefix } from './content.js';
+//   [[kb:entry_id]]               an approved religious text from data/facts/kb/ (exact text + reference, gate 4)
+// The HTML is returned as placeholders (see markdown.js restoreSnippets) so raw HTML can stay off in Markdown.
+import { esc, stripMarkers } from './util.js';
+import { langPrefix, group } from './content.js';
+import { NOGATE } from './markdown.js';
 
-export const SHORTCODE = /\[\[(fact|link|site|wt):([^\]|]+?)(?:\|([^\]]*))?\]\]/g;
+export const SHORTCODE = /\[\[(fact|link|site|wt|kb):([^\]|]+?)(?:\|([^\]]*))?\]\]/g;
 const FACT_MARK = /\[\[fact:([a-z0-9_]+)\]\]/g;
 
 export function factIdsIn(text) { return [...String(text ?? '').matchAll(FACT_MARK)].map(m => m[1]); }
@@ -39,18 +42,28 @@ const hostOf = url => { try { return new URL(url).hostname.replace(/^www\./, '')
 export function resolveSlug(ctx, site, lang, slug) {
   const base = ctx.project.network.base_lang || 'fr';
   if (slug === 'blog') {
-    const hasPosts = ctx.pages.some(p => p.site === site && p.lang === lang && p.kind === 'posts');
+    const hasPosts = group(ctx, site, lang).some(p => p.kind === 'posts');
     return hasPosts ? { url: `${langPrefix(ctx.project, lang)}/blog/`, title: null } : null;
   }
   return ctx.index.get(`${site}|${lang}|${slug}`) || (lang !== base ? ctx.index.get(`${site}|${base}|${slug}`) : null) || null;
 }
 
-// Returns { text, links, errors }. `factNum` maps fact id -> source number.
+// Same-site or sister target that exists but is retired (RUNBOOK §4): the link becomes plain text with a warning.
+const isRetired = (ctx, site, lang, slug) => !!ctx.retired?.has(`${site}|${lang}|${slug}`);
+
+// Returns { text, snippets, links, errors, warnings }. `factNum` maps fact id -> source number.
+// `text` holds placeholders; pass `snippets` to renderMarkdown / renderInline (env.snippets) or restoreSnippets.
 export function resolveShortcodes(text, page, ctx, factNum) {
-  const links = [], errors = [];
+  const links = [], errors = [], warnings = [], snippets = [];
   const policy = ctx.project.linkPolicy;
+  const html = s => `\uE000${snippets.push(s) - 1}\uE001`;
   const out = String(text ?? '').replace(SHORTCODE, (whole, kind, ref, anchor) => {
     ref = ref.trim(); anchor = anchor?.trim();
+    return html(resolveOne(kind, ref, anchor));
+  });
+  return { text: out, snippets, links, errors, warnings };
+
+  function resolveOne(kind, ref, anchor) {
     if (kind === 'fact') {
       const n = factNum.get(ref);
       if (!ctx.project.registry[ref]) errors.push(`unknown fact in citation: ${ref}`);
@@ -58,8 +71,9 @@ export function resolveShortcodes(text, page, ctx, factNum) {
     }
     if (kind === 'link') {
       const t = resolveSlug(ctx, page.site, page.lang, ref);
+      if (!t && isRetired(ctx, page.site, page.lang, ref)) { warnings.push(`[[link:${ref}]] points to a retired page: shown as plain text, remove the link`); return esc(anchor || ref); }
       if (!t) { errors.push(`unresolved same-site link [[link:${ref}]]`); return esc(anchor || ref); }
-      const label = anchor || t.fm?.title || ref;
+      const label = anchor || stripMarkers(t.fm?.title) || ref;
       links.push({ kind: 'same', href: t.url, anchor: label, target: t });
       return `<a href="${esc(t.url)}">${esc(label)}</a>`;
     }
@@ -69,13 +83,15 @@ export function resolveShortcodes(text, page, ctx, factNum) {
       if (!ctx.project.sites.has(domain)) { errors.push(`unknown sister site in [[site:${ref}]]`); return esc(anchor || ref); }
       if (domain === page.site) { errors.push(`[[site:${ref}]] points to this site: use [[link:${slug}]]`); return esc(anchor || ref); }
       const t = resolveSlug(ctx, domain, page.lang, slug);
+      if (!t && isRetired(ctx, domain, page.lang, slug)) { warnings.push(`[[site:${ref}]] points to a retired page: shown as plain text, remove the link`); return esc(anchor || ref); }
       if (!t) { errors.push(`unresolved sister link [[site:${ref}]]`); return esc(anchor || ref); }
       const href = `https://${domain}${t.url}`;
-      const label = anchor || t.fm?.title || ref;
+      const label = anchor || stripMarkers(t.fm?.title) || ref;
       links.push({ kind: 'sister', href, anchor: label, domain, target: t });
       const rel = policy.sister_rel && policy.sister_rel !== 'follow' ? ` rel="${esc(policy.sister_rel)}"` : '';
       return `<a href="${esc(href)}"${rel}>${esc(label)}</a>`;
     }
+    if (kind === 'kb') return kbHtml(ctx, page, ref, errors);
     // wt
     const t = ctx.project.wtTargets[ref];
     if (!t) { errors.push(`unknown wikitours target [[wt:${ref}]] (see config/wikitours-targets.json)`); return esc(anchor || ref); }
@@ -83,6 +99,15 @@ export function resolveShortcodes(text, page, ctx, factNum) {
     links.push({ kind: 'wt', href: t.url, anchor: label, target: t });
     const note = t.lang !== page.lang ? (policy.money_link_lang_note?.[page.lang] || '') : '';
     return `<a href="${esc(t.url)}" rel="${esc(policy.money_link_rel || 'nofollow')}" class="wt-link">${esc(label)}</a>${note ? `<span class="lang-note">${esc(note)}</span>` : ''}`;
-  });
-  return { text: out, links, errors };
+  }
+}
+
+// An approved KB entry: the exact text, its translation for the page language (if approved) and its reference.
+// Wrapped in NOGATE: the facts and religious-text gates do not read it (its reference carries digits).
+function kbHtml(ctx, page, id, errors) {
+  const e = ctx.project.kb?.[id];
+  if (!e || e.status !== 'approved') { errors.push(`[[kb:${id}]] is not an approved entry of data/facts/kb/`); return ''; }
+  const tr = e.lang !== page.lang ? e.translations?.[page.lang] : null;
+  return NOGATE(`<q class="kb__text" lang="${esc(e.lang)}"${e.lang === 'ar' ? ' dir="rtl"' : ''}>${esc(e.text)}</q>`
+    + (tr ? ` <span class="kb__translation">(${esc(tr)})</span>` : '') + ` <cite class="kb__ref">${esc(e.reference)}</cite>`);
 }

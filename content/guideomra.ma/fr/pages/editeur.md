@@ -23,3 +23,14 @@ Les textes sont rédigés avec l'aide d'un outil d'intelligence artificielle, à
 ## Corrections
 
 Une erreur ? Signalez-la depuis la page de contact. La correction est faite et datée sur la page concernée.
+
+## Publication automatique
+
+Les articles paraissent après une série de contrôles automatiques, sans relecture humaine avant publication. Une erreur signalée est corrigée sur la page concernée.
+
+## Le réseau
+
+Les autres sites publiés par Wiki Tours International :
+
+:::network
+:::

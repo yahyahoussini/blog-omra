@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://omra-network.local/schemas/kb-entry.schema.json",
+  "title": "Religious knowledge-base entry (STRATEGY 4.5, 7.4 gate 4): data/facts/kb/<id>.json",
+  "type": "object", "additionalProperties": false,
+  "required": ["id", "kind", "lang", "text", "reference", "source_url", "status"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^kb_[a-z0-9_]+$" },
+    "kind": { "enum": ["quran", "hadith", "dua", "talbiya", "ritual_statement"] },
+    "lang": { "enum": ["ar", "fr", "en"] },
+    "text": { "type": "string", "minLength": 2 },
+    "translations": { "type": "object", "additionalProperties": false, "properties": { "fr": { "type": "string" }, "en": { "type": "string" }, "ar": { "type": "string" } } },
+    "reference": { "type": "string", "minLength": 2 },
+    "source_url": { "type": "string", "format": "uri" },
+    "status": { "enum": ["proposed", "approved", "retired"] },
+    "approved_by": { "type": "string" },
+    "approved_at": { "type": "string", "format": "date" }
+  },
+  "if": { "properties": { "status": { "const": "approved" } } },
+  "then": { "required": ["approved_by", "approved_at"] }
+}

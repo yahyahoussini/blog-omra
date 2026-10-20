@@ -1,1 +1,32 @@
-[]
+[
+  {
+    "id": "of-fr-0001",
+    "lang": "fr",
+    "title": "Offre Omra trop belle : les signaux qui doivent alerter",
+    "slug": "offre-omra-signaux-alerte",
+    "primary_keyword": "offre omra arnaque signaux",
+    "cluster": "lire_offre",
+    "concept_id": "umrah_offer_red_flags",
+    "type": "checklist",
+    "tier": "C",
+    "internal_links": [],
+    "sister_links": [],
+    "status": "queued",
+    "planned_at": "2026-10-20",
+    "planned_by": "seed",
+    "angle": "Les signaux d'alerte dans une offre Omra, appuyés sur des cas et alertes publiés, sans nommer d'agence.",
+    "outline": [
+      "Un prix très bas : ce qu’en dit la fédération",
+      "Une agence non autorisée : un cas publié",
+      "L'alerte de l'Observatoire",
+      "La liste à cocher avant de signer"
+    ],
+    "facts_needed": [
+      "fact_licensing_gaps_low_offers",
+      "fact_unlicensed_agency_stranded",
+      "fact_observatory_warning_2026"
+    ],
+    "cta_topic": "Faire relire une offre Omra",
+    "notes": "Cas de fraude au conditionnel (« présumé », « selon »). Aucun mot d’urgence."
+  }
+]

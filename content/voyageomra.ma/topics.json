@@ -1,1 +1,32 @@
-[]
+[
+  {
+    "id": "vo-fr-0001",
+    "lang": "fr",
+    "title": "Vols du Maroc vers l'Arabie saoudite : le panorama",
+    "slug": "vols-maroc-arabie-saoudite",
+    "primary_keyword": "vol maroc arabie saoudite omra",
+    "cluster": "vols_maroc_arabie",
+    "concept_id": "flights_morocco_saudi_overview",
+    "type": "guide",
+    "tier": "C",
+    "internal_links": [],
+    "sister_links": [],
+    "status": "queued",
+    "planned_at": "2026-10-20",
+    "planned_by": "seed",
+    "angle": "Vue nationale des liaisons aériennes utiles aux pèlerins (Royal Air Maroc, flynas), sans le détail des départs de Casablanca et de Rabat, qui ont leurs propres sites.",
+    "outline": [
+      "Les compagnies et les lignes connues",
+      "Casablanca et Rabat : où trouver le détail",
+      "Vérifier un horaire auprès de la compagnie",
+      "Ce que nous ne savons pas encore"
+    ],
+    "facts_needed": [
+      "fact_ram_saudi_routes",
+      "fact_flynas_casablanca_jeddah",
+      "fact_flynas_rabat_jeddah"
+    ],
+    "cta_topic": "Question sur les vols pour la Omra",
+    "notes": "Fréquences uniquement depuis les faits approuvés ; sinon « vérifiez auprès de la compagnie »."
+  }
+]

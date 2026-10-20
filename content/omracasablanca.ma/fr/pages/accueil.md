@@ -14,4 +14,4 @@ Beaucoup de pèlerins marocains s'envolent depuis l'aéroport Mohammed V. Ce sit
 
 Il couvre l'accès à l'aérogare, l'organisation du départ et les questions logistiques des habitants de la région Casablanca-Settat.
 
-Ce n'est pas une agence et il ne présente aucun bureau. Chaque page s'appuie sur une information vérifiée et propre à Casablanca.
+Ce n'est pas une agence et il ne présente aucun bureau. Les articles s'appuient sur des informations sourcées et propres au départ de Casablanca.

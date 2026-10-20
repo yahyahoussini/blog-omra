@@ -53,6 +53,8 @@ export const defaultLabels = {
     aboutLink: "Voir la page éditeur",
     ownerLine: 'Publié par Wiki Tours International, agence de voyages, Casablanca',
     empty: 'Aucun article publié pour le moment.',
+    blogDescription: '{blog} de {site} : {tagline}',
+    noscript: 'Cet outil fonctionne dans votre navigateur et a besoin de JavaScript. Rien n\'est envoyé ni enregistré.',
   },
   ar: {
     answer: 'جواب مختصر',
@@ -105,6 +107,8 @@ export const defaultLabels = {
     aboutLink: 'صفحة الناشر',
     ownerLine: 'نشر من طرف Wiki Tours International، وكالة أسفار، الدار البيضاء',
     empty: 'لا توجد مقالات منشورة حاليا.',
+    blogDescription: '{blog} {site}: {tagline}',
+    noscript: 'تعمل هذه الأداة في متصفحك وتحتاج إلى جافاسكريبت. لا يرسل أي شيء ولا يحفظ.',
   },
   en: {
     answer: 'Short answer',
@@ -157,5 +161,7 @@ export const defaultLabels = {
     aboutLink: 'See the publisher page',
     ownerLine: 'Published by Wiki Tours International, travel agency, Casablanca',
     empty: 'No articles published yet.',
+    blogDescription: '{blog} from {site}: {tagline}',
+    noscript: 'This tool runs in your browser and needs JavaScript. Nothing is sent or stored.',
   },
 };

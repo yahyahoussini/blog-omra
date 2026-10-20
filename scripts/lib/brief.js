@@ -4,6 +4,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { topicSlug, topicLang } from './topics.js';
 import { stripMarkers } from '../../engine/lib/util.js';
+import { wordingFor } from '../../engine/lib/facts-gate.js';
+import { forLang } from '../../engine/lib/render.js';
 
 const LANG_NAME = { fr: 'French written for Moroccan readers', ar: 'Modern Standard Arabic', en: 'English for Moroccan and international readers' };
 const WORD_TARGET = { guide: '1500-2200', explainer: '800-1300', checklist: '800-1200', local: '800-1200', data: '500-900', news: '400-700' };
@@ -33,6 +35,7 @@ export function systemPrompt(root) {
     '8. Never use these words or claims: « garanti », « 100 % », « 0 % d\'intérêt », « sans intérêt », « dernières places », « places limitées », « dépêchez-vous », « meilleur », « leader » about any agency.',
     '9. Start the body with a :::answer box (40-60 words) that answers the title. Include a :::unknown section (« what we do not know yet ») for guide and explainer posts. Use :::steps around numbered lists.',
     '10. Do not mention a year lower than the current season year in the title.',
+    '11. Never write HTML tags (no <a>, <br>, <img>, comments): Markdown, shortcodes and containers only. Never name an agency, tour operator or company that is not in the brief.',
     '',
     'Output: ONLY the complete Markdown file, starting with the line --- (YAML front matter, then the body). No code fences, no commentary.',
     'Front matter: copy front_matter_fixed exactly, then add title (20-70 characters), description (70-160 characters), summary (one sentence) and optionally faq (2-5 items whose answers follow the same fact rules). Do not add sources, reviewed_by, full_read or any other field.',
@@ -60,14 +63,20 @@ export function buildBrief({ project, content, topic, site, today, status, chart
   const s = project.sites.get(site);
   const lang = topicLang(topic);
   const charter = charters?.sites?.[site] || {};
+  // The required wording is given in the page language (the facts gate checks that one); claim_fr stays as the reference.
   const facts = (topic.facts_needed || []).map(id => project.registry[id]).filter(Boolean).map(f => ({
-    id: f.id, claim_fr: f.claim_fr, values: f.values, unit: f.unit, confidence: f.confidence, source_tier: f.source_tier,
-    required_wording: f.required_wording, source_urls: f.source_urls, verified_at: f.verified_at,
+    id: f.id, claim_fr: f.claim_fr, ...(lang !== 'fr' && f[`claim_${lang}`] ? { [`claim_${lang}`]: f[`claim_${lang}`] } : {}),
+    values: f.values, unit: f.unit, confidence: f.confidence, source_tier: f.source_tier,
+    required_wording: f.required_wording ? wordingFor(f, lang) : null, source_urls: f.source_urls, verified_at: f.verified_at,
+    ...(f.conflicts?.length ? { conflicting_values_not_usable: f.conflicts.map(c => c.value) } : {}),
   }));
   const published = content.filter(p => p.fm.status === 'published' && p.fm.date <= today);
+  // Same-site targets: the topic's wished links first, then the other pages, the home page last
+  // (a site's first posts can only link to the home, editeur and contact pages).
   const sameSite = published.filter(p => p.site === site && p.lang === lang && p.fm.type !== 'home');
+  const home = published.filter(p => p.site === site && p.lang === lang && p.fm.type === 'home');
   const wanted = new Set(topic.internal_links || []);
-  const internal = [...sameSite.filter(p => wanted.has(p.fm.slug)), ...sameSite.filter(p => !wanted.has(p.fm.slug))].slice(0, 40).map(pageRef);
+  const internal = [...sameSite.filter(p => wanted.has(p.fm.slug)), ...sameSite.filter(p => !wanted.has(p.fm.slug))].slice(0, 40).concat(home).map(pageRef);
   if (published.some(p => p.site === site && p.lang === lang && p.kind === 'posts')) internal.push({ slug: 'blog', title: 'index des articles', type: 'listing', kind: 'pages' });
 
   const flows = new Set(s.meta.flows || []);
@@ -84,7 +93,7 @@ export function buildBrief({ project, content, topic, site, today, status, chart
     today,
     language: LANG_NAME[lang] || lang,
     site: {
-      domain: site, name: s.meta.name, role: s.meta.role, tagline: s.config.tagline || null,
+      domain: site, name: s.meta.name, role: s.meta.role, tagline: forLang(project, s.config.tagline, lang),
       job: charter.job || s.meta.role, owns: charter.owns || [], never: charter.never || [], hard_rules: charter.hard_rules || [],
       audience: charters?.audience || null,
       box_labels: { answer: labels.answer, retenir: labels.retenir, unknown: labels.unknown, steps: labels.steps, warning: labels.warning },
@@ -121,4 +130,40 @@ export function draftMessage(brief) {
 export function revisionMessage(errors) {
   const list = errors.slice(0, 40).map(e => `- [${e.gate}] ${e.msg}`).join('\n');
   return `The automated gates rejected this draft:\n${list}\n\nRewrite the complete file so that every gate passes. Remove or rephrase any sentence you cannot support with a fact from the brief. A published page cannot contain [[MISSING: …]] markers: drop the claim, or describe the gap in plain words in the unknowns section (no digits, no rule words such as visa, obligatoire, délai). Return only the Markdown file.`;
+}
+
+// Gate 3 (claims verifier): a second, independent call lists every checkable claim of a draft and maps it to brief
+// facts. A claim no brief fact supports is a gate error (DECISIONS D-C keeps every §7.4 gate in auto mode).
+export const VERIFY_SCHEMA = {
+  type: 'object', additionalProperties: false, required: ['claims'],
+  properties: {
+    claims: {
+      type: 'array',
+      items: { type: 'object', additionalProperties: false, required: ['claim', 'fact_ids'], properties: { claim: { type: 'string' }, fact_ids: { type: 'array', items: { type: 'string' } } } },
+    },
+  },
+};
+
+export const VERIFIER_SYSTEM = [
+  'You are a strict fact checker for a Moroccan Omra/Hajj information site. You receive a draft and the only facts its writer was allowed to use.',
+  'List EVERY checkable claim in the draft (front matter title, description, summary, body, FAQ): any statement about the world that could be true or false.',
+  'This includes rules and requirements, dates, prices, numbers, durations, what an organisation, ministry, platform (such as Nusuk), airport, airline or agency offers, allows or requires, and past events.',
+  'Do not list advice ("check your passport early"), the page\'s own method, statements about what the page contains, or plain definitions of common words.',
+  'For each claim, fact_ids lists the ids of the given facts that fully support it (same meaning, not just the same topic). Use [] when no given fact supports it.',
+  'Quote each claim briefly in the draft\'s language. Return the JSON object only.',
+].join('\n');
+
+export function verifyMessage(brief, draft) {
+  const facts = brief.facts.map(f => ({ id: f.id, claim: f[`claim_${brief.front_matter_fixed.lang}`] || f.claim_fr, values: f.values }));
+  return `<facts>\n${JSON.stringify(facts, null, 2)}\n</facts>\n\n<draft>\n${draft}\n</draft>`;
+}
+
+// Gate errors for the verifier answer (fail closed: an unreadable answer is an error too).
+export function claimErrors(text, brief) {
+  let claims;
+  try { claims = JSON.parse(text).claims; } catch { return [{ gate: 'claims', msg: 'the claims verifier answer is not valid JSON: the draft cannot be checked' }]; }
+  if (!Array.isArray(claims)) return [{ gate: 'claims', msg: 'the claims verifier returned no claim list' }];
+  const ids = new Set(brief.facts.map(f => f.id));
+  return claims.filter(c => !(c.fact_ids || []).some(id => ids.has(id)))
+    .map(c => ({ gate: 'claims', msg: `claim not supported by a fact of the brief: « ${String(c.claim).slice(0, 160)} » (remove it or rephrase it so a brief fact supports it)` }));
 }

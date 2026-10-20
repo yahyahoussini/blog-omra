@@ -39,11 +39,16 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           CLAUDE_MODEL: ${{ vars.CLAUDE_MODEL }}
 
+      # Gate errors are per site: a blocked site is reported here (red step) but must not stop the deploy of the
+      # clean sites, so these two steps continue on error. publish.js rebuilds, deploys only clean sites and fails
+      # the run at the end when a site was blocked.
       - name: Check every gate
         run: node scripts/check.js
+        continue-on-error: true
 
       - name: Build
         run: node scripts/build.js
+        continue-on-error: true
 
       # Skips deploy and IndexNow (exit 0) when the Cloudflare secrets are missing.
       - name: Publish changed sites (Cloudflare Pages + IndexNow + ledger)

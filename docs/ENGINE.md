@@ -8,8 +8,9 @@ Arabic) and English under `/en/`. Each language has its own topic plan and nativ
 mirroring**. Put files in `content/<domain>/fr|ar|en/{pages,posts}/`. Each language needs its own `type: home` page
 before anything in that language builds.
 
-- **Commands:** `npm run build` (render + all gates, writes `dist/<domain>/` only when there is no gate error),
-  `npm run check` (all gates, writes nothing but the report), `npm test`.
+- **Commands:** `npm run build` (render + all gates; writes `dist/<domain>/` for every site **without** a gate error:
+  an error blocks only its own site, an error with no site, such as a registry error, blocks all), `npm run check`
+  (all gates, writes nothing but the report), `npm test`.
 - **Report:** every run writes `dist/_reports/gates.json` (errors, warnings, excluded files).
 - **Options:** `node scripts/build.js --site guideomra.ma` (write one site; all sites are still rendered and gated
   together, because several gates are network-wide), `--today 2026-11-01` (pretend date), `--no-strict`
@@ -25,22 +26,29 @@ config/sites/<domain>.json     per-site: name, tagline, nav, footer_nav, whatsap
 config/link-policy.json        DECISIONS D-D caps (sister and wikitours.ma links)
 config/wikitours-targets.json  the only wikitours.ma URLs we may link to + reserved concepts / keywords
 config/approved-phrases.json   fixed expressions ignored by the digit check; exceptions to banned words
-config/entities.json           allowed entity names (warning gate)
+config/entities.json           allowed entity names + generic words (blocks posts while legal_ok is null, D-B)
 config/publisher.json          the shared Organization (@id https://wikitours.ma/#org); null fields stay null until proven
 config/authors.json            REAL people only (empty today: every byline is the organisation)
 config/legal.json              legal_ok: lawyer sign-off date, or null
 config/cadence.json            publish mode and ramp (read by the automation, not by the engine)
 data/facts/registry.json       the only allowed source of numbers, dates and rules (STRATEGY 10.3 schema)
 data/facts/candidates.jsonl    proposals waiting for a human (never usable)
-data/facts/kb/                 approved religious texts (empty until a religious reviewer is named)
+data/facts/kb/<id>.json        approved religious texts, shown only through [[kb:id]] (empty until a religious reviewer is named)
 content/<domain>/<lang>/pages/<slug>.md   pages (home, pillars, trust pages, tools...)
 content/<domain>/<lang>/posts/<slug>.md   blog posts
 content/<domain>/topics.json   planned topics (site agents fill it; the engine does not read it)
-themes/<domain>/theme.js + style.css      per-site theme
+themes/<domain>/theme.js + style.css      per-site theme; themes/<domain>/assets/** is copied to /assets/ (tools, fonts, images)
 engine/lib/                    engine code (build, render, gates, facts gate, shortcodes, schema, seo, wa, ...)
 engine/templates/              default templates, default labels, base.css
 engine/schemas/                front-matter and registry JSON Schemas (ajv, draft 2020-12)
-scripts/build.js, check.js     CLIs; scripts/todo.js is the placeholder for generate/plan/publish/monitor/report
+scripts/build.js, check.js     CLIs (engine)
+scripts/generate.js ...        automation: generate, plan-topics, publish, monitor, report (+ scripts/lib/); see docs/RUNBOOK.md
+config/charters.json           per-site charters (owns / never) for planning and briefs
+config/killswitch.json         kill-switch thresholds (design choices)
+data/state/                    automation state: health.json, spend.json, drafts.jsonl, failures.jsonl
+data/queue/<YYYY-Www>.json     review-mode drafts waiting for a human
+data/ledger/published.json     what was deployed (hash per site and URL), for IndexNow
+.github/workflows/             ci.yml, daily.yml, weekly.yml
 tests/                         node:test suites; tests/fixtures/mini is a two-site fixture network (synthetic)
 ```
 
@@ -63,9 +71,9 @@ YAML between `---` lines. Validated by `engine/schemas/frontmatter.schema.json` 
 
 | Field | Required | Values / rule |
 |---|---|---|
-| `title` | yes | 20-70 characters after markers are removed; unique network-wide; becomes `<title>` and the H1. May contain `[[fact:id]]` (stripped on render) when it has a number. A year lower than the current season year blocks (gate *stale-year*). |
+| `title` | yes | 20-70 characters after markers are removed; unique network-wide; becomes `<title>` and the H1. May contain `[[fact:id]]` (stripped on render) when it has a number. A year lower than the current season year blocks on pages dated or updated in the current season (gate *stale-year*; older pages get a warning after the 1 June flip). |
 | `description` | yes | 70-160 characters, unique network-wide. Markers allowed (stripped). |
-| `slug` | yes | `^[a-z0-9]+(-[a-z0-9]+)*$`, ASCII, no year, = file name. Reserved for pages: `blog`, `sujets`, `ar`, `go`, `assets`, `page`. |
+| `slug` | yes | `^[a-z0-9]+(-[a-z0-9]+)*$`, ASCII, no year, = file name. Reserved for pages: `blog`, `sujets`, `fr`, `ar`, `en` (every language code), `go`, `assets`, `page`. Two pages that would write the same file are an error. |
 | `type` | yes | `home` · `pillar` · `guide` · `explainer` · `checklist` · `hub` · `local` · `data` · `news` · `trust` · `tool`. `home` and `trust` are pages only. One `home` per site and language (URL `/`). |
 | `tier` | posts and pillar/guide/explainer/checklist/local/data/news pages | `A` (named author + reviewer expected; warning if `org`), `B` (data line), `C` (AI line). |
 | `lang` | yes | `fr` (root), `ar` (under `/ar/`, `dir="rtl"`) or `en` (under `/en/`); must match the folder. |
@@ -79,22 +87,23 @@ YAML between `---` lines. Validated by `engine/schemas/frontmatter.schema.json` 
 | `reviewed_by`, `reviewed_at`, `full_read` | no | `reviewed_by` must be in `authors.json` and requires `reviewed_at` and `full_read: true`. Renders « Relu par … ». Recommended for Arabic pages (warning *arabic-review*; D-H overrides the strategy's blocking gate 21). Never fill it unless that person read the whole page. |
 | `facts_used` | no | Extra fact ids; the engine derives the list from the markers anyway. |
 | `sources` | no | `[{ title, publisher, url, accessed }]`. Listed first, then the sources of every cited fact. |
-| `faq` | no | `[{ q, a }]`, max 12. Rendered as a section; adds `FAQPage` JSON-LD. Answers may use shortcodes and must pass the facts gate. |
+| `faq` | no | `[{ q, a }]`, max 12. Rendered as a section; adds `FAQPage` JSON-LD built from the rendered answers (shortcodes resolved). Answers may use shortcodes and must pass the facts gate. |
 | `cta` | no (default whatsapp) | `{ type: whatsapp \| wikitours \| none, topic?, wt_target? }`. `topic` goes into the WhatsApp message. `wikitours` adds a link to `wt_target` in the CTA box (counts as the post's one wikitours.ma link). Trust pages usually use `none`. |
 | `noindex` | no | `true` → `<meta name="robots" content="noindex">` and out of the sitemap. |
 | `nav_order` | no | Sort order of pages in the home « pillars » list (and of pillars for a cluster). |
 | `translation_key` | no | Same value on pages of one site that serve the **same intent** in different languages (written separately) → reciprocal hreflang + x-default (French). Home pages are always linked, without a key. |
-| `requires_legal` | no | `true` → excluded from the build until `config/legal.json` has `legal_ok` (prixomra comparisons, agency names, offer boards). |
+| `requires_legal` | no | `true` → excluded from the build until `config/legal.json` has `legal_ok` (prixomra comparisons, agency names, offer boards). A **post** that names an agency or company not in `config/entities.json` is blocked while `legal_ok` is null. |
 | `summary` | no | Short text for cards and RSS (falls back to `description`). Gated like the description. |
 | `page_id` | no | 1-9999. Pins the 4-digit page id in the WhatsApp reference code. Normally derived from the slug. |
 
-Complete example (`content/omra-ramadan.ma/fr/posts/dates-limites-saison-1448.md`):
+Complete example (`content/omra-ramadan.ma/fr/posts/dates-limites-saison-omra.md`; the title and description carry a
+marker because they contain digits; slugs never contain a year):
 
 ```markdown
 ---
-title: "Omra 1448 : les dates limites officielles de la saison"
-description: "Dernier visa, dernière entrée, dernier départ : les trois dates officielles de la saison Omra 1448 et ce qu'elles changent pour un départ en Ramadan."
-slug: dates-limites-saison-1448
+title: "Omra 1448 [[fact:fact_umrah_1448_last_visa]] : les dates limites officielles de la saison"
+description: "Dernier visa, dernière entrée, dernier départ : les trois dates officielles de la saison Omra 1448 et ce qu'elles changent pour un départ en Ramadan [[fact:fact_umrah_1448_calendar]]."
+slug: dates-limites-saison-omra
 type: explainer
 tier: C
 lang: fr
@@ -116,18 +125,25 @@ faq:
 
 ## 4. Body shortcodes
 
-Shortcodes are resolved before Markdown, so they also work inside tables. **An unresolved shortcode is a build error.**
+Shortcodes are resolved before Markdown, so they also work inside tables. **An unresolved shortcode is a build error**,
+except a link to a page that still exists with `status: retired`: it is shown as plain text with a warning (remove it).
 
 | Shortcode | Renders | Rules |
 |---|---|---|
 | `[[fact:fact_id]]` | a superscript citation `<sup class="cite"><a href="#src-N">N</a></sup>`; the fact's source URLs are added to the numbered source list (« consulté le » = the fact's `verified_at`). | Put it **before** the sentence's final punctuation: `… 2027 [[fact:x]].` A marker after the period belongs to the next sentence. |
-| `[[link:slug\|ancre]]` | same-site link to a page or post (same language, falls back to the root language). `[[link:blog\|…]]` = blog index (only if the site has posts). Anchor optional (default: target title). | Counts toward the 3 same-site links a post needs. |
+| `[[link:slug\|ancre]]` | same-site link to a page or post (same language, falls back to the root language). `[[link:blog\|…]]` = blog index (only if the site has posts). Anchor optional (default: target title without its markers). | Counts toward the 3 same-site links a post needs. |
 | `[[site:domain/slug\|ancre]]` | followed link to a page or post of a sister site. | Max 2 per post; only towards sites listed in the source site's `flows` (`config/network.json`); no reciprocal page pairs (A→B and B→A); max 5 per sister pair per ISO week. |
 | `[[wt:target_id\|ancre]]` | `rel="nofollow"` link to wikitours.ma (`config/wikitours-targets.json`), followed by « (page en anglais) » because only /en/ URLs exist. | Max 1 per post (body + CTA); never in the first sentence; never inside a table; brand or descriptive anchors only; exact-match commercial anchors (« prix omra », « omra pas cher »…) block. Adds the disclosure box automatically. |
 
+| `[[kb:entry_id]]` | an approved religious text from `data/facts/kb/<entry_id>.json`: the exact text, its approved translation for the page language, and its reference (`.kb__text`, `.kb__translation`, `.kb__ref`). | The **only** way to show a Qur'an verse, hadith, du'a or the talbiya (gate *religious-text*). The entry must be `approved` by a real person listed in `config/authors.json`. |
+
 wikitours.ma targets today: `home`, `bab-makka`, `gammes-omra`, `hajj-inscription`, `ziyara-medine`.
 
-Plain Markdown links are fine for **outbound citations** (`[texte](https://www.haj.gov.sa/...)`, followed).
+**No raw HTML.** HTML written in Markdown (`<a>`, `<img>`, `<script>`, `<br>`, comments…) is escaped and blocks the
+page (gate *html*). Use Markdown, shortcodes and containers.
+
+Plain Markdown links are fine for **outbound citations** (`[texte](https://www.haj.gov.sa/...)`, followed). Generated
+posts may only link to the source URLs of their brief's facts (inline, titled or reference-style links alike).
 Plain links to wikitours.ma, to a sister domain or to the site's own absolute URL are errors: use the shortcodes.
 Relative links (`/contact/`) are allowed and must resolve.
 
@@ -148,6 +164,10 @@ Le dernier visa Omra de la saison 1448 sera délivré le 9 mars 2027 [[fact:fact
 | `:::steps` | `<div class="box box--steps">` | Wrap a numbered list (list numbers are not "digits" for the facts gate). |
 | `:::warning` | `<aside class="box box--warning">` | Safety or fraud warnings. |
 | `:::cta [topic]` | the WhatsApp CTA box after your text (`<div class="cta-inline">`) | Place the CTA in the body; optional topic overrides `cta.topic`. When used, the end-of-page CTA is not repeated. |
+| `:::network` | `<div class="network-list">` with the network's other sites, one line each, `rel="nofollow"` | Trust pages (`/editeur/`, STRATEGY 3.3). Write the lead sentence yourself; the list is generated. |
+| `:::tool name` | `<div class="tool" data-tool="name">` + `<script src="/assets/name.js" defer>` | A small vanilla-JS tool (`type: tool` pages). The script lives in `themes/<domain>/assets/name.js`; a missing file is an error. No storage, no network calls. |
+
+Posts start with a `:::answer` box of 40-60 words (warning *answer* otherwise).
 
 Labels come from the theme (`labels.fr.answer`, `labels.fr.retenir`, `labels.fr.unknown`, …), so each site words them
 differently. Label text is template text: it is ignored by the facts and duplicate gates.
@@ -165,7 +185,14 @@ summary, body, FAQ and image alt texts, sentence by sentence:
 - The fact must be `approved`, not past `review_by`, not past `valid_until`.
 - Arabic and English pages cite the same registry ids. The ported gate knows French and Arabic rule words; the
   engine adds English stems for `en` pages. Write numbers with Western digits or Arabic-Indic digits (both checked).
-- Facts with confidence `likely` or `estimate` carry a `required_wording`: it must appear **in the same sentence**.
+- Facts with confidence `likely` or `estimate` carry a `required_wording` (French): it must appear **in the same
+  sentence**. Arabic and English pages use `required_wording_ar` / `required_wording_en`; a fact without the wording
+  for a page's language cannot be cited in that language yet (error), and generated topics that need it wait.
+- Values listed in a fact's `conflicts` (another outlet's figure) are not `values`: they cannot be cited as the fact.
+- **Official sources (gate 8):** a page that cites a `visa`, `health` or `hajj_process` fact needs at least one
+  official source (a cited fact with `source_tier: official`, or a source on `gov.ma`, `gov.sa` or `nusuk.sa`).
+- **Site rule:** omracasablanca.ma posts must cite an approved `local_casablanca` fact (`config/network.json →
+  required_fact_topics`).
 - `config/approved-phrases.json` removes fixed expressions before the digit check (« les 10 dernières nuits »,
   source names with digits such as « Medias24 », « Le360 »). Never add prices or dates there.
 - Headings have no final punctuation, so a heading is checked together with the first sentence after it.
@@ -209,7 +236,8 @@ Useful ids by topic (see the registry for the full list of 71):
 build does not fail: the gate reports a warning, the page shows « Information en cours de mise à jour »
 (`.stale-banner`), and 14 days after `review_by` the page becomes `noindex` and leaves the sitemap until the fact
 is renewed. The generator must call `factsGate()` directly on drafts, where these are errors.
-Most Saudi-rule and price facts have `review_by: 2026-11-19` (30 days): a human must re-confirm them by then.
+Most Saudi-rule and price facts have `review_by: 2026-11-19` (30 days): a human must re-confirm them by then
+(20 of 69 approved facts; past 20 % stale, the monitor pauses generation network-wide, see docs/RUNBOOK.md).
 
 **Adding a fact.** Never edit numbers into a page. Add a candidate to `data/facts/candidates.jsonl`; a human checks
 the source and moves it to `registry.json` with `status: approved`, `verified_by`, `verified_at`, `review_by`
@@ -234,13 +262,14 @@ the source and moves it to `registry.json` with `status: approved`, `verified_by
 - **Footer:** only same-site links and « Publié par Wiki Tours International, agence de voyages, Casablanca »
   → `/editeur/`. No sister-site blocks anywhere in templates.
 - **JSON-LD @graph:** `Organization` (@id `https://wikitours.ma/#org`, from `config/publisher.json`) on every page;
-  `WebSite` on the home; `BreadcrumbList`; `BlogPosting` (posts) or `Article` (pillar/guide/explainer/checklist/local/data/news)
+  `WebSite` on the home (`inLanguage` = the languages that have a published home page); `BreadcrumbList`; `BlogPosting` (posts) or `Article` (pillar/guide/explainer/checklist/local/data/news)
   with the Organization as author when `author: org`; `WebPage` / `CollectionPage` otherwise; `FAQPage` only with `faq`;
   `Dataset` only for `type: data` on a site with `"dataset": true` (prixomra). Never LocalBusiness, TravelAgency,
   Event, HowTo, Review or AggregateRating.
 - **Head:** `<html lang="fr-MA" dir="ltr">` (`ar-MA` / `rtl` under `/ar/`, `en-MA` / `ltr` under `/en/`), unique
   title and description, absolute self-canonical, OG + Twitter tags; hreflang between the home pages of a site and
-  between `translation_key` pairs on the same site, never across domains.
+  between `translation_key` pairs on the same site, never across domains and never to a noindexed version. The RSS
+  link appears only when that language has an indexable post (the feed exists).
 
 ## 8. URLs and output files (`dist/<domain>/`)
 
@@ -267,7 +296,8 @@ the source and moves it to `registry.json` with `status: approved`, `verified_by
 ```js
 export default {
   palette: { primary: '#0f5b4a', accent: '#b08d3c' },  // used for the favicon; real colours live in style.css
-  fonts: ['system'],                 // or Google Fonts families, e.g. ['Amiri:wght@400;700'] (adds preconnect + stylesheet)
+  fonts: ['system'],                 // or self-hosted WOFF2 files in themes/<domain>/assets/fonts/, e.g. ['amiri-400.woff2']
+                                     // (preloaded; declare them with @font-face in style.css). No third-party fonts.
   layout: {
     header: 'split',                 // 'split' | 'centered' | 'stacked' -> .site-header--<value>
     home: ['hero', 'intro', 'pillars', 'latest', 'cta', 'about'],  // home sections, in order
@@ -289,9 +319,10 @@ export default {
   home.sections` overrides the theme. Without `hero`, an `<h1 class="home-title">` is still rendered.
 - Overridable templates (see `engine/templates/default.js`): `layout`, `header`, `footer`, `breadcrumbs`, `card`,
   `byline`, `sources`, `faq`, `cta`, `article`, `home`, `listing`, `notFound`. `ctx` holds `site`, `lang`, `L`
-  (labels), `prefix`, `nav`, `footerNav`, `editeurUrl`, `page`, and `t(name, ...args)` to call other templates.
+  (labels), `prefix`, `tagline` (for this language), `nav`, `footerNav`, `editeurUrl`, `page`, and `t(name, ...args)`
+  to call other templates. A `layout` override must print `d.scripts` (tool pages).
   Keep the `<!--nogate-->…<!--/nogate-->` wrappers and the class names the gates read (`box--disclosure`,
-  `wt-link`, `cta__button`, `sup.cite`), exactly one `<h1>`, and never add sister-site links to templates.
+  `wt-link`, `cta__button`, `network-link`, `sup.cite`), exactly one `<h1>`, and never add sister-site links to templates.
 - Default labels exist for `fr`, `ar` and `en`; every key is listed in `engine/templates/labels.js`. Vary `answer`, `retenir`, `unknown`, `disclosure`,
   `disclosureText`, `ctaTitle` per site. `ownerLine` is fixed by STRATEGY 3.3: do not change it.
 
@@ -304,15 +335,16 @@ Stable class names:
 | Footer | `.site-footer`, `.site-footer__inner`, `.site-footer__nav`, `.site-footer__owner` |
 | Article | `.breadcrumbs`, `.breadcrumbs__list`, `.breadcrumbs__item`, `.article.article--<type>`, `.article__header`, `.article__title`, `.byline`, `.byline__meta`, `.byline__review`, `.byline__ai`, `.stale-banner`, `.article__body.prose` |
 | Boxes | `.box`, `.box--answer`, `.box--retenir`, `.box--unknown`, `.box--disclosure`, `.box--steps`, `.box--warning`, `.box__label`, `.box__title`, `.table-wrap` |
-| Citations / links | `sup.cite`, `.wt-link`, `.lang-note` |
+| Citations / links | `sup.cite`, `.wt-link`, `.lang-note`, `.kb__text`, `.kb__translation`, `.kb__ref`, `.network-list`, `.network-link`, `.tool` |
 | CTA | `.cta`, `.cta__title`, `.cta__text`, `.cta__button`, `.cta__ref`, `.cta__wt`, `.cta-inline` |
 | Sections | `.faq`, `.faq__title`, `.faq__item`, `.faq__q`, `.faq__a`, `.sources`, `.sources__title`, `.sources__list`, `.sources__item`, `.sources__checked`, `.related`, `.related__title`, `.cluster-list`, `.cluster-list__title` |
 | Cards / lists | `.cards`, `.card.card--<type>`, `.card__link`, `.card__title`, `.card__summary`, `.card__meta`, `.listing`, `.listing__title`, `.listing__intro`, `.pager`, `.pager__prev`, `.pager__next` |
 | Home | `.home`, `.home-title`, `.home-hero`, `.home-hero__title`, `.home-hero__tagline`, `.home-intro`, `.home-pillars`, `.home-latest`, `.home-about`, `.home-section__title` |
 | 404 | `.not-found`, `.not-found__title` |
 
-Tools (offresomra comparison, etc.): put vanilla JS in a static file served under `/assets/` (CSP blocks inline
-scripts). Static asset copying is not implemented yet (see limitations).
+Assets: every file under `themes/<domain>/assets/` is copied to `dist/<domain>/assets/` (cached one year by
+`_headers`). Tools are vanilla JS files there, mounted with `:::tool name` (CSP blocks inline scripts and handlers).
+Example: `themes/offresomra.ma/assets/compare-offres.js` on `offresomra.ma/comparateur/`.
 
 ## 10. Site config (`config/sites/<domain>.json`)
 
@@ -325,6 +357,7 @@ scripts). Static asset copying is not implemented yet (see limitations).
   "labels": { "fr": {} },
   "home": { "sections": ["hero", "intro", "pillars", "latest", "cta", "about"] },
   "blog": { "title": "Articles – Guide Omra", "description": "70-160 caractères…", "intro": null },
+  "_per_language": "tagline and blog may also be { \"fr\": …, \"ar\": …, \"en\": … }; a plain value is French only",
   "clusters": { "rites_omra": { "title": "…", "description": "…" } },
   "redirects": [{ "from": "/ancien/", "to": "/nouveau/", "status": 301 }],
   "indexnow_key": "optional-8-to-128-chars"
@@ -337,25 +370,29 @@ except `blog` before the first post. Every site needs `editeur` and `contact` pa
 
 ## 11. Gates (`engine/lib/gates.js`)
 
-Errors block the build (exit 1, nothing written); warnings are printed and saved in `dist/_reports/gates.json`.
+Errors block their site (exit 1; that site is not written or deployed, the others are; an error with no site
+blocks all); warnings are printed and saved in `dist/_reports/gates.json` (`blocked_sites` lists the blocked ones).
 
 | Gate | Level | Rule |
 |---|---|---|
-| registry | error | every fact validates against `engine/schemas/registry.schema.json`; unique ids |
+| registry | error | every fact validates against `engine/schemas/registry.schema.json`; unique ids; KB entries validate against `kb.schema.json` and are approved by a person in `authors.json` |
 | frontmatter | error (warning for drafts) | schema; slug = file name; posts need tier/primary_keyword/cluster/concept_id; author and reviewer in authors.json; one home per site+language; unique slugs; valid `cta.wt_target` |
 | arabic-review | warning | published AR page without `reviewed_by` + `full_read` (D-H: recommended, not blocking) |
 | byline | warning | tier A with the organisation byline |
 | facts | error | facts gate (title, description, summary, body, FAQ, alt) + required wording; on English pages also English rule words (mandatory, required, forbidden, prohibited, free of charge, guarantee, refund, deadline); stale facts = warning + banner |
-| entities | warning | names that look like agencies/airlines and are not in `config/entities.json` |
+| entities | error on posts while `legal_ok` is null, else warning | names that look like agencies/companies/airlines and are not in `config/entities.json → allowed` (`generic` words such as « Omra » are not names) |
 | cannibalisation | error | primary_keyword unique per language; concept_id on one site only and once per language; cluster on one site only; reserved concepts/keywords; title token Jaccard ≥ 0.6 (same language) |
 | duplicate | error / warning | 5-shingle Jaccard ≥ 0.5 or SimHash-64 Hamming ≤ 3 (pages ≥ 40 words) blocks; 0.3-0.5 warns; all pages network-wide incl. trust pages; labels, disclosure and CTA text stripped |
-| citations | error | sources ≥ 2 for pillar/guide/news/data, ≥ 1 for other article types and every post; home/trust/hub/tool pages 0 |
-| links | error | unresolved shortcodes; posts ≥ 3 same-site body links; ≤ 2 sister links, only along flows; ≤ 5 per sister pair per week; no reciprocal page pairs; ≤ 1 wikitours.ma link, `nofollow`, not in the first sentence, not in a table, no commercial exact-match anchor; no raw links to wikitours.ma/sister/own domain; every internal href/src resolves; no orphan pages; share of posts with a wikitours.ma link above the site cap and brand anchors < 60% = warnings |
+| citations | error | sources ≥ 2 for pillar/guide/news/data, ≥ 1 for other article types and every post; home/trust/hub/tool pages 0; visa/health/hajj_process facts need an official source; site `required_fact_topics` |
+| links | error | unresolved shortcodes; posts ≥ 3 same-site body links; ≤ 2 sister links, only along flows; ≤ 5 per sister pair per week; no reciprocal page pairs; ≤ 1 wikitours.ma link, `nofollow`, not in the first sentence, not in a table, no commercial exact-match anchor; no raw links to wikitours.ma/sister/own domain; every internal href/src resolves; no orphan pages; share of posts with a wikitours.ma link above the site cap = error on the newest such post; brand anchors < 60% and one anchor > 20% of the links to a target = warnings; links to retired pages = warning |
+| html | error | raw HTML in Markdown (body or FAQ) |
+| religious-text | error | Qur'an / hadith / du'a / talbiya markers (﴿ ﴾, sourate, verset, hadith, invocation, du'a, talbiya, لبيك, قال الله, صلى الله عليه وسلم…) or 3+ Arabic words on a French/English page, outside `[[kb:id]]` (gate 4) |
+| answer | warning | posts without a `:::answer` box of 40-60 words |
 | disclosure | error | Wiki Tours / Bab Makka mention or wikitours.ma link without the disclosure box |
 | meta | error (warning for generated pages) | title 20-70, description 70-160, both unique network-wide; exactly one `<h1>`; `lang`/`dir`; self-canonical |
-| stale-year | error (warning for news/data) | a 20xx year in the title lower than the season year (season year = next year from 1 June) |
+| stale-year | error on evergreen pages dated/updated in the current season, else warning | a 20xx year in the title lower than the season year (season year = next year from 1 June) |
 | banned-claim | error | « garanti(e)(s) », « 100 % », « مضمون », « 0 % d'intérêt », « sans intérêt », fake urgency (« dernières places », « places limitées », « dépêchez-vous »…), superlatives about Wiki Tours; on English pages also « guaranteed », « 0% interest / interest-free », « last seats », « hurry ». Exceptions in `approved-phrases.json → banned_claim_exceptions` (« garanties financières ») |
-| schema | error | JSON-LD parses; no LocalBusiness / TravelAgency / Event / HowTo / Review / AggregateRating |
+| schema | error | JSON-LD parses; no LocalBusiness / TravelAgency / Event / HowTo / Review / AggregateRating (any `@type`, arrays included) |
 | unknowns | error | pillar, guide, explainer without `:::unknown` |
 | licence | error | licence number patterns (« ODV-… », « licence n° ») or « depuis 2016 » anywhere in the HTML unless the fact is `approved` with `source_tier: official` (and `publisher.licence.official_list_url` for the licence) |
 | excluded | info | drafts, retired, scheduled, `requires_legal` without `legal_ok` |
@@ -363,26 +400,38 @@ Errors block the build (exit 1, nothing written); warnings are printed and saved
 | images | warning | image without alt text |
 | whatsapp | warning | `whatsapp.number` is null |
 
-Not automated here: claims verifier (Wave 2), religious-text KB matching (gate 4, KB empty), offer freshness
-(gate 11, no offer records yet), Lighthouse (gate 18), per-pair monthly 25% share (replaced by D-D's weekly cap).
+The claims verifier (gate 3) runs in the generator (section 12). Not automated: offer freshness (gate 11, no offer
+records yet), Lighthouse (gate 18), structured data vs visible text (gate 15 checks types and parsing only), image
+size/rights (gate 17 checks alt text), 3-click depth and inbound-link counts per pillar (8.1), per-pair monthly 25%
+share (replaced by D-D's weekly cap).
 
 ## 12. For the automation agent
 
-- `import { buildNetwork } from './engine/lib/build.js'` → `{ pages, generated, outputs, findings, errors, warnings, excluded, written }`.
-  Pass `write: false` to gate a candidate set; `today` to simulate a date.
+- `import { buildNetwork } from './engine/lib/build.js'` → `{ pages, generated, outputs, findings, errors, warnings, excluded, written, blocked }`.
+  Pass `write: false` to gate a candidate set; `today` to simulate a date; `overlay` + `focusOverlay: true` to gate
+  drafts (pairwise duplicate/title checks then compare only the drafts with the network: O(n) per draft).
 - `import { factsGate, requiredWordingGate } from './engine/lib/facts-gate.js'` for drafts (stale facts are errors there).
 - `import { getModel } from './engine/lib/model.js'` reads `CLAUDE_MODEL` and throws when it is missing. Never write a model id in the repo.
 - `import { indexNowKey, submitIndexNow } from './engine/lib/indexnow.js'`; `waLink` in `engine/lib/wa.js`.
 - Cadence (D-C + D-H): the 3 posts/day/site ceiling is 1 French + 1 Arabic + 1 English after the ramp.
-- `npm run generate|plan|publish|monitor|report` are placeholders (`scripts/todo.js`, exit 1) to replace.
-- The remaining prototypes (`cluster.js`, `csv.js`, `semrush-ingest.js`, `schedule.js`, `gsc-pull.js`, `feed.js`)
-  are not ported yet; `normalize.js`, `similarity.js`, the gates, the facts gate and `indexnow.js` are.
+- The automation is built on these (`npm run generate|plan|publish|monitor|report`, operated as described in
+  `docs/RUNBOOK.md`). The generator gates every draft with `buildNetwork({ overlay, write: false })` in the context of
+  the whole network, treats stale facts as errors, sends a draft that passes to the **claims verifier** (a second
+  Claude call with `CLAUDE_MODEL` and a JSON schema that maps every checkable claim to brief facts; an unmapped claim
+  is an error), allows one revision, and writes nothing that fails. Ritual topics wait until the KB has approved
+  entries; topics with visa/health/Hajj rules need an official-source fact.
+- Ported prototypes: `normalize.js`, `similarity.js`, the gates, the facts gate, `indexnow.js`, `semrush-ingest.js`
+  (`scripts/lib/semrush.js`), `gsc-pull.js` (`scripts/lib/gsc.js`, JWT signed with node:crypto). Not ported:
+  `cluster.js` (topics come from the planner), `csv.js` (replaced by csv-parse), `schedule.js` (replaced by the
+  cadence in `config/cadence.json`), `feed.js` (Merchant Center feed is frozen, STRATEGY 10.9).
 
 ## 13. Known limitations
 
-- No static asset pipeline yet (images, `/assets/*.js` for tools): add files under `themes/<domain>/assets/` and a
-  copy step when the first tool or image arrives. Image gate 17 only checks alt text.
+- Assets are copied as-is (no hashing, no image resizing). Image gate 17 only checks alt text.
+- Sites are blocked one by one: a clean site can link to a new page of a blocked sister site, which 404s until that
+  site is fixed and deployed.
 - Cluster hubs need a title in the site config; posts' breadcrumbs point to the pillar or to the blog index, not to a generated hub.
-- Duplicate SimHash comparison is pairwise (fine for a few thousand pages; the Jaccard part uses an inverted index).
+- Duplicate search: SimHash uses band buckets and the Jaccard part an inverted index (shingles shared by more than
+  50 pages are only used to bound scores); title similarity uses prefix filtering. A full build stays near-linear.
 - The entity gate is a heuristic (capitalised names before « Tours », « Travel », « Voyages », « Airlines », or after « agence »).
 - gray-matter pulls an old js-yaml with a moderate `npm audit` advisory (ReDoS in sprintf-js); content is our own, so the risk is low.

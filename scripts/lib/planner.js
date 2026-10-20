@@ -6,7 +6,7 @@ import { matchKey } from '../../engine/lib/normalize.js';
 import { stripMarkers } from '../../engine/lib/util.js';
 import { readJSON, writeJSON, appendJSONL, paths } from './common.js';
 import { planningPerDay, addSpend, spendStatus } from './cadence.js';
-import { loadTopics, saveTopics, networkItems, topicConflicts, factProblems, activeLanguages, slugify, topicLang, POST_TYPES } from './topics.js';
+import { loadTopics, saveTopics, networkItems, topicConflicts, factProblems, topicRuleProblems, activeLanguages, slugify, topicLang, POST_TYPES } from './topics.js';
 import { addMissingCandidates } from './generator.js';
 import { apiUnavailable, makeClient, callClaude, checkStop, SkipTopicError } from './claude.js';
 import { ingestSemrush } from './semrush.js';
@@ -45,6 +45,8 @@ export const PLANNER_SYSTEM = [
   '- primary_keyword: the query a Moroccan reader would type, in the requested language, without a year. Do not invent search volumes.',
   '- facts_needed: ids from approved_facts only. A topic needs at least one fact (two for guide, news and data). If the topic needs a fact that is not in the list, describe it in missing_facts (the topic will wait for a human to add it).',
   '- No prices, dates or rules in titles unless an approved fact carries them. No religious rulings, no Qur\'an or hadith text, no named agencies, no rankings.',
+  '- While approved_religious_texts is 0, propose no ritual topic (ihram, tawaf, sa\'y, talbiya, du\'a, prayers, Hajj rites): they need approved texts first.',
+  '- A topic stating visa, health or Hajj-procedure rules needs at least one approved fact with source_tier "official" in facts_needed.',
   '- slug: short ASCII words separated by hyphens, no year. internal_links: slugs from site_pages. sister_links: only from sister_pages. wt_target: an id from wikitours_targets when a link to the publisher helps the reader, else "".',
   '- Titles 20-70 characters, all different in wording from existing titles.',
   'Return the JSON object only.',
@@ -77,7 +79,7 @@ export async function runPlan({ root, today, site: onlySite = null, dryRun = fal
   // 2. Blocked topics whose facts are now usable go back to the queue.
   for (const d of domains) {
     let changed = false;
-    for (const t of topicsBySite[d]) if (t.status === 'blocked' && !(t.missing_facts || []).length && !factProblems(t, project.registry, today, minDays).length && (t.facts_needed || []).length) {
+    for (const t of topicsBySite[d]) if (t.status === 'blocked' && !(t.missing_facts || []).length && !factProblems(t, project.registry, today, minDays).length && !topicRuleProblems({ ...t, site: d }, project).length && (t.facts_needed || []).length) {
       t.status = 'queued'; t.unblocked_at = today; summary.unblocked++; changed = true;
     }
     if (changed && !dryRun) saveTopics(root, d, topicsBySite[d]);
@@ -106,7 +108,7 @@ export async function runPlan({ root, today, site: onlySite = null, dryRun = fal
     const why = apiUnavailable(env);
     if (why) { summary.stopped = `topic proposals skipped: ${why}`; log(summary.stopped); return summary; }
     const client = makeClient(env);
-    proposeFn = args => callClaude(client, { ...args, maxTokens: 16000, env });
+    proposeFn = args => callClaude(client, { ...args, maxTokens: 16000, effort: cadence.claude?.effort ?? null, fallbacks: cadence.claude?.fallbacks ?? null, env });
   }
 
   for (const need of needs) {
@@ -161,8 +163,9 @@ export function planRequest({ project, content, topicsBySite, need, today, minDa
     this_site_topics: items.filter(o => o.site === site).map(o => ({ lang: o.lang, title: o.title, primary_keyword: o.primary_keyword, cluster: o.cluster, concept_id: o.concept_id })),
     existing_concepts: [...new Set(items.map(o => o.concept_id))],
     clusters_of_other_sites: [...new Set(items.filter(o => o.site !== site).map(o => o.cluster))],
-    approved_facts: project.registryList.filter(f => factProblems({ facts_needed: [f.id] }, project.registry, today, minDays).length === 0)
-      .map(f => ({ id: f.id, claim_fr: f.claim_fr, review_by: f.review_by })),
+    approved_facts: project.registryList.filter(f => factProblems({ facts_needed: [f.id], lang }, project.registry, today, minDays).length === 0)
+      .map(f => ({ id: f.id, topic: f.topic, source_tier: f.source_tier, claim_fr: f.claim_fr, review_by: f.review_by })),
+    approved_religious_texts: Object.values(project.kb || {}).filter(e => e.status === 'approved').length,
     keyword_candidates: keywords.length ? keywords : 'none yet (Semrush data pending): use realistic queries, never invent volumes',
     site_pages: published.filter(p => p.site === site && p.lang === lang && p.fm.type !== 'home').map(p => ({ slug: p.fm.slug, title: stripMarkers(p.fm.title) })),
     sister_pages: published.filter(p => flows.has(p.site) && p.lang === lang && !['home', 'trust'].includes(p.fm.type)).map(p => ({ site: p.site, slug: p.fm.slug, title: stripMarkers(p.fm.title) })),
@@ -208,6 +211,7 @@ export function acceptProposals({ proposals, site, lang, project, content, topic
     t.facts_needed = t.facts_needed.filter(id => project.registry[id]);
     t.missing_facts.push(...unknown.map(id => `fact « ${id} » proposed by the planner (not in the registry)`));
     if (t.facts_needed.length < (MIN_FACTS[t.type] || 1) && !t.missing_facts.length) reasons.push(`${t.type} needs at least ${MIN_FACTS[t.type] || 1} registry fact(s) to cite`);
+    reasons.push(...topicRuleProblems({ ...t, site }, project));
     if (reasons.length) { rejected.push({ title: t.title, reasons }); continue; }
     const problems = factProblems(t, project.registry, today, minDays);
     if (t.missing_facts.length || problems.length) {

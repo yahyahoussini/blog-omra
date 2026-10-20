@@ -1,13 +1,12 @@
 // Minimal GitHub REST client (fetch): weekly-review issues for the dead-man switch and the weekly report.
-const API = 'https://api.github.com';
-
+// GITHUB_API_URL is set by GitHub Actions (and lets the tests point at a local server).
 export function githubFromEnv(env = process.env) {
   const token = env.GITHUB_TOKEN?.trim(), repo = env.GITHUB_REPOSITORY?.trim();
-  return token && repo ? { token, repo } : null;
+  return token && repo ? { token, repo, api: env.GITHUB_API_URL?.trim() || 'https://api.github.com' } : null;
 }
 
 async function gh(cfg, method, url, body) {
-  const res = await fetch(`${API}${url}`, {
+  const res = await fetch(`${cfg.api || 'https://api.github.com'}${url}`, {
     method,
     headers: { Authorization: `Bearer ${cfg.token}`, Accept: 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28', 'User-Agent': 'omra-network-automation', ...(body ? { 'Content-Type': 'application/json' } : {}) },
     body: body ? JSON.stringify(body) : undefined,

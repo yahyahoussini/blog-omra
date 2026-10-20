@@ -138,7 +138,9 @@ test('a bad post is blocked by the facts, banned-claim, links, meta and cannibal
   assert.match(msgs, /unresolved same-site link/);
   assert.match(msgs, /first sentence/);
   assert.match(msgs, /same primary keyword/);
-  assert.deepEqual(r.written, []); // strict: nothing written
+  // strict, per site: the site with the error is not written; the clean site still is.
+  assert.deepEqual(r.blocked, ['alpha.test']);
+  assert.deepEqual(r.written.map(w => w.domain), ['beta.test']);
 });
 
 test('near-duplicate pages, reciprocal sister links and off-flow links are blocked', async () => {

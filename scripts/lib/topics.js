@@ -4,6 +4,7 @@ import { readJSON, writeJSON, addDays, paths } from './common.js';
 import { matchKey } from '../../engine/lib/normalize.js';
 import { jaccard } from '../../engine/lib/similarity.js';
 import { stripMarkers } from '../../engine/lib/util.js';
+import { wordingFor } from '../../engine/lib/facts-gate.js';
 
 export const POST_TYPES = ['guide', 'explainer', 'checklist', 'local', 'data', 'news'];
 export const TOPIC_STATUSES = ['queued', 'done', 'failed', 'blocked'];
@@ -19,10 +20,12 @@ export function slugify(s) {
 export const topicSlug = t => t.slug || slugify(t.primary_keyword) || slugify(t.id);
 export const topicLang = t => t.lang || 'fr';
 
-// 'ok' or the reason a fact cannot be used for a new post today.
-export function factState(fact, today, minDaysLeft = 0) {
+// 'ok' or the reason a fact cannot be used for a new post today (in `lang`: a fact with required_wording needs
+// that wording in the page language, see facts-gate.js wordingFor).
+export function factState(fact, today, minDaysLeft = 0, lang = 'fr') {
   if (!fact) return 'unknown';
   if (fact.status !== 'approved') return `not approved (${fact.status})`;
+  if (fact.required_wording && !wordingFor(fact, lang)) return `no ${lang} required wording yet (required_wording_${lang})`;
   const horizon = addDays(today, minDaysLeft);
   for (const k of ['review_by', 'valid_until']) {
     if (fact[k] && fact[k] < today) return `past ${k} ${fact[k]}`;
@@ -32,7 +35,26 @@ export function factState(fact, today, minDaysLeft = 0) {
 }
 
 export function factProblems(topic, registry, today, minDaysLeft) {
-  return (topic.facts_needed || []).map(id => ({ id, state: factState(registry[id], today, minDaysLeft) })).filter(x => x.state !== 'ok');
+  return (topic.facts_needed || []).map(id => ({ id, state: factState(registry[id], today, minDaysLeft, topicLang(topic)) })).filter(x => x.state !== 'ok');
+}
+
+// Ritual topics carry Qur'an / du'a / talbiya text: they wait until the religious KB (data/facts/kb/) has approved entries.
+export const RITUAL_TOPIC = /(?<!\p{L})(ihram|tawaf|tawâf|sa['’]?y|sa['’]?i|talbiy\p{L}*|du['’]?as?|dou['’]?as?|douaa|invocations?|supplications?|prières?|priere\p{L}*|salat|rituel\p{L}*|ritual\p{L}*|rites?|coran|qur['’]?an|quran|hadiths?|zamzam|arafat|mina|muzdalifa\p{L}*|lapidation|jamarat|إحرام|طواف|سعي|تلبية|دعاء|أدعية|مناسك|صلاة|القرآن)(?!\p{L})/iu;
+const REGULATED = new Set(['visa', 'health', 'hajj_process']);
+
+// Engine rules a topic would fail whatever the draft says (gates 4 and 8, site rules). [] = none.
+export function topicRuleProblems(topic, project) {
+  const out = [];
+  const facts = (topic.facts_needed || []).map(id => project.registry[id]).filter(Boolean);
+  const text = [topic.title, topic.primary_keyword, topic.concept_id?.replace(/_/g, ' ')].join(' ');
+  if (!Object.values(project.kb || {}).some(e => e.status === 'approved') && RITUAL_TOPIC.test(text))
+    out.push('ritual topic: waits for approved religious texts in data/facts/kb/ (gate 4)');
+  const regulated = [...new Set(facts.filter(f => REGULATED.has(f.topic)).map(f => f.topic))];
+  if (regulated.length && !facts.some(f => f.source_tier === 'official'))
+    out.push(`${regulated.join(', ')} rules need an official-source fact (gate 8): add one to facts_needed when the registry has it`);
+  const need = project.sites.get(topic.site)?.meta.required_fact_topics;
+  if (need?.length && !facts.some(f => need.includes(f.topic))) out.push(`${topic.site} posts must cite a ${need.join('/')} fact`);
+  return out;
 }
 
 // What already exists in the network, for conflict checks. Items: { site, lang, title, primary_keyword, cluster, concept_id, ref }.
@@ -94,8 +116,11 @@ export function selectTopics({ topics, site, project, items, today, minFactDays 
     if (!POST_TYPES.includes(t.type)) { skipped.push({ id: t.id, reason: `type "${t.type}" is not a generated post type (${POST_TYPES.join(', ')})` }); continue; }
     const missing = ['id', 'title', 'primary_keyword', 'cluster', 'concept_id'].filter(k => !t[k]);
     if (missing.length) { skipped.push({ id: t.id ?? '(no id)', reason: `missing fields: ${missing.join(', ')}` }); continue; }
+    if (!(t.facts_needed || []).length) { skipped.push({ id: t.id, reason: 'no facts_needed: a post needs at least one registry fact to cite' }); continue; }
     const bad = factProblems(t, project.registry, today, minFactDays);
     if (bad.length) { skipped.push({ id: t.id, reason: `facts not usable: ${bad.map(b => `${b.id} ${b.state}`).join('; ')}` }); continue; }
+    const rules = topicRuleProblems({ ...t, site }, project);
+    if (rules.length) { skipped.push({ id: t.id, reason: rules.join('; ') }); continue; }
     // Published or drafted content is the truth here; planned topics were checked when they were planned.
     const conflicts = topicConflicts(t, site, items.filter(o => o.kind === 'content'), project);
     if (conflicts.length) { skipped.push({ id: t.id, reason: `conflict: ${conflicts.join('; ')}` }); continue; }

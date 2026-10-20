@@ -7,7 +7,7 @@ import { loadProject } from '../engine/lib/config.js';
 import { loadContent } from '../engine/lib/content.js';
 import { parseArgs, rootFrom, casablancaToday, readJSON, writeJSON, readJSONL, addDays, hasEnv, paths } from './lib/common.js';
 import { spendStatus } from './lib/cadence.js';
-import { deadManState, internalSignals, staleFactShare, evaluateHealth, alertLines } from './lib/killswitch.js';
+import { deadManState, deadManFallback, internalSignals, staleFactShare, evaluateHealth, alertLines } from './lib/killswitch.js';
 import { githubFromEnv, latestClosedIssue } from './lib/github.js';
 import { parseServiceAccount, accessToken, searchAnalytics, impressionTrend, cannibalSuspects } from './lib/gsc.js';
 
@@ -29,7 +29,11 @@ if (gh) {
     const last = await latestClosedIssue(gh, cfg.dead_man.label);
     deadMan = deadManState({ lastClosedAt: last?.closed_at || null, launchDate: cadence.launch_date, today, cfg: cfg.dead_man });
     if (last) deadMan.issue = last.number;
-  } catch (e) { notes.push(`dead-man switch not checked: ${e.message}`); }
+  } catch (e) {
+    // Fail closed: the last known state, then the slow level after repeated failures (killswitch.js deadManFallback).
+    deadMan = deadManFallback(readJSON(p.health, {})._meta?.dead_man, cfg.dead_man, e.message);
+    notes.push(deadMan.reason);
+  }
 } else notes.push('dead-man switch not checked: GITHUB_TOKEN / GITHUB_REPOSITORY not set (they are set automatically in GitHub Actions)');
 
 // Internal signals.

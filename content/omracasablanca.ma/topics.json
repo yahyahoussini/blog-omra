@@ -1,1 +1,31 @@
-[]
+[
+  {
+    "id": "ca-fr-0001",
+    "lang": "fr",
+    "title": "Route de La Mecque à Mohammed V : le pré-dédouanement",
+    "slug": "route-de-la-mecque-cmn",
+    "primary_keyword": "route de la mecque aeroport mohammed v",
+    "cluster": "depart_cmn",
+    "concept_id": "makkah_route_cmn",
+    "type": "explainer",
+    "tier": "C",
+    "internal_links": [],
+    "sister_links": [],
+    "status": "queued",
+    "planned_at": "2026-10-20",
+    "planned_by": "seed",
+    "angle": "Ce qu'est le programme « Route de La Mecque » à l'aéroport Mohammed V pour le Hajj, et pourquoi il ne concerne pas la Omra.",
+    "outline": [
+      "Le programme en quelques mots",
+      "Ce qui a été annoncé pour Casablanca",
+      "Hajj seulement : et pour la Omra ?",
+      "Ce que nous ne savons pas encore"
+    ],
+    "facts_needed": [
+      "fact_makkah_route_2026_cmn",
+      "fact_hajj_2026_flights_onda"
+    ],
+    "cta_topic": "Préparer un départ depuis Casablanca",
+    "notes": "Aucune adresse ni horaire de bureau ; pas de LocalBusiness."
+  }
+]

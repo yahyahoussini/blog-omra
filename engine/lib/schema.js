@@ -1,7 +1,6 @@
 // JSON-LD @graph per page (STRATEGY 4.3). Organization publisher everywhere — never
 // LocalBusiness / TravelAgency on a satellite, never Event, HowTo or self-serving reviews.
-import { stripMarkers } from './util.js';
-import { plainText, renderInline } from './markdown.js';
+import { plainText } from './markdown.js';
 
 export function organizationNode(publisher) {
   const org = { '@type': 'Organization', '@id': publisher['@id'], name: publisher.name, url: publisher.url };
@@ -19,7 +18,8 @@ export function organizationNode(publisher) {
 
 const ARTICLE_PAGE_TYPES = new Set(['pillar', 'guide', 'explainer', 'checklist', 'local', 'data', 'news']);
 
-// d: { site, page?, kind: 'home'|'content'|'collection'|'notfound', title, description, url, lang, crumbs, author? }
+// d: { site, page?, kind: 'home'|'content'|'collection'|'notfound', title, description, url, lang, crumbs, author?,
+//      languages? (home: languages that have a published home page) }
 export function buildJsonLd(project, d) {
   const domain = d.site.domain;
   const abs = u => `https://${domain}${u}`;
@@ -30,7 +30,7 @@ export function buildJsonLd(project, d) {
     graph.push({
       '@type': 'WebSite', '@id': siteId, url: `https://${domain}/`, name: d.site.meta.name,
       alternateName: `${d.site.meta.name} par Wiki Tours`,
-      inLanguage: d.site.meta.languages.map(l => `${l}-MA`), publisher: orgRef,
+      inLanguage: (d.languages || [d.lang]).map(l => `${l}-MA`), publisher: orgRef,
     });
   }
   if (d.crumbs?.length) {
@@ -52,11 +52,12 @@ export function buildJsonLd(project, d) {
   } else {
     graph.push({ '@type': d.kind === 'collection' ? 'CollectionPage' : 'WebPage', ...base, name: d.title, description: d.description });
   }
-  if (fm.faq?.length) {
+  // Answers come from the rendered FAQ (shortcodes resolved), so no [[…]] marker reaches the structured data.
+  if (p?.faqRendered?.length) {
     graph.push({
       '@type': 'FAQPage', '@id': abs(d.url) + '#faq',
-      mainEntity: fm.faq.map(f => ({ '@type': 'Question', name: stripMarkers(f.q),
-        acceptedAnswer: { '@type': 'Answer', text: plainText(renderInline(stripMarkers(f.a))) } })),
+      mainEntity: p.faqRendered.map(f => ({ '@type': 'Question', name: f.q,
+        acceptedAnswer: { '@type': 'Answer', text: plainText(f.aHtml) } })),
     });
   }
   if (fm.type === 'data' && d.site.meta.dataset) {

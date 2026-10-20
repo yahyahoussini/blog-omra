@@ -17,7 +17,7 @@ export function sitemapIndexXml(parts) {
 const rfc822 = ymd => new Date(ymd + 'T06:00:00Z').toUTCString();
 
 // RSS 2.0 with the last 50 posts.
-export function rssXml({ domain, title, description, lang, feedPath, posts }) {
+export function rssXml({ domain, title, description, lang, feedPath, homePath = '/', posts }) {
   const items = posts.slice(0, 50).map(p => `    <item>
       <title>${xmlEsc(stripMarkers(p.fm.title))}</title>
       <link>https://${domain}${p.url}</link>
@@ -29,7 +29,7 @@ export function rssXml({ domain, title, description, lang, feedPath, posts }) {
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>${xmlEsc(title)}</title>
-    <link>https://${domain}/</link>
+    <link>https://${domain}${homePath}</link>
     <description>${xmlEsc(description)}</description>
     <language>${lang}-MA</language>
     <atom:link href="https://${domain}${feedPath}" rel="self" type="application/rss+xml"/>
@@ -61,8 +61,8 @@ export function robotsTxt(project, domain) {
 // Security headers + caching for Cloudflare Pages. pages.dev copies are kept out of the index.
 export function headersFile(site) {
   const csp = [
-    "default-src 'self'", "img-src 'self' data:", "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
-    "font-src 'self' https://fonts.gstatic.com", "script-src 'self'", "connect-src 'self'",
+    "default-src 'self'", "img-src 'self' data:", "style-src 'self' 'unsafe-inline'",
+    "font-src 'self'", "script-src 'self'", "connect-src 'self'",
     "base-uri 'self'", "form-action 'self'", "frame-ancestors 'none'", "object-src 'none'",
   ].join('; ');
   const lines = [

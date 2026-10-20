@@ -23,3 +23,14 @@ L'outil de comparaison fonctionne dans votre navigateur. Rien de ce que vous y s
 ## Rédaction
 
 Les guides sont rédigés avec un outil d'intelligence artificielle, à partir de faits sourcés, et corrigés publiquement en cas d'erreur.
+
+## Publication automatique
+
+Les articles sont publiés après des contrôles automatiques, sans relecture humaine préalable. Une erreur signalée est corrigée sur la page concernée.
+
+## Le réseau
+
+Offres Omra fait partie d'un réseau de sites édités par Wiki Tours International :
+
+:::network
+:::

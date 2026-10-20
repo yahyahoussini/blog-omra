@@ -117,7 +117,10 @@
         "voyageomra.ma",
         "guideomra.ma"
       ],
-      "money_share_cap": 0.2
+      "money_share_cap": 0.2,
+      "required_fact_topics": [
+        "local_casablanca"
+      ]
     },
     {
       "domain": "omrarabat.ma",

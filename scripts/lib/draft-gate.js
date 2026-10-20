@@ -4,8 +4,9 @@ import os from 'node:os';
 import path from 'node:path';
 import matter from 'gray-matter';
 import { buildNetwork } from '../../engine/lib/build.js';
-import { shingles, jaccard } from '../../engine/lib/similarity.js';
+import { docFeatures, jaccard } from '../../engine/lib/similarity.js';
 import { normalizeDates } from '../../engine/lib/util.js';
+import { linkTargets } from '../../engine/lib/markdown.js';
 
 const MISSING = /\[\[MISSING:\s*([^\]]+?)\s*\]\]/g;
 export const missingRequests = text => [...new Set([...String(text).matchAll(MISSING)].map(m => m[1].trim()))];
@@ -41,8 +42,13 @@ export function briefChecks({ fm, body }, brief) {
   for (const m of missingRequests(all)) problems.push({ gate: 'missing-fact', msg: `[[MISSING: ${m}]] left in the draft (a published page cannot contain it)` });
   const allowedFacts = new Set(brief.facts.map(f => f.id));
   for (const [, id] of all.matchAll(/\[\[fact:([a-z0-9_]+)\]\]/g)) if (!allowedFacts.has(id)) problems.push({ gate: 'brief-scope', msg: `[[fact:${id}]] is not one of the facts in the brief` });
+  // Outbound links as the renderer sees them (titled, reference-style, autolinks, raw <a href>): only fact sources.
   const allowedUrls = new Set(brief.allowed_outbound_urls);
-  for (const [, url] of all.matchAll(/\]\((https?:\/\/[^)\s]+)\)/g)) if (!allowedUrls.has(url)) problems.push({ gate: 'brief-scope', msg: `outbound URL not from an approved fact source: ${url}` });
+  const texts = [body, ...(fm.faq || []).map(f => f.a)];
+  for (const url of new Set(texts.flatMap(linkTargets))) {
+    if (url.startsWith('#') || url.startsWith('/') && !url.startsWith('//')) continue; // same-page / same-site
+    if (!allowedUrls.has(url)) problems.push({ gate: 'brief-scope', msg: `outbound URL not from an approved fact source: ${url}` });
+  }
   const sister = new Set(brief.sister_links.map(l => `${l.site}/${l.slug}`));
   for (const [, ref] of all.matchAll(/\[\[site:([^\]|]+)/g)) if (!sister.has(ref.trim())) problems.push({ gate: 'brief-scope', msg: `sister link [[site:${ref}]] is not an allowed target in the brief` });
   const wt = [...all.matchAll(/\[\[wt:([^\]|]+)/g)].map(m => m[1].trim());
@@ -51,7 +57,8 @@ export function briefChecks({ fm, body }, brief) {
   return problems;
 }
 
-const key = f => [f.gate, f.site, f.file, f.url, f.msg].join('|');
+export const errorKey = f => [f.gate, f.site, f.file, f.url, f.msg].join('|');
+const key = errorKey;
 
 // Gate run without any draft: the errors that already exist are not blamed on a draft.
 export async function networkBaseline(root, today) {
@@ -69,7 +76,7 @@ export async function networkBaseline(root, today) {
 export async function gateDraft({ root, today, file, text, baseline }) {
   const out = fs.mkdtempSync(path.join(os.tmpdir(), 'omra-gate-'));
   let res;
-  try { res = await buildNetwork({ root, outDir: out, today, write: false, overlay: [{ file, text }] }); }
+  try { res = await buildNetwork({ root, outDir: out, today, write: false, overlay: [{ file, text }], focusOverlay: true }); }
   finally { fs.rmSync(out, { recursive: true, force: true }); }
   const errors = res.errors.filter(f => !baseline.errorKeys.has(key(f)));
   const mine = res.warnings.filter(w => w.file === file);
@@ -80,10 +87,12 @@ export async function gateDraft({ root, today, file, text, baseline }) {
     const why = res.excluded.find(x => x.file === file)?.reason || 'invalid front matter';
     if (!errors.some(e => e.file === file)) errors.push({ level: 'error', gate: 'frontmatter', file, msg: `the draft was not rendered (${why})` });
   } else {
-    const sh = shingles(page.plain, 5);
+    const sh = docFeatures(page.plain).shingles5; // cached: computed once by the duplicate gate
     nearestDup = 0;
-    for (const o of res.pages) if (o !== page) nearestDup = Math.max(nearestDup, jaccard(sh, shingles(o.plain, 5)));
+    for (const o of res.pages) if (o !== page) nearestDup = Math.max(nearestDup, jaccard(sh, docFeatures(o.plain).shingles5));
     nearestDup = Math.round(nearestDup * 1000) / 1000;
   }
-  return { ok: errors.length === 0, errors, warnings: mine.filter(w => !(w.gate === 'facts' && /fact-past-review|fact-expired/.test(w.msg))), nearestDup };
+  // The network as it will be once this draft is written: the next draft's baseline when this one passes.
+  const nextBaseline = { errorKeys: new Set(res.errors.map(key)), errors: res.errors.length };
+  return { ok: errors.length === 0, errors, warnings: mine.filter(w => !(w.gate === 'facts' && /fact-past-review|fact-expired/.test(w.msg))), nearestDup, nextBaseline };
 }

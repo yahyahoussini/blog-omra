@@ -1,1 +1,34 @@
-[]
+[
+  {
+    "id": "or-fr-0001",
+    "lang": "fr",
+    "title": "Omra 1448 : les trois dates limites de la saison",
+    "slug": "dates-limites-saison-omra",
+    "primary_keyword": "dates limites omra 1448",
+    "cluster": "calendrier_saison",
+    "concept_id": "umrah_season_deadlines",
+    "type": "explainer",
+    "tier": "C",
+    "internal_links": [],
+    "sister_links": [],
+    "status": "queued",
+    "planned_at": "2026-10-20",
+    "planned_by": "seed",
+    "angle": "Les trois dates officielles qui ferment la saison Omra 1448 (dernier visa, dernière entrée, dernier départ) et ce qu’elles changent pour un départ en fin de Ramadan.",
+    "outline": [
+      "Le calendrier officiel de la saison",
+      "Dernier visa, dernière entrée, dernier départ",
+      "Ce que cela change pour les dix dernières nuits",
+      "Ce que nous ne savons pas encore"
+    ],
+    "facts_needed": [
+      "fact_umrah_1448_calendar",
+      "fact_umrah_1448_last_visa",
+      "fact_umrah_1448_last_entry",
+      "fact_umrah_1448_last_departure",
+      "fact_ramadan_1448_start_umq"
+    ],
+    "cta_topic": "Omra Ramadan – vérifier les dates",
+    "notes": "Dates hégiriennes : toujours « sous réserve d’observation du croissant » pour Ramadan."
+  }
+]

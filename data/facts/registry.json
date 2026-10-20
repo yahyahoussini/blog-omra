@@ -1130,18 +1130,25 @@
       "2026",
       "720",
       "1979",
-      "65000",
-      "63221",
-      "63121"
+      "65000"
     ],
-    "unit": "MAD",
+    "unit": "MAD (720 is in SAR: the hady sacrifice)",
     "source_urls": [
       "https://fr.le360.ma/societe/hajj-1447h-les-frais-definitifs-fixes-a-63021-dirhams_HFBAQQU5INGOPKRWSNL7NY2QN4/"
     ],
     "source_tier": "media",
     "confidence": "verified",
     "required_wording": null,
-    "conflicts": [],
+    "conflicts": [
+      {
+        "value": "63221",
+        "source": "Hespress (figure reported in the 2026-10-20 research; URL not recorded)"
+      },
+      {
+        "value": "63121",
+        "source": "Morocco World News (figure reported in the 2026-10-20 research; URL not recorded)"
+      }
+    ],
     "status": "approved",
     "verified_by": "desk-research-2026-10-20",
     "verified_at": "2026-10-20",

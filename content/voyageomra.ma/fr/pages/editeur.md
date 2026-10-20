@@ -23,3 +23,14 @@ Les horaires et fréquences de vols changent. Quand nous ne connaissons pas une 
 ## Production
 
 La rédaction est assistée par un outil d'intelligence artificielle et repose sur un registre de faits sourcés. Les corrections sont datées.
+
+## Publication automatique
+
+Une fois les contrôles automatiques passés, un article est publié sans relecture humaine préalable. Une erreur signalée est corrigée sur la page concernée.
+
+## Le réseau
+
+Les autres sites publiés par l'éditeur :
+
+:::network
+:::

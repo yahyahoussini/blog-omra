@@ -21,7 +21,7 @@ export function makeClient(env = process.env) {
  * One request. The system prompt is sent as a cached block (identical for every call of a run).
  * @returns {{ text:string, content:object[], usage:object, stopReason:string }}
  */
-export async function callClaude(client, { system, messages, maxTokens = 32000, effort = null, format = null, env = process.env }) {
+export async function callClaude(client, { system, messages, maxTokens = 32000, effort = null, format = null, fallbacks = null, env = process.env }) {
   const params = {
     model: getModel(env),
     max_tokens: maxTokens,
@@ -36,7 +36,11 @@ export async function callClaude(client, { system, messages, maxTokens = 32000, 
   let msg;
   try {
     // Streaming avoids HTTP timeouts on long drafts; finalMessage() returns the complete response.
-    msg = await client.messages.stream(params).finalMessage();
+    // Optional server-side refusal fallback (config/cadence.json claude.fallbacks = "default"): only for models
+    // that support it, so it is off by default because the model is chosen outside the repo.
+    msg = fallbacks === 'default'
+      ? await client.beta.messages.stream({ ...params, betas: ['server-side-fallback-2026-07-01'], fallbacks }).finalMessage()
+      : await client.messages.stream(params).finalMessage();
   } catch (e) {
     if (e instanceof Anthropic.AuthenticationError || e instanceof Anthropic.PermissionDeniedError) throw new FatalApiError(`Claude API credentials rejected (${e.status}): check ANTHROPIC_API_KEY`);
     if (e instanceof Anthropic.NotFoundError) throw new FatalApiError(`Claude API 404: is CLAUDE_MODEL a valid model id? (${e.message})`);

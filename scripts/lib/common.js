@@ -2,6 +2,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { todayISO } from '../../engine/lib/util.js';
 
 export const REPO_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 
@@ -22,9 +23,7 @@ export function parseArgs(argv = process.argv.slice(2)) {
 export const rootFrom = args => path.resolve(args.root || REPO_ROOT);
 
 // Today's date in Morocco (the publishing calendar), as YYYY-MM-DD.
-export function casablancaToday(now = new Date()) {
-  return new Intl.DateTimeFormat('en-CA', { timeZone: 'Africa/Casablanca', year: 'numeric', month: '2-digit', day: '2-digit' }).format(now);
-}
+export const casablancaToday = todayISO;
 
 export const addDays = (ymd, n) => { const d = new Date(ymd + 'T12:00:00Z'); d.setUTCDate(d.getUTCDate() + n); return d.toISOString().slice(0, 10); };
 export const daysBetween = (from, to) => Math.round((Date.parse(to + 'T12:00:00Z') - Date.parse(from + 'T12:00:00Z')) / 864e5);

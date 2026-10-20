@@ -5,8 +5,8 @@ import addFormats from 'ajv-formats';
 import { readJSON, stripMarkers } from './util.js';
 import { factsGate, requiredWordingGate, splitSentences } from './facts-gate.js';
 import { matchKey } from './normalize.js';
-import { shingles, jaccard, simhash, hamming, similarPairs, words } from './similarity.js';
-import { MENTION } from './markdown.js';
+import { docFeatures, hamming, jaccard, similarPairs, similarSetPairs, simhashBuckets } from './similarity.js';
+import { MENTION, plainText } from './markdown.js';
 import { RESERVED_SLUGS, ARTICLE_TYPES } from './content.js';
 
 const SCHEMA_DIR = new URL('../schemas/', import.meta.url);
@@ -14,6 +14,7 @@ const ajv = new Ajv2020({ allErrors: true, strict: false, useDefaults: true });
 addFormats(ajv);
 export const validateFrontmatter = ajv.compile(readJSON(new URL('frontmatter.schema.json', SCHEMA_DIR)));
 export const validateFact = ajv.compile(readJSON(new URL('registry.schema.json', SCHEMA_DIR)));
+export const validateKb = ajv.compile(readJSON(new URL('kb.schema.json', SCHEMA_DIR)));
 const ajvMsg = errs => errs.map(e => `${e.instancePath || '/'} ${e.message}${e.params?.allowedValues ? ' ' + e.params.allowedValues.join('|') : ''}`).join('; ');
 
 export const LIMITS = { titleMin: 20, titleMax: 70, descMin: 70, descMax: 160, dupBlock: 0.5, dupWarn: 0.3, simhashBlock: 3, titleJaccard: 0.6, simhashMinWords: 40 };
@@ -43,6 +44,17 @@ const EN_RULE_WORDS = /(?<!\p{L})(mandator|requir|forbid|prohibit|free of charge
 const FORBIDDEN_LD = new Set(['LocalBusiness', 'TravelAgency', 'Event', 'HowTo', 'Review', 'AggregateRating']);
 const LICENCE_PATTERNS = [/ODV[-\s]?\d+/i, /licen[cs]e\s+(n°|no\.?|number|numéro)/i, /agr[ée]ment\s+(n°|no\.?|numéro)/i];
 const SINCE_PATTERN = /depuis\s+2016|since\s+2016|منذ\s+2016/i;
+// Gate 4: religious text (Qur'an, hadith, du'a, talbiya) only through [[kb:id]] (rendered from data/facts/kb/, not gated).
+const RELIGIOUS = [
+  /[﴾﴿ﷺ]/u,
+  /(?<!\p{L})(sourates?|surahs?|versets?|hadiths?|ḥadīths?|invocations?|supplications?|du['’]?as?|dou['’]?as?|douaa|talbiy[ae]h?|labbayk\p{L}*|coran|qur['’]?an|quran)(?!\p{L})/iu,
+  /لبيك|قال الله|قال تعالى|قوله تعالى|صلى الله عليه وسلم|رواه|الحديث الشريف|حديث شريف|سورة|القرآن|دعاء|الدعاء|أدعية/u,
+];
+const ARABIC_RUN = /[\u0600-\u06FF]{2,}(?:[\s،]+[\u0600-\u06FF]{2,}){2,}/u; // 3+ Arabic words on a French/English page
+// Gate 8: visa, Hajj and health rules need an official source (STRATEGY 7.4).
+const REGULATED_TOPICS = new Set(['visa', 'health', 'hajj_process']);
+const OFFICIAL_HOST = /(^|\.)(gov\.ma|gov\.sa|nusuk\.sa|habous\.gov\.ma|haj\.gov\.sa)$/;
+const hostOf = u => { try { return new URL(u).hostname.replace(/^www\./, ''); } catch { return ''; } };
 
 // ---------- registry ----------
 export function registryGate(project, add) {
@@ -52,12 +64,19 @@ export function registryGate(project, add) {
     seen.add(f.id);
     if (!validateFact(f)) add('error', 'registry', null, `${f.id}: ${ajvMsg(validateFact.errors)}`);
   }
+  // Religious KB: valid entries, approved only by a real person listed in config/authors.json.
+  const people = new Set(project.authors.map(a => a.id));
+  for (const { _file, ...e } of project.kbList || []) {
+    if (!validateKb(e)) { add('error', 'registry', null, `kb/${_file}: ${ajvMsg(validateKb.errors)}`); continue; }
+    if (e.status === 'approved' && !people.has(e.approved_by)) add('error', 'registry', null, `kb/${_file}: approved_by "${e.approved_by}" is not a real person in config/authors.json`);
+  }
 }
 
 // ---------- 1. front matter (all files, drafts included) ----------
 export function frontmatterGate(project, all, add, today) {
   const authorIds = new Set(project.authors.map(a => a.id));
   const slugs = new Map(), homes = new Map();
+  const langCodes = new Set([...project.sites.values()].flatMap(s => s.meta.languages));
   for (const p of all) {
     const fm = p.fm;
     const level = fm.status === 'published' ? 'error' : 'warning';
@@ -68,7 +87,7 @@ export function frontmatterGate(project, all, add, today) {
     if (p.kind === 'posts') {
       for (const k of ['tier', 'primary_keyword', 'cluster', 'concept_id']) if (!fm[k]) add(level, 'frontmatter', p, `posts require "${k}"`);
       if (['home', 'trust'].includes(fm.type)) add(level, 'frontmatter', p, `type "${fm.type}" is only for pages`);
-    } else if (RESERVED_SLUGS.has(fm.slug)) add(level, 'frontmatter', p, `slug "${fm.slug}" is reserved`);
+    } else if (RESERVED_SLUGS.has(fm.slug) || langCodes.has(fm.slug)) add(level, 'frontmatter', p, `slug "${fm.slug}" is reserved`);
     if (fm.author && fm.author !== 'org' && !authorIds.has(fm.author)) add(level, 'frontmatter', p, `author "${fm.author}" is not in config/authors.json (real people only)`);
     if (fm.reviewed_by && !authorIds.has(fm.reviewed_by)) add(level, 'frontmatter', p, `reviewed_by "${fm.reviewed_by}" is not in config/authors.json`);
     if (fm.cta?.type === 'wikitours' && !project.wtTargets[fm.cta.wt_target]) add(level, 'frontmatter', p, `cta.wt_target "${fm.cta.wt_target}" is not in config/wikitours-targets.json`);
@@ -101,25 +120,41 @@ function factsGateForPage(project, p, add, today) {
     }
     if (p.lang === 'en') for (const s of splitSentences(text)) if (!/\[\[fact:/.test(s) && EN_RULE_WORDS.test(s))
       add('error', 'facts', p, `${field}: rule-word-without-fact — « ${s.slice(0, 140)} »`);
-    for (const e of requiredWordingGate(text, project.registry)) add('error', 'facts', p, `${field}: ${e.id} must be written with its required wording « ${e.wording} » in the same sentence`);
+    for (const e of requiredWordingGate(text, project.registry, p.lang)) add('error', 'facts', p, e.wording
+      ? `${field}: ${e.id} must be written with its required wording « ${e.wording} » in the same sentence`
+      : `${field}: ${e.id} has no ${p.lang} required wording in the registry yet (required_wording_${p.lang}): it cannot be cited on ${p.lang} pages`);
   }
   if (p.dropFromSitemap) add('warning', 'facts', p, 'a cited fact is more than 14 days past review_by: page is noindex and out of the sitemap until fixed');
 }
 
-// ---------- 5. entities (warning) ----------
+// ---------- 5. entities ----------
+// DECISIONS D-B: no named agency without legal_ok. Posts (auto-published) naming an unlisted agency-like entity are
+// blocked while config/legal.json legal_ok is not true; hand-written pages get a warning.
 function entityGate(project, p, add) {
   const allowed = project.entities.allowed.map(s => s.toLowerCase());
-  const re = /(?:\b(?:agence|compagnie|soci[ée]t[ée])\s+((?:[A-Z][\p{L}'’-]+\s?){1,4}))|((?:[A-Z][\p{L}'’-]+\s){1,3}(?:Tours|Travel|Voyages|Airlines?|Airways|Aviation))/gu;
+  const generic = new Set((project.entities.generic || []).map(s => s.toLowerCase()));
+  // Names never span a line break (paragraphs, list items and table cells are separate lines in p.plain).
+  const re = /(?:\b(?:agence|compagnie|soci[ée]t[ée])[ \u00A0]+((?:[A-Z][\p{L}'’-]+[ \u00A0]?){1,4}))|((?:[A-Z][\p{L}'’-]+[ \u00A0]){1,3}(?:Tours|Travel|Voyages|Airlines?|Airways|Aviation))/gu;
   const found = new Set();
   for (const m of p.plain.matchAll(re)) {
     const name = (m[1] || m[2]).trim();
+    if (name.toLowerCase().split(/\s+/).every(w => generic.has(w))) continue; // « agence Omra » is not a name
     if (!allowed.some(a => name.toLowerCase().includes(a) || a.includes(name.toLowerCase()))) found.add(name);
   }
-  for (const n of found) add('warning', 'entities', p, `« ${n} » is not on the allowed entity list (config/entities.json)`);
+  const level = p.kind === 'posts' && project.legal.legal_ok !== true ? 'error' : 'warning';
+  for (const n of found) add(level, 'entities', p, `« ${n} » is not on the allowed entity list (config/entities.json)${level === 'error' ? ': no named agency or company without legal_ok (DECISIONS D-B)' : ''}`);
 }
 
 // ---------- 6. cannibalisation (network-wide) ----------
-function cannibalGate(project, pages, add) {
+// Pairs (a < b) to compare: every candidate pair, or (generator) only the pairs that involve a focus page: the other
+// pairs are already in the baseline run, so a draft is compared with the network in O(n) instead of n².
+function focusPairs(n, isFocus) {
+  const out = [];
+  for (let i = 0; i < n; i++) if (isFocus(i)) for (let j = 0; j < n; j++) if (j !== i && !(isFocus(j) && j < i)) out.push([Math.min(i, j), Math.max(i, j)]);
+  return out;
+}
+
+function cannibalGate(project, pages, add, focus = null) {
   const reservedConcepts = new Set(project.targets.reserved_concepts.map(c => c.concept_id));
   const reservedKw = project.targets.reserved_keyword_patterns.map(s => new RegExp(s, 'i'));
   const art = pages.filter(p => p.fm.primary_keyword);
@@ -138,31 +173,44 @@ function cannibalGate(project, pages, add) {
     const owner = clusterOwner.get(fm.cluster);
     if (owner && owner !== p.site) add('error', 'cannibalisation', p, `cluster "${fm.cluster}" belongs to ${owner}`); else clusterOwner.set(fm.cluster, p.site);
   }
-  const tok = p => new Set(matchKey(stripMarkers(p.fm.title)).split(' ').filter(Boolean));
-  for (let i = 0; i < art.length; i++) for (let j = i + 1; j < art.length; j++) {
-    const a = art[i], b = art[j];
-    if (a.lang !== b.lang) continue;
-    const s = jaccard(tok(a), tok(b));
-    if (s >= LIMITS.titleJaccard) add('error', 'cannibalisation', b, `title too close (${s.toFixed(2)}) to ${a.absUrl}`);
+  // Title tokens once per page; candidate pairs through prefix filtering (no n² comparisons).
+  for (const lang of new Set(art.map(p => p.lang))) {
+    const list = art.filter(p => p.lang === lang);
+    const sets = list.map(p => new Set(matchKey(stripMarkers(p.fm.title)).split(' ').filter(Boolean)));
+    const pairs = focus ? focusPairs(list.length, i => focus.has(list[i])).map(([a, b]) => ({ a, b, score: jaccard(sets[a], sets[b]) })).filter(x => x.score >= LIMITS.titleJaccard)
+      : similarSetPairs(sets, LIMITS.titleJaccard);
+    for (const { a, b, score } of pairs) add('error', 'cannibalisation', list[b], `title too close (${score.toFixed(2)}) to ${list[a].absUrl}`);
   }
 }
 
 // ---------- 7. duplicate (network-wide, all pages incl. trust; template text already stripped) ----------
-export function duplicateGate(pages, add) {
-  const docs = pages.map((p, i) => ({ id: i, shingles: shingles(p.plain, 5) }));
+export function duplicateGate(pages, add, focus = null) {
+  const feats = pages.map(p => (p.features ??= docFeatures(p.plain))); // cached per text (similarity.js)
+  const docs = feats.map((f, i) => ({ id: i, shingles: f.shingles5 }));
+  if (focus) {
+    for (const [a, b] of focusPairs(pages.length, i => focus.has(pages[i]))) {
+      const score = jaccard(feats[a].shingles5, feats[b].shingles5);
+      if (score >= LIMITS.dupWarn) add(score >= LIMITS.dupBlock ? 'error' : 'warning', 'duplicate', pages[b], `5-shingle Jaccard ${score.toFixed(2)} vs ${pages[a].absUrl}`);
+      const d = hamming(feats[a].simhash, feats[b].simhash);
+      if (feats[a].words >= LIMITS.simhashMinWords && feats[b].words >= LIMITS.simhashMinWords && d <= LIMITS.simhashBlock) add('error', 'duplicate', pages[b], `SimHash distance ${d} vs ${pages[a].absUrl}`);
+    }
+    return;
+  }
   for (const { a, b, score } of similarPairs(docs, LIMITS.dupWarn)) {
     const pa = pages[a], pb = pages[b];
     add(score >= LIMITS.dupBlock ? 'error' : 'warning', 'duplicate', pb, `5-shingle Jaccard ${score.toFixed(2)} vs ${pa.absUrl}`);
   }
-  const hashed = pages.map((p, i) => ({ i, n: words(p.plain).length })).filter(x => x.n >= LIMITS.simhashMinWords).map(x => ({ ...x, h: simhash(pages[x.i].plain) }));
-  for (let x = 0; x < hashed.length; x++) for (let y = x + 1; y < hashed.length; y++) {
+  const hashed = feats.map((f, i) => ({ i, n: f.words, h: f.simhash })).filter(x => x.n >= LIMITS.simhashMinWords);
+  // Band buckets: only hashes that share a 16-bit band can be within the distance (pigeonhole), see similarity.js.
+  for (const [x, y] of simhashBuckets(hashed.map(o => o.h), LIMITS.simhashBlock)) {
     const d = hamming(hashed[x].h, hashed[y].h);
     if (d <= LIMITS.simhashBlock) add('error', 'duplicate', pages[hashed[y].i], `SimHash distance ${d} vs ${pages[hashed[x].i].absUrl}`);
   }
 }
 
 // ---------- 9. links ----------
-const hrefs = html => [...html.matchAll(/<a\s[^>]*href="([^"]+)"[^>]*>/g)].map(m => ({ href: m[1].replace(/&amp;/g, '&'), tag: m[0] }));
+// Every <a href> of an HTML string, whatever the quote style.
+export const hrefs = html => [...html.matchAll(/<a\s[^>]*?href\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s>]+))[^>]*>/gi)].map(m => ({ href: (m[1] ?? m[2] ?? m[3]).replace(/&amp;/g, '&'), tag: m[0] }));
 const isoWeek = ymd => { const d = new Date(ymd + 'T00:00:00Z'); const day = (d.getUTCDay() + 6) % 7; d.setUTCDate(d.getUTCDate() - day + 3); const y = d.getUTCFullYear(); const w = 1 + Math.round(((d - Date.UTC(y, 0, 4)) / 864e5 - 3 + ((new Date(Date.UTC(y, 0, 4)).getUTCDay() + 6) % 7)) / 7); return `${y}-W${String(w).padStart(2, '0')}`; };
 
 // True when the first wikitours.ma link sits in the first sentence of the body (template parts ignored).
@@ -184,6 +232,7 @@ function linksGate(project, pages, add) {
   const perSite = new Map();
   for (const p of pages) {
     for (const e of p.linkErrors) add('error', 'links', p, e);
+    for (const w of p.linkWarnings || []) add('warning', 'links', p, w);
     const flows = new Set(project.sites.get(p.site).meta.flows || []);
     const same = p.links.filter(l => l.kind === 'same' && l.where === 'body');
     const sister = p.links.filter(l => l.kind === 'sister');
@@ -191,7 +240,7 @@ function linksGate(project, pages, add) {
     // raw Markdown links: internal ones count as same-site; network / wikitours ones are not allowed.
     let rawInternal = 0;
     for (const { href, tag } of hrefs(p.bodyHtml)) {
-      if (href.startsWith('#') || /class="cta__button"/.test(tag)) continue;
+      if (href.startsWith('#') || /class="(cta__button|network-link)"/.test(tag)) continue;
       if (href.startsWith('/')) { if (!same.some(l => l.href === href)) rawInternal++; continue; }
       let host; try { host = new URL(href).hostname.replace(/^www\./, ''); } catch { continue; }
       if (host === 'wa.me') continue;
@@ -217,9 +266,14 @@ function linksGate(project, pages, add) {
       add('error', 'links', p, 'wikitours.ma link inside a table (STRATEGY 3.5: never inside tables)');
     if (policy.money_link_not_in_first_paragraph && wtInFirstSentence(p.bodyHtml))
       add('error', 'links', p, 'wikitours.ma link in the first sentence of the body (STRATEGY 3.5)');
-    const s = perSite.get(p.site) || { posts: 0, withWt: 0, wt: 0, brand: 0 };
-    if (p.kind === 'posts') { s.posts++; if (wt.length) s.withWt++; }
+    const s = perSite.get(p.site) || { posts: 0, withWt: 0, wt: 0, brand: 0, wtPosts: [], anchors: new Map() };
+    if (p.kind === 'posts') { s.posts++; if (wt.length) { s.withWt++; s.wtPosts.push(p); } }
     s.wt += wt.length; s.brand += wt.filter(l => brand.some(r => r.test(l.anchor))).length;
+    for (const l of wt) {
+      const a = s.anchors.get(l.href) || new Map();
+      a.set(l.anchor.toLowerCase(), (a.get(l.anchor.toLowerCase()) || 0) + 1);
+      s.anchors.set(l.href, a);
+    }
     perSite.set(p.site, s);
   }
   if (policy.block_reciprocal_page_pairs) {
@@ -232,7 +286,15 @@ function linksGate(project, pages, add) {
     add('error', 'links', { site: k.split('>')[0] }, `${n} sister links ${k} > ${policy.max_links_per_sister_pair_per_week} per pair per week`);
   for (const [site, s] of perSite) {
     const cap = project.sites.get(site).meta.money_share_cap;
-    if (cap != null && s.posts >= 5 && s.withWt / s.posts > cap) add('warning', 'links', { site }, `${Math.round(100 * s.withWt / s.posts)}% of posts link to wikitours.ma (cap ${Math.round(cap * 100)}%)`);
+    // STRATEGY 3.5 / 8.2 share cap: blocks the newest post with a wikitours.ma link (the generator drops the link).
+    if (cap != null && s.posts >= 5 && s.withWt / s.posts > cap) {
+      const newest = s.wtPosts.sort((a, b) => a.fm.date.localeCompare(b.fm.date) || a.fm.slug.localeCompare(b.fm.slug)).pop();
+      add('error', 'links', newest, `posts linking to wikitours.ma would exceed the site cap of ${Math.round(cap * 100)}%: remove this link`);
+    }
+    for (const [href, anchors] of s.anchors) {
+      const total = [...anchors.values()].reduce((x, y) => x + y, 0);
+      for (const [anchor, n] of anchors) if (total >= 5 && n / total > 0.2) add('warning', 'links', { site }, `anchor « ${anchor} » is ${Math.round(100 * n / total)}% of the links to ${href} (target ≤ 20%)`);
+    }
     if (s.wt >= 5 && s.brand / s.wt < policy.brand_anchor_min_share) add('warning', 'links', { site }, `brand anchors are ${Math.round(100 * s.brand / s.wt)}% of wikitours.ma links (target ≥ ${Math.round(policy.brand_anchor_min_share * 100)}%)`);
   }
 }
@@ -246,8 +308,8 @@ function resolutionGate(project, outputs, pages, add) {
     for (const [file, content] of files) {
       if (!file.endsWith('.html')) continue;
       const self = '/' + file.replace(/index\.html$/, '');
-      for (const m of content.matchAll(/(?:href|src)="([^"]+)"/g)) {
-        let href = m[1].replace(/&amp;/g, '&');
+      for (const m of content.matchAll(/\s(?:href|src)\s*=\s*(?:"([^"]*)"|'([^']*)')/g)) {
+        let href = (m[1] ?? m[2]).replace(/&amp;/g, '&');
         if (href.startsWith(`https://${domain}/`)) href = href.slice(`https://${domain}`.length);
         if (!href.startsWith('/') || href.startsWith('//')) continue;
         const clean = href.split('#')[0].split('?')[0];
@@ -268,15 +330,26 @@ function pageGates(project, p, add, today, seasonYear) {
   // 8. citations
   const min = p.kind === 'posts' ? Math.max(1, MIN_SOURCES[fm.type] ?? 1) : (MIN_SOURCES[fm.type] ?? 1);
   if (p.sources.length < min) add('error', 'citations', p, `${p.sources.length} sources, ${fm.type} needs ≥ ${min}`);
+  const cited = p.factsUsed.map(id => project.registry[id]).filter(Boolean);
+  const regulated = [...new Set(cited.filter(f => REGULATED_TOPICS.has(f.topic)).map(f => f.topic))];
+  if (regulated.length && !cited.some(f => f.source_tier === 'official') && !p.sources.some(s => OFFICIAL_HOST.test(hostOf(s.url))))
+    add('error', 'citations', p, `${regulated.join(', ')} rules need at least one official source (habous.gov.ma, haj.gov.sa, Nusuk…): every cited fact is ${[...new Set(cited.map(f => f.source_tier))].join('/')}`);
+  // Site rule (config/network.json required_fact_topics, e.g. omracasablanca.ma: a verified Casablanca-specific fact).
+  const need = project.sites.get(p.site).meta.required_fact_topics;
+  if (need?.length && p.kind === 'posts' && !cited.some(f => f.status === 'approved' && need.includes(f.topic)))
+    add('error', 'citations', p, `posts on ${p.site} must cite an approved fact with topic ${need.join(' or ')} (DECISIONS D-B)`);
   // 10. disclosure
   const mentions = MENTION.test([fm.title, fm.description, p.plain, ...(fm.faq || []).flatMap(f => [f.q, f.a])].join(' ')) || p.links.some(l => l.kind === 'wt');
   if (mentions && !(p.disclosed && p.html.includes('box--disclosure'))) add('error', 'disclosure', p, 'mentions or links Wiki Tours / Bab Makka without the disclosure box');
   // 12. meta lengths (uniqueness is network-wide below)
   if (title.length < LIMITS.titleMin || title.length > LIMITS.titleMax) add('error', 'meta', p, `title is ${title.length} chars (${LIMITS.titleMin}-${LIMITS.titleMax})`);
   if (desc.length < LIMITS.descMin || desc.length > LIMITS.descMax) add('error', 'meta', p, `description is ${desc.length} chars (${LIMITS.descMin}-${LIMITS.descMax})`);
-  // 13. stale year in title / H1
+  // 13. stale year in title / H1. Blocking only for pages written or updated in the current season (new drafts);
+  // the yearly season flip (1 June) turns older pages into a warning to fix, never a network-wide stop.
+  const seasonStart = `${seasonYear - 1}-06-01`;
+  const evergreen = EVERGREEN.has(fm.type) || p.kind === 'posts' && !['news', 'data'].includes(fm.type);
   for (const y of (title.match(/(?<!\d)20\d\d(?!\d)/g) || []).map(Number))
-    if (y < seasonYear) add(EVERGREEN.has(fm.type) || p.kind === 'posts' && !['news', 'data'].includes(fm.type) ? 'error' : 'warning', 'stale-year', p, `year ${y} in title < season ${seasonYear}`);
+    if (y < seasonYear) add(evergreen && (fm.updated || fm.date) >= seasonStart ? 'error' : 'warning', 'stale-year', p, `year ${y} in title < season ${seasonYear}`);
   // 14. banned claims
   const exceptions = project.phrases.banned_claim_exceptions || [];
   let text = [title, desc, p.plain, ...(fm.faq || []).flatMap(f => [stripMarkers(f.q), stripMarkers(f.a)])].join('\n');
@@ -284,11 +357,30 @@ function pageGates(project, p, add, today, seasonYear) {
   for (const [re, label] of p.lang === 'en' ? [...BANNED, ...BANNED_EN] : BANNED) if (re.test(text)) add('error', 'banned-claim', p, `banned claim ${label}: « ${(text.match(re) || [''])[0]} »`);
   // 16. unknowns section
   if (UNKNOWN_REQUIRED.has(fm.type) && !p.hasUnknown) add('error', 'unknowns', p, `${fm.type} pages need a :::unknown section`);
+  // Answer-first template (STRATEGY 7.3): a :::answer box of 40-60 words on posts.
+  if (p.kind === 'posts' && (p.answerWords == null || p.answerWords < 40 || p.answerWords > 60))
+    add('warning', 'answer', p, p.answerWords == null ? 'no :::answer box (STRATEGY 7.3)' : `:::answer box has ${p.answerWords} words (40-60)`);
+  // Raw HTML is never rendered (escaped) and never allowed: no script, handler or untracked link can slip in.
+  for (const h of p.rawHtml || []) add('error', 'html', p, `raw HTML in Markdown is not allowed: « ${h} » (use Markdown and shortcodes)`);
+  // 4. religious text only from the approved KB ([[kb:id]]); nothing else may quote or name such texts.
+  const religious = [title, desc, stripMarkers(fm.summary), p.plain, ...(p.faqRendered || []).flatMap(f => [f.q, plainText(f.aHtml)])].join('\n');
+  const hit = RELIGIOUS.map(r => religious.match(r)?.[0]).find(Boolean) || (p.lang !== 'ar' && religious.match(ARABIC_RUN)?.[0]);
+  if (hit) add('error', 'religious-text', p, `religious text or reference « ${hit.slice(0, 60)} » outside [[kb:id]]: only approved entries of data/facts/kb/ may appear (gate 4)`);
   // editorial word floors (STRATEGY 7.3; not a ranking rule) and images
   const floor = WORD_FLOORS[fm.type];
-  const wc = words(p.plain).length;
+  const wc = (p.features ??= docFeatures(p.plain)).words;
   if (floor && wc < floor) add('warning', 'word-floor', p, `${wc} words < editorial floor ${floor} for ${fm.type}`);
   for (const im of p.images) if (!im.alt?.trim()) add('warning', 'images', p, `image without alt text: ${im.src}`);
+}
+
+// Every @type value in a JSON-LD tree (string or array members, at any depth).
+export function ldTypes(node, out = []) {
+  if (Array.isArray(node)) for (const x of node) ldTypes(x, out);
+  else if (node && typeof node === 'object') for (const [k, v] of Object.entries(node)) {
+    if (k === '@type') out.push(...[v].flat().filter(t => typeof t === 'string'));
+    else ldTypes(v, out);
+  }
+  return out;
 }
 
 // JSON-LD parses, no forbidden types, one H1, lang/dir and self-canonical on every HTML output.
@@ -302,8 +394,7 @@ function htmlGates(project, outputs, add) {
     if (file !== '404.html' && !html.includes(`<link rel="canonical" href="https://${domain}${where.url}">`)) add('error', 'meta', where, 'missing self-canonical');
     for (const m of html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) {
       let data; try { data = JSON.parse(m[1]); } catch (e) { add('error', 'schema', where, `JSON-LD does not parse: ${e.message}`); continue; }
-      const types = JSON.stringify(data).match(/"@type":"([^"]+)"/g)?.map(s => s.slice(9, -1)) || [];
-      for (const t of types) if (FORBIDDEN_LD.has(t)) add('error', 'schema', where, `forbidden JSON-LD type ${t} on a satellite`);
+      for (const t of ldTypes(data)) if (FORBIDDEN_LD.has(t)) add('error', 'schema', where, `forbidden JSON-LD type ${t} on a satellite`);
     }
     // 20. licence / « depuis 2016 »
     const text = html.replace(/<[^>]+>/g, ' ');
@@ -333,16 +424,17 @@ function metaUniqueness(pages, generated, add) {
 
 export const seasonYearOf = today => { const y = Number(today.slice(0, 4)); return today.slice(5) >= '06-01' ? y + 1 : y; };
 
-// Runs every post-render gate. state = { project, pages, generated, outputs, today, add }
-export function runGates({ project, pages, generated, outputs, today, add }) {
+// Runs every post-render gate. state = { project, pages, generated, outputs, today, add, focus? }
+// focus (generator drafts): Set of pages; the pairwise gates then only compare those pages with the network.
+export function runGates({ project, pages, generated, outputs, today, add, focus = null }) {
   const seasonYear = seasonYearOf(today);
   for (const p of pages) {
     factsGateForPage(project, p, add, today);
     entityGate(project, p, add);
     pageGates(project, p, add, today, seasonYear);
   }
-  cannibalGate(project, pages, add);
-  duplicateGate(pages, add);
+  cannibalGate(project, pages, add, focus);
+  duplicateGate(pages, add, focus);
   linksGate(project, pages, add);
   resolutionGate(project, outputs, pages, add);
   metaUniqueness(pages, generated, add);

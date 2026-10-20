@@ -8,11 +8,11 @@ const attr = (name, v) => (v ? ` ${name}="${esc(v)}"` : '');
 export function layout(ctx, d) {
   const { site, L, lang } = ctx;
   const dir = lang === 'ar' ? 'rtl' : 'ltr';
-  const fonts = (site.theme.fonts || []).filter(f => f && f !== 'system');
-  const fontLinks = fonts.length
-    ? `<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?${fonts.map(f => 'family=' + encodeURIComponent(f).replace(/%20/g, '+')).join('&')}&display=swap">`
-    : '';
+  // Fonts are self-hosted only (STRATEGY 10.7, no third parties): themes/<domain>/assets/fonts/*.woff2 + @font-face in
+  // style.css; theme.fonts lists the files to preload.
+  const fontLinks = (site.theme.fonts || []).filter(f => f && f !== 'system' && f.endsWith('.woff2'))
+    .map(f => `<link rel="preload" href="/assets/fonts/${esc(f)}" as="font" type="font/woff2" crossorigin>`).join('\n');
+  const scripts = (d.scripts || []).map(src => `<script src="${esc(src)}" defer></script>\n`).join('');
   const hreflang = (d.alternates || []).map(a => `<link rel="alternate" hreflang="${a.hreflang}" href="${esc(a.href)}">`).join('\n');
   return `<!doctype html>
 <html lang="${lang}-MA" dir="${dir}">
@@ -44,7 +44,7 @@ ${ctx.t('header')}
 ${d.main}
 </main>
 ${ctx.t('footer')}
-</body>
+${scripts}</body>
 </html>
 `;
 }
@@ -55,7 +55,7 @@ export function header(ctx) {
   const items = ctx.nav.map(n => `<li class="site-nav__item"><a class="site-nav__link" href="${esc(n.url)}"${n.current ? ' aria-current="page"' : ''}>${esc(n.label)}</a></li>`).join('');
   return `<header class="site-header site-header--${esc(layoutName)}">
 <div class="site-header__inner">
-<a class="site-brand" href="${ctx.prefix}/"><span class="site-brand__name">${esc(site.config.name || site.meta.name)}</span>${site.config.tagline ? `<span class="site-brand__tagline">${esc(site.config.tagline)}</span>` : ''}</a>
+<a class="site-brand" href="${ctx.prefix}/"><span class="site-brand__name">${esc(site.config.name || site.meta.name)}</span>${ctx.tagline ? `<span class="site-brand__tagline">${esc(ctx.tagline)}</span>` : ''}</a>
 ${items ? `<nav class="site-nav" aria-label="${esc(L.mainNav)}"><ul class="site-nav__list">${items}</ul></nav>` : ''}
 </div>
 </header>`;
@@ -161,7 +161,7 @@ export function home(ctx, page, parts) {
   const sections = site.config.home?.sections || site.theme.layout?.home || ['hero', 'intro', 'pillars', 'latest', 'cta', 'about'];
   const title = esc(stripMarkers(page.fm.title));
   const blocks = {
-    hero: `<section class="home-hero"><h1 class="home-hero__title">${title}</h1>${site.config.tagline ? `<p class="home-hero__tagline">${esc(site.config.tagline)}</p>` : ''}</section>`,
+    hero: `<section class="home-hero"><h1 class="home-hero__title">${title}</h1>${ctx.tagline ? `<p class="home-hero__tagline">${esc(ctx.tagline)}</p>` : ''}</section>`,
     intro: `<section class="home-intro prose">\n${parts.bodyHtml}</section>`,
     pillars: parts.pillars ? `<section class="home-pillars"><h2 class="home-section__title">${esc(L.pillars)}</h2>${parts.pillars}</section>` : '',
     latest: parts.latest ? `<section class="home-latest"><h2 class="home-section__title">${esc(L.latest)}</h2>${parts.latest}</section>` : '',

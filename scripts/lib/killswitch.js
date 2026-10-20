@@ -13,6 +13,16 @@ export function deadManState({ lastClosedAt = null, launchDate = null, today, cf
   return { level: 'ok', multiplier: 1, days, reason: ref };
 }
 
+// The GitHub check failed: never fail open. Reuse the last known state (it can only get worse), and after
+// cfg.unchecked_slow_after_days consecutive unchecked days apply at least the slow level.
+export function deadManFallback(prev, cfg, error) {
+  const unchecked = (prev?.unchecked_days || 0) + 1;
+  const base = prev && prev.level ? { ...prev } : { level: 'ok', multiplier: 1, days: null };
+  const out = { ...base, unchecked_days: unchecked, reason: `dead-man switch not checked (${error}); ${unchecked} day(s) in a row, using the last known state: ${prev?.reason || 'none'}` };
+  if (unchecked >= (cfg.unchecked_slow_after_days ?? 2) && out.multiplier > cfg.slow_multiplier) Object.assign(out, { level: 'slow', multiplier: cfg.slow_multiplier });
+  return out;
+}
+
 // Internal signals per site from data/state/drafts.jsonl (one line per draft attempt).
 export function internalSignals(drafts, site, today, cfg) {
   const from = addDays(today, -(cfg.gate_failure.window_days - 1));

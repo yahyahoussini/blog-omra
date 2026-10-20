@@ -32,7 +32,9 @@
   "claude": {
     "max_tokens": 32000,
     "effort": null,
-    "_effort_comment": "null = the model's default. Set low|medium|high only if the model in CLAUDE_MODEL supports output_config.effort.",
+    "_effort_comment": "null = the model's default. Set low|medium|high|xhigh|max only if the model in CLAUDE_MODEL supports output_config.effort (some recent models default to medium; high is a sensible choice for drafting).",
+    "fallbacks": null,
+    "_fallbacks_comment": "null = off. \"default\" = ask the API to re-run a refused request on a fallback model (server-side refusal fallback beta). Only set it if the model in CLAUDE_MODEL supports it, otherwise every call fails with a 400.",
     "price_usd_per_mtok": { "input": 5, "output": 25, "cache_write": 6.25, "cache_read": 0.5 },
     "_price_comment": "PLACEHOLDER prices used only to estimate spend. Replace them with the current list price of the model set in the CLAUDE_MODEL repository variable (see the Anthropic pricing page)."
   }

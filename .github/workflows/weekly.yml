@@ -32,7 +32,7 @@ jobs:
           CLAUDE_MODEL: ${{ vars.CLAUDE_MODEL }}
 
       - name: Weekly report and review issue
-        run: node scripts/report.js
+        run: node scripts/report.js --check-targets
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}

@@ -23,3 +23,14 @@ Un outil d'intelligence artificielle aide à rédiger, mais seules les informati
 ## Signaler une erreur
 
 Passez par la page de contact en précisant la page et la date en cause.
+
+## Publication automatique
+
+Nos articles sont publiés à l'issue de vérifications automatiques, sans lecture humaine préalable. Une erreur signalée est corrigée sur la page concernée.
+
+## Le réseau
+
+Les sites frères, publiés par le même éditeur :
+
+:::network
+:::

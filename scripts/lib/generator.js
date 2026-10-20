@@ -7,7 +7,7 @@ import { sha256 } from '../../engine/lib/util.js';
 import { readJSON, writeJSON, readJSONL, appendJSONL, isoWeek, paths } from './common.js';
 import { siteQuota, languageSlots, addSpend, spendStatus } from './cadence.js';
 import { loadTopics, saveTopics, selectTopics, networkItems, activeLanguages, postCounts, topicSlug, topicLang } from './topics.js';
-import { buildBrief, systemPrompt, draftMessage, revisionMessage } from './brief.js';
+import { buildBrief, systemPrompt, draftMessage, revisionMessage, VERIFIER_SYSTEM, VERIFY_SCHEMA, verifyMessage, claimErrors } from './brief.js';
 import { normalizeDraft, briefChecks, gateDraft, networkBaseline, missingRequests } from './draft-gate.js';
 import { apiUnavailable, makeClient, callClaude, checkStop, FatalApiError, SkipTopicError } from './claude.js';
 
@@ -42,10 +42,11 @@ function addToQueue(root, today, item) {
  * @param {number} [o.limit]     max drafts in this run (all sites)
  * @param {boolean} [o.dryRun]   no API call, nothing written: prints the briefs
  * @param {Function} [o.draftFn] ({system, messages}) => {text, content, usage, stopReason}; default = Claude API
+ * @param {Function} [o.verifyFn] claims verifier ({system, messages, format}) => same shape; required with a custom draftFn
  * @param {object} [o.env]
  * @param {Function} [o.log]
  */
-export async function runGenerate({ root, today, site: onlySite = null, limit = Infinity, dryRun = false, draftFn = null, env = process.env, log = console.log, printSystem = false }) {
+export async function runGenerate({ root, today, site: onlySite = null, limit = Infinity, dryRun = false, draftFn = null, verifyFn = null, env = process.env, log = console.log, printSystem = false }) {
   const p = paths(root);
   const summary = { written: [], failed: [], deferred: [], idle: [], briefs: [], stopped: null };
   const cadence = readJSON(p.cadence);
@@ -62,8 +63,10 @@ export async function runGenerate({ root, today, site: onlySite = null, limit = 
     const why = apiUnavailable(env);
     if (why) { summary.stopped = `skipped: ${why} (set the ANTHROPIC_API_KEY secret and the CLAUDE_MODEL repository variable)`; log(summary.stopped); return summary; }
     const client = makeClient(env);
-    draftFn = args => callClaude(client, { ...args, maxTokens: cadence.claude?.max_tokens ?? 32000, effort: cadence.claude?.effort ?? null, env });
+    draftFn = args => callClaude(client, { ...args, maxTokens: cadence.claude?.max_tokens ?? 32000, effort: cadence.claude?.effort ?? null, fallbacks: cadence.claude?.fallbacks ?? null, env });
+    verifyFn = args => callClaude(client, { ...args, maxTokens: cadence.claude?.verify_max_tokens ?? 8000, effort: cadence.claude?.effort ?? null, env });
   }
+  if (!dryRun && !verifyFn) throw new Error('runGenerate: a custom draftFn needs a verifyFn (the claims verifier, gate 3)');
   const spendNow = spendStatus(spend, cadence, today);
   if (!dryRun && spendNow.stop) { summary.stopped = `monthly spend cap reached (${spendNow.usd.toFixed(2)} / ${spendNow.cap} USD estimated): no generation until next month`; log(summary.stopped); return summary; }
   if (printSystem) log(`----- system prompt (${system.length} chars) -----\n${system}\n-----`);
@@ -104,7 +107,7 @@ export async function runGenerate({ root, today, site: onlySite = null, limit = 
 
       let result;
       try {
-        result = await draftTopic({ root, today, site, topic, brief, file, system, draftFn, baseline, spend, cadence });
+        result = await draftTopic({ root, today, site, topic, brief, file, system, draftFn, verifyFn, baseline, spend, cadence });
       } catch (e) {
         writeJSON(p.spend, spend);
         if (e instanceof SkipTopicError) {
@@ -126,7 +129,8 @@ export async function runGenerate({ root, today, site: onlySite = null, limit = 
         summary.written.push({ site, topic: topic.id, file, status, attempts: result.attempts, nearestDup: result.nearestDup });
         log(`${site}: ${topic.id} passed all gates (attempt ${result.attempts}) → ${file} [${status}]`);
         content = loadContent(project);
-        baseline = await networkBaseline(root, today);
+        // Auto mode: the passing gate run already is the network with this post (saves a full build per post).
+        baseline = status === 'published' && result.nextBaseline ? result.nextBaseline : await networkBaseline(root, today);
       } else {
         appendJSONL(p.failures, [{ date: today, site, topic_id: topic.id, title: topic.title, outcome: 'discarded', attempts: result.attempts, errors: result.errors.slice(0, 30).map(e => ({ gate: e.gate, msg: e.msg })), missing: result.missing }]);
         Object.assign(topic, { status: 'failed', failed_at: today, last_errors: result.errors.slice(0, 5).map(e => `[${e.gate}] ${e.msg}`) });
@@ -139,8 +143,8 @@ export async function runGenerate({ root, today, site: onlySite = null, limit = 
   return summary;
 }
 
-// Draft → gates → (one revision) → gates. Usage is added to `spend` after every call.
-async function draftTopic({ root, today, site, topic, brief, file, system, draftFn, baseline, spend, cadence }) {
+// Draft → gates → claims verifier → (one revision) → gates → verifier. Usage is added to `spend` after every call.
+async function draftTopic({ root, today, site, topic, brief, file, system, draftFn, verifyFn, baseline, spend, cadence }) {
   const messages = [{ role: 'user', content: draftMessage(brief) }];
   const missing = new Set();
   let errors = [], title = null;
@@ -154,17 +158,25 @@ async function draftTopic({ root, today, site, topic, brief, file, system, draft
     const norm = normalizeDraft(res.text, brief.front_matter_fixed);
     const asPublished = normalizeDraft(res.text, { ...brief.front_matter_fixed, status: 'published' });
     errors = [...norm.problems];
-    let nearestDup = null;
+    let nearestDup = null, nextBaseline = null;
     if (norm.text) {
       errors.push(...briefChecks(norm, brief));
       const g = await gateDraft({ root, today, file, text: asPublished.text, baseline });
       errors.push(...g.errors);
       nearestDup = g.nearestDup;
+      nextBaseline = g.nextBaseline;
       title = norm.fm.title;
+    }
+    // Gate 3: only a draft that passed every mechanical gate goes to the claims verifier.
+    if (norm.text && !errors.length) {
+      const v = await verifyFn({ system: VERIFIER_SYSTEM, messages: [{ role: 'user', content: verifyMessage(brief, norm.text) }], format: { type: 'json_schema', schema: VERIFY_SCHEMA } });
+      addSpend(spend, v.usage, { today, cadence, purpose: 'verify', site });
+      checkStop(v);
+      errors.push(...claimErrors(v.text, brief));
     }
     const ok = errors.length === 0;
     appendJSONL(paths(root).drafts, [{ date: today, site, topic_id: topic.id, attempt, ok, errors: errors.length, gates: [...new Set(errors.map(e => e.gate))], nearest_dup: nearestDup }]);
-    if (ok) return { ok, text: norm.text, title, attempts: attempt, nearestDup, missing: [...missing] };
+    if (ok) return { ok, text: norm.text, title, attempts: attempt, nearestDup, nextBaseline, missing: [...missing] };
     if (attempt === 1) messages.push({ role: 'assistant', content: res.content?.length ? res.content : res.text }, { role: 'user', content: revisionMessage(errors) });
   }
   return { ok: false, errors, attempts: 2, missing: [...missing] };

@@ -23,3 +23,14 @@ Les pages sont écrites avec l'aide d'un outil d'intelligence artificielle et ne
 ## Erreurs
 
 Toute erreur signalée depuis la page de contact est corrigée, avec la date de la correction.
+
+## Publication automatique
+
+Chaque article est publié après des contrôles automatisés, sans relecture humaine en amont. Une erreur signalée est corrigée sur la page concernée.
+
+## Le réseau
+
+Ce site appartient au réseau d'information de Wiki Tours International, avec :
+
+:::network
+:::

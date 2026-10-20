@@ -23,3 +23,14 @@ La rédaction s'appuie sur un outil d'intelligence artificielle et sur un regist
 ## Corrections
 
 Nous corrigeons toute erreur signalée et indiquons la date de mise à jour.
+
+## Publication automatique
+
+Les articles passent des contrôles automatiques puis sont publiés, sans relecture humaine préalable. Une erreur signalée est corrigée sur la page concernée.
+
+## Le réseau
+
+Les autres sites du même éditeur :
+
+:::network
+:::

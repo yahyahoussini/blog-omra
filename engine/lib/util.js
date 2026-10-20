@@ -12,13 +12,16 @@ export const esc = s => String(s ?? '').replace(/[&<>"']/g, c => HTML_ESC[c]);
 // Fact markers may appear in titles and descriptions for the facts gate; they never render there.
 export const stripMarkers = s => String(s ?? '').replace(/\s*\[\[fact:[a-z0-9_]+\]\]/g, '').trim();
 
-export const todayISO = () => new Date().toISOString().slice(0, 10);
+// Today's date in Morocco (the publishing calendar), as YYYY-MM-DD. Same rule as scripts/lib/common.js casablancaToday.
+export const todayISO = (now = new Date()) =>
+  new Intl.DateTimeFormat('en-CA', { timeZone: 'Africa/Casablanca', year: 'numeric', month: '2-digit', day: '2-digit' }).format(now);
 
 const LOCALES = { fr: 'fr-FR', ar: 'ar-MA', en: 'en-GB' };
+const DATE_FORMATS = new Map(); // one Intl formatter per language (creating one per call is slow on big builds)
 export function formatDate(ymd, lang = 'fr') {
   if (!ymd) return '';
-  const d = new Date(ymd + 'T12:00:00Z');
-  return new Intl.DateTimeFormat(LOCALES[lang] || 'fr-FR', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }).format(d);
+  if (!DATE_FORMATS.has(lang)) DATE_FORMATS.set(lang, new Intl.DateTimeFormat(LOCALES[lang] || 'fr-FR', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }));
+  return DATE_FORMATS.get(lang).format(new Date(ymd + 'T12:00:00Z'));
 }
 
 export const sha256 = s => crypto.createHash('sha256').update(s).digest('hex');

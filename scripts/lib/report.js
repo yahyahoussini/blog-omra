@@ -69,7 +69,10 @@ export async function collectReportData({ root, today }) {
       gates: gates.findings.filter(f => ['cannibalisation', 'duplicate'].includes(f.gate)).map(f => ({ level: f.level, site: f.site, file: f.file, msg: f.msg })),
     },
     gateErrors: gates.errors.length,
+    blockedSites: gates.blocked,
     staleWarnings: gates.findings.filter(f => f.gate === 'facts' && f.level === 'warning').length,
+    // Pages to edit by hand: old year in the title after the season flip, links to retired pages.
+    toFix: gates.findings.filter(f => f.level === 'warning' && (f.gate === 'stale-year' || (f.gate === 'links' && /retired page/.test(f.msg)))).map(f => ({ site: f.site, file: f.file || f.url, msg: f.msg })),
     whatsappMissing: gates.findings.filter(f => f.gate === 'whatsapp').map(f => f.site),
   };
 }
@@ -90,7 +93,7 @@ export function buildReport(d) {
   L.push('## 1. Kill-switch actions', '');
   if (!actions.length) L.push('None: every site runs at its normal cadence.');
   for (const s of actions) L.push(`- **${s.domain}** ${s.health.paused ? 'paused' : `slowed x${s.health.multiplier}`}: ${s.health.reasons.join('; ')}`);
-  if (d.healthMeta?.dead_man) L.push(`- Dead-man switch: ${d.healthMeta.dead_man.reason}.`);
+  if (d.healthMeta?.dead_man) L.push(`- Dead-man switch: ${d.healthMeta.dead_man.level} (${d.healthMeta.dead_man.reason.replace(/^dead-man switch: /, '')}).`);
   for (const n of d.healthMeta?.notes || []) L.push(`- Note: ${n}`);
   L.push('');
 
@@ -139,6 +142,12 @@ export function buildReport(d) {
   for (const c of d.cannibal.gates.slice(0, 10)) L.push(`- gate ${c.level}: ${c.site || ''} ${c.file || ''} ${c.msg}`);
   L.push('');
 
+  if (d.toFix?.length) {
+    L.push('### Pages to edit', '');
+    for (const f of d.toFix.slice(0, 30)) L.push(`- ${f.site || ''} ${f.file || ''}: ${f.msg}`);
+    L.push('');
+  }
+
   L.push('## 8. Spend (Claude API, estimate)', '');
   L.push(`Month ${d.spend.month}: **${usd(d.spend.usd)}** of ${d.spend.cap ?? 'no'} USD cap (${Math.round(100 * (d.spend.share || 0))}%)${d.spend.stop ? ' · **cap reached: generation stopped**' : d.spend.alert ? ' · **above the alert level**' : ''}.`);
   if (d.spend.postsThisMonth) L.push(`Posts this month: ${d.spend.postsThisMonth} · ≈ ${usd(d.spend.usd / d.spend.postsThisMonth)} per post.`);
@@ -150,7 +159,7 @@ export function buildReport(d) {
   const setup = [];
   if (!d.launchDate) setup.push('Set `launch_date` in `config/cadence.json` to start the ramp.');
   if (d.whatsappMissing.length) setup.push(`WhatsApp number still missing on ${d.whatsappMissing.length} site(s) (\`config/sites/<domain>.json\` → \`whatsapp.number\`).`);
-  if (d.gateErrors) setup.push(`**${d.gateErrors} gate error(s) in the network: nothing deploys until they are fixed (\`npm run check\`).**`);
+  if (d.gateErrors) setup.push(`**${d.gateErrors} gate error(s): ${(d.blockedSites || []).join(', ') || 'some sites'} cannot deploy until they are fixed (\`npm run check\`); the other sites deploy normally.**`);
   if (setup.length) { L.push('## 10. Decisions and setup gaps', ''); for (const x of setup) L.push(`- ${x}`); L.push(''); }
   return L.join('\n');
 }
@@ -169,4 +178,18 @@ export function issueBody(report, d) {
   ].join('\n');
   const max = 60000 - checklist.length;
   return `${checklist}\n\n---\n\n${report.length > max ? report.slice(0, max) + '\n\n… (truncated: full report in reports/)' : report}`;
+}
+
+// STRATEGY 3.5 weekly check: every wikitours.ma link target still answers 200 (a read-only GET of public pages;
+// nothing on wikitours.ma is edited or required). Returns Markdown lines for the report.
+export async function checkLinkTargets(targets, fetchFn = fetch) {
+  const lines = ['## Liens vers wikitours.ma (contrôle hebdomadaire)', ''];
+  for (const t of targets) {
+    let status;
+    try { status = (await fetchFn(t.url, { method: 'GET', redirect: 'follow', signal: AbortSignal.timeout(15000) })).status; }
+    catch (e) { status = `erreur (${e.message})`; }
+    lines.push(`- ${status === 200 ? 'OK' : '**À CORRIGER**'} ${t.id} — ${t.url} : ${status}`);
+  }
+  if (lines.some(l => l.includes('À CORRIGER'))) lines.push('', 'Une cible qui ne répond pas 200 : retirer ou remplacer la cible dans config/wikitours-targets.json (les liens deviennent des erreurs de gate).');
+  return lines.join('\n');
 }

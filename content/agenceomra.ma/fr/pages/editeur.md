@@ -23,3 +23,14 @@ Appliquez à notre éditeur la même méthode qu'aux autres : existence légale,
 ## Production des contenus
 
 Les pages sont rédigées avec un outil d'intelligence artificielle, à partir d'un registre de faits sourcés. Les cas de fraude cités viennent de la presse ou de sources officielles.
+
+## Publication automatique
+
+Les articles sont mis en ligne après des contrôles automatiques (faits, chiffres, liens, doublons), sans relecture humaine préalable. Une erreur signalée est corrigée sur la page concernée.
+
+## Le réseau
+
+Agence Omra appartient à un petit réseau de sites d'information publiés par le même éditeur :
+
+:::network
+:::

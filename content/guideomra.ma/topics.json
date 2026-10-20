@@ -1,1 +1,31 @@
-[]
+[
+  {
+    "id": "go-fr-0001",
+    "lang": "fr",
+    "title": "Vaccin ACWY pour la Omra : la règle et sa durée de validité",
+    "slug": "vaccin-acwy-omra",
+    "primary_keyword": "vaccin omra acwy",
+    "cluster": "sante_omra",
+    "concept_id": "umrah_acwy_vaccine",
+    "type": "explainer",
+    "tier": "C",
+    "internal_links": [],
+    "sister_links": [],
+    "status": "queued",
+    "planned_at": "2026-10-20",
+    "planned_by": "seed",
+    "angle": "Expliquer la règle saoudienne sur le vaccin méningococcique ACWY telle qu'annoncée, qui est concerné et combien de temps le certificat reste valable selon le type de vaccin.",
+    "outline": [
+      "La règle annoncée et qui est concerné",
+      "Vaccin polysaccharidique ou conjugué : la validité",
+      "Préparer son carnet de vaccination avant le départ",
+      "Ce que nous ne savons pas encore"
+    ],
+    "facts_needed": [
+      "fact_acwy_requirement",
+      "fact_acwy_validity"
+    ],
+    "cta_topic": "Préparer les documents santé de ma Omra",
+    "notes": "Pas de conseil médical : renvoyer vers un médecin ou un centre de vaccination."
+  }
+]

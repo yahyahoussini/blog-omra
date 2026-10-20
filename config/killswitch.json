@@ -4,7 +4,7 @@
   "_network_freeze_comment": "true = every site paused (use for a manual action or security issue). Resume is human only.",
   "manual": {},
   "_manual_comment": "Per-site overrides, e.g. { \"agenceomra.ma\": { \"paused\": true, \"reason\": \"fact error being fixed\" } } or { \"multiplier\": 0.5 }.",
-  "dead_man": { "slow_after_days": 10, "pause_after_days": 21, "slow_multiplier": 0.5, "label": "weekly-review" },
+  "dead_man": { "slow_after_days": 10, "pause_after_days": 21, "slow_multiplier": 0.5, "label": "weekly-review", "unchecked_slow_after_days": 2 },
   "gate_failure": { "window_days": 7, "min_attempts": 4, "slow_rate": 0.25, "slow_multiplier": 0.5 },
   "similarity": { "last_n_posts": 30, "slow_mean": 0.2, "dup_blocks_7d": 3, "slow_multiplier": 0.5 },
   "facts": { "stale_registry_share_pause": 0.2 },

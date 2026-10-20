@@ -4,6 +4,10 @@
   "ref": "OF",
   "nav": [
     {
+      "label": "Comparateur",
+      "slug": "comparateur"
+    },
+    {
       "label": "Articles",
       "slug": "blog"
     },

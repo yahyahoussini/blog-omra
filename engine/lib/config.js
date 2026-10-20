@@ -24,6 +24,10 @@ export async function loadProject(root) {
     sites: new Map(),
   };
   project.registry = Object.fromEntries(project.registryList.map(f => [f.id, f]));
+  // Approved religious texts (gate 4): one JSON file per entry in data/facts/kb/.
+  const kbDir = path.join(root, 'data/facts/kb');
+  project.kbList = exists(kbDir) ? fs.readdirSync(kbDir).filter(f => f.endsWith('.json')).sort().map(f => ({ _file: f, ...readJSON(path.join(kbDir, f)) })) : [];
+  project.kb = Object.fromEntries(project.kbList.map(e => [e.id, e]));
   project.approvedPhrases = [...(project.phrases.fr || []), ...(project.phrases.ar || []), ...(project.phrases.en || [])];
   project.wtTargets = Object.fromEntries(project.targets.targets.map(t => [t.id, t]));
 
@@ -41,7 +45,17 @@ async function loadTheme(root, id) {
   const js = path.join(dir, 'theme.js');
   const theme = exists(js) ? (await import(pathToFileURL(js).href)).default : {};
   const cssFile = path.join(dir, 'style.css');
-  return { id, ...theme, css: exists(cssFile) ? fs.readFileSync(cssFile, 'utf8') : '' };
+  return { id, ...theme, css: exists(cssFile) ? fs.readFileSync(cssFile, 'utf8') : '', assets: listAssets(path.join(dir, 'assets')) };
+}
+
+// themes/<id>/assets/** -> [{ rel: 'assets/x.js', file: absolute path }], copied as-is to dist/<domain>/assets/.
+function listAssets(dir, base = dir) {
+  if (!exists(dir)) return [];
+  return fs.readdirSync(dir, { withFileTypes: true }).sort((a, b) => a.name.localeCompare(b.name)).flatMap(e => {
+    const file = path.join(dir, e.name);
+    if (e.isDirectory()) return listAssets(file, base);
+    return [{ rel: 'assets/' + path.relative(base, file).split(path.sep).join('/'), file }];
+  });
 }
 
 // engine defaults < theme labels < site config labels, per language.

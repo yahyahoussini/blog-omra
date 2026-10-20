@@ -1,1 +1,32 @@
-[]
+[
+  {
+    "id": "ag-fr-0001",
+    "lang": "fr",
+    "title": "Vérifier qu'une agence de voyages est autorisée au Maroc",
+    "slug": "verifier-agence-autorisee",
+    "primary_keyword": "verifier agence voyage autorisee maroc",
+    "cluster": "verifier_agence",
+    "concept_id": "verify_agency_licence",
+    "type": "checklist",
+    "tier": "C",
+    "internal_links": [],
+    "sister_links": [],
+    "status": "queued",
+    "planned_at": "2026-10-20",
+    "planned_by": "seed",
+    "angle": "Une méthode pas à pas pour vérifier une agence avant de payer : liste officielle du ministère du Tourisme, cadre de la loi 11-16, réflexes après l’alerte de l’Observatoire.",
+    "outline": [
+      "Consulter la liste officielle du ministère",
+      "Ce que la loi 11-16 permet en cas de manquement",
+      "Les signaux qui doivent faire s'arrêter",
+      "Que faire en cas de doute"
+    ],
+    "facts_needed": [
+      "fact_official_agency_list",
+      "fact_law_11_16_sanctions",
+      "fact_observatory_warning_2026"
+    ],
+    "cta_topic": "Question sur le choix d’une agence",
+    "notes": "Aucune agence nommée ; pas de classement."
+  }
+]

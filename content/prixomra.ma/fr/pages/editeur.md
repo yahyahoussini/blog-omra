@@ -23,3 +23,14 @@ Chaque chiffre indique sa source et sa date. Un tableau ne s'affiche que si l'é
 ## Droit de réponse
 
 Une agence citée peut demander une correction depuis la page de contact. La réponse et l'issue sont consignées publiquement.
+
+## Publication automatique
+
+Les articles sont publiés une fois les contrôles automatiques passés, sans relecture humaine préalable. Une erreur signalée est corrigée sur la page concernée.
+
+## Le réseau
+
+Prix Omra fait partie d'un réseau de sites publiés par Wiki Tours International :
+
+:::network
+:::

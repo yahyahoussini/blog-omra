@@ -3,3 +3,13 @@
 .site-header{border-bottom:3px solid var(--accent)}
 .home-hero{padding:1.5rem 0}
 .home-hero__tagline{color:var(--muted);font-size:1.15rem}
+/* Comparateur (:::tool compare-offres) */
+.compare__grid{display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr))}
+.compare__offer{border:1px solid var(--border);border-radius:.5rem;padding:.75rem;background:var(--surface)}
+.compare__row{display:flex;flex-direction:column;gap:.25rem;margin:.5rem 0}
+.compare__row input{padding:.4rem;border:1px solid var(--border);border-radius:.3rem;font:inherit}
+.compare__check{display:flex;gap:.5rem;align-items:flex-start;margin:.3rem 0}
+.compare__button{margin-top:1rem;padding:.6rem 1.2rem;background:var(--primary);color:#fff;border:0;border-radius:.4rem;font:inherit;cursor:pointer}
+.compare__table{width:100%;border-collapse:collapse;margin-top:1rem}
+.compare__table th,.compare__table td{border:1px solid var(--border);padding:.4rem;text-align:start;vertical-align:top}
+.compare__note{color:var(--muted);font-size:.95rem}

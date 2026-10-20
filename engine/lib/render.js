@@ -4,14 +4,50 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import * as defaults from '../templates/default.js';
 import { esc, stripMarkers, formatDate, fill } from './util.js';
-import { renderMarkdown, renderInline, gateText, plainText, MENTION, NOGATE } from './markdown.js';
+import { renderMarkdown, renderInline, gateText, plainText, findRawHtml, MENTION, NOGATE } from './markdown.js';
 import { buildSources, resolveShortcodes, resolveSlug, factIdsIn } from './shortcodes.js';
-import { langPrefix } from './content.js';
+import { langPrefix, group } from './content.js';
 import { waLink, refCode } from './wa.js';
 import { buildJsonLd, jsonLdScript } from './schema.js';
 
 const BASE_CSS = fs.readFileSync(path.join(path.dirname(fileURLToPath(import.meta.url)), '../templates/base.css'), 'utf8');
 const PILLAR_TYPES = new Set(['pillar', 'hub']);
+
+// Per-language site text. A plain value belongs to the base language only; an object keyed by
+// language ({ fr, ar, en }) gives one value per language (site config: tagline, blog).
+export function forLang(project, value, lang) {
+  if (value && typeof value === 'object' && ['fr', 'ar', 'en'].some(k => k in value)) return value[lang] ?? null;
+  return lang === (project.network.base_lang || 'fr') ? value ?? null : null;
+}
+
+// Facts used, stale facts and the final noindex decision. Runs for every page before any page renders,
+// so templates know which pages (and RSS feeds) really exist.
+export function prepareStale(ctx, page) {
+  const { project } = ctx;
+  const fm = page.fm;
+  page.factsUsed = [...new Set([...factIdsIn(fm.title), ...factIdsIn(fm.description), ...factIdsIn(page.body),
+    ...(fm.faq || []).flatMap(f => [...factIdsIn(f.q), ...factIdsIn(f.a)]), ...(fm.facts_used || [])])];
+  // Facts past review_by / valid_until: the page shows a banner (registry rule 4).
+  page.staleFacts = page.factsUsed.filter(id => {
+    const f = project.registry[id];
+    return f && ((f.review_by && f.review_by < ctx.today) || (f.valid_until && f.valid_until < ctx.today));
+  });
+  const limit = new Date(Date.parse(ctx.today) - 14 * 864e5).toISOString().slice(0, 10);
+  page.dropFromSitemap = page.staleFacts.some(id => project.registry[id].review_by < limit);
+  page.noindexFinal = !!fm.noindex || page.dropFromSitemap;
+  return page;
+}
+
+const hasFeed = (ctx, site, lang) => group(ctx, site, lang).some(p => p.kind === 'posts' && !p.noindexFinal);
+
+// The network's other sites, one line each, nofollow (trust pages, :::network).
+function networkHtml(ctx, site, lang) {
+  const items = [...ctx.project.sites.values()].filter(s => s.domain !== site.domain).map(s => {
+    const tagline = forLang(ctx.project, s.config.tagline, lang);
+    return `<li><a href="https://${esc(s.domain)}/" rel="nofollow" class="network-link">${esc(s.config.name || s.meta.name)}</a> (${esc(s.domain)})${tagline ? ` : ${esc(tagline)}` : ''}</li>`;
+  });
+  return `<ul class="network-list__items">${items.join('')}</ul>`;
+}
 
 // Template context for one site + language. ctx = { project, pages, index, today, warn }
 export function templateCtx(ctx, site, lang, currentUrl, page = null) {
@@ -27,7 +63,8 @@ export function templateCtx(ctx, site, lang, currentUrl, page = null) {
   const tctx = {
     project: ctx.project, site, lang, L, prefix, page,
     css: BASE_CSS + '\n' + (site.theme.css || ''),
-    hasFeed: ctx.pages.some(p => p.site === site.domain && p.lang === lang && p.kind === 'posts'),
+    tagline: forLang(ctx.project, site.config.tagline, lang),
+    hasFeed: hasFeed(ctx, site.domain, lang),
     nav: resolveNav(site.config.nav),
     footerNav: resolveNav(site.config.footer_nav),
     editeurUrl: resolveSlug(ctx, site.domain, lang, 'editeur')?.url || `${prefix}/editeur/`,
@@ -75,12 +112,11 @@ function checkedLine(L, sources, lang) {
     : fill(L.sourcesCheckedRange, { from: formatDate(from, lang), to: formatDate(to, lang) });
 }
 
-const sameGroup = (a, b) => a.site === b.site && a.lang === b.lang;
 const byDateDesc = (a, b) => String(b.fm.date).localeCompare(String(a.fm.date)) || a.fm.slug.localeCompare(b.fm.slug);
 
 export function clusterPillar(ctx, page) {
   if (!page.fm.cluster) return null;
-  return ctx.pages.filter(p => sameGroup(p, page) && p.kind === 'pages' && PILLAR_TYPES.has(p.fm.type) && p.fm.cluster === page.fm.cluster)
+  return group(ctx, page.site, page.lang).filter(p => p.kind === 'pages' && PILLAR_TYPES.has(p.fm.type) && p.fm.cluster === page.fm.cluster)
     .sort((a, b) => (a.fm.nav_order ?? 999) - (b.fm.nav_order ?? 999))[0] || null;
 }
 
@@ -92,15 +128,21 @@ export function renderContentPage(ctx, page) {
   const L = tctx.L;
   const fm = page.fm;
 
+  if (page.noindexFinal === undefined) prepareStale(ctx, page);
   const { sources, factNum } = buildSources(page, project);
   const body = resolveShortcodes(page.body, page, ctx, factNum);
   page.links = body.links.map(l => ({ ...l, where: 'body' }));
   page.linkErrors = [...body.errors];
+  page.linkWarnings = [...body.warnings];
+  // Raw HTML is escaped by the renderer and reported as a gate error (markdown.js).
+  page.rawHtml = findRawHtml(body.text);
   const faq = (fm.faq || []).map(f => {
     const r = resolveShortcodes(f.a, page, ctx, factNum);
     page.links.push(...r.links.map(l => ({ ...l, where: 'faq' })));
     page.linkErrors.push(...r.errors);
-    return { q: stripMarkers(f.q), qRaw: f.q, aHtml: renderInline(r.text) };
+    page.linkWarnings.push(...r.warnings);
+    page.rawHtml.push(...findRawHtml(r.text, { inline: true }), ...findRawHtml(f.q, { inline: true }));
+    return { q: stripMarkers(f.q), qRaw: f.q, aHtml: renderInline(r.text, { snippets: r.snippets }) };
   });
 
   const cta = fm.cta?.type === 'none' ? null : buildCta(ctx, tctx, page);
@@ -111,12 +153,12 @@ export function renderContentPage(ctx, page) {
     disclosureHtml: disclosureBox(L),
     forceDisclosure: mentionOutside || page.links.some(l => l.kind === 'wt'),
     renderCta: topic => buildCta(ctx, tctx, page, topic).html,
+    snippets: body.snippets,
+    networkHtml: networkHtml(ctx, site, page.lang),
   };
   const r = renderMarkdown(body.text, env);
-  Object.assign(page, { bodyHtml: r.html, disclosed: r.disclosed, hasUnknown: r.hasUnknown, images: r.images, sources, faqRendered: faq });
+  Object.assign(page, { bodyHtml: r.html, disclosed: r.disclosed, hasUnknown: r.hasUnknown, answerWords: r.answerWords, images: r.images, tools: r.tools, sources, faqRendered: faq });
 
-  page.factsUsed = [...new Set([...factIdsIn(fm.title), ...factIdsIn(fm.description), ...factIdsIn(page.body),
-    ...(fm.faq || []).flatMap(f => [...factIdsIn(f.q), ...factIdsIn(f.a)]), ...(fm.facts_used || [])])];
   page.gateTexts = [
     { field: 'title', text: fm.title },
     { field: 'description', text: fm.description },
@@ -126,13 +168,6 @@ export function renderContentPage(ctx, page) {
     ...r.images.map((im, i) => ({ field: `alt[${i}]`, text: im.alt })),
   ];
   page.plain = plainText(r.html);
-  // Facts past review_by / valid_until: the page shows a banner (registry rule 4).
-  page.staleFacts = page.factsUsed.filter(id => {
-    const f = project.registry[id];
-    return f && ((f.review_by && f.review_by < ctx.today) || (f.valid_until && f.valid_until < ctx.today));
-  });
-  const limit = new Date(Date.parse(ctx.today) - 14 * 864e5).toISOString().slice(0, 10);
-  page.dropFromSitemap = page.staleFacts.some(id => project.registry[id].review_by < limit);
 
   // Breadcrumbs, related posts, cluster list.
   const home = { name: L.home, url: `${tctx.prefix}/` };
@@ -143,7 +178,7 @@ export function renderContentPage(ctx, page) {
   else crumbs = [home, { name: stripMarkers(fm.title), url: page.url }];
   page.crumbs = crumbs;
 
-  const posts = ctx.pages.filter(p => sameGroup(p, page) && p.kind === 'posts');
+  const posts = group(ctx, page.site, page.lang).filter(p => p.kind === 'posts');
   const related = page.kind === 'posts' && fm.cluster ? posts.filter(p => p !== page && p.fm.cluster === fm.cluster).sort(byDateDesc).slice(0, 4) : [];
   const clusterPosts = page.kind === 'pages' && PILLAR_TYPES.has(fm.type) && fm.cluster ? posts.filter(p => p.fm.cluster === fm.cluster).sort(byDateDesc) : [];
 
@@ -159,7 +194,7 @@ export function renderContentPage(ctx, page) {
   };
   let main;
   if (fm.type === 'home') {
-    const pillars = ctx.pages.filter(p => sameGroup(p, page) && p.kind === 'pages' && !['home', 'trust'].includes(p.fm.type) && !p.fm.noindex)
+    const pillars = group(ctx, page.site, page.lang).filter(p => p.kind === 'pages' && !['home', 'trust'].includes(p.fm.type) && !p.fm.noindex)
       .sort((a, b) => (a.fm.nav_order ?? 999) - (b.fm.nav_order ?? 999) || a.fm.title.localeCompare(b.fm.title));
     main = tctx.t('home', page, { ...parts, pillars: defaults.cardList(tctx, pillars), latest: defaults.cardList(tctx, posts.sort(byDateDesc).slice(0, 6)) });
   } else {
@@ -168,9 +203,10 @@ export function renderContentPage(ctx, page) {
 
   // hreflang only between translations of the same page on the same site.
   // DECISIONS D-H: home pages are always linked; other pages only through a shared translation_key.
+  // Noindexed versions are never alternates.
   let alternates = [];
-  if (fm.translation_key || fm.type === 'home') {
-    const versions = ctx.pages.filter(p => p.site === page.site && (fm.type === 'home' ? p.fm.type === 'home' : p.fm.translation_key === fm.translation_key));
+  if ((fm.translation_key || fm.type === 'home') && !page.noindexFinal) {
+    const versions = ctx.pages.filter(p => p.site === page.site && !p.noindexFinal && (fm.type === 'home' ? p.fm.type === 'home' : p.fm.translation_key === fm.translation_key));
     if (versions.length > 1) {
       const base = versions.find(v => v.lang === (project.network.base_lang || 'fr')) || versions[0];
       alternates = [...versions.map(v => ({ hreflang: `${v.lang}-MA`, href: v.absUrl })), { hreflang: 'x-default', href: base.absUrl }];
@@ -180,12 +216,13 @@ export function renderContentPage(ctx, page) {
   const jsonld = buildJsonLd(project, {
     site, page, kind: fm.type === 'home' ? 'home' : 'content', title, description, url: page.url, lang: page.lang, crumbs,
     author: author ? { '@type': 'Person', name: author.name, ...(author.url ? { url: author.url } : {}) } : null,
+    languages: fm.type === 'home' ? ctx.pages.filter(p => p.site === page.site && p.fm.type === 'home' && !p.noindexFinal).map(p => p.lang) : null,
   });
   page.jsonld = jsonld;
-  page.noindexFinal = !!fm.noindex || page.dropFromSitemap;
   page.html = tctx.t('layout', {
     title, description, canonical: page.absUrl, noindex: page.noindexFinal, alternates,
     ogType: page.kind === 'posts' ? 'article' : 'website', jsonld: jsonLdScript(jsonld), main, pageType: fm.type,
+    scripts: r.tools.map(name => `/assets/${name}.js`),
   });
   return page;
 }
@@ -197,7 +234,7 @@ export function renderGeneratedPages(ctx, site, lang) {
   const out = [];
   const tctx0 = templateCtx(ctx, site, lang, null);
   const L = tctx0.L, prefix = tctx0.prefix;
-  const posts = ctx.pages.filter(p => p.site === site.domain && p.lang === lang && p.kind === 'posts').sort(byDateDesc);
+  const posts = group(ctx, site.domain, lang).filter(p => p.kind === 'posts').sort(byDateDesc);
   const home = { name: L.home, url: `${prefix}/` };
   const make = (url, d, extra = {}) => {
     const tctx = templateCtx(ctx, site, lang, url);
@@ -210,8 +247,10 @@ export function renderGeneratedPages(ctx, site, lang) {
   if (posts.length) {
     const per = project.network.posts_per_page || 12;
     const total = Math.ceil(posts.length / per);
-    const blogCfg = site.config.blog || {};
-    const desc = blogCfg.description || `${L.blogTitle} de ${site.meta.name} : ${site.config.tagline || site.meta.role}`;
+    // config/sites -> blog: { title, description, intro } for the base language, or { fr: {…}, ar: {…}, en: {…} }.
+    const blogCfg = forLang(project, site.config.blog, lang) || {};
+    const homeDesc = stripMarkers(group(ctx, site.domain, lang).find(p => p.fm.type === 'home')?.fm.description || '');
+    const desc = blogCfg.description || (tctx0.tagline ? fill(L.blogDescription, { blog: L.blogTitle, site: site.meta.name, tagline: tctx0.tagline }) : homeDesc || L.blogTitle);
     for (let n = 1; n <= total; n++) {
       const url = n === 1 ? `${prefix}/blog/` : `${prefix}/blog/page/${n}/`;
       const heading = blogCfg.title || `${L.blogTitle} – ${site.meta.name}`;

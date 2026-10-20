@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Build every site into dist/<domain>/ (strict: any gate error blocks writing).
+// Build every site into dist/<domain>/ (strict: a site with a gate error is not written; an error with no site blocks all).
 // Usage: node scripts/build.js [--site guideomra.ma] [--today 2026-10-20] [--no-strict] [--verbose]
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -17,4 +17,8 @@ const res = await buildNetwork({
 printFindings(res.findings, { verbose: args.includes('--verbose') });
 for (const w of res.written) console.log(`built ${w.domain}: ${w.files} files`);
 console.log(`\n${res.pages.length} pages, ${res.errors.length} errors, ${res.warnings.length} warnings. Report: ${path.relative(process.cwd(), path.join(opt('--out') ? path.resolve(opt('--out')) : path.join(root, 'dist'), '_reports', 'gates.json'))}`);
-if (res.errors.length) { console.error(res.written.length ? 'Gate errors (written anyway: --no-strict).' : 'Build blocked by gate errors.'); process.exit(1); }
+if (res.errors.length) {
+  const strict = !args.includes('--no-strict');
+  console.error(strict ? `Gate errors: ${res.blocked.join(', ')} not written (the other sites were built).` : 'Gate errors (written anyway: --no-strict).');
+  process.exit(1);
+}

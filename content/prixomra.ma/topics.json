@@ -1,1 +1,31 @@
-[]
+[
+  {
+    "id": "px-fr-0001",
+    "lang": "fr",
+    "title": "Coût officiel du Hajj au Maroc : définitif et provisoire",
+    "slug": "cout-officiel-hajj",
+    "primary_keyword": "cout officiel hajj maroc",
+    "cluster": "cout_hajj_officiel",
+    "concept_id": "hajj_official_cost",
+    "type": "data",
+    "tier": "C",
+    "internal_links": [],
+    "sister_links": [],
+    "status": "queued",
+    "planned_at": "2026-10-20",
+    "planned_by": "seed",
+    "angle": "Le coût définitif du Hajj 1447 et le montant provisoire du Hajj 1448 pour les pèlerins encadrés par le ministère, avec leurs sources et ce qui reste à confirmer.",
+    "outline": [
+      "Le coût définitif du Hajj 1447",
+      "Le montant provisoire du Hajj 1448",
+      "Comment lire ces deux chiffres",
+      "Ce qui n’est pas encore publié"
+    ],
+    "facts_needed": [
+      "fact_hajj_1447_final_cost",
+      "fact_hajj_1448_provisional_cost"
+    ],
+    "cta_topic": "Question sur le budget du Hajj",
+    "notes": "Aucune extrapolation de prix."
+  }
+]

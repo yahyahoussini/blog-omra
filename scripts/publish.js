@@ -1,6 +1,7 @@
 #!/usr/bin/env node
-// Build every site (strict gates), deploy the sites whose output changed to Cloudflare Pages, ping IndexNow for
-// new/changed/removed URLs, and record the deployed state in data/ledger/published.json.
+// Build every site (strict gates, per site), deploy the clean sites whose output changed to Cloudflare Pages, ping
+// IndexNow for new/changed/removed URLs, and record the deployed state in data/ledger/published.json.
+// A site with a gate error is not deployed (its previous version stays live); the other sites still are.
 // Usage: node scripts/publish.js [--dry-run] [--site guideomra.ma] [--today YYYY-MM-DD] [--root dir]
 // Deploys only when CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID are set; otherwise skips with a message.
 import path from 'node:path';
@@ -19,9 +20,12 @@ const cadence = readJSON(p.cadence);
 
 if (cadence.paused) { console.log('publish: paused in config/cadence.json, nothing deployed.'); process.exit(0); }
 
+// Pinned wrangler release (exact version, run through npx so npm ci stays light). Update it deliberately.
+const WRANGLER = 'wrangler@4.147.0';
+
 const res = await buildNetwork({ root, today });
 printFindings(res.findings);
-if (res.errors.length) { console.error(`publish: ${res.errors.length} gate error(s): nothing built, nothing deployed.`); process.exit(1); }
+if (res.blocked.length) console.error(`publish: gate errors block ${res.blocked.join(', ')}: not built, not deployed (previous version stays live).`);
 
 // Fingerprint of a site's output, and of each indexable HTML URL.
 const fileToUrl = f => '/' + f.replace(/index\.html$/, '');
@@ -43,6 +47,7 @@ let failures = 0, deployed = 0;
 
 for (const site of res.project.sites.values()) {
   if (args.site && site.domain !== args.site) continue;
+  if (res.blocked.includes(site.domain)) continue;
   const files = res.outputs.get(site.domain);
   if (!files?.size) continue;
   const fp = fingerprint(files);
@@ -54,7 +59,7 @@ for (const site of res.project.sites.values()) {
   if (dryRun || !canDeploy) continue;
 
   const dir = path.join(root, 'dist', site.domain);
-  const run = spawnSync('npx', ['--yes', 'wrangler', 'pages', 'deploy', dir, `--project-name=${site.meta.cf_project}`, '--branch=main'], { stdio: 'inherit', env: process.env, cwd: root });
+  const run = spawnSync('npx', ['--yes', WRANGLER, 'pages', 'deploy', dir, `--project-name=${site.meta.cf_project}`, '--branch=main'], { stdio: 'inherit', env: process.env, cwd: root });
   if (run.status !== 0) { failures++; console.error(`${site.domain}: deploy failed (exit ${run.status}); the previous version stays live.`); continue; }
   deployed++;
 
@@ -71,5 +76,5 @@ for (const site of res.project.sites.values()) {
   };
   writeJSON(p.ledger, ledger);
 }
-console.log(`\npublish: ${deployed} site(s) deployed, ${failures} failed${dryRun ? ' (dry run)' : ''}.`);
-process.exit(failures ? 1 : 0);
+console.log(`\npublish: ${deployed} site(s) deployed, ${failures} failed, ${res.blocked.length} blocked by gate errors${dryRun ? ' (dry run)' : ''}.`);
+process.exit(failures || res.blocked.length ? 1 : 0);
