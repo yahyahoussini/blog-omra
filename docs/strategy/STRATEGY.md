@@ -1,12 +1,14 @@
 # Omra Network Strategy — serving wikitours.ma
 
+> **Client decisions (2026-10-20) override parts of this document — read [`DECISIONS.md`](DECISIONS.md) first.** In short: all 8 sites are built, 3 posts/day/site fully automated with a ramp and kill-switches, sister links up to 2 per post, wikitours.ma never touched.
+
 > **Status & assumptions (read first)**
-> - **Date:** 2026-10-20. Final strategy v1.
+> - **Date:** 2026-10-20. Final strategy v1.1 (review fixes applied the same day).
 > - **wikitours.ma is not yet audited.** We could not open its pages. Everything we know comes from Google's index (site: search on 2026-10-20). Real prices, offices outside Casablanca, team, reviews, Google Business Profile, backlinks, traffic and platform are **UNKNOWN**.
 > - **Semrush data is pending.** Every keyword in this document is a **PLACEHOLDER**. There are no search volumes anywhere in this document, because we have none.
 > - **ASSUMPTION (to confirm in D3): we have no access to wikitours.ma.** This is not in the client decisions we were given; it is our working assumption. We never edit wikitours.ma. Because it is the domain most likely to rank for Ramadan 2027, work on it is a **client-owned track with dates** (§4.6), not an optional extra.
 > - **ASSUMPTION (to confirm in D3): you want full automation with about one weekly human check.** This is also not in the client decisions we were given (static HTML + CSS, Node.js, 10 keywords/site, 3 posts/day/site, cross-linking, Merchant Center). §16 says honestly why prose review needs more human time than that: about 2 h/week from you, plus a part-time editor to go beyond 3-4 posts a week.
-> - **Plan date:** Wave 1 on **9-15 Nov 2026**, only if the written P0 checklist (§2) is complete by **Fri 30 Oct**. Otherwise it moves week by week.
+> - **Plan date:** Wave 1 on **9-15 Nov 2026**, only if the written P0 checklist (§2.6) is complete by **Fri 30 Oct**. Otherwise it moves week by week.
 > - All code is JavaScript (Node.js). Sites are static HTML + CSS.
 
 **Labels used in this document**
@@ -141,6 +143,17 @@ Priority: **P0** blocks the Wave 1 launch. P0 inputs are needed by **Fri 30 Oct 
 | E1 | One-time review by a Moroccan lawyer. Laws to check (names given for the lawyer; their texts are **NOT RESEARCHED** here): (1) **Loi 31-08** on consumer protection, including any rules on comparative and misleading advertising (price observatory, comparisons, a CTA next to competitor prices); (2) **Loi 09-08** and the **CNDP** on personal data (WhatsApp chats, lead sheet, optional webhook; whether a declaration or authorisation is needed is UNVERIFIED); (3) **Law 11-16** on travel agencies, its rules on advertising and online/distance sales [L] ([EcoActu](https://ecoactu.ma/?p=17467)); (4) defamation and unfair-competition exposure in fraud content and when naming agencies; (5) reuse terms of the ministry list; (6) disclosure wording | Coded **`legal_ok` gate** (§5.4): the build refuses prixomra, any comparison page and any agenceomra page naming an agency until config holds a lawyer sign-off date. | P1 (before Wave 2); P0 for offresomra |
 | E2 | Your time (ESTIMATE): Wave 1 pillars ≈ 5-7 h of review; all ≈ 64 launch pages ≈ 16-21 h of named-reviewer time at 15-20 min/page (religious and Arabic reviewer time is separate, §16.4); then ≈ 2 h/week on average + fast-lane approvals | Every prose page gets a full human read. | P0 |
 | E3 | A **part-time Moroccan editor** (FR, ideally also AR), ≈ 5-6 h/week, who fully reads and signs prose posts | At ≈ 15 min/post (ESTIMATE), you alone can fully review only ≈ 3-4 prose posts a week. The editor is the condition for L1 (≈ 12-16 posts/week). Cost UNKNOWN. | P0 for L1; without it the network stays at owner-only volume |
+
+### 2.6 Written P0 checklist (go / no-go on Fri 6 Nov for the 9-15 Nov plan date)
+
+- [ ] A1 legal identity and Casablanca address; A3 Omra/Hajj labelling answer; A5 WhatsApp number and who answers it; A6 link targets; A7 Ramadan 2027 offer data (or WhatsApp-only CTAs until it exists).
+- [ ] A2 licence proof, **or** the licence stays hidden at launch (legal name and address only).
+- [ ] B1: at least one named reviewer, plus the Arabic reviewer before any AR page and the religious reviewer before any ritual page; B4 logos.
+- [ ] C1: Semrush R0 + R2 + manual SERP check received (Wed 28 Oct).
+- [ ] D1-D6 access done, including wikitours.ma in Search Console (M1) and the domain-history results.
+- [ ] E3 editor in place, **or** written acceptance of owner-only volume (≈ 3-4 prose posts/week).
+- [ ] Decisions D1-D5 and D19 answered (or defaults accepted in writing).
+- [ ] Engine MVP passes its tests; facts gate calibrated on 20 real drafts.
 
 ---
 
@@ -472,7 +485,7 @@ The weekly report carries a « money-site track » line (done / late), so this w
 - **Problem:** no Rabat office is known. A Rabat site funnelling to wikitours.ma is the textbook doorway case.
 - **Now:** **301 to voyageomra.ma's Rabat-Salé airport section** (after D6), where the genuine Rabat facts live (flynas Rabat-Jeddah; Makkah Route at RBA, Hajj 2026 only).
 - **Build only on written confirmation** of RBA departures sold by Wiki Tours **or** a staffed Rabat presence (A4). Decision default by **22 Nov 2026**: keep the 301.
-- **If built later:** same model as omracasablanca, with the real Rabat presence shown honestly. Never imply an office that does not exist (« Wiki Tours est basée à Casablanca »). No LocalBusiness markup. Design: Oudayas blue and white, Andalusian garden motifs.
+- **If built later:** the same strict rules as an omracasablanca override (§5.6), with the real Rabat presence shown honestly. Never imply an office that does not exist (« Wiki Tours est basée à Casablanca »). No LocalBusiness markup. Design: Oudayas blue and white, Andalusian garden motifs.
 
 ---
 
@@ -482,16 +495,17 @@ The weekly report carries a « money-site track » line (done / late), so this w
 
 ```
 Semrush CSVs (R0-R4, Morocco DB)  +  Search Console queries (from week 4)  +  WhatsApp questions (anonymised)
-  → ingest (file-name contract, header aliases, "n/a" kept as null, never imputed)
+  → ingest (file-name contract, header aliases, "n/a" kept as null, never imputed;
+            reference files — or-pages, or-competitors, serp-manual — parsed without a Keyword column, kept out of the registry)
   → normalise FR/AR → match_key (oumra/umrah/عمرة → omra; hadj/haj → hajj; diacritics and years removed)
   → KEYWORD REGISTRY (one JSON file, schema-validated; human decisions replayed from decisions.jsonl)
-  → reserve wikitours.ma topics (from its Organic Research export R2 + its known URLs + §4.2)
+  → reserve wikitours.ma concepts, in every language (from its Organic Research export R2 + its known URLs + §4.2)
   → cluster (licensed SERP overlap; lexical fallback + human confirmation)
   → assign each cluster to ONE owner site (by charter); ambiguous → "unassigned" decision card
   → brief queue → cannibalisation guard at publish → weekly GSC feedback → new long-tail candidates
 ```
 
-Prototype modules (ingest, normalise, cluster, cannibalisation guard, schemas) are tested on synthetic data only, in `/tmp/claude-0/-home-user-blog-omra/bdf83659-de4f-5356-99c2-6f27ba7b310e/scratchpad/proto/`. They move into `packages/keywords/` in week 2.
+Prototype modules (ingest, normalise, cluster, cannibalisation guard, schemas) are tested on synthetic data only, in `/tmp/claude-0/-home-user-blog-omra/bdf83659-de4f-5356-99c2-6f27ba7b310e/scratchpad/proto/`. On 2026-10-20 the ingester was extended to accept every file type the Semrush brief names (reference reports, `kgap_sets.txt` conversion, R0 columns, subfolder slugs), with one synthetic file per type tested. They move into `packages/keywords/` in week 2.
 
 ### 6.2 Semrush exports
 
@@ -505,7 +519,7 @@ The exact, step-by-step export brief is in **`docs/strategy/SEMRUSH-BRIEF.md`**.
 | R3 | Keyword Gap (Missing / Untapped / All) | Gaps to give to satellites vs the money site |
 | R4 | Position Tracking (weekly) | Main-keyword rank monitoring |
 
-Cadence: R0-R3 at kickoff, a refresh around 30 Nov 2026 (≈ 10 weeks before Ramadan), then quarterly. R4 weekly. Exact current Semrush column headers are UNVERIFIED, so the ingester maps known aliases, rejects files without a Keyword column, and reports unknown columns.
+Cadence: R0-R3 at kickoff, a refresh around 30 Nov 2026 (≈ 10 weeks before Ramadan), then quarterly. R4 weekly. Exact current Semrush column headers are UNVERIFIED, so the ingester maps known aliases, rejects **keyword** files without a Keyword column, parses reference files (Pages, Competitors, manual SERP) separately, and reports unknown columns.
 
 ### 6.3 The 10-main-keyword rule
 
@@ -513,7 +527,7 @@ Cadence: R0-R3 at kickoff, a refresh around 30 Nov 2026 (≈ 10 weeks before Ram
 2. A keyword can be "main" for only one site network-wide (unique by `match_key`; e.g. "omra ramadan 2027" = "oumra du ramadan 2026").
 3. It can **never** be a wikitours.ma-reserved topic (§4.2). The ingester rejects it and proposes a replacement.
 4. **Validation before acceptance:** (a) it fits the site's job; (b) its SERP type matches what the site can win (an info site will not win a local-pack or airline-booking SERP); (c) it does not overlap another site's main-keyword cluster. Rejections are logged with a reason.
-5. Main keywords get Position Tracking and a dashboard row: **60 active main keywords** at launch (6 sites × 10).
+5. Main keywords get Position Tracking and a dashboard row: **30 at Wave 1** (3 sites × 10), **up to 50 after Wave 2** (5 sites; more only if held sites relaunch).
 6. **Partner signal:** if you cannot find 10 distinct, job-matching main keywords for a site, its job is too narrow. That site is a merge candidate.
 
 ### 6.4 Clustering
@@ -524,20 +538,24 @@ Cadence: R0-R3 at kickoff, a refresh around 30 Nov 2026 (≈ 10 weeks before Ram
 
 ### 6.5 Cannibalisation guard
 
-**Before publishing (blocking), same language, across all sites + known wikitours.ma URLs:**
+**Before publishing (blocking), across all sites + known wikitours.ma URLs:**
 - the primary keyword must be in the registry and owned by this site (reserved → blocked, link suggested instead);
+- **reserved concepts are language-agnostic:** each cluster carries a `concept_id` shared across FR/AR/EN, and a reserved concept is blocked on every satellite in every language;
+- **one owner site per concept:** AR versions exist only on the site that owns the FR concept, linked by `translation_key`;
 - one URL per `match_key`; one URL per cluster (a new angle becomes an **update** to the existing URL);
 - SERP overlap ≥ 4/10 with any network URL blocks;
-- title token Jaccard ≥ 0.6 blocks;
-- body 5-word-shingle Jaccard ≥ 0.5 blocks (this one runs across all sites **and** languages).
+- title token Jaccard ≥ 0.6 blocks (same language);
+- body 5-word-shingle Jaccard ≥ 0.5 blocks (same language; shingles do not work across languages, so cross-language duplication is caught by `concept_id`). Template boilerplate is stripped before shingles and SimHash are computed, so real duplicates still show;
+- **launch pages too:** every Wave 1 and Wave 2 page is entered in the registry by hand and passes this guard **before it is written**.
 
 **After publishing (weekly, from Search Console):** a query where ≥ 2 network URLs (or a network URL + wikitours.ma) each hold ≥ 20% of impressions over 28 days, with alternating positions, goes on the cannibalisation list. Suggested fixes: merge + 301, de-optimise, or relink. Thresholds are design choices.
 
 ### 6.6 Long tail, Arabic and Darija
 
 - **Long-tail sources:** R1 broad match and Questions (R1q), Keyword Gap (R3), Search Console "orphan queries" (impressions but no owner page; proposed weekly as new clusters), and real WhatsApp questions (C5). Each new cluster needs a registry owner before any brief is written.
-- **Language split:** no public data exists on whether Moroccans search Omra in French, Arabic or Darija. A survey reports Darija spoken by 100% of respondents but written by only 39%, and French fluency at 19% [L] ([Hespress](https://en.hespress.com/112190-112190.html)). **Decide the root language from Semrush MA and Search Console data.** Default: FR root, AR under `/ar/`.
+- **Language split:** we found no public data on whether Moroccans search Omra in French, Arabic or Darija. A survey reports Darija spoken by 100% of respondents but written by only 39%, and French fluency at 19% [L] ([Hespress](https://en.hespress.com/112190-112190.html)). **Decide the root language from Semrush MA and Search Console data.** Default: FR root, AR under `/ar/`.
 - **No full Arabic mirror.** AR versions for pillars and for clusters where Semrush or Search Console show real Arabic volume. A full mirror doubles review load.
+- **Arabic production:** AR pages are drafted in Modern Standard Arabic from the same approved facts and **never publish without the named Arabic reviewer's full read**. Reviewer time ESTIMATE ≈ 15-20 min per AR page (≈ 15 AR launch pages ≈ 4-5 h), then ≈ 1 h/week at L1. Who drafts and reviews MSA is decision D8.
 - **hreflang:** `fr-MA` / `ar-MA` / `x-default`, only between true equivalents on the **same** site, reciprocal ([Google](https://developers.google.com/search/docs/specialty/international/localized-versions)).
 - **Darija** has no ISO 639-1 code (`ary`), so it cannot be its own hreflang value. Arabic-script Darija uses `ar-MA`. Latin-script Darija queries (e.g. "3omra", PLACEHOLDER) stay in FR clusters, flagged for review, using only spellings that appear in Semrush or Search Console — **we never invent spellings**. Darija goes first to WhatsApp and video scripts; Darija pages only if Search Console shows real impressions.
 
@@ -546,12 +564,14 @@ Cadence: R0-R3 at kickoff, a refresh around 30 Nov 2026 (≈ 10 weeks before Ram
 | Site | Placeholder candidates (FR / AR) |
 |---|---|
 | omra-ramadan.ma | omra ramadan 2027 · date ramadan 2027 maroc · visa omra ramadan date limite · omra 10 dernières nuits · عمرة رمضان 2027 |
-| guideomra.ma | étapes de la omra · documents omra maroc · vaccin méningite omra · permis rawdah nusuk · مناسك العمرة · hajj 2028 maroc calendrier |
+| guideomra.ma | étapes de la omra · documents omra maroc · vaccin méningite omra · permis rawdah nusuk · مناسك العمرة · hajj 2028 maroc calendrier ⚑ |
 | agenceomra.ma | agence omra agréée maroc · vérifier agence de voyage agréée · arnaque omra · contrat omra · وكالة عمرة معتمدة |
-| prixomra.ma | prix omra 2027 maroc · prix omra ramadan · combien coûte la omra · ثمن العمرة المغرب · coût hajj maroc |
+| prixomra.ma | prix omra 2027 maroc · prix omra ramadan · combien coûte la omra · ثمن العمرة المغرب · coût hajj maroc ⚑ |
 | voyageomra.ma | vol omra depuis le maroc · vol rabat jeddah · liste valise omra · chaleur omra conseils · لوازم العمرة |
-| omracasablanca.ma | omra départ casablanca · aéroport mohammed v terminal 3 omra |
+| omracasablanca.ma (hold; CMN topics go to voyageomra) | omra départ casablanca ⚑ · aéroport mohammed v terminal 3 omra |
 | **Reserved for wikitours.ma** | wiki tours · bab makka · gammes omra économique vip · inscription hajj agence · quota hajj agences · que visiter médine ziyara · agence omra casablanca (likely a local-pack SERP: verify) |
+
+⚑ = sits next to a reserved wikitours.ma intent (Hajj via agency/quota; « agence omra casablanca »). Its `match_key` differs from the reserved one, so only a SERP check shows the overlap: it stays `unassigned` until that check or your decision is recorded.
 
 ---
 
@@ -573,10 +593,11 @@ The machine **can** produce 24 drafts a day. That is not the constraint. The rea
 
 | Level | Network posts/week | Human review needed (ESTIMATE) | Move up only if… |
 |---|---|---|---|
-| L0 launch | Launch pages only (Wave 1 ≈ 49, Wave 2 ≈ 34, plus trust pages) | ≈ 14 h total over 3 weeks | Charters signed, facts registry v1 approved |
-| **L1 (start)** | **20-25** | You, 60 min/week (light review — see §16.4) | — |
-| L2 | 35-50 | ≈ 2-3 h/week (you or a part-time Moroccan editor) | Unlock criteria below, 4 consecutive weeks |
-| L3 | 70-100 | ≈ 5 h/week of reviewer time | L2 green for 8 weeks + unlock criteria |
+| L0 launch | Launch pages only (Wave 1 ≈ 40, of which ≈ 20 FR pillars go first; Wave 2 ≈ 24; plus trust pages) | ≈ 16-21 h of named-reviewer time at 15-20 min/page (Wave 1 pillars ≈ 5-7 h). Arabic and religious reviewer time on top (§16.4) | Charters signed, facts registry v1 approved, P0 checklist complete |
+| **L1a (owner only)** | **≈ 3-4 prose posts** + data-table updates | You: ≈ 45-60 min/week of full reads, inside ≈ 2 h/week in total | Default if there is no editor |
+| **L1 (start, with editor)** | **≈ 12 in Nov (Wave 1), ≈ 16 from Dec; ceiling 25** | Part-time Moroccan editor ≈ 5-6 h/week (E3) + you ≈ 2 h/week | Editor in place and trained on the rubric |
+| L2 | 35-50 | ≈ 9-13 h/week of reviewer time at 15 min/post | Unlock criteria below, 4 consecutive weeks |
+| L3 | 70-100 | ≈ 18-25 h/week of reviewer time | L2 green for 8 weeks + unlock criteria |
 | L4 = your plan | 168 (3/day × 8) | ≈ 42 h/week at 15 min/post | **Not recommended.** Only if L3 has been green 12 weeks and Semrush shows enough distinct intents |
 
 **Unlock criteria per site** (automatic check, all required for **4 consecutive weeks**):
@@ -591,13 +612,13 @@ The machine **can** produce 24 drafts a day. That is not the constraint. The rea
 
 Scale-up always needs your approval. Scale-down is automatic (§16.5).
 
-**L1 split:** Nov: omra-ramadan 7/wk, guideomra 6/wk, agenceomra 3/wk. From Dec add prixomra 1/wk (+ monthly snapshot), voyageomra 3/wk, omracasablanca 1/wk. Total ≈ 21/week.
+**L1 split:** Nov: omra-ramadan ≤ 3/wk, guideomra 6/wk, agenceomra 3/wk (≈ 12). From Dec add prixomra 1/wk (+ monthly snapshot, a data page) and voyageomra 3/wk (≈ 16). After R1, omra-ramadan's cadence is set from registry supply: it rises only if ≥ 30 days of unique unassigned clusters exist ahead. Any spare effort goes into updating the deadline tracker in place. Owner-only (L1a): the 3-4 weekly prose posts go to the site with the nearest deadline.
 
-**Partner suggestion:** to scale, buy **review capacity** (a part-time editor, 1 h/day), not domains.
+**Partner suggestion:** to scale, buy **review capacity** (E3: a part-time editor, ≈ 5-6 h/week for L1; more for L2+), not domains.
 
 ### 7.3 Content types and templates
 
-Every page uses an **answer-first template**:
+Every page uses an **answer-first template** (labels and their order vary per site theme, §5):
 1. H1 + « Réponse courte » (40-60 words) with the key fact and its date.
 2. « À retenir » table (dates, amounts, requirements) from registry facts only.
 3. Sections with question-style H2s in the reader's language.
@@ -613,26 +634,26 @@ Every page uses an **answer-first template**:
 | Supporting how-to / checklist | C | 800 | Numbered steps, ≥ 1 source, ≥ 3 internal links | Weekly batch approval |
 | Questions hub / glossary page | C | 600 | Grouped Q&A linking to owner pages (no thin single-question pages) | Weekly batch approval |
 | Local logistics | A first time, then C | 800 | Verified local fact or real photo | Weekly approval |
-| Price snapshot | B | 600 | Dataset ≤ 30 days old, n shown, table, method link | **Auto** (data human-verified at capture) |
-| Offer page (if offresomra launches) | B | 300 | Offer record valid today, licence, source, expiry | **Auto** |
-| Fact-table update (dates, deadlines) | B | — | Changed registry fact + official source | **Auto** after the fact is approved |
-| News update (official announcement) | B (templated) | 350 | What changed, official link, what it means, update log | **Fast lane** (§16.3) |
+| Price snapshot | B | — (no floor) | Table values on the **stable series URL**; dataset ≤ 30 days old, n shown, method link | **Auto for table values only** (data human-verified at capture). Any commentary prose goes through the approval queue |
+| Offer record (if offresomra launches) | B | — | Offer record valid today, licence, source, expiry | **Auto for the record** |
+| Fact-table update (dates, deadlines) | B | — | Changed registry fact + official source, updated in place on a stable URL | **Auto** after the fact is approved |
+| Official announcement | B | — | A **dated changelog entry on the existing tracker** + the changed fact-table row. No new post, no free prose | **Fast lane** (§16.3). Any explanatory prose goes through the approval queue |
 
-Word floors are editorial, not ranking rules: Google has no preferred word count ([Google](https://developers.google.com/search/docs/fundamentals/creating-helpful-content)).
+Word floors are editorial, not ranking rules: Google has no preferred word count ([Google](https://developers.google.com/search/docs/fundamentals/creating-helpful-content)). Tier B has no word floor: data pages carry data, not padding.
 
 ### 7.4 Quality gate checklist (automated; any **error** blocks; a **warning** goes to the digest)
 
 | # | Gate | Rule |
 |---|---|---|
-| 1 | Front matter | Valid against the schema; real author ID or the Organisation; tier set; reviewer required to schedule |
-| 2 | **Facts gate** | Any sentence with a digit (Latin or Arabic-Indic) or a rule word (obligatoire, interdit, requis, gratuit, garanti, remboursé, quota, visa, vaccin, délai, date limite, واجب, ممنوع, إلزامي, مجاني, تأشيرة) must cite an **approved, unexpired** fact with `[[fact:id]]`. Every number must equal a value of the cited fact(s). **No digits in prose outside fact markers**, except fixed expressions in an approved-phrases file (e.g. « les 10 dernières nuits »). Code in §10.4 (tested). |
-| 3 | **Claims verifier** | A separate Claude API call lists every checkable claim and maps it to fact IDs. Any unmapped claim = error. One auto-revision, then discard + log. `[[MISSING: …]]` requests become fact candidates. |
+| 1 | Front matter | Valid against the schema; real author ID or the Organisation; tier set; `reviewed_by` (accepted only with `full_read: true`) required to schedule prose |
+| 2 | **Facts gate** | Any sentence with a digit (Latin or Arabic-Indic) or a rule word (Unicode-aware stems, so gender and plural forms count: obligatoir-, interdi-, exig-, requis/requise, gratuit-, garanti-, rembours-, quota, visa, vaccin-, délai, date limite, واجب, ممنوع, إلزامي, مجاني, تأشير-, مضمون, with ال- prefixes) must cite an **approved, unexpired** fact with `[[fact:id]]`. Every number must equal a value of the cited fact(s). **No digits in prose outside fact markers**, except fixed expressions in an approved-phrases file (e.g. « les 10 dernières nuits »). Code in §10.4 (tested). |
+| 3 | **Claims verifier** (from Wave 2; until then the full human read covers it) | A separate Claude API call lists every checkable claim and maps it to fact IDs. Any unmapped claim = error. One auto-revision, then discard + log. `[[MISSING: …]]` requests become fact candidates. |
 | 4 | **Religious text** | Qur'an verses, hadith and du'a must match an entry in `data/facts/kb/` exactly (with source), approved by the named religious reviewer. The generator never writes them from memory. |
 | 5 | Entity list | Agency names, airlines and official bodies must be on the registry's allowed-entity list |
 | 6 | Cannibalisation | §6.5 |
-| 7 | Duplicate | 5-shingle Jaccard ≥ 0.50 or SimHash-64 Hamming ≤ 3 against any network page blocks; 0.30-0.50 warns ([Manku et al. 2007](https://dl.acm.org/doi/10.1145/1242572.1242592); thresholds are design choices) |
+| 7 | Duplicate | 5-shingle Jaccard ≥ 0.50 or SimHash-64 Hamming ≤ 3 against any network page (trust pages included) blocks; 0.30-0.50 warns; template boilerplate is stripped first ([Manku et al. 2007](https://dl.acm.org/doi/10.1145/1242572.1242592); thresholds are design choices) |
 | 8 | Citations | ≥ 2 sources for guide / news / comparison / price report, ≥ 1 otherwise. Visa, Hajj and health rules must cite official sources (habous.gov.ma, haj.gov.sa, Nusuk). |
-| 9 | Links | ≥ 3 same-site links; ≤ 2 sister links; ≤ 1 wikitours.ma link; rel per §3.5; **0 exact-match commercial anchors** to wikitours.ma; all internal hrefs resolve; no orphans |
+| 9 | Links | ≥ 3 same-site links; ≤ 1 sister link; ≤ 1 wikitours.ma link; `nofollow` per §3.5; per-pair caps; no reciprocal page pairs; **0 exact-match commercial anchors** to wikitours.ma; all internal hrefs resolve; no orphans |
 | 10 | Disclosure | Any mention of Wiki Tours or Bab Makka → disclosure box present |
 | 11 | Seat / availability freshness | Seat or availability wording only from a Wiki Tours offer record with `as_of`; **hidden automatically if older than 7 days** |
 | 12 | Meta | Title 20-70 chars, description 70-160, both unique network-wide; one H1; `lang`/`dir`; self-canonical |
@@ -641,15 +662,18 @@ Word floors are editorial, not ranking rules: Google has no preferred word count
 | 15 | Schema | JSON-LD parses and matches visible text; no Event, no self-review stars, no LocalBusiness on satellites |
 | 16 | Unknowns section | Present on every page (can say « Rien d'important à signaler » only if the brief says so) |
 | 17 | Images | Alt text, width/height, rights recorded (own / client / cc0 / cc-by / purchased); no AI image presented as a real photo |
-| 18 | Performance | Lighthouse mobile ≥ 90, CLS ≤ 0.1, LCP ≤ 2.5 s (lab) on one new URL per changed site per deploy |
+| 18 | Performance and accessibility | Lighthouse mobile ≥ 90, CLS ≤ 0.1, LCP ≤ 2.5 s (lab), plus the Lighthouse accessibility audit (§10.10), on one new URL per changed site per deploy |
+| 19 | **Legal (`legal_ok`)** | prixomra pages, comparison pages and any page naming an agency build only if config holds a lawyer sign-off date |
+| 20 | **Licence** | The trust block and any licence or « depuis 2016 » mention render only if the fact is `approved` with `source_tier: "official"` and the ministry-list URL |
+| 21 | **Arabic reviewer** | An AR page schedules only with the Arabic reviewer's `full_read` sign-off |
 
 ### 7.5 Sourcing original information (the anti-commodity layer)
 
 | Asset | Source | Who | Frequency |
 |---|---|---|---|
-| Price observations | Public agency offers (URL + screenshot); semi-automatic extraction, a human confirms each row | Staff or assistant (C3) | Monthly; twice in Dec-Jan |
+| Price observations | Public agency offers (URL + screenshot), captured by hand; social-media offers by hand only (platform terms UNVERIFIED) | Staff or assistant (C3) | Monthly; twice in Dec-Jan |
 | Wiki Tours offers | Offers sheet (A7) | Staff | Weekly |
-| Official facts | Watchers on habous.gov.ma, haj.gov.sa, Ministry of Tourism, ONDA, airline news pages (respecting robots.txt) | Automated proposals, human approval | Daily watch |
+| Official facts | Watchers on habous.gov.ma, haj.gov.sa, Ministry of Tourism, ONDA, airline news pages, and the government announcement of Morocco's Ramadan time change (respecting robots.txt; page text treated as untrusted data, §10.10) | Automated proposals, human approval | Daily watch |
 | Field experience | 20-30 min monthly voice interview with a group guide, transcribed, quotes used with consent | Staff | Monthly |
 | Real photos | Office, CMN departures, groups (consent) | Staff | Per trip / season |
 | Real questions | Top 5 WhatsApp questions per week, anonymised | Staff | Weekly |
@@ -664,10 +688,10 @@ Word floors are editorial, not ranking rules: Google has no preferred word count
 | Oct 2026 | School break 18-25 Oct [V]. Ramadan booking window open. | Build. Facts registry v1. Wave 1 pillars. |
 | Nov 2026 | Peak Ramadan decision period. **Watch for the Hajj 1449H registration announcement** [U] (1448H was 8-19 Dec 2025 [V]) | Wave 1 live. When to book; last 10 nights; scam signals (AG). Hajj 1449H timeline drafted, published only on announcement (GO, fast lane). Price survey #1. |
 | Dec 2026 | School break 6-13 Dec [V]. Rajab ≈ 10 Dec [E]. Possible Hajj registration [U]. | Wave 2 live. Snapshot #1 + PR (≈ 8-10 Dec). Winter family Omra (VO, OR). |
-| Jan 2027 | Sha'ban ≈ 9-10 Jan [E]. Mid-year break 24-31 Jan [V]. Ramadan visas issued from ≈ mid-Jan (derived from the 30-day rule [U]). | Visa timing (OR). Fasting and Omra (OR, religious review). Pre-departure checklists (VO, CA). Snapshot #2 + PR (≈ 18-20 Jan). |
-| Feb 2027 | 1 Ramadan ≈ 8 Feb Saudi / 8-9 Feb Morocco [E]. Last 10 nights ≈ 26 Feb-8 Mar [E]. Hajj 1448H final cost possible [U] (1447H: 3 Mar 2026 [V]). | Live date updates (OR). Same-day Hajj cost update (PX, GO). |
+| Jan 2027 | Sha'ban ≈ 9-10 Jan [E]. Mid-year break 24-31 Jan [V]. Ramadan visas issued from ≈ mid-Jan (derived from the 30-day rule [U]). | Visa timing (OR). Fasting and Omra (OR, religious review). Pre-departure checklists (VO). Snapshot #2 + PR (≈ 18-20 Jan). |
+| Feb 2027 | 1 Ramadan ≈ 8 Feb Saudi / 8-9 Feb Morocco [E]. Last 10 nights ≈ evening of 27 Feb to 8 Mar (Saudi; Morocco possibly +1 day) [E]. Hajj 1448H final cost possible [U] (1447H: 3 Mar 2026 [V]). | Live date updates (OR). Same-day Hajj cost update (PX, GO). |
 | Mar 2027 | Eid al-Fitr ≈ 9-10 Mar [E]. **Visa issuance closes 9 Mar, entry closes 23 Mar [V].** Spring break 21-28 Mar [V] **cannot be used for Omra**. | Post-Ramadan price report (PR). Hajj preparation (GO). Contract checklist (AG). Wave 3 decisions (offresomra, omrarabat). OR to maintenance. |
-| Apr 2027 | Last departure 7 Apr [V]. Moroccan Hajj flights likely mid-Apr to mid-May [U] (2026: 91 outbound flights from 9 airports [V]). | Hajj logistics (VO, CA). Makkah Route only if confirmed for 2027. |
+| Apr 2027 | Last departure 7 Apr [V]. Moroccan Hajj outbound flights likely in May [U] (2026: 91 outbound flights from 9 airports [V], [TelQuel](https://telquel.ma/instant-t/2026/05/22/hajj-2026-londa-deploie-un-dispositif-special_1991022/); first outbound 1 May, last 21 May and 78 return flights 31 May-18 Jun per a search summary of [TelQuel, 9 Jun 2026](https://telquel.ma/instant-t/2026/06/09/hajj-1447-plus-de-11-000-pelerins-marocains-deja-rentres-78-vols-prevus-au-retour_1993201/) [L]). | Hajj logistics (VO). Makkah Route only if confirmed for 2027. |
 | May 2027 | Dhul Hijjah ≈ 7-8 May, Arafah ≈ 15-16, Eid al-Adha ≈ 16-17 May [E]. School break 9-16 May [V] (Hajj season, no Omra). 1449H Umrah season may open ≈ 20-21 May [U]. | Hajj day by day (GO). Summer Omra only after the Saudi 1449H calendar is published. Hajj domain decision (§17). |
 | Jun 2027 | 1 Muharram ≈ 5-6 Jun [E]. Ashura ≈ 14-15 Jun [E]. End of classes ≈ 2 Jul [U]. | Summer family Omra, heat safety (VO). Summer price snapshot (PX). Half-year audit. |
 | Jul 2027 | School holidays. 2027-28 school calendar expected [U]. | Departures logistics. Diaspora angle UNVERIFIED (check GSC country data). |
@@ -699,6 +723,7 @@ Word floors are editorial, not ranking rules: Google has no preferred word count
 - **By supply:** fewer than 30 days of unique clusters left → that site's cadence halves; zero → the generator idles.
 - **During a Google core or spam update rollout:** no scale-ups and no structural changes until it completes ([Search Status Dashboard](https://status.search.google.com/products/rGHU1u87FJnkP6W2GwMi/history)).
 - **Manually**, in the weekly review, whenever the sample finds an error pattern.
+- **By results (positive exit, DESIGN CHOICE):** a site with 0 attributed chats in its first 6 months live, or a cost per attributed chat above the threshold you set (D21), becomes a merge or retire candidate at the next audit (§14.3).
 
 ---
 
@@ -712,27 +737,25 @@ Word floors are editorial, not ranking rules: Google has no preferred word count
 - New posts get a link from an already-indexed hub on day one (a discovery lever).
 - One XML sitemap index + one RSS feed per language.
 
-### 8.2 Cross-network flow map (contextual only; ≤ 2 sister links per post)
+### 8.2 Cross-network flow map (contextual only; ≤ 1 sister link per post, `nofollow` by default)
 
-| From | Natural sister targets (only when the reader needs them) | Max share of posts with a wikitours.ma link |
+| From | Natural sister targets (only when the reader needs them) | Max share of posts with a wikitours.ma link (all `nofollow`) |
 |---|---|---|
 | guideomra | omra-ramadan (Ramadan specifics), agenceomra (choosing an agency), voyageomra (packing, flights), prixomra (cost question) | 30% |
 | omra-ramadan | guideomra (rituals), prixomra (Ramadan price data), voyageomra (Ramadan flights, heat) | 60% |
 | agenceomra | guideomra (what an agency must provide), prixomra (« ce prix est-il normal ? ») | 30%, nofollow |
-| prixomra | agenceomra (check the licence before paying), omra-ramadan (when Ramadan falls) | 60%, nofollow |
-| voyageomra | guideomra (ihram, documents), omracasablanca (CMN day), omra-ramadan | 30% |
-| omracasablanca | voyageomra (flights), guideomra (documents), agenceomra | 60% |
+| prixomra | agenceomra (check the licence before paying), omra-ramadan (when Ramadan falls) | 20%, never inside tables |
+| voyageomra | guideomra (ihram, documents), omra-ramadan | 30% |
 
 **Network guardrails (design choices):**
 - Links point to the cluster owner page, not homepages.
-- A site links to any single sister on ≤ 25% of its posts per month.
+- From launch: a site links to any single sister on ≤ 25% of its posts per month, and ≤ 3 links per sister pair per week.
 - No sitewide sister lists. One `/editeur/` page per site lists the network with `nofollow`. Cutts (2013) warned against linking all your domains in a footer [L] ([Search Engine Land](https://searchengineland.com/?p=157141)).
-- Gate warning when A→B and B→A links are added between the same pages in the same week.
-- If any site's inbound sister links exceed 50% of its referring domains after month 6, sister linking to it pauses.
+- Reciprocal page pairs (A→B and B→A between the same two pages) are blocked by the gate, not just warned.
 
 ### 8.3 Links to wikitours.ma
 
-Rules in §3.5: ≤ 1 per post, share caps, followed only on editorial sites, `nofollow` on listing/comparison sites and templates, **0% exact-match commercial anchors**, one-flag switch to all-nofollow. The value we expect is **leads and referral visits**. How Google weighs links inside a disclosed same-owner network is UNKNOWN, so **wikitours.ma must never depend on satellite links**, and link volume to it stays small so a network problem cannot create a large unnatural-link pattern pointing at the money site.
+Rules in §3.5: ≤ 1 per post, share caps, **`nofollow` by default on every satellite → wikitours.ma link** (editorial sites included), **0% exact-match commercial anchors**. The value we expect is **leads and referral visits**; a followed link adds nothing to that. How Google weighs links inside a disclosed same-owner network is UNKNOWN, and even at L1 a year of followed links from new .ma domains would add up to several hundred same-owner links pointing at one money site we cannot inspect or repair. So **wikitours.ma must never depend on satellite links**. `follow` is revisited only after 6 months of clean Search Console data on wikitours.ma (M1).
 
 ### 8.4 Outbound authority links (followed — they are citations)
 
@@ -754,7 +777,7 @@ Rules in §3.5: ≤ 1 per post, share caps, followed only on editorial sites, `n
 
 **Rules:**
 - No bought links, no link exchanges, no guest-post schemes. Any sponsored placement carries `rel="sponsored"` and disclosure.
-- At most one data story per month. Each needs the survey threshold (≥ 20 offers, ≥ 8 agencies).
+- At most one data story per month. Each needs the survey threshold (40+ offers target, ≥ 8 licensed agencies, every published cell n ≥ 8) and `legal_ok`.
 - Expect journalists to treat the observatory as agency content. The method page and raw CSV are what make it citable anyway.
 
 ---
@@ -762,7 +785,7 @@ Rules in §3.5: ≤ 1 per post, share caps, followed only on editorial sites, `n
 ## 9. GEO / AEO playbook
 
 **Principle:** "good SEO is good GEO" (Sullivan) [L] ([Search Engine Land](https://searchengineland.com/google-danny-sullivan-good-seo-good-geo-461464)).
-- AI Overviews and AI Mode need an indexed, snippet-eligible page, and nothing more technically; they use "query fan-out" ([Google](https://developers.google.com/search/docs/appearance/ai-features)), so covering adjacent questions inside a cluster helps.
+- AI Overviews and AI Mode need an indexed, snippet-eligible page, and nothing more technically; they use "query fan-out" ([Google](https://developers.google.com/search/docs/appearance/ai-features)), so covering adjacent questions inside a cluster probably helps (our inference; Google does not say it increases citation).
 - Google does not use llms.txt; "chunking" and AI-only files are unnecessary; optimising mainly to manipulate AI answers is scaled content abuse ([Google AI optimization guide](https://developers.google.com/search/docs/fundamentals/ai-optimization-guide)).
 - AI Overviews support Arabic ([Google](https://blog.google/products/search/ai-overview-expansion-may-2025-update/)); AI Mode lists Morocco [L] ([Google help](https://support.google.com/websearch/answer/16011537?hl=en)).
 - An Ahrefs 2026 study found 38% of AI Overview citations rank in the organic top 10 (method changed vs 2025, not comparable) [L] ([DesignRush](https://news.designrush.com/ai-overview-citations-drop-ahrefs)). Ranking matters, but is not everything.
@@ -787,7 +810,7 @@ Microsoft advises descriptive headings, clear Q&A, lists and tables, and warns a
 
 ### 9.3 Speed on official moments
 
-The fast lane (§16.3) is our main AEO lever: watcher detects a change → you approve the fact on your phone → a templated update is live ≤ 6 h after approval.
+The fast lane (§16.3) is our main AEO lever: watcher detects a change → you approve the fact on your phone → the fact-table row and a dated changelog entry on the existing tracker are live ≤ 6 h after approval (no new post).
 
 ### 9.4 AI crawlers (robots.txt baseline, every site)
 
@@ -825,7 +848,19 @@ Schema helps entity understanding (§4.3); there is no "AI schema", and markup m
 | AI Overviews / AI Mode impressions | Search Console gen-AI performance report ([Google, June 2026](https://developers.google.com/search/blog/2026/06/gen-ai-performance-reports)) | API availability UNKNOWN; read in the UI weekly |
 | Copilot / Bing AI citations, grounding queries | Bing AI Performance report ([Bing](https://blogs.bing.com/webmaster/February-2026/Introducing-AI-Performance-in-Bing-Webmaster-Tools-Public-Preview)) | No click data |
 | ChatGPT referrals | `utm_source=chatgpt.com` in `/go/` logs and Cloudflare analytics referrers | Partial |
-| **Monthly prompt panel** | 40 fixed questions (20 FR, 20 AR; PLACEHOLDER set) + 4 entity questions (« Qui est Wiki Tours International ? ») in ChatGPT, Perplexity, Gemini, Google AI Mode, Copilot. Log cited yes/no, which URL, and whether entity answers are correct. | ≈ 30 min manual. API answers differ from consumer apps, so any API automation is only a proxy. No reliable measurement exists (UNKNOWN). Never scrape consumer UIs. |
+| **Monthly prompt panel** | 6 prompts per active site (FR + AR, mapped to owned clusters; draft below) + 4 entity prompts, in ChatGPT, Perplexity, Gemini, Google AI Mode, Copilot. Log cited yes/no, which URL, and whether entity answers are correct. | ≈ 30 min manual. API answers differ from consumer apps, so any API automation is only a proxy. No reliable measurement exists (UNKNOWN). Never scrape consumer UIs. |
+| **Bing grounding queries per site** | Bing AI Performance report | Recorded weekly per site and compared with the site's owned clusters |
+
+**Draft prompt panel** (prompts, not keywords; no search volume implied; refine after Semrush):
+
+| Site | Prompts |
+|---|---|
+| omra-ramadan | « date limite visa omra ramadan 2027 » · « quand réserver une omra pour le ramadan 2027 depuis le Maroc » · « dates du ramadan 2027 au Maroc et en Arabie saoudite » · « omra pendant les 10 dernières nuits du ramadan 2027 » · « آخر أجل لتأشيرة العمرة رمضان 2027 » · « متى يبدأ رمضان 2027 في المغرب » |
+| guideomra | « étapes de la omra pour un Marocain » · « vaccin exigé pour la omra 2027 » · « comment obtenir un permis Rawdah sur Nusuk » · « documents pour la omra depuis le Maroc » · « مناسك العمرة خطوة بخطوة » · « وثائق العمرة من المغرب » |
+| agenceomra | « comment vérifier qu'une agence omra est agréée au Maroc » · « signes d'arnaque omra » · « que doit contenir un contrat omra » · « omra avec une agence ou réservation directe sur Nusuk » · « كيف أتحقق من وكالة عمرة معتمدة في المغرب » · « علامات النصب في العمرة » |
+| prixomra | « prix omra ramadan 2027 Maroc » · « combien coûte une omra depuis le Maroc » · « coût final du hajj 1447 au Maroc » · « pourquoi la omra coûte plus cher pendant le ramadan » · « ثمن العمرة في المغرب » · « تكلفة الحج في المغرب » |
+| voyageomra | « départ omra aéroport Mohammed V » · « vol direct Rabat Jeddah » · « liste valise omra » · « omra avec des parents âgés conseils » · « لوازم العمرة » · « رحلات مباشرة من المغرب إلى جدة » |
+| Entity (4) | « Qui est Wiki Tours International ? » · « Bab Makka omra avis » · « Wiki Tours Casablanca est-elle une agence agréée ? » · « من هي وكالة Wiki Tours International ؟ » |
 
 **Never:** hidden text for LLMs, AI-only pages, keyword-stuffed "AI summaries".
 
@@ -835,6 +870,8 @@ Schema helps entity understanding (§4.3); there is no "AI schema", and markup m
 
 Third-party limits below were documented at the research cutoff (June 2026) and not re-checked today: re-verify before the build.
 
+**Code format.** All code is JavaScript, written as **ES modules** (`"type": "module"`) in every package and in the Pages Functions, so a shared helper imports cleanly everywhere. (The tested prototypes are CommonJS; they are converted when they move into `packages/` in week 2.) The only non-JavaScript files are data and config (JSON, robots.txt, JSON-LD) and the GitHub Actions workflow YAML, which holds trigger config only: each step calls `node scripts/…`.
+
 ### 10.1 Stack and hosting
 
 | Layer | Choice | Notes |
@@ -843,7 +880,7 @@ Third-party limits below were documented at the research cutoff (June 2026) and 
 | Repo / CI | Private GitHub monorepo (npm workspaces), GitHub Actions | Cron runs in UTC; runs can be delayed at the top of the hour, so we use off-hour minutes [L] ([GitHub docs](https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows#schedule)) |
 | Hosting | **Cloudflare Pages Free**, one project per site, Direct Upload via `wrangler pages deploy` from Actions | 500 builds/month, 20,000 files/site, unlimited static bandwidth [L] ([Cloudflare](https://developers.cloudflare.com/pages/platform/limits/)). We deploy only changed sites, max once per site per day (≈ 248/month max). Whether Direct Uploads count as builds is UNVERIFIED. |
 | Images | Cloudflare R2 at `img.<domain>`, variants made with `sharp` (AVIF/WebP at 480/800/1200 w + 1200×630 OG JPEG) | Keeps Pages under the 20,000-file cap. R2 free tier 10 GB [L]. |
-| Click log | Pages Function `/go/wa/<ref>` → Cloudflare D1, then 302 to wa.me | Workers free quota 100k requests/day [L]; D1 free limits UNVERIFIED |
+| Click log | **Wave 1:** plain `wa.me` links carrying ref codes (no server code). **From Wave 2:** Pages Function `/go/wa/<ref>` → Cloudflare D1, then 302 to wa.me | Workers free quota 100k requests/day [L]; D1 free limits UNVERIFIED |
 | AI | Claude API through the official Node SDK (`@anthropic-ai/sdk`). Model name in an environment variable — no model ID in code. Batch processing for non-urgent drafts if the current API offers it (check current docs and pricing). | Monthly spend cap enforced in code. Cost per post UNKNOWN until measured. |
 | Data | JSON / JSONL / CSV in the repo; SQLite (`better-sqlite3`) for BI | Git history = audit trail |
 | Analytics | Cloudflare Web Analytics (cookieless) + our `/go/` click log | No cookies, no personal data on satellites |
@@ -851,20 +888,29 @@ Third-party limits below were documented at the research cutoff (June 2026) and 
 
 `*.pages.dev` duplicates the custom domain: absolute canonicals to the `.ma` domain plus a bulk 301 from pages.dev.
 
+**Engine phasing (one person must maintain it).**
+- **Wave 1 MVP:** static builder, facts gate, link / disclosure / licence / legal gates, sitemaps + IndexNow, and a **manual deploy** (`wrangler pages deploy`, run after review).
+- **From Wave 2:** Claude claims verifier, `/go/` click log on D1, automated kill-switches, the dashboard.
+- Until the kill-switches are automated, you check the same signals by hand in the weekly review.
+
 ### 10.2 Monorepo
 
 ```
 omra-network/
 ├─ config/   network.json · sites/<domain>.json (charter, ref code, caps, theme) · authors.json (REAL people only)
 │            link-policy.json · wikitours-targets.json (A6) · approved-phrases.json · killswitch.json
+│            legal.json (lawyer sign-off dates → legal_ok)
 ├─ data/
 │  ├─ facts/registry.json          # the ONLY allowed fact source (schema 10.3)
 │  ├─ facts/candidates.jsonl       # watcher / survey / client proposals awaiting human approval
 │  ├─ facts/kb/                    # approved ritual statements and religious texts with sources
 │  ├─ semrush/raw/<YYYYMMDD>/*.csv # client exports, untouched (see SEMRUSH-BRIEF.md)
+│  ├─ semrush/kgap_sets.json       # generated from the client's kgap_sets.txt
 │  ├─ keywords/registry.json · keywords/decisions.jsonl · serp/<YYYYMMDD>/
 │  ├─ prices/observations.csv · offers/offers.json · products/products.json (frozen)
 │  ├─ gsc/<domain>/*.jsonl · inspect/*.jsonl · leads/go-clicks.jsonl · leads/refcodes.csv
+│  │                               # leads: ref code, date, outcome, value band only; a CI gate rejects
+│  │                               # any commit with phone-number patterns under data/leads/
 │  ├─ ledger/published.json · queue/<YYYY-Www>.yml · reviews/<YYYY-Www>.json · state/cadence.json
 ├─ content/<domain>/<lang>/{posts,pages}/<slug>.md      # Markdown + YAML front matter (ajv-validated)
 ├─ themes/<domain>/                                     # distinct templates + CSS per site
@@ -876,7 +922,7 @@ omra-network/
 
 npm packages (all real): `@anthropic-ai/sdk`, `gray-matter`, `markdown-it`, `ajv`, `ajv-formats`, `csv-parse`, `sharp`, `wrangler`, `googleapis`, `better-sqlite3`, `@lhci/cli`, `ulid`.
 
-The keyword-registry and post front-matter JSON Schemas (draft 2020-12, ajv-tested) from the tech design are in `proto/schemas/`. Front-matter additions for this plan: `tier: "A"|"B"|"C"`, `facts_used[]`, `reviewed_by` + `reviewed_at` required to schedule any prose page, `author: "org"` allowed.
+The keyword-registry and post front-matter JSON Schemas (draft 2020-12, ajv-tested) from the tech design are in `proto/schemas/`. Front-matter additions for this plan: `tier: "A"|"B"|"C"`, `facts_used[]`, `concept_id` (shared across languages), `reviewed_by` + `reviewed_at` + `full_read: true` required to schedule any prose page (a structured check never schedules prose), `author: "org"` allowed. The registry schema's `source.report` enum now also lists `or-pages`, `or-competitors` and `serp-manual` (reference files).
 
 ### 10.3 Facts registry schema (the anti-hallucination control)
 
@@ -885,7 +931,7 @@ The keyword-registry and post front-matter JSON Schemas (draft 2020-12, ajv-test
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "Facts registry entry",
   "type": "object", "additionalProperties": false,
-  "required": ["id","topic","claim_fr","values","source_urls","source_tier","confidence","status","verified_by","verified_at","review_by","time_critical"],
+  "required": ["id","topic","claim_fr","values","source_urls","source_tier","confidence","status","review_by","time_critical"],
   "properties": {
     "id": { "type": "string", "pattern": "^fact_[a-z0-9_]+$" },
     "topic": { "enum": ["ramadan_dates","umrah_season","visa","health","hajj_process","hajj_cost","prices","flights","agency_rules","fraud_cases","school_calendar","wikitours","offers","local_casablanca","other"] },
@@ -899,7 +945,7 @@ The keyword-registry and post front-matter JSON Schemas (draft 2020-12, ajv-test
     "conflicts": { "type": "array", "items": { "type": "object", "required": ["value","source_url"],
                    "properties": { "value": { "type": "string" }, "source_url": { "type": "string", "format": "uri" } } } },
     "status": { "enum": ["proposed","approved","expired","disputed","retired"] },
-    "verified_by": { "type": "string", "description": "id of a REAL person in authors.json" },
+    "verified_by": { "type": "string", "description": "id of the REAL person in authors.json who actually checked the source" },
     "verified_at": { "type": "string", "format": "date" },
     "review_by": { "type": "string", "format": "date", "description": "after this date the fact cannot be used in new drafts" },
     "valid_until": { "type": ["string","null"], "format": "date" },
@@ -907,7 +953,8 @@ The keyword-registry and post front-matter JSON Schemas (draft 2020-12, ajv-test
     "supersedes": { "type": ["string","null"] }
   },
   "allOf": [
-    { "if": { "properties": { "confidence": { "enum": ["likely","estimate"] } } }, "then": { "required": ["required_wording"] } }
+    { "if": { "properties": { "confidence": { "enum": ["likely","estimate"] } } }, "then": { "required": ["required_wording"] } },
+    { "if": { "properties": { "status": { "const": "approved" } } }, "then": { "required": ["verified_by","verified_at"] } }
   ]
 }
 ```
@@ -918,6 +965,7 @@ The keyword-registry and post front-matter JSON Schemas (draft 2020-12, ajv-test
 3. Default `review_by` (design choice): Saudi rules 30 days; prices 30 days; offers = `valid_until`; Hijri estimates until the official announcement; entity facts 180 days.
 4. Reminder 14 days before `review_by`. Live pages using a fact past `review_by` show « information en cours de mise à jour » and are listed in the weekly report; after 14 more days unrenewed, the page leaves the sitemap until fixed.
 5. Retracting or changing a fact re-renders every dependent page and adds a corrections-log entry.
+6. **Licence and « depuis 2016 » are hard build blockers.** The trust block and every licence mention render only when `fact_wikitours_licence` is `approved` with `source_tier: "official"` and the ministry-list URL. Until then sites show legal name and address only. `verified_by` is filled only by the person who actually checked the source.
 
 **Seed facts (registry v1 ≈ 60 facts, all from the research)** — examples:
 
@@ -938,23 +986,27 @@ The keyword-registry and post front-matter JSON Schemas (draft 2020-12, ajv-test
 | fact_makkah_route_2026 | CMN (5th year) + RBA (first time), **Hajj 2026 only** | verified | [TelQuel](https://telquel.ma/instant-t/2026/05/22/hajj-2026-londa-deploie-un-dispositif-special_1991022/) | Before Hajj 2027 |
 | fact_acwy_requirement | ACWY ≥ 10 days before arrival, age ≥ 1 (rule from 2025) | likely | [Gulf News](https://gulfnews.com/living-in-uae/health/umrah-2025-meningitis-vaccine-now-mandatory-for-all-pilgrims-1.500025860) | Confirm for 1448H before use |
 | fact_ramadan_price_avg_2023_2024 | ≈ 25,000 MAD (2023), ≈ 35,000 MAD (2024) | likely, « selon la fédération » | [Medias24](https://medias24.com/2024/04/03/omra-2024-inflation-situation-geopolitique-et-secteur-informel-ont-fait-chuter-le-nombre-de-pelerins/) | — |
-| fact_wikitours_licence | ODV-25012 | company_stated, « telle qu'indiquée par l'agence » | Client (A2) | Until proof received |
+| fact_wikitours_licence | ODV-25012 | status **`proposed` (not usable)**; source_tier `company_stated` | The wikitours.ma page where the number appears (URL to record; which page is UNKNOWN) | Usable only after A2, as `official` with the ministry-list URL |
+| fact_wikitours_since_2016 | Operating since 2016 | status **`proposed` (not usable)**; `company_stated` | Same rule: the wikitours.ma page that states it | Usable only with an official or documentary source |
+| fact_morocco_ramadan_utc_2027 | Morocco moves to UTC+0 during Ramadan 1448 | status **`proposed`**; tzdata 2025b predicts it (local test) | Government announcement (watcher) | Approved only when the government announces the dates |
 
 ### 10.4 Facts gate (tested) and generator sketch
 
 ```js
-// packages/quality/facts-gate.js — tested (8 cases pass, Node 22)
+// packages/quality/facts-gate.js — tested (19 facts-gate cases pass, incl. gender/plural/Arabic-prefix regressions; Node 22)
 // Blocks publishing when a sentence has a digit or a rule word but cites no approved fact,
 // when a cited fact is unknown / not approved / past review_by / expired,
 // or when a number in a sentence is not a value of the fact(s) it cites.
 const MARK = /\[\[fact:([a-z0-9_]+)\]\]/g;
 const NUM = /[0-9٠-٩]+(?:[ ., ][0-9]{3})*(?:[.,][0-9]+)?/g;
-const CLAIM_WORDS = /\b(obligatoire|interdit|exig[ée]e?s?|requis|gratuit|garanti|rembours\w*|quota|visa|vaccin\w*|d[ée]lai|date limite)\b|واجب|ممنوع|إلزامي|مجاني|تأشيرة/i;
+// Unicode-aware stems: JS \b is ASCII-only, so "garantie", "interdite", "requise" used to slip through.
+// "visa" also matches "visage": an accepted false positive (it only sends a sentence to review).
+const CLAIM_WORDS = /(?<!\p{L})(obligatoir|interdi|exig|requi[st]|requier|gratuit|garanti|rembours|quota|visa|vaccin|d[ée]lai|date limite)\p{L}*|(?<!\p{L})(?:[وفبل]?ال)?(واجب|ممنوع|إلزامي|الزامي|مجاني|تأشير|مضمون|مسترجع)\p{L}*/iu;
 const AR_DIGITS = s => s.replace(/[٠-٩]/g, d => String(d.charCodeAt(0) - 0x0660));
 const norm = s => AR_DIGITS(String(s)).replace(/[ ., ](?=\d{3}\b)/g, '').replace(',', '.');
 const splitSentences = t => t.replace(/\n+/g, ' ').split(/(?<=[.!?؟])\s+/).map(s => s.trim()).filter(Boolean);
 
-function factsGate(text, registry, { today = new Date().toISOString().slice(0, 10), approvedPhrases = [] } = {}) {
+export function factsGate(text, registry, { today = new Date().toISOString().slice(0, 10), approvedPhrases = [] } = {}) {
   const errors = [];
   for (const sentence of splitSentences(text)) {
     const ids = [...sentence.matchAll(MARK)].map(m => m[1]);
@@ -979,18 +1031,19 @@ function factsGate(text, registry, { today = new Date().toISOString().slice(0, 1
   }
   return { ok: errors.length === 0, errors };
 }
-module.exports = { factsGate };
 ```
 
 The gate runs on title, meta description, H1, body, table cells, FAQ, schema text and image alt text (the elements Google's 1 Oct 2026 guidance names).
 
+**Before launch:** seed `approved-phrases.json` from the religious knowledge base (ritual counts, step numbers, fixed expressions such as « les 10 dernières nuits »), run the gate on 20 real drafts, and set the gate-failure kill-switch threshold from that measured baseline. Until then the 25% figure in §16.5 is a placeholder.
+
 ```js
 // packages/generate/draft.js — sketch; verify the call shape against the current Claude API / SDK docs.
 // The generator sees only the brief + approved facts. It has no browsing tool.
-const Anthropic = require('@anthropic-ai/sdk');
+import Anthropic from '@anthropic-ai/sdk';
 const client = new Anthropic(); // ANTHROPIC_API_KEY from GitHub secrets
 
-async function draft(brief, approvedFacts) {
+export async function draft(brief, approvedFacts) {
   const res = await client.messages.create({
     model: process.env.CLAUDE_MODEL,            // set in config; no model ID in code
     max_tokens: 8000,
@@ -1003,7 +1056,6 @@ async function draft(brief, approvedFacts) {
   });
   return res.content.filter(b => b.type === 'text').map(b => b.text).join('');
 }
-module.exports = { draft };
 ```
 
 A draft that fails any gate gets one automatic revision; if it fails again it is discarded and logged, and its `[[MISSING]]` requests become fact candidates for the weekly review.
@@ -1012,11 +1064,11 @@ A draft that fails any gate gets one automatic revision; if it fails again it is
 
 | Workflow | Trigger | Does |
 |---|---|---|
-| facts-watch | `11 */6 * * *` | Fetches the monitored official pages (respecting robots.txt), hashes and diffs them, extracts candidate facts with the Claude API into `candidates.jsonl`, and sends a phone alert for time-critical changes (e.g. a Hajj registration announcement). Never auto-approves. |
+| facts-watch | `11 */6 * * *` | Fetches the monitored official pages (respecting robots.txt), hashes and diffs them, extracts candidate facts with the Claude API into `candidates.jsonl` (page text passed as untrusted data, §10.10), and sends a phone alert for time-critical changes (e.g. a Hajj registration announcement). Never auto-approves. |
 | generate | `13 1 * * *` | Picks clusters that have enough approved facts, builds briefs, drafts, verifies, runs gates, adds passing drafts to next week's queue + preview deploy |
 | approve | on push to `queue/*.yml` | Moves approved items to `scheduled` |
-| publish | `17 5 * * *` | 06:17 Morocco time (UTC+1), 05:17 during Ramadan when Morocco moves to UTC+0 [V, local tzdata test]. Publishes approved due posts under the cadence cap and kill-switch state, builds changed sites only, post-build checks, `wrangler pages deploy`, IndexNow, ledger |
-| fast-lane | `workflow_dispatch` (button on phone) | Builds the templated news update from the newly approved fact, gates it, deploys within the hour (target ≤ 6 h after approval) |
+| publish | `17 5 * * *` | 06:17 Morocco time (UTC+1); 05:17 during Ramadan if Morocco moves to UTC+0 as tzdata predicts [V for tzdata 2025b only; the actual dates are set by government announcement, tracked as `fact_morocco_ramadan_utc_2027` with a watcher]. Publishes approved due posts under the cadence cap and kill-switch state, builds changed sites only, post-build checks, `wrangler pages deploy`, IndexNow, ledger |
+| fast-lane | `workflow_dispatch` (button on phone) | Adds the newly approved fact to the tracker's table and dated changelog (no new post), gates it, deploys (target ≤ 6 h after approval) |
 | monitor | `41 3 * * *` | Search Console pulls, URL Inspection sample, `/go/` logs, link-target check, spend check, kill-switch evaluation, alerts |
 | weekly-report | `23 18 * * 0` | One-page report + approval digest, ready Monday morning |
 | weekly-audit | `23 2 * * 0` | External link check, stale-year scan, offer expiry, decay, cannibalisation |
@@ -1050,6 +1102,24 @@ A draft that fails any gate gets one automatic revision; if it fails again it is
 - **If activated:** one domain only (voyageomra.ma), physical goods only (ihram kits, prayer mats, bags, books), `products.xml` generated from `products.json` and fetched daily (id, title, description, link, image_link, availability, price "149.00 MAD", condition, brand or `identifier_exists=no`, shipping MA), Product + Offer JSON-LD with identical values. A tested feed generator exists in `proto/feed.js`.
 - **Never** omra or Hajj packages: travel packages are unsupported outside specific Travel rails.
 
+### 10.10 Accessibility, security and bus factor
+
+**Accessibility (older pilgrims and their families).**
+- Target: WCAG 2.2 level AA (criteria to check on w3.org; not researched in detail here).
+- Design choices: body text ≥ 18 px (larger for Arabic), generous line-height, no meaning carried by colour alone, visible keyboard focus, large tap targets, answer tables readable on a phone without sideways scrolling.
+- Colour contrast checked by the Lighthouse accessibility audit in CI (gate 18), including omra-ramadan's dark theme.
+- RTL pages tested with real Arabic text, not placeholder text.
+
+**Security.**
+- Secrets live in GitHub Actions secrets: a Cloudflare token scoped to Pages edit only, the Claude key under its spend cap, a Search Console service account with the least access needed.
+- Two-factor authentication on Google (Search Console, Merchant Center), Cloudflare, GitHub, the .ma registrar, WhatsApp Business and the Claude console, with a second trusted admin on each.
+- **Prompt injection:** watched official pages go to the Claude fact extractor as quoted, untrusted data. The extractor has no tools, and its output is only a candidate that a human must approve. Bing lists prompt injection as an abuse category [L] ([SEJ](https://www.searchenginejournal.com/bing-adds-geo-to-official-guidelines-expands-ai-abuse-definitions/568442)).
+- **Third-party scripts:** none on the satellites. Google's back-button-hijacking policy notes that offending code can come from third-party libraries or ad scripts [V] ([Google](https://developers.google.com/search/blog/2026/04/back-button-hijacking)).
+
+**Bus factor.**
+- A one-page handover runbook in the repo: where each account is, who holds the second admin, how to pause publishing (one config flag), how to roll back a deploy, who to call. Tested once a quarter.
+- If the operator disappears, the dead-man switch slows the network at 10 days and pauses it at 21 (§16.5).
+
 ---
 
 ## 11. Conversion & behavioral psychology
@@ -1059,27 +1129,28 @@ A draft that fails any gate gets one automatic revision; if it fails again it is
 | Stage | Satellite asset | CTA | Principle | Guardrail |
 |---|---|---|---|---|
 | Discover | Date tables, guides | None, or « Enregistrer la checklist » | Reciprocity: a free, complete answer | Answer first, CTA after |
-| Evaluate | Price snapshot, agency checklist | « Comparer avec Bab Makka » (disclosed) | Anchoring on **observed** market ranges | Ranges only from our dataset; no fake "was/now" prices |
+| Evaluate | Price snapshot, agency checklist | « Voir les offres Bab Makka (éditeur) », below tables, on ≤ 20% of prixomra posts | Anchoring on **observed** market ranges | Ranges only from our dataset, Wiki Tours excluded from the statistics; no fake "was/now" prices; `legal_ok` |
 | Decide | Ramadan deadline table | WhatsApp « Omra Ramadan 2027 – vérifier les disponibilités » | Real scarcity: the 9 Mar 2027 visa deadline is official | Seats only from dated Wiki Tours records ≤ 7 days old |
 | Act | WhatsApp chat | Pre-filled message with reference code | Default effect, low friction | The button says the reader is contacting Wiki Tours |
 | Reassure | Agency verification, licence, office | « Vérifiez Wiki Tours » | Authority; loss aversion about fraud | Cite cases with dates and sources; no fear-mongering |
 
 ### 11.2 WhatsApp click-to-chat with reference codes
 
-- Format: `https://wa.me/<international number, digits only>?text=<url-encoded message>` ([WhatsApp FAQ](https://whatsapp.com/faq/en/general/26000030)). The user still presses send and can edit the message.
-- **Reference code** `<SITE>-<page id>` at the **start** of the message so it survives edits: OR, GO, AG, PX, VO, CA (OF, RB if ever launched). Example: `[OR-0123]`.
+- Format: `https://wa.me/<international number, digits only>?text=<url-encoded message>` [L: widely documented by third parties, e.g. [Dotdigital](https://support.dotdigital.com/en/articles/11331301-click-to-chat-for-whatsapp); WhatsApp's own FAQ (https://whatsapp.com/faq/en/general/26000030) was not re-checked: verify before publishing]. The user still presses send and can edit the message.
+- **Reference code** `<SITE>-<page id>` at the **start** of the message so it survives edits: OR, GO, AG, PX, VO (CA, OF, RB if ever launched). Example: `[OR-0123]`.
 - Keep messages short (design choice). Segment buttons: « Pour moi », « Pour mes parents », « En famille ».
 - AR pages pre-fill Arabic; staff can reply in Darija.
 
 ```js
-// packages/render/wa.js — builds the tracked link; the final wa.me URL is written to KV at deploy
+// packages/render/wa.js — builds the link. Wave 1 uses `final` directly; from Wave 2 pages use `go`
+// and the final wa.me URL is written to KV at deploy.
 const SITE = { 'omra-ramadan.ma': 'OR', 'guideomra.ma': 'GO', 'agenceomra.ma': 'AG',
-               'prixomra.ma': 'PX', 'voyageomra.ma': 'VO', 'omracasablanca.ma': 'CA' };
+               'prixomra.ma': 'PX', 'voyageomra.ma': 'VO' };   // CA, OF, RB only if relaunched
 const MSG = {
   fr: (ref, site, topic, who) => `[${ref}] Bonjour Wiki Tours, je viens de ${site}. ${topic}${who ? ' – ' + who : ''}. Nombre de personnes : __`,
   ar: (ref, site, topic, who) => `[${ref}] السلام عليكم Wiki Tours، جئت من ${site}. ${topic}${who ? ' – ' + who : ''}. عدد الأشخاص: __`,
 };
-function waLinks({ number, site, pageId, lang = 'fr', topic, who = '' }) {
+export function waLinks({ number, site, pageId, lang = 'fr', topic, who = '' }) {
   const digits = String(number).replace(/\D/g, '').replace(/^00/, '');
   if (!/^212\d{9}$/.test(digits)) throw new Error('Moroccan number in international format expected (212XXXXXXXXX)');
   const ref = `${SITE[site]}-${String(pageId).padStart(4, '0')}`;
@@ -1089,11 +1160,10 @@ function waLinks({ number, site, pageId, lang = 'fr', topic, who = '' }) {
     final: `https://wa.me/${digits}?text=${encodeURIComponent(MSG[lang](ref, site, topic, who))}`,
   };
 }
-module.exports = { waLinks };
 ```
 
 ```js
-// functions/go/wa/[ref].js — Cloudflare Pages Function: log the click, then redirect. No personal data stored.
+// functions/go/wa/[ref].js — Cloudflare Pages Function (from Wave 2): log the click, then redirect. No personal data stored.
 export async function onRequest({ params, request, env }) {
   const url = new URL(request.url);
   await env.LEADS_DB.prepare('INSERT INTO clicks(ref, lang, who, ts, referer) VALUES (?, ?, ?, ?, ?)')
@@ -1106,18 +1176,18 @@ export async function onRequest({ params, request, env }) {
 
 **Attribution, three levels:**
 1. **Clicks by ref:** automatic, no Wiki Tours access needed.
-2. **Chats, quotes, bookings by ref:** staff apply WhatsApp Business labels (one per site code) and fill a weekly 3-column sheet (C4). The system joins clicks and sheet rows by code. If a user deletes the code, staff ask « Comment nous avez-vous connus ? » and log the site.
-3. **Optional full automation:** a WhatsApp Business Platform webhook on your number logs inbound ref codes (does not touch wikitours.ma). Cost UNKNOWN; whether the same number can stay in the WhatsApp Business app at the same time is UNVERIFIED.
+2. **Chats, quotes, bookings by ref:** staff apply WhatsApp Business labels (one per site code) and fill a weekly sheet (C4) holding only ref code, date, outcome and value band: no names, no phone numbers. The system joins clicks and sheet rows by code. If a user deletes the code, staff ask « Comment nous avez-vous connus ? » and log the site.
+3. **Optional full automation:** a WhatsApp Business Platform webhook on your number logs inbound ref codes (does not touch wikitours.ma). Cost UNKNOWN; whether the same number can stay in the WhatsApp Business app at the same time is UNVERIFIED. **Stays off until the lawyer OKs it (Loi 09-08 / CNDP, E1).**
 
 ### 11.3 Trust block (every site)
 
-Publisher identity; licence (wording per A2) with a link to the ministry's official list once confirmed; Casablanca address, hours and real office photos; named people; « Ce que nous ne promettons jamais » (no guaranteed visa, no "0% d'intérêt"); corrections log; « Vérifiez-nous aussi » link to agenceomra's method. A consumer association warned specifically about unusually low online offers [V] ([Hespress EN](https://en.hespress.com/131697-moroccan-authorities-consumer-groups-warn-against-travel-scams-amid-luxury-umrah-audit.html)) — so no "too good to be true" pricing.
+Publisher identity; licence **only after A2 proof** (number + ministry-list link; the build blocks it otherwise, gate 20); Casablanca address, hours and real office photos; named people; « Ce que nous ne promettons jamais » (no guaranteed visa, no "0% d'intérêt"); corrections log; « Vérifiez-nous aussi » link to agenceomra's method. A consumer association warned specifically about unusually low online offers [V] ([Hespress EN](https://en.hespress.com/131697-moroccan-authorities-consumer-groups-warn-against-travel-scams-amid-luxury-umrah-audit.html)) — so no "too good to be true" pricing.
 
 ### 11.4 Ethical levers
 
 | Lever | Use | Never |
 |---|---|---|
-| Anchoring | Show the observed market median and range (prixomra) **before** any Wiki Tours price; explain why prices differ (hotel distance, room basis, flights, season) | Invented reference or "was/now" prices |
+| Anchoring | Show the observed market median and range (prixomra; **Wiki Tours excluded from the statistics**) before any Wiki Tours price, which sits in its own labelled row; explain why prices differ (hotel distance, room basis, flights, season). Only with `legal_ok`: comparative-advertising rules are NOT RESEARCHED | Invented reference or "was/now" prices; a CTA inside the table |
 | Real deadlines | Static deadline table: last visa 9 Mar 2027, last entry 23 Mar 2027 [V]; 30-day visa window [L] | Resetting countdown timers |
 | Scarcity | Only dated Wiki Tours availability (`as_of` ≤ 7 days); Ramadan flight scarcity cited from press | « 3 places restantes » without data |
 | Loss aversion | Fraud-prevention checklist citing real, dated cases | Naming agencies without an official source; fear about doing it yourself |
@@ -1138,7 +1208,10 @@ Publisher identity; licence (wording per A2) with a link to the ministry's offic
 
 ### 11.7 Privacy
 
-Satellites set no tracking cookies and collect no personal data; the « Signaler une erreur » form asks for none. WhatsApp chats are processed by Wiki Tours. Moroccan personal-data rules are **NOT RESEARCHED**: lawyer item E1.
+Satellites set no tracking cookies and collect no personal data; the « Signaler une erreur » form asks for none. But the attribution pipeline does touch personal data on Wiki Tours' side: WhatsApp chats, the staff lead sheet, and the optional webhook. Morocco's Loi 09-08 and the CNDP are named for the lawyer (E1); whether a declaration or authorisation is needed is UNVERIFIED. Rules until then:
+- the lead sheet holds only ref code, date, outcome and value band (no names, no phone numbers);
+- the webhook option stays off;
+- a CI gate rejects any commit containing phone-number patterns under `data/leads/`, because Git history is permanent.
 
 ---
 
@@ -1150,7 +1223,7 @@ Satellites set no tracking cookies and collect no personal data; the « Signaler
 - **Conversion:** WhatsApp clicks → chats → quotes → bookings, per site and ref.
 - **Leading:** indexed pages, impressions on owned clusters, main-keyword positions, AI citations.
 - **Guardrails:** index ratio, "crawled – currently not indexed" share, fact errors, duplicate score, gate failure rate, manual actions.
-- **Efficiency:** cost per attributed booking (Claude API + tools ÷ bookings).
+- **Efficiency:** cost per attributed booking (Claude API + editor + tools ÷ bookings). It needs a budget envelope and a kill threshold from you (D21); both are UNKNOWN today.
 
 **No traffic targets now** — any number would be invented. Baselines are fixed after 8 weeks live, then targets are agreed.
 
@@ -1163,20 +1236,19 @@ Satellites set no tracking cookies and collect no personal data; the « Signaler
 | agenceomra | Links earned; AI citations on verification queries; AG chats | Impressions | Disclosure / legal compliance |
 | prixomra | Data freshness (as_of ≤ 30 days), observations/month, press citations | CSV downloads, "prix omra" impressions | Every price traces to a source |
 | voyageomra | Clicks; VO chats | Impressions | Index ratio |
-| omracasablanca | WhatsApp + "visit office" clicks; CA chats | Local query impressions | No overlap with wikitours.ma intents |
 
 ### 12.3 Data pipeline
 
 - **Search Console API:** a service account added as a user on each `sc-domain:` property; daily `searchanalytics.query` with dimensions date, page, query, country, device; `rowLimit` 25,000 with pagination; `dataState: 'final'` for reports and `'all'` for alerts; Morocco filter country `mar` ([API](https://developers.google.com/webmaster-tools/v1/searchanalytics/query)). Search Console keeps ≈ 16 months, so we archive from day one; anonymised queries mean query rows do not add up to totals [L]. A tested pull script exists in `proto/gsc-pull.js`.
 - **URL Inspection API sample** of posts aged 14-60 days (quota 2,000/day/site [L]).
-- Semrush Position Tracking weekly CSV; Bing exports; Cloudflare analytics; `/go/` clicks from D1; the staff lead sheet; ledger, gate logs, Claude usage.
+- Semrush Position Tracking weekly CSV; Bing exports; Cloudflare analytics; `/go/` clicks from D1 (from Wave 2); the staff lead sheet; ledger, gate logs, Claude usage.
 - Everything lands in SQLite; a static dashboard is rebuilt daily and served behind Cloudflare Access (free ≤ 50 users [L]). Switch to the Search Console BigQuery bulk export if data grows.
 
 ### 12.4 Dashboard panels
 
 1. Network overview (28 days vs prior 28; Morocco vs abroad)
 2. Money flow: WhatsApp clicks → chats → quotes → bookings by site and ref
-3. 60 active main keywords: top 3 / top 10 / not ranking, owner URL
+3. Main keywords (30 at Wave 1, up to 50 after Wave 2): top 3 / top 10 / not ranking, owner URL
 4. Registry coverage: clusters assigned → briefed → published → ranking; reserved clusters
 5. Push list (owner URLs at positions 4-20)
 6. Cannibalisation alerts
@@ -1187,6 +1259,7 @@ Satellites set no tracking cookies and collect no personal data; the « Signaler
 11. AI visibility log (GSC gen-AI, Bing AI, chatgpt.com referrals, monthly panel)
 12. Season calendar with deadlines and fast-lane readiness
 13. Spend (Claude API month-to-date vs cap; files per site vs 20k cap)
+14. Money-site track (M1-M10 status; wikitours.ma Search Console data once added)
 
 ### 12.5 Rank and AI-visibility tracking
 
@@ -1194,7 +1267,7 @@ Semrush Position Tracking weekly (Morocco, mobile first; city targeting UNVERIFI
 
 ### 12.6 Weekly review ritual
 
-The exact 60-minute checklist and the report template are in §16.6 and §16.7.
+The exact weekly checklist (≈ 75-90 min) and the report template are in §16.6 and §16.7.
 
 ---
 
@@ -1206,18 +1279,18 @@ The exact 60-minute checklist and the report template are in §16.6 and §16.7.
 
 | Wk | Dates | Build / ops (E) | Client / staff (C, WT) | Content / gates |
 |---|---|---|---|---|
-| 1 | Tue 20 – Sun 25 Oct | Repo, Cloudflare projects, GitHub, Claude API key with cap, Search Console service account, Bing import, robots + Cloudflare AI-bot allowances. Wayback/whois history of the 8 domains. Facts registry v0 (≈ 60 facts from the research). Site charters + topic-ownership map v1. | **P0 inputs A1-A7, B1, B4, D1-D6** and decisions D1-D5 (§15). Confirm .ma registrant data with registrar. | Draft Wave 1 pillars |
-| 2 | 26 Oct – 1 Nov | Engine MVP: render, gates (facts gate, verifier, similarity, links), sitemaps, `/go/` function, `/editeur/` pages. Wave 1 themes. Ingest Semrush R0/R2. **Merchant Center country check.** | **Launch review session 1 (≈ 4 h)**: Wave 1 pillars, facts v1 approval. Semrush R0-R3 (by Fri 30 Oct). | Topic map signed |
-| 3 | 2 – 8 Nov | **Wave 1 launch ≈ 4-6 Nov** (omra-ramadan, guideomra, agenceomra) — if P0 inputs arrived by 25 Oct; else this moves to week 4. Sitemaps submitted, 4 URL Inspections per site, IndexNow. Monitoring and kill-switches live. | Session 2 (≈ 2 h). Price survey #1 starts (C3). | L0 → L1 on Wave 1 |
-| 4 | 9 – 15 Nov | L1 cadence on Wave 1 (≈ 16/week). Wave 2 themes. habous.gov.ma watcher armed for 1449H. **Fallback Wave 1 date (9-15 Nov).** | **First weekly ritual (60 min).** Casablanca office facts and photos (A1, B2). | Agency checklist PR pitch |
-| 5 | 16 – 22 Nov | Wave 2 pillars drafted | Ritual. Survey continues. **Decide omrarabat (default: keep 301) and offresomra (default: keep 301) by 22 Nov.** Lawyer brief (E1). | — |
-| 6 | 23 – 29 Nov | Survey threshold check (≥ 20 offers, ≥ 8 agencies). Kill-switch dry run. | Ritual. Wave 2 review (≈ 2-3 h). Lead sheet starts (C4). | — |
-| 7 | 30 Nov – 6 Dec | **Wave 2 launch ≈ 1-3 Dec** (voyageomra, omracasablanca; prixomra if threshold met and lawyer OK). Semrush refresh (≈ 10 weeks before Ramadan). **Fast-lane drill** (simulated announcement). | Ritual | L1 network ≈ 21/week |
+| 1 | Tue 20 – Sun 25 Oct | Repo, Cloudflare projects, GitHub, Claude API key with cap, Search Console service account, Bing import, robots + Cloudflare AI-bot allowances. Wayback/whois history of the 8 domains. Facts registry v0 (≈ 60 facts from the research). Site charters + topic map v1 with `concept_id`s. Launch pages entered in the registry and run through the cannibalisation guard. | P0 inputs start (A1-A7, B1, B4, D1-D6, E3, M1). Decisions D1-D5, D19. Written P0 checklist shared. Confirm .ma registrant data with registrar. | Draft Wave 1 pillars |
+| 2 | 26 Oct – 1 Nov | **Engine MVP only** (§10.1): static builder, facts gate, link / disclosure / licence / legal gates, sitemaps, IndexNow, manual deploy, `/editeur/` pages. Wave 1 themes. Ingest Semrush R0/R2 and the manual SERP CSV. D1 SERP-overlap check. **Merchant Center country check.** | Semrush R0 + R2 + Step 7 by **Wed 28 Oct**. **All P0 inputs by Fri 30 Oct**, incl. wikitours.ma in Search Console (M1). Facts v1 approval. | Topic map signed |
+| 3 | 2 – 8 Nov | Facts gate run on 20 real drafts; approved phrases seeded from the religious KB; kill-switch threshold calibrated. | **Launch review of Wave 1 pillars (≈ 20 FR pages, ≈ 5-7 h).** Price survey #1 starts (C3). Rest of Semrush by Sun 8 Nov. | **P0 go / no-go: Fri 6 Nov** |
+| 4 | 9 – 15 Nov | **Wave 1 plan date 9-15 Nov** (omra-ramadan, guideomra, agenceomra pillars), only if the P0 checklist is complete; otherwise it moves week by week. Sitemaps submitted, URL Inspection for home + 3 pillars per site, IndexNow. Remaining Wave 1 pages follow after review (≈ 5-7 h). | **First weekly ritual (≈ 75-90 min).** M2: Ramadan 2027 Bab Makka page live by Sun 15 Nov. | L0 → L1 (with editor) or L1a (owner only) on Wave 1 |
+| 5 | 16 – 22 Nov | Wave 2 pillars drafted. Claims verifier, `/go/` click log and automated kill-switches built. habous.gov.ma watcher armed for 1449H. | Ritual. Survey continues. **Decide omrarabat, offresomra and omracasablanca (default: keep the 301s) by 22 Nov.** Lawyer brief (E1). | Agency checklist PR pitch |
+| 6 | 23 – 29 Nov | Survey threshold check (40+ offers target, ≥ 8 licensed agencies; licence-list URL known). Kill-switch dry run. | Ritual. Wave 2 review (≈ 24 pages, ≈ 6-8 h of named-reviewer time). Lead sheet starts (C4). | — |
+| 7 | 30 Nov – 6 Dec | **Wave 2 target early Dec** (voyageomra; prixomra only if threshold met, licence-list URL known and `legal_ok`). Dashboard live. Semrush refresh (≈ 10 weeks before Ramadan). **Fast-lane drill** (simulated announcement). | Ritual | L1 network ≈ 16/week (with editor) |
 | 8 | 7 – 13 Dec | School break 6-13 Dec. Rajab ≈ 10 Dec [E]. | Ritual + fast-lane approvals if Hajj 1449H is announced (1448H was 8-19 Dec) | **PR: Ramadan 2027 price snapshot.** Hajj timeline published on announcement (GO). |
 | 9 | 14 – 20 Dec | First 4-week health review of Wave 1 (no unlock before 4 green weeks) | Ritual | Winter family Omra |
 | 10 | 21 – 27 Dec | Refresh Ramadan pillars with any Saudi updates. Buffer ≥ 7 days approved. | Ritual | — |
 | 11 | 28 Dec – 3 Jan | Monthly report; fact renewals; stale-year scan at year rollover | Ritual. Survey #2. Photos/testimonials batch. | — |
-| 12 | 4 – 10 Jan | **Unlock decision for Wave 1** (L1 → L2 only if criteria met and review hours exist) | Ritual (+ part-time editor decision) | Fasting-and-Omra guide; visa timing explainer. Sha'ban ≈ 9-10 Jan [E]. |
+| 12 | 4 – 10 Jan | **Unlock decision for Wave 1** (L1 → L2 only if criteria met and review hours exist) | Ritual (+ editor hours review) | Fasting-and-Omra guide; visa timing explainer. Sha'ban ≈ 9-10 Jan [E]. |
 | 13 | 11 – 17 Jan | — | Ritual | Snapshot #2 |
 | 14 | 18 – 24 Jan | Unlock decision for Wave 2 sites | Ritual | **PR: pre-Ramadan price update** |
 | 15 | 25 – 31 Jan | Ramadan "live mode" templates (Saudi and Moroccan moon-sighting slots, two-scenario date pages) | Ritual | School break 24-31 Jan: pre-Ramadan family Omra |
@@ -1229,8 +1302,8 @@ The exact 60-minute checklist and the report template are in §16.6 and §16.7.
 | Month | Network | Hajj 1449H / 2028 cycle [U unless noted] |
 |---|---|---|
 | Feb 2027 | Ramadan live mode. No cap increases, no launches during Google updates. | If registration happened in Nov-Dec 2026, a lottery could follow around Feb-Mar (1448H: Dec registration, Mar lottery [V]) |
-| Mar 2027 | Eid ≈ 9-10 Mar [E]. Visa closes 9 Mar, entry closes 23 Mar [V]. Post-Ramadan price report (PR). **Wave 3 decisions** (offresomra if client + lawyer yes; omrarabat if Rabat confirmed). Quarterly Semrush. | Hajj 1448H final cost possible (1447H: 3 Mar 2026) → same-day update (PX, GO) |
-| Apr 2027 | Last Omra departure 7 Apr [V]. Hajj logistics (VO, CA). omra-ramadan to maintenance. Q2 review. | 1448H departures (2026: 18 Apr – 21 May) |
+| Mar 2027 | Eid ≈ 9-10 Mar [E]. Visa closes 9 Mar, entry closes 23 Mar [V]. Post-Ramadan price report (PR). **Wave 3 decisions** (offresomra if client + lawyer yes; omrarabat if Rabat confirmed; omracasablanca stays a 301 unless D20 changes). Quarterly Semrush. | Hajj 1448H final cost possible (1447H: 3 Mar 2026) → same-day update (PX, GO) |
+| Apr 2027 | Last Omra departure 7 Apr [V]. Hajj logistics (VO). omra-ramadan to maintenance. Q2 review. | 1448H departures. 2026 reference: Moroccan outbound flights 1-21 May and 78 return flights 31 May-18 Jun, per a search summary of [TelQuel, 9 Jun 2026](https://telquel.ma/instant-t/2026/06/09/hajj-1447-plus-de-11-000-pelerins-marocains-deja-rentres-78-vols-prevus-au-retour_1993201/) [L]. The "18 Apr-21 May" range quoted elsewhere appears to be the Saudi arrival window from a travel blog [U], not Moroccan flight dates |
 | May 2027 | Hajj explainers (GO). Summer Omra content once the Saudi 1449H calendar is out. **Hajj domain decision** (§17). | Hajj 1448H itself (Arafah ≈ 15-16 May [E]) |
 | Jun 2027 | Summer family Omra, heat safety, summer price snapshot. **Half-year audit:** keep / merge / redirect each site; cadence level; cost per booking. | 1449H payment window possibly Jun-Jul (1448H: 29 Jun – 10 Jul 2026 [L]) |
 | Jul 2027 | Summer departures. 2027-28 school calendar into the registry. | — |
@@ -1255,12 +1328,12 @@ Automatic scale-down when indexing, impressions, similarity, gate failures, fact
 | 1 | Manual action "scaled content abuse" on a satellite | Medium (high if volume outruns review) | High | Search Console email | **Network freeze**: generation and publishing stop on all sites | Audit; delete or noindex low-value pages; consolidate clusters; document fixes; reconsideration request. If not salvageable, **retire or noindex** the site. **Never 301 it to wikitours.ma.** Recovery: months, not guaranteed [L] ([SEL](https://searchengineland.com/google-danny-sullivan-algorithm-update-recovery-uncertain-446317)) |
 | 2 | Algorithmic demotion of the network in a spam/core update | Medium | High | Impressions fall on several sites in the same update window | Slow/pause per site; ≥ 2 sites crashing → network freeze | Find the shared pattern (templates, overlapping intents, links). Prune. Consider the consolidation plan (§14.3). Several months at least [L] (Gabe) |
 | 3 | Doorway classification ("Google shows only one, or demotes all" — Mueller [L], [SEJ](https://www.searchenginejournal.com/google-multiple-sites-ip-not-problem-similar-content/254799/)) | Medium | High | Only one satellite ranks per query family | — | Merge overlapping sites into the strongest; sharpen distinct jobs |
-| 4 | Unnatural-links action (satellite outbound, or wikitours.ma inbound — we can't see its Search Console) | Low-medium | Very high for wikitours.ma | Search Console email; your report | `moneyLinkRel = nofollow` across the network in one build, within 24 h of your report | You handle wikitours.ma in its own Search Console |
+| 4 | Unnatural-links action (satellite outbound, or wikitours.ma inbound — we can't see its Search Console) | Low-medium | Very high for wikitours.ma | Search Console email; your report | Links to wikitours.ma are already `nofollow`; if needed, all of them are removed in one build within 24 h of your report | You handle wikitours.ma in its own Search Console (M1) |
 | 5 | Wrong fact published (visa, price, Hajj rule) | Medium | High (trust, legal) | Watcher diff, reader report, weekly sample | That content type pauses on that site; dependent pages re-render with a visible correction note | Fix the fact; find the root cause; add a gate rule |
 | 6 | Saudi or Moroccan rule change mid-season | Medium | Medium | Watcher | Topic blocked for new briefs until a human updates the fact | Fast lane, same day |
 | 7 | Hijri date shift | Certain to vary | Low | Moon sighting | Two-scenario pages flip status to « confirmé » | Approve the fact by phone |
-| 8 | Wiki Tours licence not on the official list | Unknown | Very high | A2 check | Licence mentions removed, trust pages held | Launch blocked until resolved |
-| 9 | Legal complaint from an observed agency | Low-medium | Medium | Email / WhatsApp | — | Take the item down within 48 h pending lawyer review; keep the method page |
+| 8 | Wiki Tours licence not on the official list | Unknown | Very high | A2 check | The licence never renders until the official-tier fact exists (gate 20) | **Check pending:** launch with legal name and address only; prixomra stays blocked. **Check shows Wiki Tours is not listed:** launch blocked until resolved (a site teaching readers to check the list cannot come from an agency missing from it) |
+| 9 | Legal complaint from an observed agency | Low-medium | Medium | Email / WhatsApp | — | Correction / right-of-reply procedure: answer within 48 h; hide the item pending lawyer review if disputed; log the outcome; keep the method page |
 | 10 | Impersonation (scammers copying sites or brand) | Medium | Medium | Brand alerts, user reports | — | Brand-defence domains (§17); report to host and registrar; "Vérifiez-nous" pages |
 | 11 | Bad domain history found | Unknown | High | Wayback/whois in week 1 | — | Do not build on it; redirect or drop |
 | 12 | wikitours.ma URL changes or goes down | Medium | Medium | Weekly target check | Link removed, WhatsApp CTA stays, alert | You fix it |
@@ -1276,11 +1349,20 @@ Automatic scale-down when indexing, impressions, similarity, gate failures, fact
 ### 14.3 Consolidation plan (kept ready, not planned)
 
 If **two or more sites are hit**, or Google treats the network as one doorway set, consolidate to **3 sites** with 301s (content is portable Markdown):
-- **guideomra.ma** absorbs omra-ramadan (as `/ramadan/`), omracasablanca (as `/depart-casablanca/`) and voyageomra logistics;
+- **guideomra.ma** absorbs omra-ramadan (as `/ramadan/`) and voyageomra logistics (incl. the CMN and Rabat-Salé sections);
 - **prixomra.ma** absorbs offers;
 - **agenceomra.ma** stays.
 
 Rules: move only content that passes a fresh audit; a site under an unresolved **manual action** is retired or noindexed, not redirected (whether problems transfer through a 301 is UNKNOWN); nothing is ever redirected to wikitours.ma as part of a penalty response. This follows Mueller's view that a single web presence probably performs better [L].
+
+### 14.4 Incident playbook
+
+| Incident | Who | First hour | Within 24-48 h | Where it is shown |
+|---|---|---|---|---|
+| Wrong fact live (worst case: during Ramadan) | You + editor | Fact set to `disputed`; dependent pages re-render with a correction note; WhatsApp staff get the correct answer | Corrections-log entry with date and source; root cause and a new gate rule; if readers may have acted on it, a WhatsApp message to affected leads (your decision) | Corrections log of each affected site |
+| Brand impersonation (fake site, WhatsApp number or social page) | You | Warning on `/editeur/` and the « Vérifiez-nous » pages; reply script for staff | Report to the host, registrar and platform; tell the consumer observatory if people lost money (your decision) | wikitours.ma + all satellites |
+| Google manual action | You | Network freeze (automatic) | Audit and written fix plan; reconsideration only after fixes (§14.2 #1) | Search Console |
+| Complaint from an observed agency | You + lawyer | Acknowledge; hide the item if disputed | Answer within 48 h; publish the correction or right of reply; log it | prixomra / agenceomra corrections log |
 
 ---
 
@@ -1290,24 +1372,40 @@ If there is no answer by the date shown, the default applies.
 
 | # | Decision | Default | By |
 |---|---|---|---|
-| D1 | Hajj registration content: wikitours.ma keeps "inscription via agence / quota"; guideomra publishes only the **official 1449H timeline** and links to the wikitours.ma post. OK? | Yes (this split) | 25 Oct |
-| D2 | Disclose Wiki Tours ownership on all sites | **Yes** (I won't build hidden ownership) | 25 Oct |
-| D3 | Accept the cadence ladder (start 20-25/week; 24/day only as a ceiling)? | Ladder applies | 25 Oct |
-| D4 | Approve the **fast lane** (5-minute phone approval, same day, for official announcements)? | Without it, updates wait for the weekly review and competitors are first | 25 Oct |
-| D5 | Monthly Claude API spend cap (amount) | Required before generation starts | 25 Oct |
+| D1 | Hajj registration content: wikitours.ma keeps "inscription via agence / quota"; guideomra publishes only the **official 1449H timeline** and links to the wikitours.ma post. Final only after the FR + AR SERP-overlap check (§4.2) | Yes (this split); if overlap ≥ 4/10, guideomra shows only a dated official-facts table without « inscription » in title or H1 | 30 Oct |
+| D2 | Disclose Wiki Tours ownership on all sites | **Yes** (I won't build hidden ownership) | 30 Oct |
+| D3 | Confirm or correct our two ASSUMPTIONS (we have no access to wikitours.ma; you want full automation with about one weekly check), and accept the cadence ladder (owner only ≈ 3-4 prose posts/week; L1 ≈ 12-16/week with an editor; 24/day only as a ceiling) | Assumptions stand; ladder applies | 30 Oct |
+| D4 | Approve the **fast lane** (5-minute phone approval, same day, for official announcements)? | Without it, updates wait for the weekly review and competitors are first | 30 Oct |
+| D5 | Monthly Claude API spend cap (amount) | Required before generation starts | 30 Oct |
 | D6 | Is there a real Rabat presence or RBA departures sold by Wiki Tours? | No → omrarabat.ma keeps its 301 to voyageomra's Rabat-Salé section | 22 Nov |
 | D7 | offresomra.ma: list other licensed agencies' public offers (needs lawyer OK)? | No → keeps its 301 to the Bab Makka page; revisit Mar 2027 | 22 Nov |
 | D8 | Who are the named authors, the religious reviewer and the Arabic reviewer? | Organisation byline; ritual pillars held until a reviewer exists | 6 Nov |
 | D9 | Who runs the monthly price survey? | prixomra waits for an owner | 6 Nov |
-| D10 | Weekly time: 60 min (L1 only) or a part-time editor, 1 h/day (L2+)? | 60 min → L1 | Jan 2027 |
+| D10 | Part-time Moroccan editor, ≈ 5-6 h/week (E3)? | No editor → owner-only volume (≈ 3-4 prose posts/week) | 30 Oct |
 | D11 | Auto-publish lane for **prose** without per-post approval? Below Google's 1 Oct 2026 guidance; needs written risk acceptance and 8 green weeks; only for rule-free, number-free page types | **Off** | — |
 | D12 | Root language FR or AR per site | FR root, AR for pillars + proven-volume clusters | After Semrush |
 | D13 | Block AI **training** bots (GPTBot, ClaudeBot, Google-Extended, Applebot-Extended)? | Allow (business choice; search bots always allowed) | 6 Nov |
 | D14 | Merchant Center: proceed only if Morocco is supported + ordering method + matching identity? | Frozen | W2 check |
-| D15 | Buy brand-defence domains and one Hajj domain as redirects (§17)? | Recommended; your choice | Nov |
+| D15 | Buy brand-defence domains as redirects (§17)? A Hajj keyword domain is not recommended now (revisit Jun 2027) | Recommended for brand defence only; each 301 after a clean history check | Nov |
 | D16 | Share satellite guides weekly on Wiki Tours social channels? | Yes | Nov |
 | D17 | Paid search for Ramadan 2027 head terms pointing to wikitours.ma? Outside this SEO scope; the only guaranteed Ramadan 2027 visibility. Travel-ads rules UNKNOWN. | Your call | Nov |
 | D18 | Diaspora (MRE) audience abroad? | Revisit with Search Console country data (demand UNKNOWN) | Jun 2027 |
+| D19 | omra-ramadan structure: keep the trimmed domain, or run Ramadan as `guideomra.ma/ramadan/` and 301 omra-ramadan.ma until it has a distinct live asset (§5.1)? | Keep the trimmed domain | 30 Oct |
+| D20 | omracasablanca.ma: keep the hold (301 to voyageomra's CMN section), or run it under the strict rules in §5.6? | Hold | 22 Nov |
+| D21 | Budget envelope and kill threshold: Claude API (cost per post UNKNOWN until measured), part-time editor, lawyer, Semrush plan tier, licensed SERP data, Cloudflare/D1; and the cost per attributed booking (or chat) above which a site is merged | No scale-up beyond L1 until set | 30 Nov |
+| D22 | Social / video / WhatsApp content plan. YouTube had the largest social ad audience in Morocco in Jan 2024 per a Statista/DataReportal citation in an agency blog [U] ([Affect Group](https://affectgroup.com/blog/morocco-tiktok-audience-by-age-and-gender/)); scammers use the same channels | D16 only (share satellite guides, always pointing to a verifiable page). A full plan is outside this document | Dec |
+
+### 15.1 Open evidence gaps (not filled in this version)
+
+- **Semrush features** in the brief (Questions tab, Broad match, Keyword Gap tabs and domain limit, Organic Research Pages/Competitors exports, Position Tracking city targeting for Morocco, subfolder analysis by plan) were not re-checked live. Only filter logic and Morocco ('ma') data were searched.
+- **Hosting and CI limits** (Cloudflare Pages / R2 / Workers / Access, Netlify credits, Vercel Hobby, GitHub Actions) are at the June 2026 knowledge cutoff. Re-verify before the build.
+- **2026 policy items** (1 Oct 2026 gen-AI fact-check guidance, deceptive authorship update, September 2026 spam update, Search Console gen-AI setting and reports, Bing AI Performance report) rest mostly on secondary sources and were not re-searched.
+- **wikitours.ma facts** (licence ODV-25012, "since 2016", Bab Makka URLs) are company-stated only.
+- **Moroccan law** (Law 11-16 licence categories, Loi 31-08, Loi 09-08 / CNDP, .ma registration terms) is NOT RESEARCHED. The legal review (E1) is still required.
+- **Domain history** of the 8 domains (Wayback, whois, backlinks): scheduled for week 1, not done yet. Every redirect decision depends on it.
+- **Competitor / SERP landscape:** 5 of about 20 searches, US-only tool; no Moroccan agency competitor named (Step 7 and R2 are P0).
+- **WhatsApp usage in Morocco** at platform level: UNKNOWN.
+- **Mueller on posting frequency** is known through SEJ's report only; the original statement was not found.
 
 ---
 
@@ -1327,15 +1425,15 @@ If there is no answer by the date shown, the default applies.
                                                       │
                                    Claude API draft ([[fact:id]] markers) ─► Claude API verifier (claims → fact ids)
                                                       │
-                                   18 deterministic gates (facts, religious text, similarity, links, disclosure…)
+                                   21 deterministic gates (facts, religious text, similarity, links, disclosure, legal, licence…)
                                       fail ─► 1 auto-revision ─► fail ─► discard + log (+ MISSING → fact candidate)
                                                       │ pass
                         ┌─────────────────────────────┴──────────────────────────────┐
-                 PROSE (tier A/C)                                         DATA PAGES (tier B: offers, price
-                        ▼                                                 tables, fact tables from approved records)
+                 PROSE (tier A/C)                                         DATA VALUES ONLY (tier B: table cells,
+                        ▼                                                 fact-table rows on stable URLs, approved records)
      APPROVAL QUEUE queue/<YYYY-Www>.yml + preview + digest                          │ (auto)
                         ▼                                                            │
-     HUMAN weekly batch approval (named sign-off for tier A)                         │
+     HUMAN full read of every prose post (editor/owner; named sign-off tier A)       │
                         └─────────────────────────────┬──────────────────────────────┘
                                                       ▼
                      SCHEDULE QUEUE (≥ 7-day buffer) ─► publish 05:17 UTC (cap × kill-switch state)
@@ -1348,7 +1446,7 @@ If there is no answer by the date shown, the default applies.
                                                       ▼
                      KILL-SWITCH ENGINE ─► state/cadence.json (read by next run) + ALERTS (phone / email)
                                                       ▼
-                     WEEKLY REPORT (Sunday) ─► HUMAN 60-min ritual (Monday) ─► signed review (resets dead-man switch)
+                     WEEKLY REPORT (Sunday) ─► HUMAN 75-90-min ritual (Monday) ─► signed review (resets dead-man switch)
 ```
 
 ### 16.2 Facts registry operations
@@ -1362,7 +1460,7 @@ If there is no answer by the date shown, the default applies.
 
 1. Watcher detects a change on habous.gov.ma, haj.gov.sa or another monitored page — or you spot it — and sends a **phone alert** with the source link and the proposed fact.
 2. You approve the fact (≈ 5 minutes).
-3. A **templated** news update (fixed structure, values from the registry, no free AI prose) plus updated fact tables are built and gated.
+3. The approved fact updates the tracker **in place**: the fact-table row changes and a dated changelog entry is added on the existing stable URL. **No new post, no free AI prose.** Any explanatory prose goes through the normal approval queue.
 4. Published via the manual **run** trigger (`fast-lane.yml`). **Target: live ≤ 6 h after approval** (design choice).
 5. A **quarterly simulated drill** checks the lane works (first drill: week 7).
 
@@ -1373,12 +1471,15 @@ The weekly report has a « fast-lane readiness, next 14 days » line listing exp
 | Task | Who | Time (ESTIMATE) | Why it cannot be automated |
 |---|---|---|---|
 | Approve / renew facts | You (or one named person + backup) | 10-15 min/week | The anti-hallucination control itself |
-| Batch-approve next week's queue (full read of flagged items; structured check of the rest) | You or editor | 25-30 min/week at L1 | Google's 1 Oct 2026 fact-check guidance |
+| **Full read of every prose post** before it is scheduled | Part-time editor at L1 (≈ 12-16 posts); you at owner-only volume (3-4 posts) | ≈ 15 min/post: editor ≈ 3-4 h/week of the 5-6 h; you ≈ 45-60 min/week in owner-only mode | Google's 1 Oct 2026 fact-check guidance; `reviewed_by` means a full read |
+| Read flagged items (pillars, prices, visa/Hajj rules, Wiki Tours mentions) and sign off the batch | You | 20-30 min/week | Final accountability |
 | Random sample of published posts (6-question rubric) | You | 10 min/week | Catches what gates miss |
+| Report, Search Console check, leads, decisions, money-site track | You | ≈ 15 min/week | — |
 | Fast-lane approvals | You | 5 min per event, same day | Official announcements |
 | Kill-switch decisions (resume, escalate) | You | 5 min/week | Reversals need judgement |
-| Named sign-off on pillar / rule / ritual pages | Named staff, religious reviewer | ≈ 15 min/page at launch, then every 6 months | Real accountability (E-E-A-T) |
-| Religious knowledge-base approval | Religious reviewer | ≈ 3-4 h at setup, then yearly | Religious accuracy |
+| Named sign-off on pillar / rule / ritual pages | Named staff | ≈ 15-20 min/page at launch, then every 6 months | Real accountability (E-E-A-T) |
+| Arabic pages | Arabic reviewer | ≈ 15-20 min per AR page: ≈ 4-5 h at launch, then ≈ 1 h/week at L1 | Arabic quality; AR never publishes unread |
+| Religious knowledge base and ritual pages | Religious reviewer | ≈ 3-4 h at setup, then ≈ 15-20 min per ritual page and a yearly review | Religious accuracy |
 | Monthly price survey with proof | Staff or assistant | 2-8 h/month | Original data, judgement |
 | Wiki Tours offers sheet | Staff | ≈ 20 min/week | Real availability and prices |
 | Real photos, field-notes interview, consented testimonials | Staff | ≈ 1 h/month | Real people, real consent |
@@ -1386,10 +1487,12 @@ The weekly report has a « fast-lane readiness, next 14 days » line listing exp
 | Monthly AI prompt panel | You or assistant | ≈ 30 min/month | Consumer apps can't be reliably automated |
 | PR pitch | You | ≈ 1 h/month | Relationships |
 | Semrush re-export, ownership review | You | 1-2 h/quarter | Plan access, strategy |
-| Launch review sprint | You + staff | ≈ 14 h once | Launch quality |
+| Launch review | Named reviewer(s), with you | ≈ 16-21 h once for ≈ 64 pages at 15-20 min/page (Wave 1 pillars ≈ 5-7 h first) | Launch quality |
 | Legal review | Lawyer | Once, then on change | Legal |
 
-> **Honest risk statement.** Fully automated mass publishing with a weekly human check is the **highest-risk way** to run this network under Google's scaled content abuse policy. Our default is safer than that: **no prose page goes live without human approval**, and if you skip the review, publishing slows and then stops. But at L1, approving ≈ 20-25 posts in ≈ 30 minutes means a **light review** of most posts (title, short answer, and a claims table showing every fact used with its source), plus a full read of the 3-5 flagged items (pillars, prices, visa/Hajj rules, anything mentioning Wiki Tours). That is **not** a full manual fact-check of every sentence, so it does not literally meet Google's 1 Oct 2026 advice. The facts registry, the facts gate, the claims verifier and the kill-switches reduce the risk a lot; they cannot remove it. **The cheapest big risk reduction is one part-time Moroccan reviewer, 1 h/day** (≈ 15 min/post full review = 4 posts/day).
+**Time budget (ESTIMATE).** **You: ≈ 2 h/week on average** (the 75-90-min weekly ritual, fast-lane events, and monthly or quarterly tasks: AI panel 30 min/month, PR 1 h/month, Semrush 1-2 h/quarter). **Editor: ≈ 5-6 h/week** at L1. **Arabic reviewer: ≈ 1 h/week** after launch. **Religious reviewer:** setup hours, then per ritual page. **Launch:** ≈ 16-21 h of named-reviewer time.
+
+> **Honest risk statement.** Fully automated mass publishing with a weekly human check is the **highest-risk way** to run this network under Google's scaled content abuse policy. Our default: **no prose page goes live without a full human read** (≈ 15 min/post, ESTIMATE). With your time alone that is ≈ 3-4 prose posts a week. Reaching ≈ 12-16 a week needs the part-time editor (E3): a condition of L1, not an option. A structured check (title, short answer, claims table) never schedules prose; skimmed items wait a week. The `reviewed_by` field and the on-page « relue par » line appear only when that person fully read the page. Anything else would be a false review claim, the kind of deceptive trust signal Google's 1 Oct 2026 authorship update targets [L] ([SER](https://seroundtable.com/google-warns-against-deceptive-authorship-information-42238.html)). Even fully reviewed, five same-owner domains publishing AI-assisted text still resemble the named example "creating multiple sites with the intent of hiding the scaled nature of the content". Disclosure lowers that risk but does not remove it. The facts registry, gates and kill-switches reduce the risk; they cannot remove it.
 
 ### 16.5 Kill-switches and alerts (thresholds are DESIGN CHOICES; recalibrate after 8 weeks)
 
@@ -1401,7 +1504,7 @@ The weekly report has a « fast-lane readiness, next 14 days » line listing exp
 | "Crawled – currently not indexed" share | URL Inspection sample | > 20% | Slow; flag the 20 most similar posts | After 2 green weeks |
 | Impressions crash | Search Console (`all`) | 7-day impressions < 50% of trailing 4-week weekly average (baseline ≥ 500), no seasonal dip expected in the calendar | **Pause** site; **≥ 2 sites in the same week → network freeze** + check the [Search Status Dashboard](https://status.search.google.com/) | Human |
 | Similarity drift | Gates | Mean nearest-duplicate > 0.20 over 30 posts, or ≥ 3 duplicate blocks in 7 days | Slow (likely cluster exhaustion) | Auto when back under |
-| Gate failure rate | Pipeline | > 25% of drafts in 7 days | Slow + "prompt/registry issue" alert | Auto when < 20% |
+| Gate failure rate | Pipeline | > 25% of drafts in 7 days (placeholder until calibrated on 20 real drafts, §10.4) | Slow + "prompt/registry issue" alert | Auto when < 20% |
 | Confirmed fact error | Error form, sample, watcher | ≥ 1 | Pause that content type on that site | Human, after registry fix |
 | Fact in use past `review_by` | Registry | > 7 days | Stale banner on pages; block new posts using it; > 20% of registry stale → maintenance mode | Auto on renewal |
 | Official source changed | Watcher | Any | Block briefs on that topic; fast-lane alert | Human updates the fact |
@@ -1415,12 +1518,14 @@ The weekly report has a « fast-lane readiness, next 14 days » line listing exp
 | **Dead-man switch** | Weekly sign-off | No sign-off for 10 days | All sites slow | Next sign-off |
 | | | 21 days | Pause generation and publishing network-wide (data-page expiry handling continues) | Next sign-off |
 
+Caps are **weekly** (posts per site per week), so halving never turns a small cap into a silent pause. Kill-switches are automated from Wave 2; in Wave 1 you check the same signals by hand in the weekly review.
+
 ```js
 // packages/monitor/killswitch.js — tested (Node 22). Scale-down is automatic; resume is human.
 const T = { idxSlow: 0.70, idxPause: 0.50, minEligible: 20, cnriSlow: 0.20, dropPause: 0.50,
             dupSlow: 0.20, dupBlocks: 3, gateFailSlow: 0.25, reviewSlowDays: 10, reviewPauseDays: 21 };
 const RANK = { normal: 0, slow: 1, paused: 2 };
-function evaluateSite(m) {
+export function evaluateSite(m) {
   let state = 'normal'; const reasons = [];
   const bump = (s, r) => { reasons.push(r); if (RANK[s] > RANK[state]) state = s; };
   if (m.manualAction || m.securityIssue) bump('paused', 'manual action / security issue');
@@ -1437,29 +1542,32 @@ function evaluateSite(m) {
   else if (m.daysSinceSignedReview > T.reviewSlowDays) bump('slow', 'weekly review missed 10+ days');
   return { site: m.site, state, reasons };
 }
-function evaluateNetwork(sites, { cap }) {
+// cap = posts per site per WEEK.
+export function evaluateNetwork(sites, { cap }) {
   const res = sites.map(evaluateSite);
-  const freeze = sites.some(s => s.manualAction) || res.filter(r => r.reasons.includes('impressions crash')).length >= 2;
+  const freeze = sites.some(s => s.manualAction || s.securityIssue) ||
+                 res.filter(r => r.reasons.includes('impressions crash')).length >= 2;
+  const slowCap = c => (c > 0 ? Math.max(1, Math.floor(c / 2)) : 0);
   return res.map(r => ({ ...r, networkFreeze: freeze,
-    cap: freeze || r.state === 'paused' ? 0 : r.state === 'slow' ? Math.floor(cap[r.site] / 2) : cap[r.site] }));
+    cap: freeze || r.state === 'paused' ? 0 : r.state === 'slow' ? slowCap(cap[r.site]) : cap[r.site] }));
 }
-module.exports = { evaluateSite, evaluateNetwork, T };
+export { T };
 ```
 
-Tested prototypes for this strategy: `/tmp/claude-0/-home-user-blog-omra/bdf83659-de4f-5356-99c2-6f27ba7b310e/scratchpad/proto3/` (`facts-gate.js`, `killswitch.js`, `test.js`). They move into `packages/` in week 2.
+Tested prototypes for this strategy: `/tmp/claude-0/-home-user-blog-omra/bdf83659-de4f-5356-99c2-6f27ba7b310e/scratchpad/proto3/` (`facts-gate.js`, `killswitch.js`, `test.js`; updated 2026-10-20 with Unicode stems, the security-issue freeze and weekly caps, with regression tests; all pass). They move into `packages/` in week 2.
 
-### 16.6 The weekly review ritual (Monday, 60 min max; 30-min version in brackets)
+### 16.6 The weekly review ritual (Monday, ≈ 75-90 min; 45-min version in brackets)
 
 | Min | Step | Done when |
 |---|---|---|
 | 0-5 | Read the one-page report (§16.7). Note every RED / AMBER item. | Flags noted |
-| 5-8 | Search Console → Manual actions + Security for the 6 live properties (8 once all are live) | All clear, or freeze confirmed |
+| 5-8 | Search Console → Manual actions + Security for the live properties (3 at Wave 1, 5 after Wave 2) and wikitours.ma once added | All clear, or freeze confirmed |
 | 8-12 | Kill-switch log: confirm or reverse each automatic action. Resuming a paused site needs a typed reason. | `state/cadence.json` committed |
-| 12-25 | **Facts:** approve or reject candidates; renew facts due within 14 days; update Wiki Tours offers; check the « next 14 days » fast-lane readiness line. [30-min: due-only] | Zero expired facts in use |
-| 25-45 | **Approval queue:** open `queue/<week>.yml` + preview. Full read of 3-5 flagged items (pillars, prices, visa/Hajj rules, anything mentioning Wiki Tours). Structured check of the rest (title, short answer, claims table, similarity score, links). Approve or reject with a reason. [30-min: flagged items only; the rest waits a week] | Merge = approval |
-| 45-52 | **Random sample:** 3 posts published last week, 6-question rubric. [30-min: 2 posts] | Any "no" opens an error ticket |
-| 52-56 | **Leads:** confirm staff filled the sheet; glance at clicks → chats → quotes → bookings by site | Sheet up to date |
-| 56-60 | **Decisions:** accept or reject proposed unlocks; answer « decisions needed » (defaults apply if skipped); **sign off** | Signed (resets the dead-man switch) |
+| 12-25 | **Facts:** approve or reject candidates; renew facts due within 14 days; update Wiki Tours offers; check the « next 14 days » fast-lane readiness line. [45-min: due-only] | Zero expired facts in use |
+| 25-60 | **Approval queue:** open `queue/<week>.yml` + preview. With the editor: every prose item already has a full read (`full_read: true`); you read the 3-5 flagged items (pillars, prices, visa/Hajj rules, anything mentioning Wiki Tours) and sign off. Owner-only mode: you fully read 3-4 posts here. Anything not fully read waits a week; a structured check never schedules prose. [45-min: flagged items only] | Merge = approval |
+| 60-70 | **Random sample:** 3 posts published last week, 6-question rubric. [45-min: 2 posts] | Any "no" opens an error ticket |
+| 70-75 | **Leads:** confirm staff filled the sheet; glance at clicks → chats → quotes → bookings by site | Sheet up to date |
+| 75-85 | **Decisions + money-site track:** accept or reject proposed unlocks; answer « decisions needed » (defaults apply if skipped); check M1-M10 dates; **sign off** | Signed (resets the dead-man switch) |
 
 **Sample rubric (yes / no):**
 1. Is every number and date correct against its source?
@@ -1473,8 +1581,9 @@ Tested prototypes for this strategy: `/tmp/claude-0/-home-user-blog-omra/bdf8365
 
 ```
 OMRA NETWORK — WEEK 2026-W48 (23-29 Nov)        Generated Sun 29 Nov 18:23 UTC        Ramadan in ≈ 71 days (est.)
-STATUS      OR ● green  GO ● green  AG ● amber (index ratio 0.66 → SLOW)  PX ○ not live  VO ○  CA ○  OF ⇢ 301  RB ⇢ 301
-CADENCE     level L1 (21/wk) · unlock candidates: none (needs 4 green weeks)
+STATUS      OR ● green  GO ● green  AG ● amber (index ratio 0.66 → SLOW)  PX ○ not live  VO ○  CA ⇢ 301  OF ⇢ 301  RB ⇢ 301
+CADENCE     level L1 (12/wk, editor) · unlock candidates: none (needs 4 green weeks)
+MONEY SITE  M1 ✓ · M2 due Sun 15 Nov · M3 waiting for A2 proof
 1. AUTO-ACTIONS THIS WEEK   [site · trigger · action · since]  e.g. "AG set to SLOW: index ratio 0.66"
 2. HEALTH per site (posts 14-60d)   indexed % · crawled-not-indexed % · Δ vs last week
 3. VISIBILITY   impressions · clicks · CTR · avg pos · main keywords in top 10 / top 3 (per site, Δ)
@@ -1497,7 +1606,7 @@ DECISIONS NEEDED (max 5, each with its default if unanswered)
 
 ### 17.1 Verdict
 
-- **Do not build more content sites now.** The constraints are verified facts, original data and review time — not domain count. "If you make 2 websites out of one, you're not going to be twice as visible in search" (Mueller) [L]. Owning several same-topic sites "is not a good starting point" for ranking (Mueller 2024) [L] ([SEJ](https://www.searchenginejournal.com/google-answers-whether-having-two-sites-affects-rankings/514335/)). Cutts: a few own sites linked is fine; at 50+ it looks like a network [L].
+- **Do not build more content sites now.** The constraints are verified facts, original data and review time — not domain count. "If you make 2 websites out of one, you're not going to be twice as visible in search" (Mueller) [L]. Mueller (2024) said owning several sites is not a problem by itself, but working on many sites leaves less time to make each one truly good; his answer assumed sites on different topics, so same-topic sites may raise other concerns [L] ([SEJ](https://www.searchenginejournal.com/google-answers-whether-having-two-sites-affects-rankings/514335/)). Cutts: a few own sites linked is fine; at 50+ it looks like a network [L].
 - **Do buy cheap brand-defence domains and redirect them.** Fraud and impersonation are real risks in this market.
 - **Availability of every name below is UNKNOWN** until you check with a .ma registrar. .ma registration terms are NOT RESEARCHED.
 
@@ -1505,12 +1614,14 @@ DECISIONS NEEDED (max 5, each with its default if unanswered)
 
 | Priority | Candidate (examples; availability UNKNOWN) | Job | Verdict |
 |---|---|---|---|
-| 1 | babmakka.ma, bab-makka.ma | Brand defence for Bab Makka | **Buy if available; 301 to the Bab Makka page** (DNS-level; wikitours.ma is not touched) |
-| 1 | wiki-tours.ma, wikitour.ma (typos) | Brand and impersonation defence | **Buy if cheap; 301 to wikitours.ma** |
-| 2 | **A Hajj domain** (e.g. hajjmaroc.ma, guidehajj.ma, hajj-maroc.ma) | Moroccan Hajj process hub: official cycle tracker, preparation, rituals, cost history link. None of the 8 domains contains "hajj", and Hajj has its own peaks (registration, lottery, cost announcement, departures). | **Buy defensively and 301 to guideomra.ma/hajj/ now.** Build only if the entry criteria (§17.3) are met; earliest decision May-Jun 2027. A new domain would not be ready for a 1449H registration that may open Nov-Dec 2026 [U]; realistic target is the 1450H/2029 cycle (late 2027 [U]). Must respect D1 (wikitours.ma owns agency registration). |
+| 1 | babmakka.ma, bab-makka.ma | Brand defence for Bab Makka | **Buy if available; 301 to the Bab Makka page** after a clean history check (DNS-level; wikitours.ma is not touched) |
+| 1 | wiki-tours.ma, wikitour.ma (typos) | Brand and impersonation defence | **Buy if cheap; 301 to wikitours.ma** after a clean history check |
+| Later | **A Hajj domain** (e.g. hajjmaroc.ma, guidehajj.ma, hajj-maroc.ma) | Moroccan Hajj process hub. None of the 8 domains contains "hajj", and Hajj has its own peaks. | **Not now.** A Hajj keyword domain is the same pattern as the keyword variants we advise against (§17.5). Revisit at the Jun 2027 audit under §17.3; it would also have to respect D1 (wikitours.ma owns agency registration). Hajj content stays on guideomra.ma/hajj/. |
 | 3 | An Arabic-script .ma name (Arabic IDN; whether one exists for Morocco and its rules are UNVERIFIED) | Defensive redirect to `/ar/` | **Don't build a separate Arabic site.** Arabic belongs under `/ar/` with hreflang. Defensive at most. |
 | 3 | Bab Makka social handles / .com | Brand defence outside .ma | Check and secure if available (UNKNOWN) |
 | Later | Diaspora site (non-.ma) for Moroccans in Europe | MRE pilgrims | Not now. Demand UNKNOWN; .ma is a strong Morocco signal ([Google](https://developers.google.com/search/docs/specialty/international/managing-multi-regional-sites)). Revisit with Search Console country data, and only if Wiki Tours serves European departures. |
+
+**Every 301 to wikitours.ma is conditional on a clean Wayback / whois / backlink check (D6).** A domain with an unrelated history is dropped, or redirected to a satellite, never to wikitours.ma.
 
 ### 17.3 Entry criteria a new content site must meet before launch (all required)
 
@@ -1519,7 +1630,7 @@ DECISIONS NEEDED (max 5, each with its default if unanswered)
 3. Its own data asset (dataset, tracker or real local presence) with a named human owner and refresh frequency.
 4. ≥ 3 months of content supply in **verified** facts, and ≥ 30 distinct clusters with real demand (design choice).
 5. Every active site green for 8 consecutive weeks; no site paused in that period; average index ratio ≥ 80%.
-6. Review capacity: weekly review stays ≤ 60 min after adding it, or reviewer hours are added.
+6. Review capacity: your time stays at ≈ 2 h/week after adding it, or reviewer hours are added.
 7. Distinct design; legal check where needed; ownership disclosed.
 8. Clean domain history (Wayback/whois), no expired-domain reuse ([Google](https://developers.google.com/search/blog/2024/03/core-update-spam-policies)).
 9. **Net-zero rule:** it fits under the portfolio ceiling, so another site is merged or frozen first (first candidates: the held sites).
@@ -1529,7 +1640,7 @@ DECISIONS NEEDED (max 5, each with its default if unanswered)
 - **4-6 sites actively publishing** with you alone (L1).
 - **Up to 8 active** with a part-time editor.
 - **Never more than 8 active content sites.** Held or defensive domains redirect and carry no content, so they do not count.
-- **Plan for 2026-27:** 6 active, 2 held (redirecting), plus 2-4 defensive redirects. Revisit at the Jun 2027 audit on real data. Consolidation is a success outcome, not a failure.
+- **Plan for 2026-27:** 5 active, 3 held (redirecting), plus 2-4 defensive redirects. Revisit at the Jun 2027 audit on real data. Consolidation is a success outcome, not a failure.
 
 ### 17.5 What NOT to buy
 
@@ -1556,6 +1667,7 @@ Official and primary
 - Google AI optimization guide — https://developers.google.com/search/docs/fundamentals/ai-optimization-guide
 - Google gen-AI performance reports (June 2026) — https://developers.google.com/search/blog/2026/06/gen-ai-performance-reports
 - Google robots meta tag — https://developers.google.com/search/docs/crawling-indexing/robots-meta-tag
+- Google, simplifying breadcrumbs on mobile (Jan 2025) — https://developers.google.com/search/blog/2025/01/simplifying-breadcrumbs
 - Google common crawlers (Google-Extended) — https://developers.google.com/crawling/docs/crawlers-fetchers/google-common-crawlers
 - Google structured data gallery — https://developers.google.com/search/docs/appearance/structured-data/search-gallery
 - Google Article markup — https://developers.google.com/search/docs/appearance/structured-data/article
@@ -1587,9 +1699,11 @@ Official and primary
 - Apple (Applebot-Extended) — https://support.apple.com/en-us/HT6619
 - Cloudflare Pages limits — https://developers.cloudflare.com/pages/platform/limits/
 - GitHub Actions schedule — https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows#schedule
+- GitHub, disabling and enabling a workflow (60-day rule; Enterprise Server copy) — https://docs.github.com/en/enterprise-server@3.7/actions/using-workflows/disabling-and-enabling-a-workflow
 - web.dev Core Web Vitals — https://web.dev/articles/vitals
 - W3C text direction — https://www.w3.org/International/questions/qa-html-dir
-- WhatsApp click to chat — https://whatsapp.com/faq/en/general/26000030
+- WhatsApp click to chat FAQ (not re-checked) — https://whatsapp.com/faq/en/general/26000030
+- Dotdigital, WhatsApp click-to-chat format (third party) — https://support.dotdigital.com/en/articles/11331301-click-to-chat-for-whatsapp
 - Saudi Ministry of Hajj and Umrah, 1448H season calendar — https://haj.gov.sa/en/Media-Center/Ministry-News/2026/Ministry-of-Hajj-and-Umrah-Announces-the-Umrah-Season-Calendar-for-1448-AH
 - Saudi Ministry, Nusuk Umrah — https://haj.gov.sa/en/Media-Center/Ministry-News/Ministry-of-Hajj-and-Umrah-launches-Nusuk-Umrah-service-to-enable-pilgrims-from-outside-the-Kingdom
 - flynas Jeddah-Rabat launch — https://www.flynas.com/en/media-center/news-updates/flynas-announces-the-launch-of-direct-flights-between-jeddah-and-the-moroccan-capital-rabat-starting-from-july-4th-becomimg-the-first-saudi-carrier-to-operate-direct-flights-between-the-two-cities
@@ -1613,6 +1727,10 @@ Moroccan and regional press / data
 - Morocco World News, Hajj quota — https://www.moroccoworldnews.com/2026/04/288023/morocco-sets-34000-pilgrims-quota-lower-costs-digital-upgrade-for-hajj-season/
 - TelQuel, Ramadan 2026 start in Morocco — https://telquel.ma/instant-t/2026/02/18/jeudi-19-fevrier-1er-jour-du-mois-de-ramadan-au-maroc_1975833/
 - TelQuel, Hajj 2026 ONDA / Makkah Route — https://telquel.ma/instant-t/2026/05/22/hajj-2026-londa-deploie-un-dispositif-special_1991022/
+- TelQuel, Hajj 1447 return flights (9 Jun 2026) — https://telquel.ma/instant-t/2026/06/09/hajj-1447-plus-de-11-000-pelerins-marocains-deja-rentres-78-vols-prevus-au-retour_1993201/
+- EcoActu, Law 11-16 — https://ecoactu.ma/?p=17467
+- DataReportal, Digital 2026 Morocco — https://datareportal.com/reports/digital-2026-morocco
+- Affect Group, Morocco social audiences (agency blog, UNVERIFIED) — https://affectgroup.com/blog/morocco-tiktok-audience-by-age-and-gender/
 - SNRTnews, RAM Omra/Hajj flight program — https://snrtnews.com/fr/article/omra-et-haj-la-ram-deploie-un-nouveau-programme-de-vols-69745
 - SNRTnews, commercialisation of Omra — https://snrtnews.com/fr/article/omra-20-quand-une-pratique-religieuse-se-commercialise-116219
 - wafir.ma, summer 2026 Omra comparison (commercial, UNVERIFIED) — https://wafir.ma/fr/guide/omra-ete-2026-maroc-12-agences-comparatif-prix-financement
@@ -1633,7 +1751,8 @@ SEO industry (secondary)
 - Search Engine Roundtable, sister brand sites (Mueller, Jan 2026) — https://www.seroundtable.com/google-linking-brand-websites-40761.html
 - Search Engine Roundtable, two sites not twice as visible — https://seroundtable.com/google-two-for-one-27618.html
 - Search Engine Roundtable, city landing pages — https://www.seroundtable.com/google-city-landing-pages-doorway-pages-28670.html
-- Search Engine Journal, publishing dates / frequency (Mueller) — https://www.searchenginejournal.com/googles-john-mueller-changing-dates-on-pages-wont-improve-rankings/401734/
+- Search Engine Journal, changing dates won't improve rankings (Mueller) — https://www.searchenginejournal.com/googles-john-mueller-changing-dates-on-pages-wont-improve-rankings/401734/
+- Search Engine Journal, how freshness works (posting frequency, Mueller) — https://www.searchenginejournal.com/how-freshness-works/457485/
 - Search Engine Journal, multiple sites, similar content — https://www.searchenginejournal.com/google-multiple-sites-ip-not-problem-similar-content/254799/
 - Search Engine Journal, owning two sites — https://www.searchenginejournal.com/google-answers-whether-having-two-sites-affects-rankings/514335/
 - Search Engine Journal, crawled-not-indexed — https://www.searchenginejournal.com/google-explains-crawled-not-indexed/521311/

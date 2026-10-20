@@ -1,0 +1,1110 @@
+{
+ "generated": "2026-10-20",
+ "note": "Raw research facts gathered by the strategy workflow (web search, 2026-10-20). Confidence as judged by the researcher. Not yet human-verified.",
+ "facts": [
+  {
+   "stream": "market-regulation",
+   "claim": "Umm al-Qura calendar (Saudi): 1 Ramadan 1448 = Monday 8 Feb 2027; Eid al-Fitr expected Tuesday 9 Mar 2027. Moonsighting.org.uk expects Shawwal to start 10 Mar 2027. Final dates depend on moon sighting.",
+   "source_url": "https://blog.wego.com/ramadan-2027/",
+   "confidence": "likely"
+  },
+  {
+   "stream": "market-regulation",
+   "claim": "In 2026 Morocco started Ramadan on Thursday 19 Feb 2026, the day after its ministry's moon sighting. Saudi Arabia started on Wednesday 18 Feb 2026. So Morocco was 1 day behind Saudi in 2026. The same gap in 2027 is UNVERIFIED.",
+   "source_url": "https://telquel.ma/instant-t/2026/02/18/jeudi-19-fevrier-1er-jour-du-mois-de-ramadan-au-maroc_1975833/",
+   "confidence": "verified"
+  },
+  {
+   "stream": "market-regulation",
+   "claim": "Saudi Supreme Court set Wednesday 18 Feb 2026 as 1 Ramadan 1447, against astronomical forecasts.",
+   "source_url": "https://uk.news.yahoo.com/saudi-arabia-declares-ramadan-2026-163342225.html",
+   "confidence": "verified"
+  },
+  {
+   "stream": "market-regulation",
+   "claim": "Rajab 1448 starts around 10 Dec 2026 (Umm al-Qura table). Sha'ban 1448 starts 9 or 10 Jan 2027; moonsighting.org.uk says 10 Jan 2027 is most likely for Morocco.",
+   "source_url": "https://moonsighting.org.uk/moon/sighting-reports/report-1448-08.html",
+   "confidence": "likely"
+  },
+  {
+   "stream": "market-regulation",
+   "claim": "Dhul Hijjah 1448 starts 7 or 8 May 2027. Day of Arafah 15 or 16 May 2027. Eid al-Adha 16 or 17 May 2027 (UAE astronomy estimates).",
+   "source_url": "https://www.khaleejtimes.com/uae/ramadan-eid-al-fitr-eid-al-adha-2027-likely-dates",
+   "confidence": "likely"
+  },
+  {
+   "stream": "market-regulation",
+   "claim": "1 Muharram 1449 (Hijri new year) falls around 5-6 Jun 2027. Ashura falls around 14-15 Jun 2027.",
+   "source_url": "https://truecalendar.com/hijri/1449",
+   "confidence": "likely"
+  },
+  {
+   "stream": "market-regulation",
+   "claim": "Mawlid (12 Rabi al-Awwal 1449) is expected around 14 Aug 2027 (tabular calendar). Some calendars give 15 Aug.",
+   "source_url": "https://islamic.app/hijri/mawlid/2027",
+   "confidence": "likely"
+  },
+  {
+   "stream": "market-regulation",
+   "claim": "Morocco 2026-2027 school calendar comes from Ministerial Decision 047.26 of 3 Jul 2026. Classes start 7 Sep 2026. 8-day breaks: 18-25 Oct 2026, 6-13 Dec 2026, 24-31 Jan 2027 (mid-year), 21-28 Mar 2027, 9-16 May 2027. Religious holidays are set by moon sighting.",
+   "source_url": "https://en.le360.ma/society/2026-27-school-year-key-dates-for-students-and-teachers_ORTNN5RKQ5DYJGJHTE5ULMCDYM/",
+   "confidence": "verified"
+  },
+  {
+   "stream": "market-regulation",
+   "claim": "Same break dates are confirmed by a second source that cites Annex 1 of Decision 047.26.",
+   "source_url": "https://www.demarchesmaroc.com/?p=38158",
+   "confidence": "verified"
+  },
+  {
+   "stream": "market-regulation",
+   "claim": "End of classes for the national school system is reported as 2 Jul 2027 by one aggregator. Another source says the end date depends on cycle and level. No official source found.",
+   "source_url": "https://www.dreamjob.ma/etudiants/calendrier-vacances-scolaires-maroc/",
+   "confidence": "unverified"
+  },
+  {
+   "stream": "market-regulation",
+   "claim": "Moroccan religious public holidays: Eid al-Fitr (1-2 Shawwal, 2 days), Eid al-Adha (10-11 Dhul Hijjah, 2 days), 1 Muharram (1 day), Mawlid (2 days). Gregorian dates for 2027 are not official yet.",
+   "source_url": "https://wafir.ma/fr/guide/calendrier-jours-feries-maroc-2026-2027",
+   "confidence": "likely"
+  },
+  {
+   "stream": "market-regulation",
+   "claim": "Official 1448H Umrah season calendar: visas and arrivals from 31 May 2026. Nusuk permits and Makkah entry from 1 Jun 2026. Last visa issuance 1 Shawwal 1448 (9 Mar 2027). Last entry 15 Shawwal (23 Mar 2027). Last departure 30 Shawwal (7 Apr 2027).",
+   "source_url": "https://haj.gov.sa/en/Media-Center/Ministry-News/2026/Ministry-of-Hajj-and-Umrah-Announces-the-Umrah-Season-Calendar-for-1448-AH",
+   "confidence": "verified"
+  },
+  {
+   "stream": "market-regulation",
+   "claim": "From about 1 Nov 2025, Saudi Arabia shortened the Umrah visa entry window from 3 months to 1 month from issuance. An unused visa is cancelled after 30 days. Once the pilgrim arrives, the stay can still last up to 3 months.",
+   "source_url": "https://gulfnews.com/world/gulf/saudi/saudi-arabia-announces-new-amendments-to-umrah-visa-rules-1.500328262",
+   "confidence": "likely"
+  },
+  {
+   "stream": "market-regulation",
+   "claim": "Around 20 Jul 2026, Saudi Arabia launched a one-year multiple-entry Umrah visa: 365 days validity, 90 days total stay. A Nusuk package from an approved provider is required before each visit. It does not work in Hajj season (1 Dhu al-Qa'dah to 13 Dhul Hijjah) and does not replace the standard Umrah visa. Whether Moroccans can get it is UNKNOWN.",
+   "source_url": "https://www.khaleejtimes.com/world/gulf/saudi-arabia-launches-90-day-multiple-entry-umrah-visa-with-1-year-validity-2",
+   "confidence": "likely"
+  },
+  {
+   "stream": "market-regulation",
+   "claim": "In August 2025 the Saudi Ministry of Hajj and Umrah launched 'Nusuk Umrah'. Pilgrims outside the Kingdom can apply for the visa and book services directly, without an intermediary. Licensed agents stay available as an option. No published list confirms Morocco is a serviced country.",
+   "source_url": "https://haj.gov.sa/en/Media-Center/Ministry-News/Ministry-of-Hajj-and-Umrah-launches-Nusuk-Umrah-service-to-enable-pilgrims-from-outside-the-Kingdom",
+   "confidence": "verified"
+  },
+  {
+   "stream": "market-regulation",
+   "claim": "On 1 Feb 2026 Saudi Arabia suspended contracts with about 1,800 of roughly 5,800 foreign Umrah agencies after a performance review (accommodation, transport, visa failures). They had 10 days to fix the problems, and new visa issuance through them was blocked.",
+   "source_url": "https://gulfnews.com/world/gulf/saudi/saudi-arabia-suspends-1800-foreign-umrah-agencies-after-review-1.500430224",
+   "confidence": "verified"
+  },
+  {
+   "stream": "market-regulation",
+   "claim": "Meningitis rule (from 2025): every Umrah traveller aged 1 year or older needs a quadrivalent ACWY vaccine at least 10 days before arrival. A polysaccharide vaccine counts for 3 years, a conjugate vaccine for 5 years. Confirmation for 1448H was not found.",
+   "source_url": "https://gulfnews.com/living-in-uae/health/umrah-2025-meningitis-vaccine-now-mandatory-for-all-pilgrims-1.500025860",
+   "confidence": "likely"
+  },
+  {
+   "stream": "market-regulation",
+   "claim": "Rawdah (Prophet's Mosque) visits need a Nusuk permit. Earlier rules: a 10-minute visit, one permit per 365 days. A later update lets people near the mosque repeat the visit through an 'Immediate Path' service. The exact 2026-27 rules are UNVERIFIED.",
+   "source_url": "https://gulfnews.com/world/gulf/saudi/saudi-arabia-worshippers-close-to-prophets-mosque-can-repeat-visit-to-al-rawda-al-sharifa-1.500012438",
+   "confidence": "unverified"
+  },
+  {
+   "stream": "market-regulation",
+   "claim": "In March 2024 the Saudi ministry said it would not issue more than one Umrah permit per person during Ramadan. Whether this applies in Ramadan 1448 is UNKNOWN.",
+   "source_url": "https://beta.english.aaj.tv/news/30355098",
+   "confidence": "likely"
+  },
+  {
+   "stream": "market-regulation",
+   "claim": "Saudi Arabia dropped the mahram requirement for women doing Umrah. Secondary 2026 guides disagree on the age threshold (18+ versus all ages). No official text was found.",
+   "source_url": "https://blog.wego.com/complete-guide-for-umrah-without-mahram/",
+   "confidence": "unverified"
+  },
+  {
+   "stream": "market-regulation",
+   "claim": "Morocco was added to the Saudi tourist e-visa in Aug 2023 (tourism plus Umrah, not Hajj). Bladi reports that from 1 Feb 2025 Moroccans only get single-entry visas of up to 30 days. Status in 2026 is unclear and sources conflict.",
+   "source_url": "https://www.bladi.net/arabie-saoudite-complique-visa-marocains,113021.html",
+   "confidence": "unverified"
+  },
+  {
+   "stream": "market-regulation",
+   "claim": "Travel blogs put the dedicated Umrah visa at SAR 300 plus mandatory insurance. The insurance amount is disputed.",
+   "source_url": "https://blog.wego.com/2026-umrah-visa-price/",
+   "confidence": "unverified"
+  },
+  {
+   "stream": "market-regulation",
+   "claim": "Morocco's Tourism Minister Fatim-Zahra Ammor (Sep 2025): Hajj and Omra agencies are selected on professional and technical competence and financial guarantees. Disputes are first settled amicably at ministry delegations. Law 11.16 on the travel agent profession allows sanctions.",
+   "source_url": "https://fr.hespress.com/441379-hajj-et-omra-mesures-renforcees-pour-proteger-les-pelerins-marocains.html",
+   "confidence": "verified"
+  },
+  {
+   "stream": "market-regulation",
+   "claim": "Law 11-16 repealed Law 31-96, gave existing agencies 24 months to comply, and created licences graded by activity and liability, plus rules for online and distance sales. The exact licence categories were not found.",
+   "source_url": "https://ecoactu.ma/?p=17467",
+   "confidence": "likely"
+  },
+  {
+   "stream": "market-regulation",
+   "claim": "The Ministry of Tourism publishes the official list of authorised travel agencies on its website. In one case, Marrakech agency KSAR TOURS left pilgrims stranded in Turkey. It was operating while 'not authorised' because it had not renewed its licence, so it was missing from the official list. The pilgrims were repatriated.",
+   "source_url": "https://h24info.ma/?p=985412",
+   "confidence": "verified"
+  },
+  {
+   "stream": "market-regulation",
+   "claim": "In 2022 the Ministry of Tourism sanctioned 15 agencies under Law 31-96, with sanctions from warnings up to definitive licence withdrawal. Sanctioned agencies cannot apply for the Omra 'labellisation' for 3 years.",
+   "source_url": "https://www.bladi.net/omra-voici-liste-agences-voyages-sanctionnees,92963.html",
+   "confidence": "verified"
+  },
+  {
+   "stream": "market-regulation",
+   "claim": "To take part in the Omra operation, an agency historically had to submit a contract legalised in Morocco and approved by the ministry, its tourist and economic programs, its contract with the Saudi hotel and its airline agreement. The article is undated, so current rules are UNVERIFIED.",
+   "source_url": "https://aujourdhui.ma/?p=118205",
+   "confidence": "unverified"
+  },
+  {
+   "stream": "market-regulation",
+   "claim": "The federation president says opening an agency now requires a 200,000 MAD deposit with the CDG. This is an industry claim, not checked against the legal text.",
+   "source_url": "https://www.bladi.net/maroc-agences-voyage-peril,112319.html",
+   "confidence": "unverified"
+  },
+  {
+   "stream": "market-regulation",
+   "claim": "Hajj 1448H/2027: e-registration ran 8-19 Dec 2025 on the Habous ministry site, with 2 lists (ministry-supervised and travel agencies). Applicants had to be 18+ and not have done Hajj in the last 10 years.",
+   "source_url": "https://fr.hespress.com/451603-linscription-electronique-des-candidats-au-hajj-1448-h-du-8-au-19-decembre-2025.html",
+   "confidence": "verified"
+  },
+  {
+   "stream": "market-regulation",
+   "claim": "Hajj 1448H lottery ran 2-13 Mar 2026. Final lists and a waiting list were published right after.",
+   "source_url": "https://fr.le360.ma/societe/hajj-le-tirage-au-sort-aura-lieu-du-2-au-13-mars_KD5PVC6DUBFO3DRSPKJDKWEAQU/",
+   "confidence": "verified"
+  },
+  {
+   "stream": "market-regulation",
+   "claim": "Hajj registration has been moving earlier each cycle. 1447H/2026: registration 13-24 Jan 2025, lottery 23 Jun-4 Jul 2025. 1448H/2027: registration Dec 2025, lottery Mar 2026. As of 20 Oct 2026, no 1449H/2028 announcement was found.",
+   "source_url": "https://medias24.com/2025/06/16/hajj-2026-le-tirage-au-sort-aura-lieu-du-23-juin-au-04-juillet-2025/",
+   "confidence": "verified"
+  },
+  {
+   "stream": "market-regulation",
+   "claim": "Hajj 1447H final cost for ministry-supervised pilgrims: 63,021 MAD (announced 3 Mar 2026). For the first time it includes the hady sacrifice (720 SAR), and 1,979 MAD of the 65,000 MAD advance is refunded. Hespress reported 63,221 MAD and a Morocco World News piece 63,121 MAD, so the exact figure has a small conflict.",
+   "source_url": "https://fr.le360.ma/societe/hajj-1447h-les-frais-definitifs-fixes-a-63021-dirhams_HFBAQQU5INGOPKRWSNL7NY2QN4/",
+   "confidence": "verified"
+  },
+  {
+   "stream": "market-regulation",
+   "claim": "Hajj 1448H: selected pilgrims pay a flat provisional 65,000 MAD, pending a final cost that may move up or down. Payment window was reported as 29 Jun-10 Jul 2026. No final 1448H cost has been announced yet.",
+   "source_url": "https://ecoactu.ma/hajj-1447h-le-cout-fixe-a-63-021-dh-remboursement-prevu-des-le-9-mars-2026/",
+   "confidence": "likely"
+  },
+  {
+   "stream": "market-regulation",
+   "claim": "Hajj 1447H quota for Morocco was 34,000: about 22,200 through the official ministry system and 11,800 through approved travel agencies. 1446H had a similar split (22,400 / 11,600). Wafir.ma's '31,000 official + 2,000 agencies' contradicts this and is unreliable.",
+   "source_url": "https://www.moroccoworldnews.com/2026/04/288023/morocco-sets-34000-pilgrims-quota-lower-costs-digital-upgrade-for-hajj-season/",
+   "confidence": "likely"
+  },
+  {
+   "stream": "market-regulation",
+   "claim": "Fondation Mohammed VI took applications for its Hajj 1448H/2027 subsidy (members on the official circuit) from 16 Mar to 10 Jul 2026.",
+   "source_url": "https://snrtnews.com/fr/article/hajj-1448h2027-la-fondation-mohammed-vi-ouvre-les-souscriptions-a-la-subvention-149672",
+   "confidence": "verified"
+  },
+  {
+   "stream": "market-regulation",
+   "claim": "Hajj 2026: the 'Makkah Route / Tarik Makkah' program (Saudi pre-clearance at the departure airport) ran for its 5th year at Casablanca Mohammed V Terminal 3 and was extended to Rabat-Sale for the first time. ONDA counted 91 outbound Hajj flights from 9 Moroccan airports (Casablanca, Rabat-Sale, Marrakech, Agadir, Fes, Tangier, Oujda, Ouarzazate, Dakhla) to Medina and Jeddah, run by Royal Air Maroc and Saudi airlines.",
+   "source_url": "https://telquel.ma/instant-t/2026/05/22/hajj-2026-londa-deploie-un-dispositif-special_1991022/",
+   "confidence": "verified"
+  },
+  {
+   "stream": "market-regulation",
+   "claim": "flynas flies Jeddah-Casablanca (since 2023, 3 weekly at launch). It launched Jeddah-Rabat on 4 Jul 2026 at 1 weekly flight, the first direct service by a Saudi carrier, and links it to Umrah travel.",
+   "source_url": "https://www.flynas.com/en/media-center/news-updates/flynas-announces-the-launch-of-direct-flights-between-jeddah-and-the-moroccan-capital-rabat-starting-from-july-4th-becomimg-the-first-saudi-carrier-to-operate-direct-flights-between-the-two-cities",
+   "confidence": "verified"
+  },
+  {
+   "stream": "market-regulation",
+   "claim": "flynas Rabat-Jeddah was reported to increase to 2 weekly flights from 19 Aug 2026.",
+   "source_url": "https://blog.wego.com/flynas-direct-jeddah-rabat/",
+   "confidence": "likely"
+  },
+  {
+   "stream": "market-regulation",
+   "claim": "Royal Air Maroc sells Casablanca-Jeddah and Casablanca-Medina on its booking pages. Frequencies and the Ramadan 2027 program are UNKNOWN.",
+   "source_url": "https://www.royalairmaroc.com/en/flights-to-saudi-arabia",
+   "confidence": "likely"
+  },
+  {
+   "stream": "market-regulation",
+   "claim": "An aggregator lists Saudia nonstop Casablanca-Jeddah plus a routing through Madinah. Frequencies are not confirmed by Saudia.",
+   "source_url": "https://www.flightsfrom.com/CMN-JED",
+   "confidence": "unverified"
+  },
+  {
+   "stream": "market-regulation",
+   "claim": "For Ramadan 2023, RAM announced over 61,000 seats on about 100 flights to Jeddah and Medina, including 28,000 for Ramadan Omra, from Casablanca, Rabat, Tangier, Oujda, Fes, Marrakech and Agadir. This is old data but shows the pattern of seasonal capacity.",
+   "source_url": "https://snrtnews.com/fr/article/omra-et-haj-la-ram-deploie-un-nouveau-programme-de-vols-69745",
+   "confidence": "verified"
+  },
+  {
+   "stream": "market-regulation",
+   "claim": "After strikes on Iran at the end of Feb 2026, RAM suspended Casablanca-Doha and Casablanca-Dubai flights, extended to 15 Apr 2026. This shows Gulf flight risk during Ramadan. No impact on Saudi routes was reported.",
+   "source_url": "https://medias24.com/2026/03/27/royal-air-maroc-prolonge-la-suspension-de-ses-vols-vers-dubai-et-doha-jusquau-15-avril-1649760/",
+   "confidence": "verified"
+  },
+  {
+   "stream": "market-regulation",
+   "claim": "Wafir.ma (commercial comparator, updated 12 Jun 2026): summer 2026 Omra from 12 agencies cost 18,000-45,000 MAD in 3 tiers. Typical trip is 10 days (7 Makkah + 3 Madinah or the reverse) with weekly departures from CMN. Off-Ramadan is 20-35% cheaper and hotels near the Haram are easier to find. Mourabaha financing costs a 5.5-7% margin. The same page claims an Omra closure from about 15 Aug to end Sep 2026, which contradicts the official Saudi season calendar, so its figures need care.",
+   "source_url": "https://wafir.ma/fr/guide/omra-ete-2026-maroc-12-agences-comparatif-prix-financement",
+   "confidence": "unverified"
+  },
+  {
+   "stream": "market-regulation",
+   "claim": "Medias24 (Apr 2024), quoting federation president Semlali: Ramadan Omra drew over 30,000 Moroccans in 2023 and about 20,000 in 2024 (-30%). The average price was about 35,000 MAD in 2024 versus 25,000 MAD in 2023 (flight + hotel). Causes cited: inflation, geopolitics, the informal sector.",
+   "source_url": "https://medias24.com/2024/04/03/omra-2024-inflation-situation-geopolitique-et-secteur-informel-ont-fait-chuter-le-nombre-de-pelerins/",
+   "confidence": "likely"
+  },
+  {
+   "stream": "market-regulation",
+   "claim": "No published Ramadan 2027 (or Ramadan 2026) Omra price data from Moroccan agencies or the press was found.",
+   "source_url": "https://wafir.ma/fr/guide/omra-ete-2026-maroc-12-agences-comparatif-prix-financement",
+   "confidence": "verified"
+  },
+  {
+   "stream": "market-regulation",
+   "claim": "Feb 2026: a Marrakech agency manager was arrested over about 3.8 million MAD (380 million centimes) allegedly taken for Omras that never happened. On 12 Feb 2026 the Moroccan Consumer Protection Observatory issued a national warning to check an agency's legal status before paying.",
+   "source_url": "https://fr.hespress.com/462180-omra-lobservatoire-du-consommateur-appelle-a-un-controle-renforce-des-agences.html",
+   "confidence": "verified"
+  },
+  {
+   "stream": "market-regulation",
+   "claim": "The federation head said gaps in licensing let unqualified people operate legally. A consumer-rights association warned against online offers with unusually low prices. The tax authority (DGI) and Office des Changes stepped up checks on 'luxury/VIP Omra' spending.",
+   "source_url": "https://en.hespress.com/131697-moroccan-authorities-consumer-groups-warn-against-travel-scams-amid-luxury-umrah-audit.html",
+   "confidence": "verified"
+  },
+  {
+   "stream": "market-regulation",
+   "claim": "Medias24 (Feb 2025): Omra has been a growing trend among young Moroccans since COVID. Reasons cited: the end of fixed seasons, peer testimonies and social media. Semlali calls it a real movement over the last 5 years, not a fad.",
+   "source_url": "https://medias24.com/2025/02/13/tourisme-religieux-la-omra-devient-une-tendance-qui-prend-de-lampleur-chez-les-jeunes/",
+   "confidence": "likely"
+  },
+  {
+   "stream": "market-regulation",
+   "claim": "SNRTnews (Mar 2025): influencers are monetising Ramadan Omra content. Scholars object that Makkah is not a tourist destination.",
+   "source_url": "https://snrtnews.com/fr/article/omra-20-quand-une-pratique-religieuse-se-commercialise-116219",
+   "confidence": "likely"
+  },
+  {
+   "stream": "market-regulation",
+   "claim": "DataReportal Digital 2026 Morocco: 35.5 million internet users at end of 2025 (92.2% of the population). 22.8 million social media user identities in Oct 2025 (59.1%).",
+   "source_url": "https://datareportal.com/reports/digital-2026-morocco",
+   "confidence": "verified"
+  },
+  {
+   "stream": "market-regulation",
+   "claim": "YouTube had the largest social ad audience in Morocco in Jan 2024, ahead of Facebook (Statista, citing DataReportal). An agency blog citing TikTok Ads Manager puts 2026 TikTok 18+ ad reach at about 15.4 million (not unique users).",
+   "source_url": "https://affectgroup.com/blog/morocco-tiktok-audience-by-age-and-gender/",
+   "confidence": "unverified"
+  },
+  {
+   "stream": "market-regulation",
+   "claim": "Known scam patterns (generic guide, not Morocco-specific): agencies with no office advertising unrealistic prices on TikTok, Instagram and Facebook; fake sites imitating Nusuk; payment requests to a personal bank account.",
+   "source_url": "https://blog.wego.com/fr/eviter-arnaques-hajj-omra/",
+   "confidence": "unverified"
+  },
+  {
+   "stream": "market-regulation",
+   "claim": "Sunergia language survey (2024/25): Darija is spoken by 100% of respondents and is the mother tongue for 94%, but only 39% write it. French fluency is 19%. English is 9% overall and 17% among under-34s.",
+   "source_url": "https://en.hespress.com/112190-112190.html",
+   "confidence": "likely"
+  },
+  {
+   "stream": "market-regulation",
+   "claim": "An academic study of Moroccan online video comments found French used most, then Darija, then Standard Arabic. Standard Arabic was preferred in religious arguments.",
+   "source_url": "https://revistas.uca.es/index.php/aam/article/download/11769/13016/69424",
+   "confidence": "unverified"
+  },
+  {
+   "stream": "market-regulation",
+   "claim": "No public data was found on the language (French, Arabic, Darija, Latin-script Darija) Moroccans use when searching for omra or hajj.",
+   "source_url": "https://en.hespress.com/112190-112190.html",
+   "confidence": "verified"
+  },
+  {
+   "stream": "market-regulation",
+   "claim": "Hespress op-ed (May 2026): an SEO expert argues .ma is a strong local signal for Google and AI engines. This is opinion, not measured data.",
+   "source_url": "https://fr.hespress.com/472098-le-ma-face-aux-com-un-enjeu-de-visibilite-sur-google-et-sur-les-nouveaux-moteurs-ia.html",
+   "confidence": "unverified"
+  },
+  {
+   "stream": "policy-ai-search",
+   "claim": "Google's spam policy defines doorway abuse as sites or pages built to rank for specific, similar queries that lead users to intermediate pages less useful than the final destination. Its examples include 'multiple domain names or pages targeted at specific regions or cities that funnel users to one page', 'pages generated to funnel visitors into the actual usable or relevant portion of your site(s)' and 'substantially similar pages that are closer to search results than a clearly defined, browseable hierarchy'.",
+   "source_url": "https://developers.google.com/search/docs/essentials/spam-policies",
+   "confidence": "verified"
+  },
+  {
+   "stream": "policy-ai-search",
+   "claim": "Google's 2015 doorway update gives self-test questions: Is the page's purpose to rank and funnel visitors to the useful part of the site? Does it target generic terms while the content is very specific? Does it duplicate existing groupings such as locations or products to grab more search traffic? Is it an 'island' that is hard to reach from the rest of the site? It also says doorway campaigns can take the form of pages on one site, a number of domains, or both.",
+   "source_url": "https://developers.google.com/search/blog/2015/03/an-update-on-doorway-pages",
+   "confidence": "verified"
+  },
+  {
+   "stream": "policy-ai-search",
+   "claim": "Google renamed the 'Doorways' section to 'Doorway abuse' in a documentation refresh dated 25 September 2024.",
+   "source_url": "https://ppc.land/doorway-pages/",
+   "confidence": "likely"
+  },
+  {
+   "stream": "policy-ai-search",
+   "claim": "Scaled content abuse means generating many pages mainly to manipulate rankings rather than help users, whether the pages come from automation, humans, or both. One listed example is 'creating multiple sites with the intent of hiding the scaled nature of the content'. Others include generating many pages with gen-AI without adding value, scraping, and stitching content together without adding value.",
+   "source_url": "https://developers.google.com/search/docs/essentials/spam-policies",
+   "confidence": "verified"
+  },
+  {
+   "stream": "policy-ai-search",
+   "claim": "Danny Sullivan on scaled content: 'We don't really care how you're doing this scaled content, whether it's AI, automation, or human beings.' Google has never published a page count or publishing rate that triggers the policy.",
+   "source_url": "https://www.searchenginejournal.com/in-depth-look-at-google-spam-policies-updates/511005/",
+   "confidence": "likely"
+  },
+  {
+   "stream": "policy-ai-search",
+   "claim": "Google's generative-AI content guide says using gen-AI or similar tools to produce many pages without adding value for users may violate the scaled content abuse policy.",
+   "source_url": "https://developers.google.com/search/docs/fundamentals/using-gen-ai-content",
+   "confidence": "verified"
+  },
+  {
+   "stream": "policy-ai-search",
+   "claim": "On 1 October 2026 Google updated the gen-AI content guide to say it is critical to manually fact-check and review all AI-generated content before publishing. The guide now names title elements, meta descriptions, structured data and image alt text as part of that review.",
+   "source_url": "https://ppc.land/google-tells-sites-to-manually-factcheck-all-ai-content-before-publishing/",
+   "confidence": "likely"
+  },
+  {
+   "stream": "policy-ai-search",
+   "claim": "On 1 October 2026 Google's helpful-content guidance gained text saying that fabricating creator profiles (AI-generated headshots, made-up names, false credentials) is deception. Google says this makes a page untrustworthy to users and to its automated quality systems and signals a low-quality page. The same update added effort, originality, talent/skill and accuracy as attributes that raters assess.",
+   "source_url": "https://seroundtable.com/google-warns-against-deceptive-authorship-information-42238.html",
+   "confidence": "likely"
+  },
+  {
+   "stream": "policy-ai-search",
+   "claim": "Google's 2023 AI-content FAQ says to add disclosures about how content was made where readers would reasonably ask, and advises against listing AI as the author.",
+   "source_url": "https://developers.google.com/search/blog/2023/02/google-search-and-ai-content",
+   "confidence": "verified"
+  },
+  {
+   "stream": "policy-ai-search",
+   "claim": "Gary Illyes (2025) said Google's 'human created' wording should be read as 'human curated'. That means editorial review for accuracy before publishing, not a 'human reviewed' label on the page.",
+   "source_url": "https://www.searchenginejournal.com/google-says-ai-generated-content-should-be-human-reviewed/553486/",
+   "confidence": "likely"
+  },
+  {
+   "stream": "policy-ai-search",
+   "claim": "In March 2024 Google launched three new spam policies (scaled content abuse, site reputation abuse, expired domain abuse) alongside a core update. Google said the combined effort would cut low-quality, unoriginal content in results by 40%. That 40% is a target Google stated, not a measured result.",
+   "source_url": "https://developers.google.com/search/blog/2024/03/core-update-spam-policies",
+   "confidence": "verified"
+  },
+  {
+   "stream": "policy-ai-search",
+   "claim": "Expired domain abuse means buying an expired domain and reusing it mainly to rank low-value content on the strength of the domain's past reputation. Google says reusing an old domain is fine if the new site is original and made for people first.",
+   "source_url": "https://developers.google.com/search/blog/2024/03/core-update-spam-policies",
+   "confidence": "verified"
+  },
+  {
+   "stream": "policy-ai-search",
+   "claim": "Site reputation abuse (November 2024 update): publishing third-party content to exploit a host site's ranking signals is a violation whether or not the first party is involved or oversees it. Hosting third-party content alone is not a violation.",
+   "source_url": "https://developers.google.com/search/blog/2024/11/site-reputation-abuse",
+   "confidence": "verified"
+  },
+  {
+   "stream": "policy-ai-search",
+   "claim": "On 28 August 2026 Google changed site reputation abuse enforcement inside the EEA, effective 30 August 2026, and clarified the criteria it uses. Outside the EEA, which includes Morocco, enforcement is unchanged.",
+   "source_url": "https://developers.google.com/search/blog/2026/08/update-site-reputation-policy",
+   "confidence": "verified"
+  },
+  {
+   "stream": "policy-ai-search",
+   "claim": "Google's link spam examples include 'excessive link exchanges (\"Link to me and I'll link to you\") or partner pages exclusively for the sake of cross-linking', plus automated link creation. Paid or exchanged links are allowed if qualified with rel=nofollow or rel=sponsored.",
+   "source_url": "https://developers.google.com/search/docs/essentials/spam-policies",
+   "confidence": "verified"
+  },
+  {
+   "stream": "policy-ai-search",
+   "claim": "Google's unnatural-link examples include 'widely distributed links in the footers or templates of various sites'.",
+   "source_url": "https://ahrefs.com/seo/glossary/link-spam",
+   "confidence": "likely"
+  },
+  {
+   "stream": "policy-ai-search",
+   "claim": "John Mueller (January 2026) on sister brand sites linking to each other from a shared brand/partner page: it is pretty common and he sees no problem at reasonable scale. He added that a single web presence probably performs better overall.",
+   "source_url": "https://www.seroundtable.com/google-linking-brand-websites-40761.html",
+   "confidence": "likely"
+  },
+  {
+   "stream": "policy-ai-search",
+   "claim": "Matt Cutts (2013): linking a few of your own sites is fine. At 50, 80 or 150 sites it starts to look like a link network, and he would not link all domains together in a footer.",
+   "source_url": "https://searchengineland.com/?p=157141",
+   "confidence": "likely"
+  },
+  {
+   "stream": "policy-ai-search",
+   "claim": "Mueller said several sites sharing one IP is not a problem, but sites with very similar content that funnel users to the same products may be treated as a collection of doorway sites. Google may then show only one of them or demote all of them.",
+   "source_url": "https://www.searchenginejournal.com/google-multiple-sites-ip-not-problem-similar-content/254799/",
+   "confidence": "likely"
+  },
+  {
+   "stream": "policy-ai-search",
+   "claim": "Mueller (August 2024): owning several websites is unlikely to hurt rankings by itself, but running multiple same-topic sites in order to rank is not a good starting point.",
+   "source_url": "https://www.searchenginejournal.com/google-answers-whether-having-two-sites-affects-rankings/514335/",
+   "confidence": "likely"
+  },
+  {
+   "stream": "policy-ai-search",
+   "claim": "Mueller (2019): 'If you make 2 websites out of one, you're not going to be twice as visible in search.'",
+   "source_url": "https://seroundtable.com/google-two-for-one-27618.html",
+   "confidence": "likely"
+  },
+  {
+   "stream": "policy-ai-search",
+   "claim": "Mueller (December 2019) called a plan for 1,300 city landing pages (keyword + city) doorway pages. He has separately advised against networks of city-specific ccTLDs or subdomains as essentially doorways.",
+   "source_url": "https://www.seroundtable.com/google-city-landing-pages-doorway-pages-28670.html",
+   "confidence": "likely"
+  },
+  {
+   "stream": "policy-ai-search",
+   "claim": "Bing (November 2019) penalises 'inorganic site structure'. The typical case is one operator running many domains, each aimed at its own queries, all redirecting to or serving the same destination. Bing also treats PBNs (one site split across cross-linked domains) as a link policy violation.",
+   "source_url": "https://blogs.bing.com/webmaster/2019/11/Some-Thoughts-on-Website-Boundaries/",
+   "confidence": "verified"
+  },
+  {
+   "stream": "policy-ai-search",
+   "claim": "Bing's current Webmaster Guidelines treat link buying, link spamming, private networks and artificial social promotion as violations. They also warn that the same or very similar content across multiple URLs reduces Bing's confidence in picking a preferred version.",
+   "source_url": "http://www.bing.com/webmasters/help/webmaster-guidelines-30fba23a",
+   "confidence": "likely"
+  },
+  {
+   "stream": "policy-ai-search",
+   "claim": "Bing rewrote its Webmaster Guidelines around 27 February 2026. The new version adds Generative Engine Optimization (eligibility for grounding and citation in Copilot), gives prompt injection its own abuse section, and says NOARCHIVE keeps content out of Copilot answers and grounding while NOCACHE limits Copilot to URL, title and snippet.",
+   "source_url": "https://www.searchenginejournal.com/bing-adds-geo-to-official-guidelines-expands-ai-abuse-definitions/568442",
+   "confidence": "likely"
+  },
+  {
+   "stream": "policy-ai-search",
+   "claim": "Google ranking updates 2024: March 2024 core (5 Mar - 19 Apr, 45 days), June 2024 spam (20-27 Jun), August 2024 core (15 Aug - 3 Sep), November 2024 core (11 Nov - 5 Dec), December 2024 core and spam updates.",
+   "source_url": "https://searchengineland.com/google-algorithm-updates-2024-449417",
+   "confidence": "likely"
+  },
+  {
+   "stream": "policy-ai-search",
+   "claim": "Google ranking updates 2025: March 2025 core (from 13 Mar), June 2025 core (from 30 Jun), August 2025 spam (26 Aug - 22 Sep, global, all languages), December 2025 core (11-29 Dec).",
+   "source_url": "https://status.search.google.com/products/rGHU1u87FJnkP6W2GwMi/history",
+   "confidence": "likely"
+  },
+  {
+   "stream": "policy-ai-search",
+   "claim": "Google ranking updates 2026 so far: March 2026 spam (24 Mar, under one day), March 2026 core (27 Mar - 8 Apr), May 2026 core (21 May - 2 Jun), June 2026 spam (24-26 Jun), August 2026 spam (18-21 Aug), September 2026 spam (24 Sep - 8 Oct). That is four spam updates in 2026, and Google announced no new spam policy with any of them.",
+   "source_url": "https://searchengineland.com/google-september-2026-spam-update-done-rolling-out-493550",
+   "confidence": "likely"
+  },
+  {
+   "stream": "policy-ai-search",
+   "claim": "Glenn Gabe's August 2026 spam update case studies: sites were hit when a large share of their visibility came from scaled pages with little original value (AI filler, programmatic or thin affiliate pages). Hit sites can drop across AI Overviews and AI Mode too, and recovery typically takes at least several months.",
+   "source_url": "https://gsqi.com/marketing-blog/august-2026-google-spam-update-case-studies/",
+   "confidence": "likely"
+  },
+  {
+   "stream": "policy-ai-search",
+   "claim": "Danny Sullivan said the August 2024 core update helped some small independent sites but generally did not restore earlier levels, and that recovery is not guaranteed.",
+   "source_url": "https://searchengineland.com/google-danny-sullivan-algorithm-update-recovery-uncertain-446317",
+   "confidence": "likely"
+  },
+  {
+   "stream": "policy-ai-search",
+   "claim": "A wave of manual actions for 'scaled content abuse' against sites heavy on low-value AI content reportedly began around 3 June 2025. No official Google statement on its scale was found.",
+   "source_url": "https://www.nichepursuits.com/?p=133767",
+   "confidence": "unverified"
+  },
+  {
+   "stream": "policy-ai-search",
+   "claim": "The January 2025 Search Quality Rater Guidelines tell raters to give the Lowest rating when all or almost all main content is auto- or AI-generated with little added value, and they add a scaled content abuse section. Rater scores do not directly change rankings.",
+   "source_url": "https://ppc.land/google-updates-quality-rater-guidelines-with-ai-content-evaluation-criteria/",
+   "confidence": "likely"
+  },
+  {
+   "stream": "policy-ai-search",
+   "claim": "Mueller has said publishing frequency is not a ranking factor (frequency can raise crawl rate, not rankings). He has also said not to 'artificially freshen' pages with a new date unless the content changed substantially.",
+   "source_url": "https://www.searchenginejournal.com/googles-john-mueller-changing-dates-on-pages-wont-improve-rankings/401734/",
+   "confidence": "likely"
+  },
+  {
+   "stream": "policy-ai-search",
+   "claim": "Google: to appear as a link in AI Overviews or AI Mode, a page must be indexed and eligible to show in Search with a snippet. There are no other technical requirements. Both features use 'query fan-out', running several related searches to find supporting pages.",
+   "source_url": "https://developers.google.com/search/docs/appearance/ai-features",
+   "confidence": "verified"
+  },
+  {
+   "stream": "policy-ai-search",
+   "claim": "Google's May 2026 guide to optimizing for generative AI features says Google Search does not use llms.txt (it neither helps nor hurts) and that content 'chunking' and AI-only text files are unnecessary. It calls optimizing for gen-AI search ordinary SEO and says optimizing mainly to manipulate rankings or gen-AI responses violates the scaled content abuse policy.",
+   "source_url": "https://developers.google.com/search/docs/fundamentals/ai-optimization-guide",
+   "confidence": "verified"
+  },
+  {
+   "stream": "policy-ai-search",
+   "claim": "The robots meta rules nosnippet, max-snippet and the data-nosnippet attribute also limit how page content is used as direct input for AI Overviews and AI Mode.",
+   "source_url": "https://developers.google.com/search/docs/crawling-indexing/robots-meta-tag",
+   "confidence": "verified"
+  },
+  {
+   "stream": "policy-ai-search",
+   "claim": "Google-Extended is a robots.txt product token, not a crawler. It controls whether content can be used for future Gemini models (Gemini Apps, Vertex AI) and does not affect Google Search inclusion or ranking. Search AI features follow Googlebot rules.",
+   "source_url": "https://developers.google.com/crawling/docs/crawlers-fetchers/google-common-crawlers",
+   "confidence": "verified"
+  },
+  {
+   "stream": "policy-ai-search",
+   "claim": "Search Console has a property-level 'Search generative AI' setting that opts a site out of AI Overviews, AI Mode and generative Discover features. Every property is included by default. It launched 3 June 2026 for a subset of UK sites and reportedly reached all sites worldwide on 31 August 2026.",
+   "source_url": "https://ppc.land/google-gives-site-owners-a-toggle-to-exit-ai-overviews-and-ai-mode/",
+   "confidence": "likely"
+  },
+  {
+   "stream": "policy-ai-search",
+   "claim": "In June 2026 Google added Search Generative AI performance reports to Search Console. They show impressions in AI Overviews and AI Mode.",
+   "source_url": "https://developers.google.com/search/blog/2026/06/gen-ai-performance-reports",
+   "confidence": "verified"
+  },
+  {
+   "stream": "policy-ai-search",
+   "claim": "AI Overviews have been available in more than 200 countries and territories and more than 40 languages, including Arabic, since May 2025.",
+   "source_url": "https://blog.google/products/search/ai-overview-expansion-may-2025-update/",
+   "confidence": "verified"
+  },
+  {
+   "stream": "policy-ai-search",
+   "claim": "Google's AI Mode help page lists Morocco among supported countries and Arabic among supported languages. French was added in a later language expansion.",
+   "source_url": "https://support.google.com/websearch/answer/16011537?hl=en",
+   "confidence": "likely"
+  },
+  {
+   "stream": "policy-ai-search",
+   "claim": "An Ahrefs 2026 study (863k keywords) found 38% of AI Overview citations rank in the organic top 10, down from 76% in its July 2025 study. Ahrefs changed its parsing method between the two studies, so they are not directly comparable. Other studies (BrightEdge, Surfer) report different figures.",
+   "source_url": "https://news.designrush.com/ai-overview-citations-drop-ahrefs",
+   "confidence": "likely"
+  },
+  {
+   "stream": "policy-ai-search",
+   "claim": "OpenAI crawlers: OAI-SearchBot controls inclusion in ChatGPT search answers (opted-out sites can still appear as navigational links). GPTBot controls use for model training. ChatGPT-User makes user-initiated fetches and is not used to decide search inclusion. robots.txt changes take about 24 hours to apply.",
+   "source_url": "https://developers.openai.com/api/docs/bots",
+   "confidence": "verified"
+  },
+  {
+   "stream": "policy-ai-search",
+   "claim": "OpenAI's publisher FAQ: any public site can appear in ChatGPT search if it does not block OAI-SearchBot. ChatGPT adds utm_source=chatgpt.com to referral URLs.",
+   "source_url": "https://help-lb.openai.com/en/articles/12627856-publishers-and-developers-faq",
+   "confidence": "verified"
+  },
+  {
+   "stream": "policy-ai-search",
+   "claim": "ChatGPT search uses third-party search providers, including Bing, alongside OpenAI's own crawl. OpenAI has not disclosed the mix or its ranking method.",
+   "source_url": "https://www.windowslatest.com/2024/11/01/chatgpt-search-engine-uses-bing-builds-extension-to-replace-google-in-chrome/amp/",
+   "confidence": "likely"
+  },
+  {
+   "stream": "policy-ai-search",
+   "claim": "Perplexity runs two agents: PerplexityBot builds its index (Perplexity recommends allowing it), and Perplexity-User fetches pages for a user's question and is not used for crawling or training. robots.txt changes can take up to 24 hours.",
+   "source_url": "https://docs.perplexity.ai/docs/resources/perplexity-crawlers.md",
+   "confidence": "verified"
+  },
+  {
+   "stream": "policy-ai-search",
+   "claim": "Anthropic runs three bots: ClaudeBot (collects training data), Claude-User (fetches pages when users ask Claude), and Claude-SearchBot (indexes for search quality). Blocking Claude-User or Claude-SearchBot may reduce visibility in Claude's search answers.",
+   "source_url": "https://support.claude.com/en/articles/8896518-does-anthropic-crawl-the-web-and-how-can-site-owners-block-the-crawler",
+   "confidence": "verified"
+  },
+  {
+   "stream": "policy-ai-search",
+   "claim": "Applebot-Extended is a robots.txt token that opts content out of Apple foundation-model training. Pages that disallow it can still appear in Apple search results.",
+   "source_url": "https://support.apple.com/en-us/HT6619",
+   "confidence": "verified"
+  },
+  {
+   "stream": "policy-ai-search",
+   "claim": "In an Ahrefs server-log study of about 137,000 domains, 97% of llms.txt files got zero requests in May 2026. No primary statement from OpenAI, Anthropic or Perplexity saying they use llms.txt was found.",
+   "source_url": "https://ppc.land/llms-txt-adoption-rises-8-8x-but-97-of-files-get-zero-ai-requests/",
+   "confidence": "likely"
+  },
+  {
+   "stream": "policy-ai-search",
+   "claim": "Bing Webmaster Tools launched an AI Performance report in public preview in February 2026. It shows citations in Microsoft Copilot, Bing AI summaries and select partners, plus 'grounding queries'. It has no click data.",
+   "source_url": "https://blogs.bing.com/webmaster/February-2026/Introducing-AI-Performance-in-Bing-Webmaster-Tools-Public-Preview",
+   "confidence": "verified"
+  },
+  {
+   "stream": "policy-ai-search",
+   "claim": "IndexNow is supported by Bing, Yandex, Seznam and (per later sources) Naver. A URL submitted to one participating engine is shared with the others. Google does not participate.",
+   "source_url": "https://yoast.com/what-is-indexnow/",
+   "confidence": "likely"
+  },
+  {
+   "stream": "policy-ai-search",
+   "claim": "Bing Webmaster Tools can import and auto-verify sites already verified in Google Search Console, up to 100 sites per import.",
+   "source_url": "https://blogs.bing.com/webmaster/september-2019/Import-sites-from-Search-Console-to-Bing-Webmaster-Tools",
+   "confidence": "verified"
+  },
+  {
+   "stream": "policy-ai-search",
+   "claim": "Microsoft's October 2025 guidance for inclusion in AI answers: AI assistants pick individual passages. It advises descriptive headings, clear Q&A, and lists and tables, and warns against hiding key answers in tabs, PDFs or images. Nothing guarantees selection.",
+   "source_url": "https://about.ads.microsoft.com/en/blog/post/october-2025/optimizing-your-content-for-inclusion-in-ai-search-answers",
+   "confidence": "verified"
+  },
+  {
+   "stream": "policy-ai-search",
+   "claim": "Since 1 July 2025 Cloudflare blocks AI crawlers by default on new domains. Site owners can allow specific bots.",
+   "source_url": "https://www.technologyreview.com/2025/07/01/1119498/cloudflare-will-now-by-default-block-ai-bots-from-crawling-its-clients-websites/",
+   "confidence": "verified"
+  },
+  {
+   "stream": "policy-ai-search",
+   "claim": "FAQ rich results stopped appearing in Google Search on 7 May 2026. Search Console FAQ reports and Rich Results Test support were removed in June 2026, and API support ended in August 2026. FAQPage markup can stay on pages and Google still parses it.",
+   "source_url": "https://www.searchenginejournal.com/google-drops-faq-rich-results/574429/",
+   "confidence": "likely"
+  },
+  {
+   "stream": "policy-ai-search",
+   "claim": "In June 2025 Google began phasing out several structured data features (course info, ClaimReview, estimated salary, learning video, special announcement, vehicle listing, book actions). Practice problems followed in January 2026. Google said the change does not affect ranking.",
+   "source_url": "https://developers.google.com/search/blog/2025/06/simplifying-search-results",
+   "confidence": "verified"
+  },
+  {
+   "stream": "policy-ai-search",
+   "claim": "Google's structured data gallery still lists Article, Breadcrumb, Organization, Local business, Product (snippets and merchant listings) and Review snippet as supported features.",
+   "source_url": "https://developers.google.com/search/docs/appearance/structured-data/search-gallery",
+   "confidence": "verified"
+  },
+  {
+   "stream": "policy-ai-search",
+   "claim": "Pages with LocalBusiness or Organization markup are not eligible for review stars when the reviewed entity controls the reviews, including reviews shown via embedded third-party widgets. Google added text on fake and undisclosed incentivized reviews in July 2026.",
+   "source_url": "https://developers.google.com/search/docs/appearance/structured-data/review-snippet",
+   "confidence": "verified"
+  },
+  {
+   "stream": "policy-ai-search",
+   "claim": "Google's Event structured data guidelines say non-event products or services such as trip packages should not be marked up as events.",
+   "source_url": "https://developers.google.com/search/docs/appearance/structured-data/event",
+   "confidence": "verified"
+  },
+  {
+   "stream": "policy-ai-search",
+   "claim": "Google's Article markup guidance: use Person for people, list each author separately, use author.url to point to a page that uniquely identifies the author (ProfilePage markup is suggested for internal bio pages), and make markup match what readers see.",
+   "source_url": "https://developers.google.com/search/docs/appearance/structured-data/article",
+   "confidence": "verified"
+  },
+  {
+   "stream": "policy-ai-search",
+   "claim": "Google's LocalBusiness documentation says to use the most specific subtype. schema.org defines TravelAgency as Organization > LocalBusiness > TravelAgency.",
+   "source_url": "https://schema.org/TravelAgency",
+   "confidence": "verified"
+  },
+  {
+   "stream": "policy-ai-search",
+   "claim": "schema.org defines TouristTrip as a subtype of Trip, with properties including itinerary (ItemList or Place), offers, provider, touristType and subTrip. Google lists no rich result for TouristTrip.",
+   "source_url": "https://schema.org/TouristTrip",
+   "confidence": "verified"
+  },
+  {
+   "stream": "policy-ai-search",
+   "claim": "The Google Indexing API may only be used for pages with JobPosting, or BroadcastEvent embedded in a VideoObject. Google's spam policies apply to submissions, and using multiple accounts to get around submission limits is forbidden.",
+   "source_url": "https://developers.google.com/search/apis/indexing-api/v3/using-api",
+   "confidence": "verified"
+  },
+  {
+   "stream": "policy-ai-search",
+   "claim": "Google: after a recrawl request, crawling can take anywhere from a few days to a few weeks. Repeated requests for the same URL do not speed it up, and individual URL submission has a quota. Sitemaps are recommended for many URLs.",
+   "source_url": "https://developers.google.com/search/docs/crawling-indexing/ask-google-to-recrawl",
+   "confidence": "verified"
+  },
+  {
+   "stream": "policy-ai-search",
+   "claim": "Mueller: indexing a page can take from several hours to several weeks, and most good content is picked up within about a week.",
+   "source_url": "https://www.searchenginejournal.com/indexing-guide",
+   "confidence": "likely"
+  },
+  {
+   "stream": "policy-ai-search",
+   "claim": "Google denies having a 'sandbox' for new domains (Mueller, 2019). New sites lack ranking signals, so early rankings can swing.",
+   "source_url": "https://searchenginewatch.com/2019/07/01/google-sandbox-2019/",
+   "confidence": "unverified"
+  },
+  {
+   "stream": "policy-ai-search",
+   "claim": "Gary Illyes (2024): 'crawled - currently not indexed' can mean the page is very similar to content already indexed with better signals. The number of such pages is tied to overall site quality.",
+   "source_url": "https://www.searchenginejournal.com/google-explains-crawled-not-indexed/521311/",
+   "confidence": "likely"
+  },
+  {
+   "stream": "policy-ai-search",
+   "claim": "Google says ccTLDs are a strong signal that a site targets a specific country. Its list of ccTLDs treated as generic (.ad .ai .as .bz .cc .cd .co .dj .fm .io .la .me .ms .nu .sc .sr .su .tk .tv .ws) does not include .ma, so .ma sites are treated as targeting Morocco.",
+   "source_url": "https://developers.google.com/search/docs/specialty/international/managing-multi-regional-sites",
+   "confidence": "verified"
+  },
+  {
+   "stream": "policy-ai-search",
+   "claim": "Search Console's International Targeting report and its country-targeting setting are deprecated (removed 22 September 2022). hreflang remains supported, needs return links, and supports x-default.",
+   "source_url": "https://support.google.com/webmasters/answer/12474899?hl=en",
+   "confidence": "verified"
+  },
+  {
+   "stream": "policy-ai-search",
+   "claim": "In Merchant Center a website URL can be claimed by only one account at a time. Sharing a claim across accounts requires a multi-client (advanced) account.",
+   "source_url": "https://support.google.com/merchants/answer/14089347?hl=en",
+   "confidence": "likely"
+  },
+  {
+   "stream": "policy-ai-search",
+   "claim": "Merchant Center's Misrepresentation policy bans false identity, business name or contact details, and listing a virtual address as headquarters. Violations count as egregious and can lead to suspension without warning. Business details on the site must match the Merchant Center settings.",
+   "source_url": "https://support.google.com/merchants/answer/6150127?hl=en",
+   "confidence": "verified"
+  },
+  {
+   "stream": "policy-ai-search",
+   "claim": "Google Business Profile: virtual offices are ineligible. A business must make in-person contact with customers during stated hours. A co-working office qualifies only with signage, staff and customers during business hours.",
+   "source_url": "https://support.google.com/business/answer/3038177?hl=en",
+   "confidence": "verified"
+  },
+  {
+   "stream": "policy-ai-search",
+   "claim": "Google announced a 'back button hijacking' spam policy on 13 April 2026 (enforced from 15 June 2026). It notes that the offending code can come from third-party libraries or ad scripts.",
+   "source_url": "https://developers.google.com/search/blog/2026/04/back-button-hijacking",
+   "confidence": "verified"
+  },
+  {
+   "stream": "policy-ai-search",
+   "claim": "Danny Sullivan (WordCamp US, August 2025): 'good SEO is good GEO'. He says there is no separate playbook for AI search.",
+   "source_url": "https://searchengineland.com/google-danny-sullivan-good-seo-good-geo-461464",
+   "confidence": "likely"
+  },
+  {
+   "stream": "competitors",
+   "claim": "In this run, 5 site: queries (site:wikitours.ma, site:wikitours.ma omra, site:wikitours.ma hajj, site:wikitours.ma/fr, site:wikitours.ma/ar) returned ZERO URLs from wikitours.ma. The search engine either ignores the site: operator or barely indexes wikitours.ma. This does not confirm or refute the earlier Google site: finding in the context.",
+   "source_url": "WebSearch tool, queries run 2026-10-20 (no result URL from wikitours.ma)",
+   "confidence": "verified"
+  },
+  {
+   "stream": "competitors",
+   "claim": "The WebSearch budget for this turn (200 calls, shared by all agents in the workflow) ran out after my 5th query. The 3 remaining audit queries ('wikitours bab makka', '\"Wiki Tours International\" casablanca', 'wikitours.ma') and all 12 competitor probes were NOT run.",
+   "source_url": "WebSearch tool error message, 2026-10-20",
+   "confidence": "verified"
+  },
+  {
+   "stream": "competitors",
+   "claim": "The WebSearch tool is described as 'US-only', so every result in this run is US-biased and does not represent google.ma SERPs.",
+   "source_url": "WebSearch tool description",
+   "confidence": "verified"
+  },
+  {
+   "stream": "competitors",
+   "claim": "Hespress FR article (Feb 2026, per search summary): Morocco's consumer protection observatory urged people to check an agency's legal status before paying for an Omra, citing a fraud case in Marrakech involving a travel agency manager.",
+   "source_url": "https://fr.hespress.com/462180-omra-lobservatoire-du-consommateur-appelle-a-un-controle-renforce-des-agences.html",
+   "confidence": "likely"
+  },
+  {
+   "stream": "competitors",
+   "claim": "Wego's French blog ranks with a year-stamped guide 'Quand pouvez-vous accomplir la Omra en 2026 ?'. Per the search summary, it says Omra is open year-round but suspended in Hajj season, with a 2026 visa cutoff in late March, Nusuk permits suspended mid-April to late May, and reopening expected around 11 June (subject to official confirmation).",
+   "source_url": "https://blog.wego.com/fr/2026-omra/",
+   "confidence": "likely"
+  },
+  {
+   "stream": "competitors",
+   "claim": "A foreign French-language info site (hajjumrahplanner.com/fr) appeared for an omra query with a page titled 'Entrée à La Mecque et Omra'.",
+   "source_url": "https://hajjumrahplanner.com/fr/?p=15050",
+   "confidence": "verified"
+  },
+  {
+   "stream": "competitors",
+   "claim": "Aujourd'hui le Maroc published Hajj articles. Per the search summary, an older one says pilgrims could pick the official organisation or licensed agencies, and anyone registered on both lists was automatically excluded. The article date is UNKNOWN.",
+   "source_url": "https://aujourdhui.ma/?p=9997",
+   "confidence": "likely"
+  },
+  {
+   "stream": "competitors",
+   "claim": "A second aujourdhui.ma Hajj result appeared. Its content was not summarised.",
+   "source_url": "https://aujourdhui.ma/?p=61925",
+   "confidence": "verified"
+  },
+  {
+   "stream": "competitors",
+   "claim": "ONDA (Moroccan airports authority) hosts an omra-related PDF (filename CPOMRA140714, possibly a 2014 press release, UNVERIFIED).",
+   "source_url": "https://Onda.ma/content/download/4819/40680/version/1/fichier/CPOMRA140714.pdf",
+   "confidence": "unverified"
+  },
+  {
+   "stream": "competitors",
+   "claim": "Non-Moroccan Maghreb media appeared in the francophone omra results: La Presse (Tunisia; a Nov 2025 notice that the Tunisian ministry requires licensed category-A agencies and written contracts), Le Petit Journal Tunis, and Echorouk (Algeria).",
+   "source_url": "https://www.lapresse.tn/?p=876646",
+   "confidence": "likely"
+  },
+  {
+   "stream": "competitors",
+   "claim": "An academic book, 'Mecca in Morocco: Articulations of Muslim Pilgrimage in Moroccan Everyday Life', is listed (ISBN 9781399520720). It could be a citable source for cultural content.",
+   "source_url": "https://www.quialu.ca/produit/9781399520720",
+   "confidence": "verified"
+  },
+  {
+   "stream": "competitors",
+   "claim": "These wikitours.ma facts come from the context and were NOT re-verified in this run: operator Wiki Tours International (Casablanca, since 2016), licence ODV-25012 as stated by the site, 'Bab Makka' Umrah/Hajj brand, homepage title 'Umrah 2026 from Morocco', French slugs under /en/, and blog posts on omra tiers, Hajj registration/quota and the Madinah ziyara.",
+   "source_url": "https://wikitours.ma/en/bab-makka",
+   "confidence": "unverified"
+  },
+  {
+   "stream": "competitors",
+   "claim": "These competitor facts come from the context and were NOT re-verified in this run: wafir.ma 12-agency omra comparison (summer 2026, 18,000-45,000 MAD, off-Ramadan 20-35% cheaper); SNRTnews and Hespress coverage of prices, Ramadan flight scarcity and fraud; Medias24 (2025) on omra trending among young Moroccans.",
+   "source_url": "https://wafir.ma (exact URL not supplied in context)",
+   "confidence": "unverified"
+  },
+  {
+   "stream": "tech-semrush",
+   "claim": "RESEARCH LIMIT: the shared WebSearch budget (200 calls per turn) was already used up when this step started, and WebFetch/curl are blocked. None of the third-party facts below were re-checked on 2026-10-20. They come from official documentation as I knew it at my knowledge cutoff (June 2026). 'likely' means it was documented that way then; 'unverified' means it is uncertain or may have changed.",
+   "source_url": "n/a (tool budget message in this session)",
+   "confidence": "verified"
+  },
+  {
+   "stream": "tech-semrush",
+   "claim": "Cloudflare Pages Free plan: 500 builds per month, 1 concurrent build, 20-minute build timeout, 20,000 files per site, 25 MiB max per file, 100 custom domains per project.",
+   "source_url": "https://developers.cloudflare.com/pages/platform/limits/",
+   "confidence": "likely"
+  },
+  {
+   "stream": "tech-semrush",
+   "claim": "Cloudflare Pages serves static assets with unlimited requests and bandwidth on the Free plan. Pages Functions bill against the Workers free quota (100,000 requests/day).",
+   "source_url": "https://developers.cloudflare.com/pages/functions/pricing/",
+   "confidence": "likely"
+  },
+  {
+   "stream": "tech-semrush",
+   "claim": "Cloudflare Pages supports Direct Upload of a prebuilt folder with `wrangler pages deploy <dir> --project-name=<name>`, so builds can run in GitHub Actions instead of Cloudflare's build system. Whether Direct Upload deployments count toward the 500 builds/month is UNVERIFIED.",
+   "source_url": "https://developers.cloudflare.com/pages/get-started/direct-upload/",
+   "confidence": "unverified"
+  },
+  {
+   "stream": "tech-semrush",
+   "claim": "Cloudflare R2 free tier: 10 GB-month storage, 1 million Class A and 10 million Class B operations per month, no egress fees.",
+   "source_url": "https://developers.cloudflare.com/r2/pricing/",
+   "confidence": "likely"
+  },
+  {
+   "stream": "tech-semrush",
+   "claim": "Cloudflare Web Analytics is free and cookieless. Cloudflare Zero Trust (Access) has a free tier for up to 50 users, which is enough to put a private BI dashboard behind a login.",
+   "source_url": "https://developers.cloudflare.com/web-analytics/",
+   "confidence": "likely"
+  },
+  {
+   "stream": "tech-semrush",
+   "claim": "Netlify moved new accounts to credit-based pricing in Sept 2025. Free plan = 300 credits/month and a production deploy costs 15 credits, which is about 20 production deploys per month for the whole account. Exact current numbers are UNVERIFIED.",
+   "source_url": "https://www.netlify.com/pricing/",
+   "confidence": "unverified"
+  },
+  {
+   "stream": "tech-semrush",
+   "claim": "Vercel Hobby plan is for non-commercial personal use only. It allows 100 deployments/day and 100 GB/month of Fast Data Transfer. A commercial agency network should not run on Hobby.",
+   "source_url": "https://vercel.com/docs/limits/fair-use-guidelines",
+   "confidence": "likely"
+  },
+  {
+   "stream": "tech-semrush",
+   "claim": "GitHub Actions `schedule`: cron is in UTC. The shortest interval is every 5 minutes. Runs use the latest commit on the default branch. Runs can be delayed under high load (especially at the start of each hour), and queued jobs may be dropped. Scheduled workflows in PUBLIC repos are disabled after 60 days without repository activity.",
+   "source_url": "https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows#schedule",
+   "confidence": "likely"
+  },
+  {
+   "stream": "tech-semrush",
+   "claim": "GitHub Free includes 2,000 Actions minutes/month and 500 MB storage for private repos (standard runners are free for public repos). A job can run for up to 6 hours.",
+   "source_url": "https://docs.github.com/en/billing/managing-billing-for-your-products/managing-billing-for-github-actions/about-billing-for-github-actions",
+   "confidence": "likely"
+  },
+  {
+   "stream": "tech-semrush",
+   "claim": "Morocco is on UTC+1 except during Ramadan, when it moves to UTC+0. Node 22 (tzdata 2025b) gives Africa/Casablanca = GMT+1 on 2026-10-20, GMT+0 on 2027-02-20 and GMT+1 on 2027-03-20. tzdata predicts these dates; the government announces the real ones.",
+   "source_url": "local test: node v22.22.0, ICU 77.1, tzdata 2025b (Intl.DateTimeFormat timeZone Africa/Casablanca)",
+   "confidence": "verified"
+  },
+  {
+   "stream": "tech-semrush",
+   "claim": "ICU's Umm al-Qura calendar maps 2027-02-08 to 1 Ramadan 1448 AH. This matches the already-established Ramadan 2027 start of about 8 Feb (it is a calculation, not a moon sighting).",
+   "source_url": "local test: Intl.DateTimeFormat('ar-MA-u-ca-islamic-umalqura') in node v22.22.0",
+   "confidence": "verified"
+  },
+  {
+   "stream": "tech-semrush",
+   "claim": "In Node's ICU/CLDR, 'ar-MA' formats numbers with Western digits (18.000,5) and MAD as 'د.م.'. 'fr-MA' gives '18.000,00 MAD'. So Arabic pages can show Latin digits through Intl with no custom code.",
+   "source_url": "local test: Intl.NumberFormat('ar-MA' / 'fr-MA') in node v22.22.0 ICU 77.1",
+   "confidence": "verified"
+  },
+  {
+   "stream": "tech-semrush",
+   "claim": "IndexNow: send one POST to https://api.indexnow.org/indexnow with {host, key, keyLocation, urlList} (up to 10,000 URLs). The key is 8-128 characters [a-zA-Z0-9-] and is served from a key file on the host. Responses: 200, 202 (key validation pending), 400, 403 (bad key), 422 (URL not on host), 429 (too many requests). Participating engines share submissions with each other.",
+   "source_url": "https://www.indexnow.org/documentation",
+   "confidence": "likely"
+  },
+  {
+   "stream": "tech-semrush",
+   "claim": "Google does not take part in IndexNow. Participants are Bing, Yandex, Seznam, Naver and Yep.",
+   "source_url": "https://www.indexnow.org/searchengines",
+   "confidence": "likely"
+  },
+  {
+   "stream": "tech-semrush",
+   "claim": "Google's Indexing API is only for pages with JobPosting or BroadcastEvent (livestream) markup. Using it for blog posts is outside its allowed use.",
+   "source_url": "https://developers.google.com/search/apis/indexing-api/v3/quickstart",
+   "confidence": "likely"
+  },
+  {
+   "stream": "tech-semrush",
+   "claim": "Sitemaps: at most 50,000 URLs or 50 MB uncompressed per file, otherwise use a sitemap index. Google ignores <priority> and <changefreq>, and uses <lastmod> only when it is consistently and verifiably accurate.",
+   "source_url": "https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap",
+   "confidence": "likely"
+  },
+  {
+   "stream": "tech-semrush",
+   "claim": "Google deprecated the sitemap 'ping' endpoint (announced June 2023). Submit sitemaps through Search Console (UI or API) or a robots.txt Sitemap: line.",
+   "source_url": "https://developers.google.com/search/blog/2023/06/sitemaps-lastmod-ping",
+   "confidence": "likely"
+  },
+  {
+   "stream": "tech-semrush",
+   "claim": "Google recommends both an XML sitemap (all URLs) and an RSS/Atom feed (recent changes) for crawl discovery.",
+   "source_url": "https://developers.google.com/search/blog/2014/10/best-practices-for-xml-sitemaps-rssatom",
+   "confidence": "likely"
+  },
+  {
+   "stream": "tech-semrush",
+   "claim": "hreflang values are an ISO 639-1 language code plus an optional ISO 3166-1 alpha-2 region, so fr-MA and ar-MA are valid. Annotations must be reciprocal (each version lists itself and all the others) or they can be ignored. x-default is supported. They can go in HTML link tags, HTTP headers or sitemaps.",
+   "source_url": "https://developers.google.com/search/docs/specialty/international/localized-versions",
+   "confidence": "likely"
+  },
+  {
+   "stream": "tech-semrush",
+   "claim": "Moroccan Darija has the ISO 639-3 code 'ary' and no ISO 639-1 code, so it cannot be its own hreflang value. Arabic-script Darija pages would use ar / ar-MA.",
+   "source_url": "https://iso639-3.sil.org/code/ary",
+   "confidence": "likely"
+  },
+  {
+   "stream": "tech-semrush",
+   "claim": "W3C i18n recommends setting text direction with the dir attribute on <html> (dir=\"rtl\"), not with CSS direction. CSS logical properties (margin-inline-start, inset-inline-end, text-align:start) let one stylesheet serve both LTR and RTL.",
+   "source_url": "https://www.w3.org/International/questions/qa-html-dir",
+   "confidence": "likely"
+  },
+  {
+   "stream": "tech-semrush",
+   "claim": "Core Web Vitals 'good' thresholds at the 75th percentile: LCP <= 2.5 s, INP <= 200 ms, CLS <= 0.1. INP replaced FID on 12 March 2024.",
+   "source_url": "https://web.dev/articles/vitals",
+   "confidence": "likely"
+  },
+  {
+   "stream": "tech-semrush",
+   "claim": "Image guidance: do not lazy-load the LCP image, and give it fetchpriority=\"high\". Set width and height on images to prevent layout shift. Serve responsive images with srcset and sizes.",
+   "source_url": "https://web.dev/articles/optimize-lcp",
+   "confidence": "likely"
+  },
+  {
+   "stream": "tech-semrush",
+   "claim": "The Node 'sharp' library (libvips) outputs AVIF, WebP and JPEG, and is the standard way to generate responsive image variants in a JS build.",
+   "source_url": "https://sharp.pixelplumbing.com/api-output",
+   "confidence": "likely"
+  },
+  {
+   "stream": "tech-semrush",
+   "claim": "CrUX field data (used for Core Web Vitals) needs enough real-user traffic. New low-traffic sites may have none, so CI should rely on lab tests (Lighthouse).",
+   "source_url": "https://developer.chrome.com/docs/crux/methodology",
+   "confidence": "likely"
+  },
+  {
+   "stream": "tech-semrush",
+   "claim": "Search Console API: POST searchAnalytics.query on sites/{siteUrl}. siteUrl is 'sc-domain:example.ma' for Domain properties. Dimensions: date, query, page, country, device, searchAppearance. rowLimit max 25,000, paginate with startRow. dataState is 'final' (default) or 'all'. The country filter uses ISO 3166-1 alpha-3 ('mar').",
+   "source_url": "https://developers.google.com/webmaster-tools/v1/searchanalytics/query",
+   "confidence": "likely"
+  },
+  {
+   "stream": "tech-semrush",
+   "claim": "Search Console API quotas: 1,200 queries/minute per site and per user, 30,000,000 queries/day per project. URL Inspection API: 2,000 calls/day and 600/minute per site. Search Analytics also has load-based limits, and query+page groupings cost the most.",
+   "source_url": "https://developers.google.com/webmaster-tools/limits",
+   "confidence": "likely"
+  },
+  {
+   "stream": "tech-semrush",
+   "claim": "Search Console keeps about 16 months of performance data. Rare (anonymized) queries are left out of query-level rows, so query rows do not add up to the totals.",
+   "source_url": "https://developers.google.com/search/blog/2022/10/performance-data-deep-dive",
+   "confidence": "likely"
+  },
+  {
+   "stream": "tech-semrush",
+   "claim": "Search Console offers a daily bulk export to BigQuery, an alternative to API pulls when the data gets large.",
+   "source_url": "https://support.google.com/webmasters/answer/12918484",
+   "confidence": "likely"
+  },
+  {
+   "stream": "tech-semrush",
+   "claim": "Merchant Center product data: id, title, description, link, image_link, availability, price (e.g. '149.00 MAD'), condition and shipping are core attributes. Unbranded or custom items without a GTIN use identifier_exists = no. Apparel can need color/size/gender/age_group depending on target country.",
+   "source_url": "https://support.google.com/merchants/answer/7052112",
+   "confidence": "likely"
+  },
+  {
+   "stream": "tech-semrush",
+   "claim": "Google's Merchant API replaces the Content API for Shopping. I recall a Content API shutdown date of 18 Aug 2026, but it is UNVERIFIED. A static site should use a feed file (scheduled fetch) or the Merchant API, not the Content API.",
+   "source_url": "https://developers.google.com/merchant/api",
+   "confidence": "unverified"
+  },
+  {
+   "stream": "tech-semrush",
+   "claim": "Whether Morocco is a supported target country for Merchant Center free listings or Shopping ads is UNKNOWN. Check the country-availability page before building the shop.",
+   "source_url": "https://support.google.com/merchants/answer/160637",
+   "confidence": "unverified"
+  },
+  {
+   "stream": "tech-semrush",
+   "claim": "Semrush has country databases. A Morocco ('ma') database is believed to exist but is UNVERIFIED. Check the database dropdown in Keyword Magic Tool before exporting.",
+   "source_url": "https://www.semrush.com/kb/",
+   "confidence": "unverified"
+  },
+  {
+   "stream": "tech-semrush",
+   "claim": "Semrush CSV column headers differ by report and have changed over time. For example, Keyword Magic Tool has historically used 'Keyword, Intent, Volume, Trend, Keyword Difficulty, CPC (USD), Competitive Density, SERP Features, Number of Results', and Organic Research uses 'Position, Previous position, Search Volume, URL, Traffic...'. Exact current headers are UNVERIFIED, so the ingester uses an alias map and rejects files without a Keyword column.",
+   "source_url": "https://www.semrush.com/kb/",
+   "confidence": "unverified"
+  },
+  {
+   "stream": "tech-semrush",
+   "claim": "Semrush plan limits (projects: Pro 5, Guru 15, Business 40; tracked keywords: 500 / 1,500 / 5,000) are UNVERIFIED. If Pro is still 5 projects, it cannot hold 9 Position Tracking projects (8 satellites + wikitours.ma).",
+   "source_url": "https://www.semrush.com/prices/",
+   "confidence": "unverified"
+  },
+  {
+   "stream": "tech-semrush",
+   "claim": "Google's terms ban automated access that ignores machine-readable instructions such as robots.txt, and google.com/search is disallowed in robots.txt. SERP data for clustering should come from a licensed API (Semrush API or a SERP API provider), not from scraping.",
+   "source_url": "https://policies.google.com/terms",
+   "confidence": "likely"
+  },
+  {
+   "stream": "tech-semrush",
+   "claim": "Google's 64-bit SimHash near-duplicate method (Manku, Jain, Das Sarma, WWW 2007) treated pages within Hamming distance 3 as near-duplicates. The quality gate uses this as its SimHash block threshold.",
+   "source_url": "https://dl.acm.org/doi/10.1145/1242572.1242592",
+   "confidence": "likely"
+  },
+  {
+   "stream": "tech-semrush",
+   "claim": "Google's helpful-content guidance says Google has no preferred word count. Word-count minimums in the quality gates are editorial floors, not ranking rules.",
+   "source_url": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content",
+   "confidence": "likely"
+  },
+  {
+   "stream": "tech-semrush",
+   "claim": "Google's policy on AI content: using automation, including AI, to make content mainly to manipulate rankings breaks spam policies. AI-assisted content that is helpful is not penalized for being AI-assisted.",
+   "source_url": "https://developers.google.com/search/blog/2023/02/google-search-and-ai-content",
+   "confidence": "likely"
+  },
+  {
+   "stream": "tech-semrush",
+   "claim": "The prototype modules (Semrush ingest with header aliases and file-name contract, FR/AR normalisation, SERP-overlap clustering, shingle-Jaccard + SimHash, cannibalization guard, quality gates, scheduler, Merchant feed) pass local tests. Both JSON Schemas compile and validate in ajv (draft 2020-12). All test data is SYNTHETIC (placeholder volumes of 999 and fake URLs).",
+   "source_url": "/tmp/claude-0/-home-user-blog-omra/bdf83659-de4f-5356-99c2-6f27ba7b310e/scratchpad/proto/test.js",
+   "confidence": "verified"
+  }
+ ]
+}
