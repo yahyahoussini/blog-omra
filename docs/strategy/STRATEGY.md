@@ -4,8 +4,9 @@
 > - **Date:** 2026-10-20. Final strategy v1.
 > - **wikitours.ma is not yet audited.** We could not open its pages. Everything we know comes from Google's index (site: search on 2026-10-20). Real prices, offices outside Casablanca, team, reviews, Google Business Profile, backlinks, traffic and platform are **UNKNOWN**.
 > - **Semrush data is pending.** Every keyword in this document is a **PLACEHOLDER**. There are no search volumes anywhere in this document, because we have none.
-> - **wikitours.ma is off-limits.** We do not touch it, we have no access to it, and nothing in this plan depends on changing it.
-> - **Full automation with one weekly human check** is the client's constraint. The plan respects it, and §16 says honestly where it is risky and what must stay human.
+> - **ASSUMPTION (to confirm in D3): we have no access to wikitours.ma.** This is not in the client decisions we were given; it is our working assumption. We never edit wikitours.ma. Because it is the domain most likely to rank for Ramadan 2027, work on it is a **client-owned track with dates** (§4.6), not an optional extra.
+> - **ASSUMPTION (to confirm in D3): you want full automation with about one weekly human check.** This is also not in the client decisions we were given (static HTML + CSS, Node.js, 10 keywords/site, 3 posts/day/site, cross-linking, Merchant Center). §16 says honestly why prose review needs more human time than that: about 2 h/week from you, plus a part-time editor to go beyond 3-4 posts a week.
+> - **Plan date:** Wave 1 on **9-15 Nov 2026**, only if the written P0 checklist (§2) is complete by **Fri 30 Oct**. Otherwise it moves week by week.
 > - All code is JavaScript (Node.js). Sites are static HTML + CSS.
 
 **Labels used in this document**
@@ -27,24 +28,26 @@
 
 ### 1.1 The model in six lines
 
-1. **8 .ma satellites, each a useful Moroccan publication on its own.** Each has one job: guide, Ramadan planner, agency verification, price observatory, trip logistics, Casablanca departures, plus two sites on hold (offers board, Rabat departures).
+1. **5 active .ma satellites + 3 held (redirecting).** Each active site is a useful Moroccan publication on its own, with one job: guide, Ramadan planner, agency verification, price observatory, trip logistics. On hold: offers board, Rabat departures, Casablanca departures (doorway risk, §5.6).
 2. **Ownership is disclosed on every site:** "Publié par Wiki Tours International". No hidden network.
 3. **Demand goes to Wiki Tours in two ways:**
    - **Mainly:** a WhatsApp click-to-chat button to the Wiki Tours number, with a pre-filled message that carries a reference code (site + page). We measure conversions without any access to wikitours.ma.
-   - **Secondly:** at most one contextual link per post to a stable wikitours.ma / Bab Makka page.
+   - **Secondly:** at most one contextual link per post to a stable wikitours.ma / Bab Makka page that exists in the right language, `nofollow` by default (§3.5).
 4. **A JavaScript engine (GitHub Actions + Claude API) runs the pipeline:** Semrush keywords → registry → briefs → drafts → automatic checks → weekly approval queue → publish. **The generator may only use facts from a human-approved facts registry.** No fact outside the registry gets published.
 5. **Automatic kill-switches** cut or stop publishing when indexing, impressions, duplicate similarity or a manual action turn bad. A **dead-man switch** slows the network if the weekly review is skipped.
-6. **You run one 60-minute weekly review** from a one-page report the system writes, plus a 5-minute phone approval when an official announcement happens (the "fast lane").
+6. **Your time: about 2 h/week on average (ESTIMATE).** That is a 75-90-minute weekly review from a one-page report, a 5-minute phone approval when an official announcement happens (the "fast lane"), and monthly or quarterly tasks (§16.4). Going beyond 3-4 fully reviewed prose posts a week needs a **part-time Moroccan editor (≈ 5-6 h/week, E3)**.
 
 ### 1.2 What wins in this market
 
 | Lever | Why it wins (evidence) |
 |---|---|
-| **Own dated data** (prices, offers) | No Ramadan 2027 omra prices were published by Moroccan agencies or the press when we searched (2026-10-20). The only comparison found (wafir.ma, summer 2026) is commercial and contradicts the official Saudi calendar inside the same page [U] ([wafir.ma](https://wafir.ma/fr/guide/omra-ete-2026-maroc-12-agences-comparatif-prix-financement)). A dated price table with a public method is something journalists and AI answers can cite. |
+| **Own dated data** (prices, offers) | In a limited, US-biased search on 2026-10-20 we found no published Ramadan 2027 omra prices. Agency sites and google.ma results were not checked (Semrush brief Step 7, now P0). The only comparison found (wafir.ma, summer 2026) is commercial and contradicts the official Saudi calendar inside the same page [U] ([wafir.ma](https://wafir.ma/fr/guide/omra-ete-2026-maroc-12-agences-comparatif-prix-financement)). A dated price table with a public method is something journalists and AI answers can cite. |
 | **Fastest correct update** on official moments | Hajj registration moved earlier each cycle: 1447H on 13-24 Jan 2025, 1448H on 8-19 Dec 2025 [V] ([Medias24](https://medias24.com/2025/06/16/hajj-2026-le-tirage-au-sort-aura-lieu-du-23-juin-au-04-juillet-2025/), [Hespress](https://fr.hespress.com/451603-linscription-electronique-des-candidats-au-hajj-1448-h-du-8-au-19-decembre-2025.html)). No 1449H/2028 announcement found on 2026-10-20; it could come around Nov-Dec 2026 [U]. Other moments: Ramadan moon sighting, Hajj final cost, Saudi rule changes. |
 | **Trust** | Omra fraud is national news: Feb 2026 Marrakech case (about 3.8M MAD) and a national consumer-observatory warning [V] ([Hespress](https://fr.hespress.com/462180-omra-lobservatoire-du-consommateur-appelle-a-un-controle-renforce-des-agences.html)); KSAR TOURS left pilgrims stranded while unlicensed [V] ([H24info](https://h24info.ma/?p=985412)). "How to verify an agency" content helps users and makes a disclosed, licensed agency more credible. |
 | **Real deadlines** | Saudi 1448H Umrah season: last visa issued 9 Mar 2027, last entry 23 Mar 2027, last departure 7 Apr 2027 [V] ([haj.gov.sa](https://haj.gov.sa/en/Media-Center/Ministry-News/2026/Ministry-of-Hajj-and-Umrah-Announces-the-Umrah-Season-Calendar-for-1448-AH)). An unused Umrah visa expires 30 days after issue [L] ([Gulf News](https://gulfnews.com/world/gulf/saudi/saudi-arabia-announces-new-amendments-to-umrah-visa-rules-1.500328262)). So Ramadan decisions happen **now, Nov 2026 to Jan 2027**. |
-| **One tap to a human** | WhatsApp click-to-chat with a pre-filled message is the natural Moroccan call to action. Scammers use the same channels, so every social or WhatsApp touch should point back to a verifiable page first. |
+| **One tap to a human** | **HYPOTHESIS (UNVERIFIED):** WhatsApp click-to-chat with a pre-filled message is the most natural call to action in Morocco. We have no platform-level usage data; DataReportal gives only headline figures (35.5 million internet users, 22.8 million social media user identities) [V] ([DataReportal](https://datareportal.com/reports/digital-2026-morocco)). The ref-code data will test it. Scammers use the same channels, so every social or WhatsApp touch should point back to a verifiable page first. |
+
+**What we do not know about competitors.** Our competitor research ran only 5 of about 20 planned searches, on a US-only search tool. No Moroccan agency competitor is named in this plan, and none should be guessed. The manual google.ma check (Semrush brief Step 7) and Semrush Organic Competitors for wikitours.ma (R2) are therefore **P0**.
 
 ### 1.3 Top risks
 
@@ -62,37 +65,38 @@ Context: Google ran four spam updates in 2026 (March, June, August, September) [
 
 | Your decision | My verdict | What I propose instead |
 |---|---|---|
-| 8 satellites, all live | **Partly** | **Wave 1 (≈ 4-6 Nov 2026):** omra-ramadan, guideomra, agenceomra. **Wave 2 (≈ 1-3 Dec):** voyageomra, omracasablanca, and prixomra when the first price survey reaches its threshold. **Hold 2:** offresomra (301 to the Bab Makka page until you and a lawyer approve a multi-agency board) and omrarabat (301 to voyageomra's Rabat-Salé section until a real Rabat presence or RBA departures are confirmed). |
-| 3 posts/day/site (24/day) | **No, not as a target.** It stays only as a hard ceiling in the scheduler. | Start at **20-25 posts/week network-wide**. Move up a level only when objective quality criteria hold for 4 weeks (§7.2). Publishing frequency is not a ranking factor (Mueller) [L] ([SEJ](https://www.searchenginejournal.com/googles-john-mueller-changing-dates-on-pages-wont-improve-rankings/401734/)). |
-| Strong cross-linking | **No to heavy cross-linking** | Contextual, capped, disclosed links: per post ≤ 1 link to wikitours.ma, ≤ 2 sister links. No sitewide footers. **0% exact-match commercial anchors** to wikitours.ma. The value is leads and referral visits, not PageRank. |
-| Full automation, weekly check | **Yes, with a safe default** | **Nothing goes live without human approval** (weekly batch, or the 5-minute fast lane for official news). If you skip the review, publishing stops instead of letting unreviewed content through. Only data pages built from human-verified records (offers, price tables) publish automatically. |
+| 8 satellites, all live | **Partly** | **Wave 1 (plan date 9-15 Nov 2026, if the P0 checklist is complete by 30 Oct):** omra-ramadan, guideomra, agenceomra, **pillars first (≈ 20 FR pages)**. **Wave 2 (target early Dec):** voyageomra, and prixomra only when the first price survey reaches its threshold, the official licence-list URL is known and the lawyer has signed off (`legal_ok`). **Hold 3:** offresomra (301 to the Bab Makka page until you and a lawyer approve a multi-agency board), omrarabat (301 to voyageomra's Rabat-Salé section until a real Rabat presence or RBA departures are confirmed), omracasablanca (301 to voyageomra's CMN section; a city domain funnelling to one agency is Google's first doorway example, §5.6). Every 301 waits for a clean domain-history check (D6). |
+| 3 posts/day/site (24/day) | **No, not as a target.** It stays only as a hard ceiling in the scheduler. | Start at what can be **fully** reviewed. **Owner only: ≈ 3-4 prose posts/week** plus data-table updates. **With a part-time Moroccan editor (≈ 5-6 h/week, a P0 condition for this level): L1 ≈ 12/week in Nov (Wave 1), ≈ 16/week from Dec, ceiling 25.** Move up only when objective quality criteria hold for 4 weeks (§7.2). Mueller has said posting frequency is not a ranking factor (it can raise crawling, not rankings) [L] ([SEJ](https://www.searchenginejournal.com/how-freshness-works/457485/)). |
+| Strong cross-linking | **No to heavy cross-linking** | Contextual, capped, disclosed links: per post ≤ 1 link to wikitours.ma and ≤ 1 sister link, **all `nofollow` by default**. The value we want is leads and referral visits, so a followed link adds risk and nothing else. No sitewide footers. **0% exact-match commercial anchors** to wikitours.ma. |
+| Full automation, weekly check (ASSUMPTION, D3) | **Yes for the machinery, no for prose** | **No prose goes live without a full human read** (weekly batch; the 5-minute fast lane only adds approved facts to existing tracker tables). If you skip the review, publishing stops. Only **data values** from human-verified records (table cells and fact-table rows on stable URLs) update automatically. No new prose page is ever auto-published. |
 | Merchant Center 780069013 | **Freeze** | Travel packages are unsupported. Whether Morocco is a supported country is **UNKNOWN**. Check inside the account in week 1 before building any shop. |
-| More domains | **Mostly no** | The bottleneck is verified facts and review time, not domains. Worth buying: brand-defence domains (Bab Makka variants) and **one Hajj domain** held as a redirect, built later only if strict criteria are met (§17). Never city, year or keyword-variant domains. |
+| More domains | **Mostly no** | The bottleneck is verified facts and review time, not domains. Worth buying now: **brand-defence domains only** (Bab Makka and Wiki Tours variants), redirected only after a clean history check. A Hajj keyword domain is the same pattern as other keyword variants; revisit it only at the Jun 2027 audit under §17.3. Never city, year or keyword-variant domains. |
 | "Rank FAST" | **Cannot be promised** | New .ma domains have no ranking signals, and Google gives no indexing timeline beyond "days to weeks" ([Google](https://developers.google.com/search/docs/crawling-indexing/ask-google-to-recrawl)). |
 
 **Honest Ramadan 2027 expectation.** Ramadan starts in about 111 days (≈ 8 Feb 2027 by Umm al-Qura; ESTIMATE, [Wego](https://blog.wego.com/ramadan-2027/)).
-- **Realistic wins for Ramadan 2027:** long-tail informational queries, Bing and Copilot (via IndexNow), some AI-answer citations, press pickup of our own price data, WhatsApp leads from sharing.
+- **Possible wins for Ramadan 2027 (ESTIMATE, no evidence yet):** long-tail informational queries; faster discovery on Bing (IndexNow only speeds Bing discovery; it does not deliver rankings or citations); perhaps some AI-answer citations; press pickup of our price data (UNKNOWN, §8.5); WhatsApp leads from sharing.
+- **The domain most likely to rank by January is wikitours.ma itself** (established and indexed). That is why the money-site track (§4.6) is part of the plan.
 - **Head terms such as "omra ramadan 2027":** ranking by January is UNKNOWN. Do not plan revenue on it.
 - **Ramadan 2028 is the realistic season to compete for head terms.** We build for both.
 
-**What must stay human:** weekly facts approval, weekly batch approval of the publish queue, same-day fast-lane approval of official announcements, the monthly price survey, real photos and consented testimonials, named-author sign-off on pillar pages, religious-text approval, and a one-time legal review.
+**What must stay human:** weekly facts approval, a full read of every prose post before it is scheduled, same-day fast-lane approval of official announcements, the monthly price survey, real photos and consented testimonials, named-author sign-off on pillar pages, religious-text approval, and a one-time legal review.
 
 ---
 
 ## 2. Inputs needed from the client
 
-Priority: **P0** blocks launch (needed by **Sun 25 Oct 2026** for the 4-6 Nov launch; if late, launch moves to 9-15 Nov). **P1** needed within 4 weeks (Wave 2). **P2** improves results later.
+Priority: **P0** blocks the Wave 1 launch. P0 inputs are needed by **Fri 30 Oct 2026** for the Wave 1 plan date of **9-15 Nov**. Launch happens only when a written P0 checklist is complete; each week of delay moves it by a week. Semrush R0 + R2 and the manual SERP check are P0 by **Wed 28 Oct**: they shape the topic map but do not block drafting the Wave 1 pillars. **P1** needed within 4 weeks (Wave 2). **P2** improves results later.
 
 ### 2.1 Wiki Tours facts (the base of trust and of the facts registry)
 
 | # | Item | Why we need it | Prio |
 |---|---|---|---|
 | A1 | Exact legal name, company identifiers shown on invoices, Casablanca office address, opening hours, landline, email | Publisher page on every site. Organization schema. Must match Merchant Center if it is ever used (Misrepresentation policy, [Google](https://support.google.com/merchants/answer/6150127?hl=en)). | P0 |
-| A2 | Licence ODV-25012: a copy of the licence, plus the link where it appears on the Ministry of Tourism's official list of authorised agencies | We print it on every site. Today it is only "as stated by the site". The ministry publishes an official list [V] ([H24info](https://h24info.ma/?p=985412)); its current URL is UNKNOWN. | P0 |
+| A2 | Licence ODV-25012: a copy of the licence, plus the link where it appears on the Ministry of Tourism's official list of authorised agencies | **Hard build blocker:** the licence number appears on our sites only after the ministry-list link is confirmed (§3.3, §10.3). Until then sites show legal name and address only. The ministry publishes an official list [V] ([H24info](https://h24info.ma/?p=985412)); its current URL is UNKNOWN. | P0 |
 | A3 | Is Wiki Tours labelled for Omra 1448H? Is it on the agency list for Hajj? | Decides whether any "Hajj via agency" call to action is allowed. Agencies handled about 11,800 of 34,000 Hajj places in 1447H [L] ([Morocco World News](https://www.moroccoworldnews.com/2026/04/288023/morocco-sets-34000-pilgrims-quota-lower-costs-digital-upgrade-for-hajj-season/)). | P0 |
 | A4 | Offices or staff outside Casablanca (Rabat in particular). Departures from Rabat-Salé (RBA) or other airports | Decides whether omrarabat.ma is ever built (§5.8). | P0 |
 | A5 | WhatsApp Business number for leads, who answers it, hours, languages (FR/AR/Darija), and a promise that staff label chats by reference code | The main conversion path and the only attribution we control. | P0 |
-| A6 | wikitours.ma URLs we may link to, by language (FR/AR/EN): Bab Makka, Ramadan 2027 program, Hajj, the three blog posts, contact. Plus a promise to tell us before any URL changes | We link only to pages that exist. Only /en/ URLs are known; FR/AR versions are UNVERIFIED. | P0 |
+| A6 | wikitours.ma URLs we may link to, by language (FR/AR/EN): Bab Makka, Ramadan 2027 program, Hajj, the three blog posts, contact. Plus a promise to tell us before any URL changes | We link only to pages that exist. Until a page exists, the CTA is WhatsApp only. Only /en/ URLs are known; FR/AR versions are UNVERIFIED. | P0 |
 | A7 | Ramadan 2027 Bab Makka offers: dates, nights in Makkah/Madinah, hotels and real walking distance, room basis, real "from" prices, inclusions, payment schedule, refund policy, contract template, validity date. Then a weekly update | Satellites may only quote Wiki Tours prices from the facts registry. Seat or availability claims only from dated records. | P0, then weekly |
 | A8 | Does Wiki Tours provide a group guide (mutawwif), Nusuk/Rawdah permit handling, pre-departure sessions? | "What an agency adds" content. We never claim a service you don't provide. | P1 |
 | A9 | Google Business Profile URL for the real Casablanca office (if it exists) and social profile URLs | sameAs, entity consistency. Satellites never get their own profile ([GBP rules](https://support.google.com/business/answer/3038177?hl=en)). | P1 |
@@ -101,7 +105,7 @@ Priority: **P0** blocks launch (needed by **Sun 25 Oct 2026** for the 4-6 Nov la
 
 | # | Item | Why | Prio |
 |---|---|---|---|
-| B1 | 2-4 real staff who agree to be named authors or reviewers: name, role, years of experience, photo, written consent. Include **one qualified religious reviewer** and **one Arabic-language reviewer** | Fake author profiles are explicitly deception in Google's guidance since 1 Oct 2026 [L] ([SER](https://seroundtable.com/google-warns-against-deceptive-authorship-information-42238.html)). Without real people, posts carry an organisation byline and ritual pillars wait. | P0 for pillars |
+| B1 | 2-4 real staff who agree to be named authors or reviewers: name, role, years of experience, photo, written consent. Include **one qualified religious reviewer** and **one Arabic-language reviewer** (Arabic pages never publish without the Arabic reviewer's full read) | Fake author profiles are explicitly deception in Google's guidance since 1 Oct 2026 [L] ([SER](https://seroundtable.com/google-warns-against-deceptive-authorship-information-42238.html)). Without real people, posts carry an organisation byline and ritual pillars wait. | P0 for pillars |
 | B2 | Real photos with usage rights: office (outside with signage, inside), team, past groups (with consent), departure scenes at CMN, hotels you use | Original media and local substance. No AI images presented as real photos. | P1, then monthly |
 | B3 | Real testimonials with written consent (text, first name, city, trip month) | Social proof. Never as review-star markup about yourself ([Google](https://developers.google.com/search/docs/appearance/structured-data/review-snippet)). | P1 |
 | B4 | Logos (Wiki Tours, Bab Makka), colours, naming rules | Publisher box. Each satellite still gets its own design. | P0 |
@@ -110,10 +114,10 @@ Priority: **P0** blocks launch (needed by **Sun 25 Oct 2026** for the 4-6 Nov la
 
 | # | Item | Why | Prio |
 |---|---|---|---|
-| C1 | Semrush exports per **SEMRUSH-BRIEF.md** (Morocco database if it exists: UNVERIFIED). R0 + R2 for wikitours.ma first | Keyword registry; reserves the topics wikitours.ma already serves. Semrush can analyse any domain, so no wikitours.ma access is needed. | P0 (R0, R2), P1 rest |
+| C1 | Semrush exports per **SEMRUSH-BRIEF.md** (Morocco database if it exists: UNVERIFIED). R0 + R2 + the manual google.ma SERP check (Step 7) by **Wed 28 Oct**; the rest by **Sun 8 Nov** | Keyword registry; reserves the topics wikitours.ma already serves; names real competitors. Semrush can analyse any domain, so no wikitours.ma access is needed. | P0 (R0, R2, Step 7; does not block drafting Wave 1 pillars), P1 rest |
 | C2 | Your 10 main keywords per site (file R0) | Your rule (§6.3) | P0 |
-| C3 | **Monthly price survey owner** (staff member or assistant). Public offers only, each with URL + screenshot. Never pose as a customer | prixomra.ma cannot publish without it. Time per survey UNKNOWN; estimate 2-8 h for 20-30 offers. | P1 (first survey 9-27 Nov) |
-| C4 | Weekly lead sheet by reference code: chats, quotes, bookings, value band (≈ 5-15 min/week for staff, estimate) | The only true ROI measure. We cannot see wikitours.ma analytics. | P1 |
+| C3 | **Monthly price survey owner** (staff member or assistant). Public offers only, each with URL + screenshot, captured by hand (also for social-media offers). Never pose as a customer | prixomra.ma cannot publish without it. Time per survey UNKNOWN; ESTIMATE 4-12 h for the 40+ offers the published table needs (§5.4), scaled from an earlier 2-8 h guess for 20-30 offers. Measure it on survey #1. | P1 (first survey 9-27 Nov) |
+| C4 | Weekly lead sheet by reference code: date, outcome (chat / quote / booking), value band. **No names, no phone numbers** (≈ 5-15 min/week for staff, estimate) | The only true ROI measure. We cannot see wikitours.ma analytics. | P1 |
 | C5 | Optional: anonymised top 5 WhatsApp questions per week | Real questions are the best answer-engine material. | P2 |
 | C6 | Optional: wikitours.ma referral numbers from your own analytics (GA4 or other), monthly | Confirms link traffic. The plan works without it. | P2 |
 
@@ -121,21 +125,22 @@ Priority: **P0** blocks launch (needed by **Sun 25 Oct 2026** for the 4-6 Nov la
 
 | # | Access | Why | Prio |
 |---|---|---|---|
-| D1 | Search Console: add our service account as a user on the 8 Domain properties | Daily data pulls, URL Inspection sampling, sitemap submission, kill-switches. | P0 |
+| D1 | Search Console: add our service account as a user on the 8 Domain properties, and **add wikitours.ma** as a Domain property in the same account (M1) | Daily data pulls, URL Inspection sampling, sitemap submission, kill-switches. wikitours.ma data is needed for cannibalisation checks and the money-site baseline. | P0 |
 | D2 | Bing Webmaster Tools: import the 8 sites from Search Console ([Bing](https://blogs.bing.com/webmaster/september-2019/Import-sites-from-Search-Console-to-Bing-Webmaster-Tools)) | Bing/Copilot index, AI Performance report. | P0 |
-| D3 | Private GitHub repository in your organisation | Engine, cron, audit trail. Scheduled workflows in public repos are disabled after 60 days without activity [L]. | P0 |
+| D3 | Private GitHub repository in your organisation | Engine, cron, audit trail. A private repo also avoids the rule that scheduled workflows in public repos are disabled after 60 days without activity [L] ([GitHub docs](https://docs.github.com/en/enterprise-server@3.7/actions/using-workflows/disabling-and-enabling-a-workflow), Enterprise Server copy; github.com page not re-checked). | P0 |
 | D4 | Cloudflare account (8 zones, Pages, R2), DNS for the 8 domains pointed to Cloudflare | Hosting. Cloudflare blocks AI crawlers by default on new domains since 1 Jul 2025 ([MIT Technology Review](https://www.technologyreview.com/2025/07/01/1119498/cloudflare-will-now-by-default-block-ai-bots-from-crawling-its-clients-websites/)); we must allow the search bots. | P0 |
 | D5 | Claude API key in your organisation, with a **monthly spend cap you set** | Drafting and verification. Cost per post UNKNOWN until we measure the first 2 weeks. | P0 |
-| D6 | Domain registrar access and the registration history of the 8 domains (purchase date, previous owner) | Expired-domain-abuse check ([Google](https://developers.google.com/search/blog/2024/03/core-update-spam-policies)). Also confirm with your registrar that the registrant data and documents on all 8 .ma domains are correct (.ma registration terms are NOT RESEARCHED). | P0 |
-| D7 | Semrush plan level (project limit, export rows, API units if any) | Position Tracking needs 7-9 projects; plan limits UNVERIFIED. SERP-overlap clustering needs licensed SERP data (scraping Google breaks its terms, [Google ToS](https://policies.google.com/terms)). | P1 |
+| D6 | Domain registrar access and the registration history of the 8 domains (purchase date, previous owner) | Expired-domain-abuse check ([Google](https://developers.google.com/search/blog/2024/03/core-update-spam-policies)). Also confirm with your registrar that the registrant data and documents on all 8 .ma domains are correct (.ma registration terms are NOT RESEARCHED). **Every 301 (held sites, brand domains) waits for this check.** | P0 |
+| D7 | Semrush plan level (project limit, export rows, API units if any) | Position Tracking needs 6 projects (5 active sites + wikitours.ma; up to 9 only if held sites relaunch); plan limits UNVERIFIED. SERP-overlap clustering needs licensed SERP data (scraping Google breaks its terms, [Google ToS](https://policies.google.com/terms)). | P1 |
 | D8 | Merchant Center 780069013: standard access + a screenshot showing whether Morocco is selectable as a target country, and whether a website is already claimed | Decides whether a shop exists at all (§10.9). One claimed website per account [L] ([Google](https://support.google.com/merchants/answer/14089347?hl=en)). | P2 (check in W1) |
 
 ### 2.5 Legal and time
 
 | # | Item | Why | Prio |
 |---|---|---|---|
-| E1 | One-time review by a Moroccan lawyer: price observatory, offers board listing other agencies, comparisons, disclosure wording, lead-data handling | Moroccan consumer-protection, advertising and personal-data rules are **NOT RESEARCHED**. | P1 (before prixomra); P0 for offresomra |
-| E2 | Your time: ≈ 14 h of launch review over 3 weeks (estimate), then 60 min/week + fast-lane approvals | Full automation still needs a human gate. | P0 |
+| E1 | One-time review by a Moroccan lawyer. Laws to check (names given for the lawyer; their texts are **NOT RESEARCHED** here): (1) **Loi 31-08** on consumer protection, including any rules on comparative and misleading advertising (price observatory, comparisons, a CTA next to competitor prices); (2) **Loi 09-08** and the **CNDP** on personal data (WhatsApp chats, lead sheet, optional webhook; whether a declaration or authorisation is needed is UNVERIFIED); (3) **Law 11-16** on travel agencies, its rules on advertising and online/distance sales [L] ([EcoActu](https://ecoactu.ma/?p=17467)); (4) defamation and unfair-competition exposure in fraud content and when naming agencies; (5) reuse terms of the ministry list; (6) disclosure wording | Coded **`legal_ok` gate** (§5.4): the build refuses prixomra, any comparison page and any agenceomra page naming an agency until config holds a lawyer sign-off date. | P1 (before Wave 2); P0 for offresomra |
+| E2 | Your time (ESTIMATE): Wave 1 pillars ≈ 5-7 h of review; all ≈ 64 launch pages ≈ 16-21 h of named-reviewer time at 15-20 min/page (religious and Arabic reviewer time is separate, §16.4); then ≈ 2 h/week on average + fast-lane approvals | Every prose page gets a full human read. | P0 |
+| E3 | A **part-time Moroccan editor** (FR, ideally also AR), ≈ 5-6 h/week, who fully reads and signs prose posts | At ≈ 15 min/post (ESTIMATE), you alone can fully review only ≈ 3-4 prose posts a week. The editor is the condition for L1 (≈ 12-16 posts/week). Cost UNKNOWN. | P0 for L1; without it the network stays at owner-only volume |
 
 ---
 
@@ -151,25 +156,25 @@ This follows Google's doorway self-test: is the page's purpose to rank and funne
 
 | Rule | In practice |
 |---|---|
-| One distinct job per site | Each site has a written **charter**: audience, job, owned intents, banned intents, unique data asset (§5). No two sites, and no site and wikitours.ma, target the same query cluster in the same language (§6.5). |
+| One distinct job per site | Each site has a written **charter**: audience, job, owned intents, banned intents, unique data asset (§5). No two sites, and no site and wikitours.ma, target the same **concept** in any language (§6.5: one `concept_id` shared across FR/AR/EN). |
 | Standalone usefulness | A reader who never contacts Wiki Tours still gets a complete, sourced answer. The call to action comes **after** the answer. |
-| No city-swapped copies | omracasablanca.ma publishes only real Casablanca content. omrarabat.ma stays on hold. Mueller called keyword + city landing pages doorways [L] ([SER](https://www.seroundtable.com/google-city-landing-pages-doorway-pages-28670.html)). |
-| Distinct design and structure | Each site has its own theme, information architecture and page types. One codebase is fine; one template recoloured eight times is not. |
+| No city-swapped copies | omracasablanca.ma and omrarabat.ma stay on hold (301 to voyageomra's airport sections). Mueller called keyword + city landing pages doorways [L] ([SER](https://www.seroundtable.com/google-city-landing-pages-doorway-pages-28670.html)). |
+| Distinct design and structure | Each site has its own theme, information architecture and page types. One codebase is fine; one template recoloured eight times is not. Trust pages are written per site charter, section labels and their order vary per theme, and the duplicate gate runs on every page (trust pages included, minus the one-line ownership footer). |
 | Volume capped by value | Cadence ladder (§7.2). When unique clusters run out, the generator idles instead of padding. |
 | Consolidation is a valid outcome | "If you make 2 websites out of one, you're not going to be twice as visible in search" (Mueller) [L] ([SER](https://seroundtable.com/google-two-for-one-27618.html)). A ready consolidation plan exists (§14.3). |
 
 ### 3.3 Ownership disclosure: decision = DISCLOSE on every site
 
 **Why:**
-- Google can already connect the sites: same Search Console account, same WhatsApp number, same publisher.
+- The sites are easy to connect anyway (shared publisher, WhatsApp number, design patterns). Whether Google uses signals such as a shared Search Console account is UNKNOWN; the argument does not rely on it.
 - Hiding scale is the named scaled-content example.
 - In a market with a fraud problem, openness is a selling point.
 - Mueller (Jan 2026) said sister brand sites linking from a shared brand page is common and fine at reasonable scale [L; quote known only via a secondary report, UNVERIFIED as wording] ([SER](https://www.seroundtable.com/google-linking-brand-websites-40761.html)).
 
 **How:**
 - **Footer line on every page:** « Publié par Wiki Tours International, agence de voyages, Casablanca ». It links to the site's own `/editeur/` page, not to wikitours.ma.
-- **`/editeur/` page on every site:** legal identity, licence (« telle qu'indiquée par l'agence » until A2 proof arrives, then a link to the official list), office address, the site's job, how content is made, corrections policy, list of the network's sites (one line each, `nofollow`).
-- **Disclosure box** above any mention of Wiki Tours or Bab Makka and on every comparison, offer list or price table: « Wiki Tours International, l'éditeur de ce site, est une agence de voyages. Ses offres sont signalées comme telles. »
+- **`/editeur/` page on every site:** legal identity, licence **only once A2 is proven** (number + link to the ministry's official list; until then legal name and address only, and the build refuses to render it, §10.3; the same rule applies to « depuis 2016 »), office address, the site's job, how content is made, corrections policy, list of the network's sites (one line each, `nofollow`).
+- **Disclosure box** above any mention of Wiki Tours or Bab Makka and on every comparison, offer list or price table. Example wording: « Wiki Tours International, l'éditeur de ce site, est une agence de voyages. Ses offres sont signalées comme telles. » Each site words it in its own way (same facts), so six domains do not repeat one paragraph.
 - The WhatsApp button says who the reader contacts: « Parler à Wiki Tours (éditeur de ce site) ».
 
 ### 3.4 What each site must offer on its own
@@ -181,7 +186,7 @@ This follows Google's doorway self-test: is the page's purpose to rank and funne
 | agenceomra.ma | A neutral method to verify and choose a licensed agency | It ranks Wiki Tours first, or hides ownership |
 | prixomra.ma | Dated price data with method and downloadable CSV | Ranges are invented or samples are too small |
 | voyageomra.ma | Flights, airports, packing, heat and health on the road | It gives packing tips with no sources |
-| omracasablanca.ma | Real CMN departure logistics and the real Wiki Tours office | It is a city-swapped copy |
+| omracasablanca.ma (hold) | Little that voyageomra (CMN section) and wikitours.ma (the office) do not already own | It funnels a city name to one agency; the default is a 301 (§5.6) |
 | offresomra.ma (hold) | Current, dated offers from **several** licensed agencies | It lists only Wiki Tours (then it is an ad and a doorway) |
 | omrarabat.ma (hold) | Real RBA departure logistics, with a real Rabat presence | It pretends to be a Rabat agency |
 
@@ -190,16 +195,16 @@ This follows Google's doorway self-test: is the page's purpose to rank and funne
 | Parameter | Rule |
 |---|---|
 | Count | **≤ 1** in-body contextual link per post. Many posts have none. |
-| Share of posts with one | guideomra, voyageomra, agenceomra: **≤ 30%**. omra-ramadan, prixomra, omracasablanca: **≤ 60%**. Never forced. |
+| Share of posts with one | guideomra, voyageomra, agenceomra: **≤ 30%**. omra-ramadan: **≤ 60%**. prixomra: **≤ 20%**, never inside tables. omracasablanca (only if you override the hold): **≤ 20%**. Never forced. |
 | Placement | In the body at the natural "next step" (booking, seeing a Bab Makka program), or in the end-of-article « Passer à l'action » box. Never in the first sentence, never in sitewide navigation or footer. |
-| rel, editorial sites (guideomra, omra-ramadan, voyageomra, omracasablanca) | In-body link followed (own company, editorial, disclosed). |
-| rel, listing / comparison sites (prixomra, offresomra, agenceomra) | **`rel="nofollow"`** on every link to wikitours.ma, so "neutral" pages cannot be read as ranking devices. |
+| rel, every satellite → wikitours.ma link (editorial sites included) | **`rel="nofollow"` by default** (`moneyLinkRel = "nofollow"`). The value we want is leads and referral visits; a followed link adds nothing to that and adds risk to the one asset we cannot inspect or repair. Revisit only after 6 months of clean Search Console data on wikitours.ma (once you add it, M1). Listing / comparison sites (prixomra, offresomra, agenceomra) stay `nofollow` permanently. |
+| Sister links (satellite ↔ satellite) | **≤ 1 per post, `nofollow` by default, contextual only.** From launch: per site per month, ≤ 25% of posts link to any one sister, and ≤ 3 links per sister pair per week; reciprocal page pairs (A→B and B→A between the same two pages) are blocked. Bing treats "one site split across cross-linked domains" as a PBN [V] ([Bing](https://blogs.bing.com/webmaster/2019/11/Some-Thoughts-on-Website-Boundaries/)). |
 | rel, repeated elements (header button, network list on `/editeur/`, CTA boxes) | **`rel="nofollow"`**. "Widely distributed links in the footers or templates of various sites" are unnatural-link examples [L] ([Ahrefs summary](https://ahrefs.com/seo/glossary/link-spam)). |
 | WhatsApp links | Go through `/go/wa/…`, `rel="nofollow"`, `/go/` disallowed in robots.txt. |
 | Anchor mix (per site, rolling 90 days) | Brand / navigational ("Wiki Tours", "Bab Makka", "wikitours.ma") **≥ 60%**. Descriptive ("les programmes Omra Ramadan de Wiki Tours") **≤ 40%**. **Exact-match commercial ("prix omra ramadan", "omra pas cher"): 0%.** No single anchor > 20% of links to one target. |
 | Target validity | Every target must be on the A6 list. A weekly read-only check confirms each returns 200. A broken link is removed at the next build; the WhatsApp button stays; you get an alert. |
 | Language | FR pages link to FR targets, AR pages to AR targets. If none exists: link the EN page labelled « (page en anglais) », or use WhatsApp only. |
-| One-switch contingency | A config flag `moneyLinkRel` switches every network link to `nofollow` in one build (used if any link-related warning appears). |
+| Switch | The config flag `moneyLinkRel` already defaults to `nofollow`. Moving it to `follow` needs your written decision after the 6-month review; moving back is one build. |
 | hreflang / canonical | **Never** across domains (satellite ↔ wikitours.ma). |
 
 ### 3.6 Never-do list
@@ -219,7 +224,7 @@ This follows Google's doorway self-test: is the page's purpose to rank and funne
 13. "Visa garanti", "prix garanti", "مضمون", "0% d'intérêt", resetting countdown timers, invented "places restantes".
 14. Copying the look of the Ministry, Nusuk or Saudi portals.
 15. **Redirecting a penalised satellite to wikitours.ma.** Whether problems transfer is UNKNOWN; we never test it on the money site.
-16. Any change to wikitours.ma.
+16. Any change to wikitours.ma made by us. Changes there are client-owned (§4.6).
 
 ---
 
@@ -228,13 +233,13 @@ This follows Google's doorway self-test: is the page's purpose to rank and funne
 ### 4.1 Entity graph
 
 ```
-Wiki Tours International  (Organization; Casablanca; "since 2016" and licence ODV-25012 as stated by the site — client to confirm)
- ├─ wikitours.ma  (official website, the money site — off-limits to us)
+Wiki Tours International  (Organization; Casablanca; "since 2016" and licence ODV-25012 as stated by the site; shown on satellites only after official proof)
+ ├─ wikitours.ma  (official website, the money site; client-owned track §4.6, we never edit it)
  │    └─ Bab Makka  (Brand: premium Umrah & Hajj service)
  ├─ Casablanca office  (the only local entity; its GBP is owned by the client)
  ├─ real named staff  (authors / reviewers)
- └─ publisher of: guideomra.ma · omra-ramadan.ma · agenceomra.ma · prixomra.ma · voyageomra.ma · omracasablanca.ma
-                  [offresomra.ma · omrarabat.ma: on hold, redirecting]
+ └─ publisher of: guideomra.ma · omra-ramadan.ma · agenceomra.ma · prixomra.ma · voyageomra.ma
+                  [offresomra.ma · omrarabat.ma · omracasablanca.ma: on hold, redirecting]
 ```
 
 - Each satellite is a `WebSite` with a human site name that names the publisher, e.g. « Guide Omra · par Wiki Tours », « Omra Ramadan · par Wiki Tours ».
@@ -249,16 +254,18 @@ Wiki Tours International  (Organization; Casablanca; "since 2016" and licence OD
 | Book Omra/Hajj programs; Bab Makka prices | wikitours.ma | WhatsApp CTA + ≤ 1 contextual link |
 | Omra tiers économique → VIP (`/en/blog/gammes-omra-economique-vip`) | wikitours.ma | prixomra uses tiers only as table dimensions and links to the tier guide. No satellite "gammes omra" guide. |
 | Hajj registration **via an agency** and agency quota (`/en/blog/hajj-maroc-inscription-quota`) | wikitours.ma | No satellite targets "inscription hajj agence" or "quota agences". |
-| **Official Hajj 1449H timeline** (dates, eligibility, lottery, official cost line, official links from habous.gov.ma) | guideomra.ma | A distinct intent (official calendar, not agency registration). It links to the wikitours.ma post for "inscription via une agence" and to prixomra for cost history. |
+| **Official Hajj 1449H timeline** (dates, eligibility, lottery, official cost line, official links from habous.gov.ma) | guideomra.ma | A distinct intent on paper (official calendar, not agency registration), but Google may show one SERP for both (UNVERIFIED, untested). **Before D1 is final:** a licensed SERP-overlap check (FR and AR) of guideomra's Hajj-timeline keywords vs the wikitours.ma post's keywords (from R2). If overlap is ≥ 4/10, guideomra publishes only a dated official-facts table with no « inscription » in title or H1. It always links to the wikitours.ma post for "inscription via une agence" and to prixomra for cost history. |
 | Madinah ziyara (`/en/blog/que-visiter-medine-ziyara`) | wikitours.ma | No satellite sightseeing guide. guideomra covers only the Rawdah permit (a rule) and links to the ziyara post. |
-| Local transactional ("agence omra casablanca") | wikitours.ma + the client's own GBP | omracasablanca targets departure **logistics**, not "agency near me". |
+| Local transactional ("agence omra casablanca") | wikitours.ma + the client's own GBP | No satellite targets it. omracasablanca.ma is on hold; CMN logistics live on voyageomra. |
 | Group trips (Istanbul, Thailand, Bali) | wikitours.ma | Out of scope |
 | Rituals, documents, health, Nusuk, Hajj preparation and rituals | guideomra.ma | |
 | Ramadan dates, deadlines, last 10 nights | omra-ramadan.ma | |
 | Verifying / choosing a licensed agency | agenceomra.ma | |
 | Market price data; official Hajj cost history | prixomra.ma | |
 | Flights, airports, packing, heat, logistics | voyageomra.ma | |
-| CMN departures; the real Casablanca office (text only) | omracasablanca.ma | |
+| CMN and RBA departures | voyageomra.ma (airport sections) | The office itself lives on `/editeur/` pages and wikitours.ma |
+
+**Reserved clusters are language-agnostic.** Every registry cluster carries a `concept_id` shared across FR/AR/EN. A reserved concept is blocked on every satellite in every language, even though all known wikitours.ma URLs are /en/. Any keyword that contains a reserved concept token (hajj + inscription/agence/quota; casablanca + agence/omra) stays `unassigned` until a SERP-overlap result or a manual decision is recorded.
 
 **When a wikitours.ma post goes out of date** (e.g. habous.gov.ma announces the 1449H cycle and the registration post still describes 1448H), the system sends **an automatic alert to you** with the change and the source. It does **not** let a satellite publish a competing page on that intent.
 
@@ -268,11 +275,11 @@ Wiki Tours International  (Organization; Casablanca; "since 2016" and licence OD
 |---|---|---|
 | `Organization` (publisher, `@id` `https://wikitours.ma/#org`) | Every page | Real name, logo, real address (A1), `sameAs` only for profiles you confirm. **Organization, not TravelAgency, on satellites.** |
 | `WebSite` | Every site home | `publisher` → the Organization `@id` |
-| `BreadcrumbList` | Every page | Supported rich result ([gallery](https://developers.google.com/search/docs/appearance/structured-data/search-gallery)) |
+| `BreadcrumbList` | Every page | Supported rich result **on desktop only** ([gallery](https://developers.google.com/search/docs/appearance/structured-data/search-gallery)). Since 23 Jan 2025 Google shows only the domain on mobile results [V] ([Google](https://developers.google.com/search/blog/2025/01/simplifying-breadcrumbs)), so the benefit is small for a mobile-first audience. Still useful for site structure. |
 | `BlogPosting` + `Person` author with `author.url` → bio page (`ProfilePage`) | Posts with a real author | ([Google Article docs](https://developers.google.com/search/docs/appearance/structured-data/article)) |
 | `BlogPosting` with Organization author | Posts without a real signing author | Honest byline (§4.5) |
 | `Dataset` | prixomra data pages | Semantic only; no rich result claimed |
-| `FAQPage` | Optional | No rich result since 7 May 2026 [L] ([SEJ](https://www.searchenginejournal.com/google-drops-faq-rich-results/574429/)) |
+| `FAQPage` | Optional | FAQ rich results no longer shown: reported gone from 7 May 2026, Search Console support removed June 2026, per SEJ [L] ([SEJ](https://www.searchenginejournal.com/google-drops-faq-rich-results/574429/)). Our earlier brief dated Google's removal announcement to June 2026; the dates differ between reports, and we found no Google announcement in this research. Valid schema.org, semantic only. |
 | `TouristTrip` / `Offer` | offresomra (if launched) | Semantic only; Google consumption UNVERIFIED |
 | `Product` + `Offer` | Only if a shop is ever approved | Must match the feed |
 | **LocalBusiness / TravelAgency** | **Never on a satellite** | The single local entity stays with wikitours.ma and the real Casablanca GBP. |
@@ -299,7 +306,7 @@ Wiki Tours International  (Organization; Casablanca; "since 2016" and licence OD
 
 - **The same NAP everywhere** (name, address, phone): `/editeur/` pages, the client's GBP, social profiles, the ministry's official list.
 - **The ministry list:** make sure Wiki Tours is listed correctly (A2).
-- **Press mentions from our data stories** (§8.5). These are the strongest way for Google and AI engines to learn who Wiki Tours is.
+- **Press mentions from our data stories** (§8.5). In our view (not a Google statement), these are likely among the most useful independent signals for Google and AI engines to learn who Wiki Tours is.
 - **Wikidata:** only if independent sources exist (eligibility UNVERIFIED). Never a promotional Wikipedia page.
 - **Real staff profiles** (e.g. LinkedIn, with consent) linked from author bio pages.
 - **Entity prompts** in the monthly AI panel (§9.6): « Qui est Wiki Tours International ? », « Bab Makka omra avis ». We log whether the answers are correct.
@@ -310,49 +317,67 @@ Wiki Tours International  (Organization; Casablanca; "since 2016" and licence OD
 |---|---|---|---|
 | **A** | Pillars, rule explainers (visa, Hajj, health), comparisons, anything about Wiki Tours, ritual pages | Real named author + real named reviewer, with dates | « Relu par [nom], [rôle], le [date] » |
 | **B** | Data pages (offers, price snapshots, fact tables) | « Données : [site] / Wiki Tours International » | « Généré à partir de [jeu de données], données du [date] » |
-| **C** | AI-assisted supporting posts | **Organisation**: « Rédaction Guide Omra, Wiki Tours International ». Never a person who did not review the page | « Rédigé avec un outil d'IA à partir de notre registre de faits vérifiés. Faits vérifiés le [date] par [nom réel]. » |
+| **C** | AI-assisted supporting posts (each fully read before publishing) | **Organisation only**: « Wiki Tours International ». Never a per-site desk name (no « Rédaction Guide Omra »), never a person who did not review the page | Say exactly what happened: « Rédigé avec un outil d'IA. Faits issus de notre registre, vérifiés par [nom] le [date] ; page relue par [nom] le [date]. » The second clause appears **only** when that person fully read the page. |
 
 - Google advises disclosure where readers would reasonably ask, and not listing AI as author ([Google](https://developers.google.com/search/blog/2023/02/google-search-and-ai-content)).
+- **`reviewed_by` means a full read.** The front-matter schema accepts `reviewed_by` only with `full_read: true`. A structured check (title, short answer, claims table) never schedules prose; skimmed items wait a week.
 - A "Comment nous produisons nos contenus" page per site: AI-assisted drafting, facts registry, reviewer names, corrections policy.
 - **Religious content:** no generated rulings. Qur'an verses, hadith and du'a come only from an approved knowledge base (§7.4 gate 4). Ritual pillars are signed by the religious reviewer. Qur'anic text is rendered as text with its reference, never as decoration.
 
-### 4.6 Box — recommendations for YOU to apply on wikitours.ma (optional; we never touch it)
+### 4.6 Money-site track: wikitours.ma (client-owned, with dates)
 
-> 1. **Homepage title "Umrah 2026 from Morocco":** change it to 2027 **only when** programs, prices and dates on the page are really updated. Date-only freshening is discouraged by Google.
-> 2. **Ramadan 2027 Bab Makka page in FR and AR, live by mid-November,** with real dates, inclusions, hotel distance, "from" prices only if real. Send us the URLs (A6).
-> 3. **"Vérifiez-nous" page:** licence ODV-25012 with a link to the ministry's official list, legal entity, office address, payment methods, contract template, refund policy, named staff.
-> 4. **Organization / TravelAgency JSON-LD** with `@id: https://wikitours.ma/#org` (so it matches the satellites' publisher node), real address, logo, `sameAs`.
-> 5. **Self-referencing canonical tags** on all pages (needed before we add UTM parameters, §11.6) and hreflang between FR/AR/EN versions if they exist.
-> 6. **Keep the Hajj registration/quota post current** when habous.gov.ma announces the next cycle. Our system will alert you.
-> 7. **Search Console:** add wikitours.ma as a Domain property in the same account and import it into Bing. Optional: share a monthly CSV with us.
-> 8. **Google Business Profile** for the real Casablanca office, linked to wikitours.ma, same NAP, real reviews only.
-> 9. **AI crawlers:** if wikitours.ma sits behind Cloudflare, check that search and answer bots are not blocked by default.
-> 10. **Optional:** one "Nos guides" page listing the satellites. One page only, no sitewide links back.
-> 11. Use the same WhatsApp number shown on the satellites.
+Everything exists to serve wikitours.ma, and it is the established, indexed domain: the one most likely to rank for Ramadan 2027 (new satellites are unlikely to win head terms by January, §1.4). So this track is **part of the plan, not optional**. We never edit wikitours.ma; you (or your web provider) own these items. Baseline = its Search Console data on the day the property is added.
+
+| # | Action | Owner | Date | How we measure |
+|---|---|---|---|---|
+| M1 | Add wikitours.ma as a Domain property in the same Search Console account, import it into Bing Webmaster Tools, give our service account read access | C | **Fri 30 Oct (P0)** | Property verified; baseline export (indexed pages, queries, languages) |
+| M2 | **FR (and AR if Semrush or Search Console show demand) Ramadan 2027 Bab Makka page** with real dates, inclusions, hotel distance, "from" prices only if real. Send the URL (A6) | C + WT | **Sun 15 Nov** | URL live and indexed (URL Inspection). Satellite Ramadan CTAs point to it; until it exists they use WhatsApp only |
+| M3 | « Vérifiez-nous » page: licence ODV-25012 linked to the ministry's official list, legal entity, office address, payment methods, contract template, refund policy, named staff | C | With A2 proof (target end Nov) | Page live; the licence link resolves to the official list |
+| M4 | Organization / TravelAgency JSON-LD with `@id: https://wikitours.ma/#org` (matches the satellites' publisher node), real address, logo, `sameAs` | C | End Nov | Rich Results Test passes |
+| M5 | Homepage title "Umrah 2026 from Morocco": change the year **only** together with a real content update (programs, prices, dates). Date-only freshening is discouraged by Google | C | With M2 | Title and content updated together |
+| M6 | Keep the Hajj registration/quota post current when habous.gov.ma announces the next cycle (our watcher alerts you) | C | Same week as the announcement | Post updated; alert closed |
+| M7 | Self-referencing canonicals on all pages (needed before UTMs, §11.6); hreflang between FR/AR/EN versions if they exist | C | End Nov | Semrush Site Audit / Search Console |
+| M8 | Google Business Profile for the real Casablanca office, linked to wikitours.ma, same NAP, real reviews only | C | Dec | Profile verified |
+| M9 | AI crawlers: if wikitours.ma sits behind Cloudflare, check that search and answer bots are not blocked by default | C | With M1 | Settings checked |
+| M10 | Same WhatsApp number as the satellites. Optional: one « Nos guides » page listing the satellites (one page, no sitewide links back) | C | Nov | — |
+
+The weekly report carries a « money-site track » line (done / late), so this work has an owner and a date.
 
 ---
 
 ## 5. Site-by-site blueprint
 
 **Common to every site**
-- 6 trust pages: `/editeur/`, editorial policy, « Comment nous produisons nos contenus », corrections log, contact (WhatsApp + office), legal notice / privacy.
+- 6 trust pages: `/editeur/`, editorial policy, « Comment nous produisons nos contenus », corrections log, contact (WhatsApp + office), legal notice / privacy. **Written per site charter, not copied.** Legal notice and privacy pages are `noindex`. The duplicate gate checks trust pages too (only the one-line ownership footer is excluded).
 - FR at the root and AR under `/ar/` (root language confirmed by Semrush / Search Console data, §6.6). **No full Arabic mirror:** AR only for pillars and for clusters with proven Arabic volume.
-- Static HTML, zero JavaScript by default. Every page template has a « Ce que nous ne savons pas encore » section.
+- Static HTML, zero JavaScript by default. Every page template has a « Ce que nous ne savons pas encore » section. Section labels (« Réponse courte », « À retenir », « Ce que nous ne savons pas encore ») and their order vary per site theme, so the sites do not share a boilerplate footprint.
 - Page counts below exclude the 6 trust pages.
+
+**Per-site launch checklist (definition of done; all required):**
+1. Charter signed (audience, job, owned and banned concepts, data asset).
+2. Domain history clean (D6).
+3. Trust pages written for this site.
+4. Licence shown only if A2 is proven; otherwise legal name and address only.
+5. `legal_ok` recorded where the site needs it (prixomra, agency-naming pages, comparisons).
+6. Every launch page entered in the registry by hand and passed through the cannibalisation guard before it was written (§6.5).
+7. Cloudflare AI-bot allowances set; robots.txt checked.
+8. Search Console and Bing verified; sitemap submitted.
+9. Accessibility checks pass (§10.10).
+10. Arabic pages fully read and signed by the Arabic reviewer; ritual pages by the religious reviewer.
 
 ### Overview
 
 | Site | Job | Ref code | Wave | Launch pages (FR + AR) | L1 cadence |
 |---|---|---|---|---|---|
-| omra-ramadan.ma | Ramadan planning & deadlines | OR | 1 (≈ 4-6 Nov) | 12 + 4 | 7/week (Nov-Feb) |
-| guideomra.ma | Sourced omra & Hajj reference | GO | 1 | 15 + 5 | 6/week |
+| omra-ramadan.ma | Ramadan planning & deadlines | OR | 1 (plan 9-15 Nov) | 6 + 2 | ≤ 3/week; then set from registry supply after R1 |
+| guideomra.ma | Sourced omra & Hajj reference | GO | 1 | 14 + 5 | 6/week |
 | agenceomra.ma | Verify & choose a licensed agency | AG | 1 | 10 + 3 | 3/week |
-| prixomra.ma | Price observatory (own data) | PX | 2 (survey threshold, target ≈ 1-3 Dec) | 7 + 2 | 1/week + monthly snapshot |
-| voyageomra.ma | Trip logistics | VO | 2 (≈ 1-3 Dec) | 12 + 3 | 3/week |
-| omracasablanca.ma | CMN departures + real office | CA | 2 (needs A1, B2) | 8 + 2 | 1/week |
-| offresomra.ma | Multi-agency dated offers | OF | **Hold** → 301 to Bab Makka page | — | — |
-| omrarabat.ma | RBA departures | RB | **Hold** → 301 to voyageomra Rabat-Salé section | — | — |
-| **Network** | | | | **≈ 83 pages** + trust pages | **≈ 21/week at L1** |
+| prixomra.ma | Price observatory (own data) | PX | 2 (survey threshold + licence-list URL + `legal_ok`; target early Dec) | 7 + 2 | 1/week + monthly snapshot |
+| voyageomra.ma | Trip logistics, incl. CMN and Rabat-Salé airport sections | VO | 2 (target early Dec) | 12 + 3 | 3/week |
+| omracasablanca.ma | CMN departures | CA | **Hold** → 301 to voyageomra CMN section (after D6) | — | — |
+| offresomra.ma | Multi-agency dated offers | OF | **Hold** → 301 to Bab Makka page (after D6) | — | — |
+| omrarabat.ma | RBA departures | RB | **Hold** → 301 to voyageomra Rabat-Salé section (after D6) | — | — |
+| **Network** | | | | **≈ 64 pages** + trust pages (Wave 1 ≈ 40, pillars first ≈ 20 FR; Wave 2 ≈ 24) | **L1 ≈ 12/week (Nov), ≈ 16/week from Dec**, with the editor (E3); owner only ≈ 3-4 prose posts/week |
 
 ### 5.1 omra-ramadan.ma — Wave 1
 
@@ -360,14 +385,15 @@ Wiki Tours International  (Organization; Casablanca; "since 2016" and licence OD
 |---|---|
 | **Job** | The reference for planning an Omra in Ramadan from Morocco: dates, deadlines, when to book, what Ramadan changes. |
 | **Audience / intent** | Informational and commercial investigation, peak Nov-Mar. Families; young adults (trend sourced: [Medias24 2025](https://medias24.com/2025/02/13/tourisme-religieux-la-omra-devient-une-tendance-qui-prend-de-lampleur-chez-les-jeunes/)); children planning for their parents (HYPOTHESIS, no source). |
-| **Architecture** | `/dates-ramadan/`, `/dates-limites-visa/`, `/quand-reserver/`, `/dix-dernieres-nuits/`, `/omra-et-jeune/`, `/foule-chaleur-sante/`, `/en-direct/` (live log during Ramadan), `/questions/`, `/lexique/`, `/ar/…`. Evergreen URLs with no year; the year goes in the H1. |
-| **Pillars at launch** | 1) Ramadan 2027 dates, Saudi vs Morocco (ESTIMATE, « sous réserve d'observation du croissant »; Morocco was 1 day behind Saudi in 2026 [V] ([TelQuel](https://telquel.ma/instant-t/2026/02/18/jeudi-19-fevrier-1er-jour-du-mois-de-ramadan-au-maroc_1975833/)); the 2027 gap is UNVERIFIED). 2) 1448H season calendar and visa deadlines (9 Mar / 23 Mar / 7 Apr 2027 [V]). 3) When to book: timeline built on the 30-day visa window [L]. 4) First 10 days vs last 10 nights. 5) Omra while fasting (religious reviewer). 6) Crowds, heat, health. 7) Ramadan flight capacity: history explainer (RAM Ramadan 2023 program [V], [SNRTnews](https://snrtnews.com/fr/article/omra-et-haj-la-ram-deploie-un-nouveau-programme-de-vols-69745)). 8) Ramadan Omra checklist. 9) Questions hub. 10) Glossary. |
-| **Content types** | Date/deadline explainers, checklists, fast-lane news updates (moon sighting, Saudi rule changes), questions hub. Ramadan permit rules for 1448H are UNKNOWN and shown as such. |
+| **Architecture** | `/dates-ramadan/`, `/dates-limites-visa/`, `/quand-reserver/`, `/dix-dernieres-nuits/`, `/omra-et-jeune/`, `/en-direct/` (dated changelog on the deadline tracker during Ramadan, not new posts), `/questions/`, `/ar/…`. Evergreen URLs with no year; the year goes in the H1. |
+| **Pillars at launch** | 1) Ramadan 2027 dates, Saudi vs Morocco (ESTIMATE, « sous réserve d'observation du croissant »; Morocco was 1 day behind Saudi in 2026 [V] ([TelQuel](https://telquel.ma/instant-t/2026/02/18/jeudi-19-fevrier-1er-jour-du-mois-de-ramadan-au-maroc_1975833/)); the 2027 gap is UNVERIFIED). 2) 1448H season calendar and visa deadlines (9 Mar / 23 Mar / 7 Apr 2027 [V]). 3) When to book: timeline built on the 30-day visa window [L]. 4) First 10 days vs last 10 nights. 5) Omra while fasting (religious reviewer). 6) Questions hub (owned Ramadan clusters only). **Not on this site** (owned elsewhere and linked instead): crowds, heat and health, and flights (voyageomra); checklists and documents (voyageomra luggage list, guideomra documents); the glossary (guideomra, FR + AR). |
+| **Content types** | Date/deadline explainers, fast-lane fact updates on the deadline tracker as dated changelog entries (moon sighting, Saudi rule changes), questions hub. Ramadan permit rules for 1448H are UNKNOWN and shown as such. |
 | **Unique asset** | The fastest-updated **Ramadan 2027 deadline table** (Saudi date, Moroccan date, status expected/confirmed, official source, last-checked stamp), plus a static "arrival date → latest visa date" planner built only from registry facts. |
 | **Conversion** | Answer → link to the Bab Makka Ramadan page (A6 URL) → WhatsApp « Omra Ramadan 2027 – dates, personnes, budget ». |
 | **Design** | Night palette: deep indigo, lantern (fanous) gold, crescent line art. Moucharabieh lattice as a light CSS/SVG pattern. Arabic headings in Amiri or Noto Naskh Arabic (self-hosted subset). Dark by default with a light toggle. |
-| **Pages at launch** | 12 FR + 4 AR |
+| **Pages at launch** | 6 FR + 2 AR |
 | **Seasonality** | Full activity Oct-Mar. Maintenance Apr-Jul (≈ 1/week). Ramadan 2028 cycle from Aug 2027. |
+| **Structure option (D19)** | Launching three new domains in Wave 1 splits scarce signals in the 111 days before Ramadan. Option: run Ramadan as `guideomra.ma/ramadan/` and 301 omra-ramadan.ma there until it has a distinct live asset beyond the deadline table (the §14.3 consolidation plan already uses this structure). Default: keep the domain, trimmed as above. |
 
 ### 5.2 guideomra.ma — Wave 1
 
@@ -376,12 +402,12 @@ Wiki Tours International  (Organization; Casablanca; "since 2016" and licence OD
 | **Job** | The Moroccan, step-by-step Omra and Hajj guide: rituals, documents, health, permits, official calendars. |
 | **Audience / intent** | Informational, year-round. First-time pilgrims, older pilgrims and their children. |
 | **Architecture** | `/omra/` (ihram, tawaf, sa'y, taqsir), `/documents-visa/`, `/sante/`, `/nusuk-rawdah/`, `/calendrier-officiel/`, `/hajj/` (official timeline, preparation, rituals), `/lexique/`, `/questions/`, `/ar/…`. |
-| **Pillars at launch** | 1) Omra étape par étape. 2) Ihram rules. 3) Documents et visa pour les Marocains (only sourced rules; Moroccans' e-visa status is UNVERIFIED and sources conflict). 4) Vaccin méningite ACWY (rule from 2025 [L], [Gulf News](https://gulfnews.com/living-in-uae/health/umrah-2025-meningitis-vaccine-now-mandatory-for-all-pilgrims-1.500025860); confirm for 1448H before use). 5) Nusuk et permis. 6) Rawdah permit (2026-27 rules UNVERIFIED; published only once confirmed). 7) Femmes et Omra (official text required; UNVERIFIED today). 8) Enfants et Omra. 9) Omra vs Hajj. 10) Hajj : rites jour par jour. 11) Hajj : préparation. 12) **Hajj 1449H : calendrier officiel** (dates, eligibility, lottery, official links; linking to the wikitours.ma agency-registration post). 13) Glossary FR/AR. 14) Questions hub. 15) Calendrier islamique du pèlerin (ESTIMATE dates). |
+| **Pillars at launch** | 1) Omra étape par étape. 2) Ihram rules. 3) Documents et visa pour les Marocains (only sourced rules; Moroccans' e-visa status is UNVERIFIED and sources conflict). 4) Vaccin méningite ACWY (rule from 2025 [L], [Gulf News](https://gulfnews.com/living-in-uae/health/umrah-2025-meningitis-vaccine-now-mandatory-for-all-pilgrims-1.500025860); confirm for 1448H before use). 5) Nusuk et permis. 6) Rawdah permit (2026-27 rules UNVERIFIED; published only once confirmed). 7) Femmes et Omra (official text required; UNVERIFIED today). 8) Enfants et Omra. 9) Omra vs Hajj. 10) Hajj : rites jour par jour. 11) Hajj : préparation. 12) **Hajj 1449H : calendrier officiel** (dates, eligibility, lottery, official links; linking to the wikitours.ma agency-registration post). Published only on announcement and only after the D1 SERP-overlap check (§4.2). 13) Glossary FR/AR: **the network's only glossary**. 14) Questions hub (owned clusters only). Ramadan dates live on omra-ramadan; there is no separate Islamic-calendar page here. |
 | **Content types** | Guides, how-tos, glossary, questions hubs, fast-lane official updates. |
 | **Unique asset** | An **"official calendar" tracker**: every rule and date with its source, status [V]/[E]/[U] and "last checked" date; FR and AR side by side; a public corrections log. |
 | **Conversion** | Guide → « Préférez-vous être accompagné ? » box (neutral list of what an agency adds) → WhatsApp. Links to the wikitours.ma ziyara and Hajj registration posts where relevant. |
 | **Design** | Fassi green and sand, ivory paper, brass accents. Zellige star geometry as section dividers. Calm long-read layout, wide line-height for Arabic. |
-| **Pages at launch** | 15 FR + 5 AR |
+| **Pages at launch** | 14 FR + 5 AR |
 
 ### 5.3 agenceomra.ma — Wave 1 (highest deception risk, handle with care)
 
@@ -389,8 +415,9 @@ Wiki Tours International  (Organization; Casablanca; "since 2016" and licence OD
 |---|---|
 | **Job** | How to verify and choose a licensed Omra/Hajj agency in Morocco. **No agency rankings.** |
 | **Audience / intent** | Commercial investigation: people about to pay. |
-| **Pillars at launch** | 1) Comment vérifier qu'une agence est agréée (ministry list; KSAR TOURS case [V]). 2) Labellisation Omra et listes d'agences Hajj (only sourced rules). 3) Contrat Omra : la checklist. 4) Payer en sécurité. 5) Arnaques Omra : les signaux d'alerte (sourced: [Hespress FR](https://fr.hespress.com/462180-omra-lobservatoire-du-consommateur-appelle-a-un-controle-renforce-des-agences.html), [Hespress EN](https://en.hespress.com/131697-moroccan-authorities-consumer-groups-warn-against-travel-scams-amid-luxury-umrah-audit.html)). 6) Litige : que faire (amicable settlement at ministry delegations first; Law 11-16 allows sanctions [V], [Hespress](https://fr.hespress.com/441379-hajj-et-omra-mesures-renforcees-pour-proteger-les-pelerins-marocains.html)). 7) Questions à poser à une agence. 8) Agence ou réservation directe sur Nusuk (neutral; Nusuk Umrah exists [V], [haj.gov.sa](https://haj.gov.sa/en/Media-Center/Ministry-News/Ministry-of-Hajj-and-Umrah-launches-Nusuk-Umrah-service-to-enable-pilgrims-from-outside-the-Kingdom); Moroccans' access UNVERIFIED; never claim DIY is impossible). 9) The Feb 2026 Saudi suspension of about 1,800 foreign agencies and what buyers should check [V] ([Gulf News](https://gulfnews.com/world/gulf/saudi/saudi-arabia-suspends-1800-foreign-umrah-agencies-after-review-1.500430224)). 10) Disclosure and method page. |
+| **Pillars at launch** | 1) Comment vérifier qu'une agence est agréée (ministry list; the KSAR TOURS case as reported by H24info [V]; the agency is named only if the naming rule below is met). 2) Labellisation Omra et listes d'agences Hajj (only sourced rules). 3) Contrat Omra : la checklist. 4) Payer en sécurité. 5) Arnaques Omra : les signaux d'alerte (sourced: [Hespress FR](https://fr.hespress.com/462180-omra-lobservatoire-du-consommateur-appelle-a-un-controle-renforce-des-agences.html), [Hespress EN](https://en.hespress.com/131697-moroccan-authorities-consumer-groups-warn-against-travel-scams-amid-luxury-umrah-audit.html)). 6) Litige : que faire (amicable settlement at ministry delegations first; Law 11-16 allows sanctions [V], [Hespress](https://fr.hespress.com/441379-hajj-et-omra-mesures-renforcees-pour-proteger-les-pelerins-marocains.html)). 7) Questions à poser à une agence. 8) Agence ou réservation directe sur Nusuk (neutral; Nusuk Umrah exists [V], [haj.gov.sa](https://haj.gov.sa/en/Media-Center/Ministry-News/Ministry-of-Hajj-and-Umrah-launches-Nusuk-Umrah-service-to-enable-pilgrims-from-outside-the-Kingdom); Moroccans' access UNVERIFIED; never claim DIY is impossible). 9) The Feb 2026 Saudi suspension of about 1,800 foreign agencies and what buyers should check [V] ([Gulf News](https://gulfnews.com/world/gulf/saudi/saudi-arabia-suspends-1800-foreign-umrah-agencies-after-review-1.500430224)). 10) Disclosure and method page. |
 | **Unique asset** | A printable HTML **verification checklist**, offered for co-publication with the consumer observatory (§8.5). A sourced log of fraud patterns. |
+| **Naming rule** | Fraud content cites press or official sources only and uses « présumé » / « selon [source] ». An agency is named only when an official sanction source exists. The Feb 2026 Marrakech case is an arrest with an alleged amount, not a conviction. Any page naming an agency builds only with `legal_ok` (§5.4). |
 | **"Vérifiez-nous aussi"** | A box inviting readers to check Wiki Tours with the same method the site teaches (licence, official list, address, contract). |
 | **Directory** | A national directory built from the ministry's official list is **out of launch scope**. Reuse terms of the list are UNVERIFIED. Only after the lawyer's OK (E1), as one filterable page, never city pages, Wiki Tours marked « Éditeur ». |
 | **Disclosure** | Permanent box: « agenceomra.ma est publié par Wiki Tours International, agence de voyages. Nous ne classons pas les agences. » All links to wikitours.ma are `nofollow`. |
@@ -406,9 +433,10 @@ Wiki Tours International  (Organization; Casablanca; "since 2016" and licence OD
 | **Audience / intent** | "Combien coûte la omra", Ramadan premium, budget planning, journalists. |
 | **Pillars at launch** | 1) Latest snapshot table. 2) Method. 3) « Snapshot Ramadan 2027 » (own data). 4) Price history: official Hajj cost 63,021 MAD for 1447H [V] ([Le360](https://fr.le360.ma/societe/hajj-1447h-les-frais-definitifs-fixes-a-63021-dirhams_HFBAQQU5INGOPKRWSNL7NY2QN4/); other outlets report 63,221 and 63,121 MAD — the conflict is shown); 1448H provisional 65,000 MAD, final cost not announced [L] ([EcoActu](https://ecoactu.ma/hajj-1447h-le-cout-fixe-a-63-021-dh-remboursement-prevu-des-le-9-mars-2026/)); Ramadan averages ≈ 25,000 MAD (2023) and ≈ 35,000 MAD (2024) quoted by the federation [L] ([Medias24](https://medias24.com/2024/04/03/omra-2024-inflation-situation-geopolitique-et-secteur-informel-ont-fait-chuter-le-nombre-de-pelerins/)). 5) Ce qui fait le prix (hotel distance, room basis, flights, season). 6) Room-basis glossary. 7) Data download page (CSV). |
 | **Unique asset** | `data/prices/observations.csv`: agency, licence checked, package dates, nights, hotels, distance, room basis, carrier and departure city, price MAD, capture date, proof URL + screenshot (stored privately). |
-| **Data rules (DESIGN CHOICES)** | Publish a snapshot only with **≥ 20 offers from ≥ 8 licensed agencies**. In any table cell with **n < 8**, show « données insuffisantes ». Never fill gaps. Wiki Tours observations are flagged « Éditeur ». CSV published under CC-BY so media and AI engines can cite it. |
-| **Disclosure** | « Observatoire publié par Wiki Tours International, une agence concurrente des agences observées. Méthode et données brutes publiées. » All links to wikitours.ma `nofollow`. **Lawyer check (E1) before launch.** |
-| **Conversion** | Table → « Comparer avec les offres Bab Makka » (disclosed) → WhatsApp « Je veux un devis Omra – budget ___ ». |
+| **Data rules (DESIGN CHOICES)** | **Published dimensions fixed in advance:** season × tier only, room basis normalised to quad or double. Every cell needs **n ≥ 8**, otherwise « données insuffisantes »; never fill gaps. With about 3 tiers per season that means ≥ 24 usable offers in the best case, and offers are rarely spread evenly, so the **survey target is 40+ offers from ≥ 8 licensed agencies** (survey time ESTIMATE 4-12 h, C3). **Wiki Tours is excluded from every computed statistic** and shown in a separate, labelled row « Offre de l'éditeur ». Social-media offers (Facebook, Instagram, TikTok) are captured **by hand only** (platform terms on automated extraction UNVERIFIED). CSV published under CC-BY so media and AI engines can cite it. **Blocked until the official licence-list URL is confirmed**: without it the licence status of observed agencies cannot be checked (UNKNOWN today). |
+| **Disclosure** | « Observatoire publié par Wiki Tours International, une agence concurrente des agences observées. Méthode et données brutes publiées. » All links to wikitours.ma `nofollow`. |
+| **Legal gate (`legal_ok`)** | Comparative and misleading-advertising rules are NOT RESEARCHED (E1). The build refuses prixomra, any comparison page and any agenceomra page naming an agency unless config holds a lawyer sign-off date. **Correction and right of reply:** any observed agency can ask for a correction; we answer within 48 h and log the outcome publicly. |
+| **Conversion** | Below the table, never inside it: « Voir les offres Bab Makka (éditeur) » on **≤ 20%** of posts → WhatsApp « Je veux un devis Omra – budget ___ ». |
 | **Design** | Data-journal look: off-white and charcoal, terracotta or saffron accent, tabular numerals, static SVG charts (no JS), subtle zellige grid background. |
 | **Pages at launch** | 7 FR + 2 AR |
 | **Cadence** | Data-bound: 1 snapshot per month (twice in Dec-Jan) + 1-2 analysis posts. Never more than the data supports. |
@@ -418,36 +446,31 @@ Wiki Tours International  (Organization; Casablanca; "since 2016" and licence OD
 | | |
 |---|---|
 | **Job** | The practical trip: flights from Morocco, airports, luggage, heat and health, travelling with elderly parents or children, getting around Makkah and Madinah. |
-| **Pillars at launch** | 1) Vols Maroc → Jeddah / Médine: carriers sourced (flynas Jeddah-Casablanca since 2023 and Jeddah-Rabat since 4 Jul 2026 [V], [flynas](https://www.flynas.com/en/media-center/news-updates/flynas-announces-the-launch-of-direct-flights-between-jeddah-and-the-moroccan-capital-rabat-starting-from-july-4th-becomimg-the-first-saudi-carrier-to-operate-direct-flights-between-the-two-cities); RAM sells Casablanca-Jeddah and Casablanca-Medina [L], [RAM](https://www.royalairmaroc.com/en/flights-to-saudi-arabia); frequencies UNKNOWN → « vérifiez auprès de la compagnie »). 2) **Aéroports de départ au Maroc**: a national page with a **Rabat-Salé section** (the target of the omrarabat.ma 301): flynas Rabat-Jeddah (reported 2 weekly from 19 Aug 2026 [L]); Makkah Route at RBA **for Hajj only, confirmed for 2026** [V]. 3) Liste de bagages (homme / femme). 4) Chaleur et santé. 5) Distance de l'hôtel expliquée. 6) Voyager avec des parents âgés. 7) Voyager avec des enfants. 8) Bagages et Zamzam (airline-sourced only). 9) Guide d'achat du kit ihram (no shop). 10) Argent à l'étranger (only after an official Office des Changes source; UNKNOWN today). |
+| **Pillars at launch** | 1) Vols Maroc → Jeddah / Médine: carriers sourced (flynas Jeddah-Casablanca since 2023 and Jeddah-Rabat since 4 Jul 2026 [V], [flynas](https://www.flynas.com/en/media-center/news-updates/flynas-announces-the-launch-of-direct-flights-between-jeddah-and-the-moroccan-capital-rabat-starting-from-july-4th-becomimg-the-first-saudi-carrier-to-operate-direct-flights-between-the-two-cities); RAM sells Casablanca-Jeddah and Casablanca-Medina [L], [RAM](https://www.royalairmaroc.com/en/flights-to-saudi-arabia); frequencies UNKNOWN → « vérifiez auprès de la compagnie »; Ramadan capacity history: RAM's Ramadan 2023 program [V], [SNRTnews](https://snrtnews.com/fr/article/omra-et-haj-la-ram-deploie-un-nouveau-programme-de-vols-69745)). 2) **Aéroports de départ au Maroc**: a national page with a **Casablanca Mohammed V (CMN) section** (target of the omracasablanca.ma 301: Terminal 3 departure steps, getting to CMN with sourced transport facts, Makkah Route at CMN **for Hajj only**, confirmed for Hajj 2026, 5th year [V], [TelQuel/ONDA](https://telquel.ma/instant-t/2026/05/22/hajj-2026-londa-deploie-un-dispositif-special_1991022/)) and a **Rabat-Salé section** (target of the omrarabat.ma 301): flynas Rabat-Jeddah (reported 2 weekly from 19 Aug 2026 [L]); Makkah Route at RBA **for Hajj only, confirmed for 2026** [V]. 3) Liste de bagages (homme / femme). 4) Chaleur et santé (the network's only heat and health page; omra-ramadan links here). 5) Distance de l'hôtel expliquée. 6) Voyager avec des parents âgés. 7) Voyager avec des enfants. 8) Bagages et Zamzam (airline-sourced only). 9) Guide d'achat du kit ihram (no shop). 10) Argent à l'étranger (only after an official Office des Changes source; UNKNOWN today). |
 | **Unique asset** | An airport-by-airport departure guide for Morocco, plus real field notes from Wiki Tours group guides (monthly interview, consented). |
 | **Merchant Center** | **Frozen** (§10.9). Never travel packages. |
 | **Conversion** | Logistics answer → « Wiki Tours s'occupe des vols et des hôtels » → WhatsApp. |
 | **Design** | Travel journal: kraft-paper tone, warm ochre and terracotta, route-line illustrations, stamps, ticket-stub cards, tick-box checklists. |
 | **Pages at launch** | 12 FR + 3 AR |
 
-### 5.6 omracasablanca.ma — Wave 2 (local, only with real substance)
+### 5.6 omracasablanca.ma — ON HOLD (default)
 
-| | |
-|---|---|
-| **Job** | The Casablanca-Settat layer: departing from Mohammed V (CMN) Terminal 3, local preparation, and the real Wiki Tours office. |
-| **Pillars at launch** | 1) Partir depuis l'aéroport Mohammed V, étape par étape. 2) **Notre agence à Casablanca**: real address, hours, photos, team (A1, B1, B2). Text and photos only — **no LocalBusiness markup on the satellite**; the publisher node carries the address. 3) Rejoindre CMN depuis les villes de Casablanca-Settat (sourced transport facts only). 4) Vaccination à Casablanca (official centres; source needed before publishing). 5) Réunions d'information avant départ — only if Wiki Tours really holds them (A8). 6) **Tarik Makkah / Makkah Route à CMN: Hajj only**, confirmed for Hajj 2026 (5th year) [V] ([TelQuel/ONDA](https://telquel.ma/instant-t/2026/05/22/hajj-2026-londa-deploie-un-dispositif-special_1991022/)). Never presented as an Omra service; re-verify before Hajj 2027. 7) Local questions hub. |
-| **Rule** | Every page needs at least one Casablanca-specific verified fact or real photo. Nothing that could be produced by swapping a city name. |
-| **Conversion** | « Venir à l'agence » (address, map link, hours) → WhatsApp → wikitours.ma. Satellite gets **no** Google Business Profile. |
-| **Design** | Casablanca Art Deco and neo-Mauresque: white façades, ocean blue, cream, geometric ironwork lines. |
-| **Pages at launch** | 8 FR + 2 AR |
-| **Cadence** | ≤ 1-2 posts/week. Local substance is finite. |
+- **Problem:** a city domain that funnels to one agency matches Google's first doorway example almost word for word: "multiple domain names or pages targeted at specific regions or cities that funnel users to one page" ([Google](https://developers.google.com/search/docs/essentials/spam-policies)). Its two distinctive assets are owned elsewhere. (a) The office, address, hours and team target the local intent reserved for wikitours.ma and its Google Business Profile, so an office page would compete with the money site. (b) CMN departure logistics belong on voyageomra's national airports page. What remains is about 8 pages and 1 post a week: thin by design. Makkah Route at CMN is Hajj-only, so it cannot carry Omra content.
+- **Now:** **301 to voyageomra.ma's CMN section**, after a clean domain-history check (D6).
+- **If you insist on running it (D20):** no office page (the office lives on `/editeur/` and wikitours.ma); ≤ 20% of posts with a money link, all `nofollow`; the CTA « Venir à l'agence » is text only; every page needs a Casablanca-specific verified fact or real photo; no Google Business Profile and no LocalBusiness markup. Before assigning any keyword, run a SERP-overlap test of « omra casablanca » / « omra départ casablanca » (PLACEHOLDERS) against the reserved « agence omra casablanca ». If overlap is ≥ 4/10, those keywords are reserved for wikitours.ma.
+- **Design if ever built:** Casablanca Art Deco and neo-Mauresque: white façades, ocean blue, cream, geometric ironwork lines.
 
 ### 5.7 offresomra.ma — ON HOLD
 
 - **Problem:** a Bab-Makka-only offers board duplicates wikitours.ma's Bab Makka page (a doorway). A real multi-agency board is useful but sends some demand to competitors and needs legal review.
-- **Now:** **301 to the Bab Makka page in the right language** (A6 URL). Commercial intent is best served by bookable offers, and a redirect is not a doorway.
+- **Now:** **301 to the Bab Makka page in the right language** (A6 URL), only after a clean domain-history check (D6). If the domain has an unrelated history, it is dropped or redirected to a satellite, never to wikitours.ma. Commercial intent is best served by bookable offers, and a redirect is not a doorway.
 - **Relaunch condition (Wave 3, earliest Mar 2027):** **both** your decision to list other licensed agencies' public offers **and** the lawyer's OK (E1).
 - **If launched:** dated offers board fed by the same survey pipeline as prixomra. Each offer shows operator, licence, price, room basis, departure city, valid-until, source link. Wiki Tours offers carry « Offre de l'éditeur » and are never pinned first by default (sort criterion shown). Outbound and wikitours.ma links `nofollow`. A list page is indexed only with ≥ 5 live offers (design choice). Expired offer: banner + noindex the same day, 301 to the hub after 30 days. Design: market-board cards inside horseshoe-arch frames, saffron and white.
 
 ### 5.8 omrarabat.ma — ON HOLD
 
 - **Problem:** no Rabat office is known. A Rabat site funnelling to wikitours.ma is the textbook doorway case.
-- **Now:** **301 to voyageomra.ma's Rabat-Salé airport section**, where the genuine Rabat facts live (flynas Rabat-Jeddah; Makkah Route at RBA, Hajj 2026 only).
+- **Now:** **301 to voyageomra.ma's Rabat-Salé airport section** (after D6), where the genuine Rabat facts live (flynas Rabat-Jeddah; Makkah Route at RBA, Hajj 2026 only).
 - **Build only on written confirmation** of RBA departures sold by Wiki Tours **or** a staffed Rabat presence (A4). Decision default by **22 Nov 2026**: keep the 301.
 - **If built later:** same model as omracasablanca, with the real Rabat presence shown honestly. Never imply an office that does not exist (« Wiki Tours est basée à Casablanca »). No LocalBusiness markup. Design: Oudayas blue and white, Andalusian garden motifs.
 
