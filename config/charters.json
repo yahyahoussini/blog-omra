@@ -1,0 +1,54 @@
+{
+  "_doc": "Site charters for topic planning (DECISIONS D-B, STRATEGY 4.2 and 5). 'owns' = intents only this site may target; 'never' = intents it must not target. Reserved wikitours.ma concepts (config/wikitours-targets.json) and every other site's 'owns' list are always banned too. Read by scripts/plan-topics.js and shown in each generation brief.",
+  "audience": "Moroccan pilgrims and their families (Morocco and Moroccans abroad), French readers at the root, Arabic under /ar/, English under /en/.",
+  "sites": {
+    "guideomra.ma": {
+      "job": "The Moroccan, step-by-step Omra and Hajj reference: rituals, documents, health rules, Nusuk and permits, official calendars, glossary. Every rule sourced.",
+      "owns": ["Omra rituals step by step (ihram, tawaf, sa'y, taqsir)", "documents and visa rules for Moroccans", "health rules and vaccines (ACWY)", "Nusuk and the Rawdah permit (rule only)", "official Hajj calendar, eligibility and lottery (official facts only)", "Hajj rituals and preparation", "Omra vs Hajj", "women, children and Omra (official texts only)", "the network's only glossary"],
+      "never": ["Ramadan dates and deadlines (omra-ramadan.ma)", "flights, airports, luggage, heat (voyageomra.ma)", "Hajj registration via an agency or agency quotas (wikitours.ma)", "Madinah ziyara sightseeing (wikitours.ma)", "prices (prixomra.ma)"],
+      "hard_rules": ["Qur'an verses, hadith and du'a are never written by the generator.", "A rule is stated only with an approved fact; otherwise it goes in the unknowns section."]
+    },
+    "omra-ramadan.ma": {
+      "job": "Planning an Omra in Ramadan from Morocco: Ramadan dates (estimates until the moon sighting), the 1448H season deadlines, when to book, first days vs last 10 nights.",
+      "owns": ["Ramadan dates Saudi vs Morocco", "1448H season and visa deadlines", "when to book an Omra for Ramadan", "first days vs last 10 nights of Ramadan", "Omra while fasting (practical, no religious rulings)", "Ramadan questions hub"],
+      "never": ["crowds, heat, health and flights (voyageomra.ma)", "documents and checklists (guideomra.ma, voyageomra.ma)", "glossary (guideomra.ma)", "prices (prixomra.ma)", "religious rulings"],
+      "hard_rules": ["Hijri dates are estimates « sous réserve d'observation du croissant » until announced."]
+    },
+    "agenceomra.ma": {
+      "job": "How to verify and choose a licensed Omra/Hajj agency in Morocco. No rankings.",
+      "owns": ["verifying an agency licence", "agency labelling and official lists (sourced rules only)", "Omra contract checklist", "paying safely", "Omra scams and warning signs", "disputes and what to do", "questions to ask an agency", "agency vs direct booking on Nusuk (neutral)"],
+      "never": ["agency rankings or 'best agency' lists", "naming an agency without an official sanction source and legal_ok", "prices (prixomra.ma)", "reading an offer line by line (offresomra.ma)"],
+      "hard_rules": ["Fraud cases use « présumé » / « selon [source] ».", "Never claim booking without an agency is impossible."]
+    },
+    "prixomra.ma": {
+      "job": "Price observatory: official Hajj cost history, published averages with their source, what drives an Omra price, method.",
+      "owns": ["official Hajj cost history", "published Omra price averages (quoted sources)", "what makes an Omra price (hotel distance, room basis, flights, season)", "room-basis glossary", "price method"],
+      "never": ["Omra tiers économique to VIP guide (wikitours.ma)", "comparing named agencies without legal_ok", "invented or extrapolated prices", "Bab Makka prices (wikitours.ma)"],
+      "hard_rules": ["Every price comes from an approved fact with its source and date; no fact, no number."]
+    },
+    "voyageomra.ma": {
+      "job": "The practical trip: flights from Morocco (national overview), luggage, heat and health on the road, travelling with elderly parents or children, getting around Makkah and Madinah.",
+      "owns": ["flights from Morocco to Jeddah/Madinah (national overview)", "luggage list", "heat and health on the road (the network's only page)", "hotel distance explained", "travelling with elderly parents", "travelling with children", "Zamzam and baggage rules (airline-sourced)"],
+      "never": ["CMN departure detail (omracasablanca.ma)", "RBA departure detail (omrarabat.ma)", "Ramadan deadlines (omra-ramadan.ma)", "rituals (guideomra.ma)"],
+      "hard_rules": ["Flight frequencies only from approved facts; otherwise « vérifiez auprès de la compagnie »."]
+    },
+    "omracasablanca.ma": {
+      "job": "« Partir de Casablanca »: CMN (Mohammed V) departure guide and Casablanca-Settat practical logistics for pilgrims.",
+      "owns": ["departing for Omra from Casablanca Mohammed V (CMN)", "getting to CMN", "Makkah Route at CMN (Hajj only)", "Casablanca-Settat practical logistics before departure"],
+      "never": ["« agence omra casablanca » or any local agency intent (wikitours.ma + its Google Business Profile)", "an office page or opening hours", "national flight overviews (voyageomra.ma)"],
+      "hard_rules": ["Every page needs a verified Casablanca-specific fact.", "No LocalBusiness markup, no office claims."]
+    },
+    "omrarabat.ma": {
+      "job": "« Partir de Rabat-Salé-Kénitra »: RBA departures (flynas Rabat-Jeddah) and regional logistics.",
+      "owns": ["departing for Omra from Rabat-Salé (RBA)", "flynas Rabat-Jeddah route facts", "Makkah Route at RBA (Hajj only)", "Rabat-Salé-Kénitra practical logistics before departure"],
+      "never": ["implying a Wiki Tours office in Rabat (Wiki Tours is based in Casablanca)", "local agency intents", "national flight overviews (voyageomra.ma)"],
+      "hard_rules": ["State honestly that Wiki Tours is based in Casablanca when the publisher is mentioned."]
+    },
+    "offresomra.ma": {
+      "job": "« Lire et comparer une offre Omra »: offer anatomy, red flags in an offer, what is included or not, offer calendar.",
+      "owns": ["anatomy of an Omra offer", "red flags in an offer", "what an offer includes or excludes", "comparing two offers line by line (method, no named agencies)", "offer calendar"],
+      "never": ["a multi-agency offers board before legal_ok", "Bab Makka or Wiki Tours offers presented as anything but « Offre de l'éditeur » from dated records", "agency verification (agenceomra.ma)", "price averages (prixomra.ma)"],
+      "hard_rules": ["No seat or availability wording."]
+    }
+  }
+}

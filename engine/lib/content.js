@@ -18,8 +18,11 @@ export function pageUrl(project, { kind, lang, fm }) {
   return `${prefix}/${fm.slug}/`;
 }
 
-export function loadContent(project) {
+// `overlay` (optional): [{ file: 'content/<domain>/<lang>/<pages|posts>/<slug>.md', text }] read as if they
+// were on disk (they replace a disk file with the same path). The generator gates drafts this way.
+export function loadContent(project, overlay = []) {
   const all = [];
+  const extra = new Map(overlay.map(o => [path.normalize(o.file), o.text]));
   for (const site of project.sites.values()) {
     for (const lang of site.meta.languages) {
       for (const kind of ['pages', 'posts']) {
@@ -27,17 +30,27 @@ export function loadContent(project) {
         if (!exists(dir)) continue;
         for (const name of fs.readdirSync(dir).filter(f => f.endsWith('.md')).sort()) {
           const file = path.join(dir, name);
-          const parsed = matter(fs.readFileSync(file, 'utf8'), {}); // options object disables gray-matter's cache
-          const fm = normalizeDates(parsed.data);
-          all.push({
-            site: site.domain, lang, kind, fm, body: parsed.content,
-            file: path.relative(project.root, file), fileSlug: name.replace(/\.md$/, ''),
-          });
+          const rel = path.relative(project.root, file);
+          all.push(parseFile(site.domain, lang, kind, rel, extra.has(rel) ? extra.get(rel) : fs.readFileSync(file, 'utf8')));
+          extra.delete(rel);
         }
       }
     }
   }
+  for (const [rel, text] of extra) {
+    const m = rel.split(path.sep).join('/').match(/^content\/([^/]+)\/([a-z]{2})\/(pages|posts)\/([^/]+)\.md$/);
+    if (!m || !project.sites.has(m[1])) throw new Error(`overlay file outside content/<domain>/<lang>/<kind>/: ${rel}`);
+    all.push(parseFile(m[1], m[2], m[3], rel, text));
+  }
   return all;
+}
+
+function parseFile(site, lang, kind, rel, text) {
+  const parsed = matter(text, {}); // options object disables gray-matter's cache
+  return {
+    site, lang, kind, fm: normalizeDates(parsed.data), body: parsed.content,
+    file: rel, fileSlug: path.basename(rel).replace(/\.md$/, ''),
+  };
 }
 
 // Pages that are rendered in this build. Returns { pages, excluded: [{file, reason}] }.

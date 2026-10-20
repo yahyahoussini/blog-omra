@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://omra-network.local/schemas/keyword-registry.schema.json",
+  "title": "Keyword registry (network-wide, single source of truth)",
+  "type": "object",
+  "required": ["version", "generated_at", "market", "keywords", "clusters"],
+  "additionalProperties": false,
+  "properties": {
+    "version": { "type": "integer", "minimum": 1 },
+    "generated_at": { "type": "string", "format": "date-time" },
+    "market": { "const": "MA" },
+    "clusters": { "type": "array", "items": { "$ref": "#/$defs/cluster" } },
+    "keywords": { "type": "array", "items": { "$ref": "#/$defs/keyword" } }
+  },
+  "$defs": {
+    "site": { "enum": ["guideomra.ma", "offresomra.ma", "omra-ramadan.ma", "omracasablanca.ma", "omrarabat.ma", "prixomra.ma", "voyageomra.ma", "agenceomra.ma", "wikitours.ma"] },
+    "lang": { "enum": ["fr", "ar", "en"] },
+    "source": {
+      "type": "object",
+      "required": ["report", "database", "file", "exported_at"],
+      "additionalProperties": false,
+      "properties": {
+        "report": { "enum": ["kmt", "kmt-questions", "or-positions", "kgap-missing", "kgap-untapped", "kgap-all", "pt", "main-keywords", "gsc", "or-pages", "or-competitors", "serp-manual"] },
+        "database": { "type": "string", "pattern": "^[a-z]{2}$" },
+        "file": { "type": "string" },
+        "exported_at": { "type": "string", "format": "date" },
+        "volume": { "type": ["integer", "null"], "minimum": 0 },
+        "kd": { "type": ["number", "null"], "minimum": 0, "maximum": 100 },
+        "position": { "type": ["number", "null"], "minimum": 1 },
+        "url": { "type": ["string", "null"] }
+      }
+    },
+    "keyword": {
+      "type": "object",
+      "required": ["id", "keyword", "normalized", "match_key", "lang", "status", "sources"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "pattern": "^kw_[a-f0-9]{10}$" },
+        "keyword": { "type": "string", "minLength": 1 },
+        "normalized": { "type": "string" },
+        "match_key": { "type": "string" },
+        "lang": { "$ref": "#/$defs/lang" },
+        "volume": { "type": ["integer", "null"], "minimum": 0, "description": "latest Semrush value, null = n/a (never guessed)" },
+        "kd": { "type": ["number", "null"], "minimum": 0, "maximum": 100 },
+        "cpc_usd": { "type": ["number", "null"], "minimum": 0 },
+        "competition": { "type": ["number", "null"], "minimum": 0, "maximum": 1 },
+        "intent": { "type": "array", "uniqueItems": true, "items": { "enum": ["informational", "navigational", "commercial", "transactional"] } },
+        "serp_features": { "type": "array", "items": { "type": "string" } },
+        "trend": { "type": "array", "maxItems": 12, "items": { "type": "number", "minimum": 0, "maximum": 1 } },
+        "is_main": { "type": "boolean", "description": "one of the client's 10 main keywords for owner_site" },
+        "main_rank": { "type": ["integer", "null"], "minimum": 1, "maximum": 10 },
+        "cluster_id": { "type": ["string", "null"], "pattern": "^c_[a-z0-9_]+$" },
+        "role": { "enum": ["pillar", "supporting", "question", "unassigned"] },
+        "owner_site": { "oneOf": [{ "$ref": "#/$defs/site" }, { "type": "null" }] },
+        "reserved_for": { "enum": ["wikitours.ma", null], "description": "money-site topics satellites must not target" },
+        "target_url": { "type": ["string", "null"], "format": "uri" },
+        "season": { "enum": ["none", "ramadan", "hajj", "summer", "school-holidays", "mawlid"] },
+        "status": { "enum": ["candidate", "assigned", "briefed", "drafted", "scheduled", "published", "retired", "rejected"] },
+        "reject_reason": { "type": ["string", "null"] },
+        "sources": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/source" } },
+        "decided_by": { "type": ["string", "null"] },
+        "decided_at": { "type": ["string", "null"], "format": "date" }
+      },
+      "allOf": [
+        { "if": { "properties": { "is_main": { "const": true } }, "required": ["is_main"] }, "then": { "required": ["main_rank", "owner_site"] } },
+        { "if": { "properties": { "status": { "enum": ["published", "scheduled"] } } }, "then": { "required": ["cluster_id", "owner_site", "target_url"] } }
+      ]
+    },
+    "cluster": {
+      "type": "object",
+      "required": ["id", "lang", "pillar_keyword_id", "member_ids", "method"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "pattern": "^c_[a-z0-9_]+$" },
+        "lang": { "$ref": "#/$defs/lang" },
+        "pillar_keyword_id": { "type": "string" },
+        "member_ids": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string" } },
+        "owner_site": { "oneOf": [{ "$ref": "#/$defs/site" }, { "type": "null" }] },
+        "target_url": { "type": ["string", "null"] },
+        "method": { "enum": ["serp-soft", "serp-hard", "lexical", "manual"] },
+        "min_shared_urls": { "type": ["integer", "null"], "minimum": 1, "maximum": 10 },
+        "serp_snapshot": { "type": ["string", "null"], "description": "data/serp/<date>/ folder used" },
+        "total_volume": { "type": ["integer", "null"] }
+      }
+    }
+  }
+}

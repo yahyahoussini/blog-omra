@@ -1,0 +1,64 @@
+# Daily run (DECISIONS D-C): kill-switches -> generate -> gates -> build -> deploy -> commit content/data back.
+# 04:13 UTC = 05:13 in Morocco (UTC+1); off-hour minute because GitHub delays top-of-hour cron runs.
+name: daily
+on:
+  schedule:
+    - cron: '13 4 * * *'
+  workflow_dispatch:
+concurrency:
+  group: omra-network-publish
+  cancel-in-progress: false
+permissions:
+  contents: write
+  issues: read
+jobs:
+  daily:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+
+      - name: Monitor (kill-switches, dead-man switch, Search Console if configured)
+        run: node scripts/monitor.js
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GOOGLE_SA_JSON: ${{ secrets.GOOGLE_SA_JSON }}
+
+      # Skips itself (exit 0) when ANTHROPIC_API_KEY or CLAUDE_MODEL is missing. A fatal API error must not stop
+      # the deploy of content that already passed the gates, hence continue-on-error.
+      - name: Generate today's posts
+        run: node scripts/generate.js
+        continue-on-error: true
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          CLAUDE_MODEL: ${{ vars.CLAUDE_MODEL }}
+
+      - name: Check every gate
+        run: node scripts/check.js
+
+      - name: Build
+        run: node scripts/build.js
+
+      # Skips deploy and IndexNow (exit 0) when the Cloudflare secrets are missing.
+      - name: Publish changed sites (Cloudflare Pages + IndexNow + ledger)
+        run: node scripts/publish.js
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+
+      - name: Commit content and data back
+        if: ${{ !cancelled() }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add content data reports
+          if git diff --cached --quiet; then echo "nothing to commit"; exit 0; fi
+          git commit -m "daily: generated content and state $(date -u +%F)"
+          git pull --rebase --autostash
+          git push

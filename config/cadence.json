@@ -1,7 +1,39 @@
 {
-  "_doc": "DECISIONS D-C. Read by the automation agent (not by the engine).",
+  "_doc": "DECISIONS D-C (cadence, auto mode) + D-H (1 FR + 1 AR + 1 EN per site per day). Read by scripts/generate.js and scripts/plan-topics.js. See docs/RUNBOOK.md.",
+  "paused": false,
+  "_paused_comment": "true = the generator writes nothing and publish.js deploys nothing, on every site. The one switch to stop everything.",
   "publish_mode": "auto",
+  "_publish_mode_comment": "auto = a draft that passes every gate is published the same day without a human read (highest risk, DECISIONS D-C). review = it is written with status: draft and listed in data/queue/<week>.json for a human.",
+  "launch_date": null,
+  "_launch_date_comment": "YYYY-MM-DD. While null the generator does nothing. Day 1 of the ramp is this date (Africa/Casablanca).",
   "max_posts_per_day_per_site": 3,
-  "ramp": [ { "from_day": 1, "per_day": 1 }, { "from_day": 15, "per_day": 2 }, { "from_day": 29, "per_day": 3 } ],
-  "launch_date": null
+  "max_posts_per_language_per_day": 1,
+  "ramp": [
+    { "from_day": 1, "per_day": 1 },
+    { "from_day": 15, "per_day": 2 },
+    { "from_day": 29, "per_day": 3 }
+  ],
+  "min_fact_days_left": 7,
+  "_min_fact_days_left_comment": "DESIGN CHOICE: a topic is only drafted when every fact it needs stays valid (review_by / valid_until) for at least this many days.",
+  "queue_target_days": 30,
+  "sites": {
+    "guideomra.ma": { "enabled": true },
+    "omra-ramadan.ma": { "enabled": true },
+    "agenceomra.ma": { "enabled": true },
+    "prixomra.ma": { "enabled": true },
+    "voyageomra.ma": { "enabled": true },
+    "omracasablanca.ma": { "enabled": true },
+    "omrarabat.ma": { "enabled": true },
+    "offresomra.ma": { "enabled": true }
+  },
+  "monthly_spend_cap_usd": 150,
+  "_monthly_spend_cap_usd_comment": "PLACEHOLDER chosen by the builder, not by the client. The client must set the real monthly Claude API budget. Generation and planning stop for the month when the estimate in data/state/spend.json reaches it.",
+  "spend_alert_share": 0.8,
+  "claude": {
+    "max_tokens": 32000,
+    "effort": null,
+    "_effort_comment": "null = the model's default. Set low|medium|high only if the model in CLAUDE_MODEL supports output_config.effort.",
+    "price_usd_per_mtok": { "input": 5, "output": 25, "cache_write": 6.25, "cache_read": 0.5 },
+    "_price_comment": "PLACEHOLDER prices used only to estimate spend. Replace them with the current list price of the model set in the CLAUDE_MODEL repository variable (see the Anthropic pricing page)."
+  }
 }

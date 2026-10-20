@@ -1,0 +1,19 @@
+{
+  "_doc": "Kill-switch thresholds (STRATEGY 16.5 adapted by DECISIONS D-C). Every number here is a DESIGN CHOICE, not a measured fact: recalibrate after 8 weeks of real data. Read by scripts/monitor.js.",
+  "network_freeze": false,
+  "_network_freeze_comment": "true = every site paused (use for a manual action or security issue). Resume is human only.",
+  "manual": {},
+  "_manual_comment": "Per-site overrides, e.g. { \"agenceomra.ma\": { \"paused\": true, \"reason\": \"fact error being fixed\" } } or { \"multiplier\": 0.5 }.",
+  "dead_man": { "slow_after_days": 10, "pause_after_days": 21, "slow_multiplier": 0.5, "label": "weekly-review" },
+  "gate_failure": { "window_days": 7, "min_attempts": 4, "slow_rate": 0.25, "slow_multiplier": 0.5 },
+  "similarity": { "last_n_posts": 30, "slow_mean": 0.2, "dup_blocks_7d": 3, "slow_multiplier": 0.5 },
+  "facts": { "stale_registry_share_pause": 0.2 },
+  "impressions": { "min_baseline_weekly": 500, "crash_ratio": 0.5, "sites_for_network_freeze": 2 },
+  "index_proxy": {
+    "enforced": false,
+    "_comment": "Share of posts aged 14-60 days with at least one Search Console impression in 28 days. It is a lower bound of the index ratio, so it only reports by default.",
+    "min_eligible": 20, "slow_below": 0.7, "pause_below": 0.5
+  },
+  "seasonal_dips": [],
+  "_seasonal_dips_comment": "Date ranges where an impressions drop is expected (e.g. after Eid al-Fitr), as [{ \"from\": \"YYYY-MM-DD\", \"to\": \"YYYY-MM-DD\", \"sites\": [\"omra-ramadan.ma\"] }]. No crash pause inside them."
+}

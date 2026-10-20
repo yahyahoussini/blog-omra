@@ -1,0 +1,49 @@
+# Weekly run (Sunday 18:23 UTC): top up topic queues (+ Semrush ingest), then the one-page report as a GitHub issue
+# labelled weekly-review. Closing that issue = weekly review done (resets the dead-man switch).
+name: weekly
+on:
+  schedule:
+    - cron: '23 18 * * 0'
+  workflow_dispatch:
+concurrency:
+  group: omra-network-publish
+  cancel-in-progress: false
+permissions:
+  contents: write
+  issues: write
+jobs:
+  weekly:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+
+      # Ingests data/semrush/raw/*.csv; topic proposals skip themselves when ANTHROPIC_API_KEY or CLAUDE_MODEL is missing.
+      - name: Plan topics
+        run: node scripts/plan-topics.js
+        continue-on-error: true
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          CLAUDE_MODEL: ${{ vars.CLAUDE_MODEL }}
+
+      - name: Weekly report and review issue
+        run: node scripts/report.js
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+
+      - name: Commit topics, keyword registry and report
+        if: ${{ !cancelled() }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add content data reports
+          if git diff --cached --quiet; then echo "nothing to commit"; exit 0; fi
+          git commit -m "weekly: topics and report $(date -u +%G-W%V)"
+          git pull --rebase --autostash
+          git push

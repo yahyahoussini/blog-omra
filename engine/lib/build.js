@@ -20,15 +20,16 @@ const fileOf = url => (url.endsWith('/') ? url.slice(1) + 'index.html' : url.sli
  * @param {string[]} [o.only] domains to write (all sites are always rendered and gated together)
  * @param {boolean} [o.write] write dist files (false = check only)
  * @param {boolean} [o.strict] refuse to write sites when any gate error exists
+ * @param {Array<{file:string,text:string}>} [o.overlay] in-memory content files (generator drafts), see loadContent
  */
-export async function buildNetwork({ root, outDir, today = todayISO(), only = null, write = true, strict = true } = {}) {
+export async function buildNetwork({ root, outDir, today = todayISO(), only = null, write = true, strict = true, overlay = [] } = {}) {
   outDir ??= path.join(root, 'dist');
   const project = await loadProject(root);
   const findings = [];
   const add = (level, gate, where, msg) => findings.push({ level, gate, site: where?.site ?? null, file: where?.file ?? null, url: where?.url ?? null, msg });
 
   registryGate(project, add);
-  const all = loadContent(project);
+  const all = loadContent(project, overlay);
   frontmatterGate(project, all, add, today);
   const valid = all.filter(p => !p.invalid);
   const { pages: published, excluded } = selectPublishable(project, valid);

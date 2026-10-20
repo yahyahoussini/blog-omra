@@ -1,0 +1,135 @@
+{
+  "guideomra.ma": {
+    "multiplier": 1,
+    "paused": false,
+    "reasons": [],
+    "notes": [],
+    "signals": {
+      "attempts7d": 0,
+      "failed7d": 0,
+      "failRate7d": null,
+      "meanNearestDup": null,
+      "dupSample": 0,
+      "dupBlocks7d": 0
+    }
+  },
+  "omra-ramadan.ma": {
+    "multiplier": 1,
+    "paused": false,
+    "reasons": [],
+    "notes": [],
+    "signals": {
+      "attempts7d": 0,
+      "failed7d": 0,
+      "failRate7d": null,
+      "meanNearestDup": null,
+      "dupSample": 0,
+      "dupBlocks7d": 0
+    }
+  },
+  "agenceomra.ma": {
+    "multiplier": 1,
+    "paused": false,
+    "reasons": [],
+    "notes": [],
+    "signals": {
+      "attempts7d": 0,
+      "failed7d": 0,
+      "failRate7d": null,
+      "meanNearestDup": null,
+      "dupSample": 0,
+      "dupBlocks7d": 0
+    }
+  },
+  "prixomra.ma": {
+    "multiplier": 1,
+    "paused": false,
+    "reasons": [],
+    "notes": [],
+    "signals": {
+      "attempts7d": 0,
+      "failed7d": 0,
+      "failRate7d": null,
+      "meanNearestDup": null,
+      "dupSample": 0,
+      "dupBlocks7d": 0
+    }
+  },
+  "voyageomra.ma": {
+    "multiplier": 1,
+    "paused": false,
+    "reasons": [],
+    "notes": [],
+    "signals": {
+      "attempts7d": 0,
+      "failed7d": 0,
+      "failRate7d": null,
+      "meanNearestDup": null,
+      "dupSample": 0,
+      "dupBlocks7d": 0
+    }
+  },
+  "omracasablanca.ma": {
+    "multiplier": 1,
+    "paused": false,
+    "reasons": [],
+    "notes": [],
+    "signals": {
+      "attempts7d": 0,
+      "failed7d": 0,
+      "failRate7d": null,
+      "meanNearestDup": null,
+      "dupSample": 0,
+      "dupBlocks7d": 0
+    }
+  },
+  "omrarabat.ma": {
+    "multiplier": 1,
+    "paused": false,
+    "reasons": [],
+    "notes": [],
+    "signals": {
+      "attempts7d": 0,
+      "failed7d": 0,
+      "failRate7d": null,
+      "meanNearestDup": null,
+      "dupSample": 0,
+      "dupBlocks7d": 0
+    }
+  },
+  "offresomra.ma": {
+    "multiplier": 1,
+    "paused": false,
+    "reasons": [],
+    "notes": [],
+    "signals": {
+      "attempts7d": 0,
+      "failed7d": 0,
+      "failRate7d": null,
+      "meanNearestDup": null,
+      "dupSample": 0,
+      "dupBlocks7d": 0
+    }
+  },
+  "_meta": {
+    "generated_at": "2026-10-20T15:18:08.700Z",
+    "today": "2026-10-20",
+    "dead_man": null,
+    "stale_facts": {
+      "share": 0,
+      "count": 0
+    },
+    "spend": {
+      "month": "2026-10",
+      "usd": 0,
+      "cap": 150,
+      "share": 0,
+      "alert": false,
+      "stop": false
+    },
+    "notes": [
+      "dead-man switch not checked: GITHUB_TOKEN / GITHUB_REPOSITORY not set (they are set automatically in GitHub Actions)",
+      "Search Console not read: GOOGLE_SA_JSON not set (optional)"
+    ]
+  }
+}
