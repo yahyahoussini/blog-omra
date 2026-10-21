@@ -112,9 +112,14 @@
     }
   },
   "_meta": {
-    "generated_at": "2026-10-20T15:18:08.700Z",
-    "today": "2026-10-20",
-    "dead_man": null,
+    "generated_at": "2026-10-21T09:22:14.043Z",
+    "today": "2026-10-21",
+    "dead_man": {
+      "level": "ok",
+      "multiplier": 1,
+      "days": null,
+      "reason": "not started (no launch_date and no closed weekly review)"
+    },
     "stale_facts": {
       "share": 0,
       "count": 0
@@ -128,7 +133,6 @@
       "stop": false
     },
     "notes": [
-      "dead-man switch not checked: GITHUB_TOKEN / GITHUB_REPOSITORY not set (they are set automatically in GitHub Actions)",
       "Search Console not read: GOOGLE_SA_JSON not set (optional)"
     ]
   }
